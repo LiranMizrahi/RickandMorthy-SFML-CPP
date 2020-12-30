@@ -6,12 +6,13 @@ class GameObj {
 
 
 public:
-
 	GameObj();
-	GameObj(sf::Texture& ,sf::Vector2f);
+	 GameObj(sf::Texture& ,sf::Vector2f);
+	~GameObj();
+
+	sf::Sprite m_sprite;
 
 private:
 
-	sf::Sprite m_sprite;
 
 };

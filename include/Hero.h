@@ -1,12 +1,14 @@
 #pragma once
+#include "GameObj.h"
+
 #include "MovingObjects.h"
-#include "Controller.h"
-class Hero : public Controller {
+class Hero : public MovingObjects {
 
 
-//
-//public:
-//	Hero();
+
+   public:
+	   Hero();
+	   ~Hero();
 
 
 };
