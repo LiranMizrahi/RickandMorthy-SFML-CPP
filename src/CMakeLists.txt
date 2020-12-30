@@ -7,6 +7,7 @@
                                     "MovingObjects.cpp"
                                     "StaticObjects.cpp"
                                     "Hero.cpp"
+                                    "Floor.cpp"
 
 )
 
