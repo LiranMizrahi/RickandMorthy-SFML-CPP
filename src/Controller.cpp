@@ -1,9 +1,14 @@
 #include "Controller.h"
 #include <string>
 #include <iostream>
-Controller::Controller()
+Controller::Controller(): m_window(sf::VideoMode(1500, 950), "RICK RUNNER")
 {
+	//m_
+	openlevelfile(1);
 }
+
+
+
 
 std::fstream Controller::openlevelfile(int level)
 {
