@@ -11,4 +11,4 @@ configure_file ("ladder.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("enemy.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("insetimage.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("background.png" ${CMAKE_BINARY_DIR} COPYONLY)
-
+configure_file ("menu.png" ${CMAKE_BINARY_DIR} COPYONLY)
