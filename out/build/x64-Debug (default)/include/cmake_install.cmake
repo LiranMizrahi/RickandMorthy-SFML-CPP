@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Zotti/Desktop/ex04_liran_mizrahi_liron_hatabi (1)/include
+# Install script for directory: C:/Users/asusPC/source/repos/ex04_liran_mizrahi_liron_hatabi-1/liran054/ex04_liran_mizrahi_liron_hatabi-1/include
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/Zotti/Desktop/ex04_liran_mizrahi_liron_hatabi (1)/out/install/x64-Debug (default)")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/asusPC/source/repos/ex04_liran_mizrahi_liron_hatabi-1/liran054/ex04_liran_mizrahi_liron_hatabi-1/out/install/x64-Debug (default)")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

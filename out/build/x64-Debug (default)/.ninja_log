@@ -1,16 +1,12 @@
 # ninja log v5
-35	148	631067216	CMakeFiles/SFMLExamples.dir/src/Floor.cpp.obj	13f5a6acb20743c9
-27	150	631067216	CMakeFiles/SFMLExamples.dir/src/StaticObjects.cpp.obj	3f3f0e0f44ac38f5
-12	1563	631067217	CMakeFiles/SFMLExamples.dir/src/GameObj.cpp.obj	a0b6dca640826b3e
-15	1578	631067217	CMakeFiles/SFMLExamples.dir/src/Picture.cpp.obj	481fd6c160a5740d
-31	1590	631067217	CMakeFiles/SFMLExamples.dir/src/Hero.cpp.obj	74769b08afa05dc3
-1	1592	631067217	CMakeFiles/SFMLExamples.dir/src/main.cpp.obj	aad4df794cbc521
-23	1621	631067217	CMakeFiles/SFMLExamples.dir/src/MovingObjects.cpp.obj	dd4aa41c242345f8
-19	1653	631067217	CMakeFiles/SFMLExamples.dir/src/Menu.cpp.obj	5ad7367b57ae52a3
-5	1676	631067217	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
-8	1733	631067217	CMakeFiles/SFMLExamples.dir/src/Board.cpp.obj	411ed01e968d861f
-1733	2287	631067218	SFMLExamples.exe	8bb050816c271a04
-2	1215	631067968	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
-1215	1445	631067968	SFMLExamples.exe	8bb050816c271a04
-1	957	631067977	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
-957	1151	631067977	SFMLExamples.exe	8bb050816c271a04
+16	64	631070310	CMakeFiles/SFMLExamples.dir/src/StaticObjects.cpp.obj	34069c33e0cad16e
+21	64	631070310	CMakeFiles/SFMLExamples.dir/src/Floor.cpp.obj	f5904004c4a02b6e
+11	923	631070311	CMakeFiles/SFMLExamples.dir/src/MovingObjects.cpp.obj	93aa855efb14550c
+3	926	631070311	CMakeFiles/SFMLExamples.dir/src/main.cpp.obj	dbe51ee8c485d6a7
+5	927	631070311	CMakeFiles/SFMLExamples.dir/src/GameObj.cpp.obj	3d122402548f23e1
+9	957	631070311	CMakeFiles/SFMLExamples.dir/src/Menu.cpp.obj	deaa5dfd00198bc4
+18	963	631070311	CMakeFiles/SFMLExamples.dir/src/Hero.cpp.obj	db915455805b828a
+14	974	631070311	CMakeFiles/SFMLExamples.dir/src/Board.cpp.obj	d71acef99d5e5cfe
+7	974	631070311	CMakeFiles/SFMLExamples.dir/src/Picture.cpp.obj	d173bbd7b1b6ff3c
+1	1005	631070311	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	f0646bf5f4e7e993
+1005	1648	631070311	SFMLExamples.exe	7fba3d958f1381d
