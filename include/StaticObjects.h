@@ -1,7 +1,7 @@
 #pragma once
 
 
-class StaticObjects : public GameObject
+class StaticObjects : public GameObj
 {
 public:
 	StaticObjects();
