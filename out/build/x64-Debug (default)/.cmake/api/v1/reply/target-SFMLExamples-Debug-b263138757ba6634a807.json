@@ -70,7 +70,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1  "
 				},
 				{
 					"backtrace" : 3,
@@ -91,7 +91,7 @@
 			[
 				{
 					"backtrace" : 5,
-					"path" : "C:/Users/Zotti/Desktop/ex04_liran_mizrahi_liron_hatabi (1)/include"
+					"path" : "C:/Users/asusPC/source/repos/liran054/ex04_liran_mizrahi_liron_hatabi-1/include"
 				},
 				{
 					"backtrace" : 2,
