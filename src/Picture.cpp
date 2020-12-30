@@ -14,7 +14,7 @@ Picture::Picture()
 	m_save.loadFromFile("save1.png");
 	m_delete.loadFromFile("delete.png");
 	m_background.loadFromFile("background.png");
-	m_insertScreen.loadFromFile("insetimage.jpg");
+	m_insertScreen.loadFromFile("menu.png");
 
 }
 
