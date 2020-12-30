@@ -1,0 +1,14 @@
+﻿
+configure_file ("boardbig2.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("brike.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("digger12.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("portalgun.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("save1.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("clear.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("delete.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("rope.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("ladder.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("enemy.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("insetimage.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("background.png" ${CMAKE_BINARY_DIR} COPYONLY)
+
