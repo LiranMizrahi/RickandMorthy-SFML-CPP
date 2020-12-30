@@ -9,3 +9,8 @@ GameObj::GameObj(sf::Texture& tex, sf::Vector2f location)
 GameObj::~GameObj()
 {
 }
+
+void GameObj::draw(sf::RenderWindow& window)
+{
+	window.draw(this->m_sprite);
+}

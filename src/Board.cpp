@@ -47,7 +47,7 @@ Board::Board(std::fstream file , Picture * pic )
                     break;
 
                 case HERO:
-                   // m_hero = Hero();
+                    m_hero = Hero();
 
                     break;
 
