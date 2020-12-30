@@ -7,15 +7,14 @@ class GameObj {
 
 public:
 	GameObj() {};
-	 GameObj(sf::Texture& ,sf::Vector2f);
+	 GameObj(const sf::Texture& ,const sf::Vector2f&);
 	~GameObj();
+  void draw(sf::RenderWindow&);
 
+protected:
+	  sf::Sprite m_sprite;
 
-	void draw(sf::RenderWindow&);
-
-	sf::Sprite m_sprite;
-
-private:
+//private:
 
 
 };

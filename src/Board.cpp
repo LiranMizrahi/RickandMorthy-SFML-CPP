@@ -9,7 +9,7 @@ Board::Board():m_height(0),m_width(0)
     m_hero = Hero();
 }
 
-Board::Board(std::fstream file , Picture * pic )
+Board::Board(std::fstream file ,  Picture& pic )
 {
     sf::Vector2f location;
 
@@ -47,12 +47,12 @@ Board::Board(std::fstream file , Picture * pic )
                     break;
 
                 case HERO:
-                    m_hero = Hero();
+                    m_hero = Hero(*pic.GetHeroTexture() ,location);
 
                     break;
 
                 case FLOOR:
-                    
+                    staticobj.push_back(GameObj(*pic.GetFloorTexture(), location));
 
                     break;
 
@@ -78,6 +78,18 @@ Board::Board(std::fstream file , Picture * pic )
 
         }
     }
+
+void Board::draw(sf::RenderWindow& window)
+{
+    m_hero.draw(window);
+
+
+    for ( auto & e :staticobj)
+    {
+        e.draw(window);
+
+    }
+}
 
 
   
