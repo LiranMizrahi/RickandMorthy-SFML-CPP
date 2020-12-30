@@ -20,7 +20,7 @@ public:
 private:	
 
 	//private members
-	//Board m_board;
+	Board m_board;
 	sf::RenderWindow m_window;
 	Picture m_pictures;
 	sf::Sprite board;	
