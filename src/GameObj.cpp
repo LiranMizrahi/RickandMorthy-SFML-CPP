@@ -10,8 +10,7 @@ GameObj::~GameObj()
 {
 }
 
-void GameObj::draw(sf::RenderWindow& window)
+void GameObj::draw(sf::RenderWindow& window)const
 {
-
 	window.draw(this->m_sprite);
 }

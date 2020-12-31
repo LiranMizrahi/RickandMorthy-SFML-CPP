@@ -5,8 +5,8 @@
 class StaticObjects : public GameObj
 {
 public:
-	StaticObjects();
-	~StaticObjects();
+	StaticObjects() {};
+	 // ~StaticObjects();
 
 private:
 
