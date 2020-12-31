@@ -36,3 +36,9 @@
 649	794	631117041	SFMLExamples.exe	7fba3d958f1381d
 1	659	631117049	CMakeFiles/SFMLExamples.dir/src/Menu.cpp.obj	deaa5dfd00198bc4
 660	816	631117049	SFMLExamples.exe	7fba3d958f1381d
+3	228	631117642	build.ninja	207760a22130669e
+3	848	631117643	CMakeFiles/SFMLExamples.dir/src/Menu.cpp.obj	deaa5dfd00198bc4
+1	856	631117643	CMakeFiles/SFMLExamples.dir/src/main.cpp.obj	dbe51ee8c485d6a7
+856	1026	631117643	SFMLExamples.exe	7fba3d958f1381d
+1	733	631117723	CMakeFiles/SFMLExamples.dir/src/Picture.cpp.obj	d173bbd7b1b6ff3c
+733	881	631117723	SFMLExamples.exe	7fba3d958f1381d

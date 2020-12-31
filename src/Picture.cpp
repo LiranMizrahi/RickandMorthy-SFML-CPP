@@ -3,8 +3,8 @@
 
 Picture::Picture()
 {
-	m_hero.loadFromFile("digger12.png");
-	m_enemy.loadFromFile("enemy.png");
+	m_hero.loadFromFile("jerry_front.png");
+	m_enemy.loadFromFile("meeseeks_front.png");
 	m_board.loadFromFile("level1.jpg");
 	m_gun.loadFromFile("portalgun.png");
 	m_ledder.loadFromFile("ladder.png");
