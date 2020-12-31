@@ -12,5 +12,6 @@ GameObj::~GameObj()
 
 void GameObj::draw(sf::RenderWindow& window)
 {
+
 	window.draw(this->m_sprite);
 }

@@ -1,4 +1,5 @@
 # ninja log v5
+<<<<<<< HEAD
 16	59	631107092	CMakeFiles/SFMLExamples.dir/src/StaticObjects.cpp.obj	34069c33e0cad16e
 20	63	631107092	CMakeFiles/SFMLExamples.dir/src/Floor.cpp.obj	f5904004c4a02b6e
 9	828	631107093	CMakeFiles/SFMLExamples.dir/src/GameObj.cpp.obj	3d122402548f23e1
@@ -11,3 +12,48 @@
 3	937	631107093	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	f0646bf5f4e7e993
 937	1638	631107094	SFMLExamples.exe	7fba3d958f1381d
 3	246	631107107	build.ninja	207760a22130669e
+=======
+105	1305	631109600	CMakeFiles/SFMLExamples.dir/src/StaticObjects.cpp.obj	3f3f0e0f44ac38f5
+141	1307	631109600	CMakeFiles/SFMLExamples.dir/src/Floor.cpp.obj	13f5a6acb20743c9
+38	2756	631109601	CMakeFiles/SFMLExamples.dir/src/Picture.cpp.obj	481fd6c160a5740d
+76	2775	631109601	CMakeFiles/SFMLExamples.dir/src/GameObj.cpp.obj	a0b6dca640826b3e
+126	2856	631109602	CMakeFiles/SFMLExamples.dir/src/Hero.cpp.obj	74769b08afa05dc3
+115	2863	631109602	CMakeFiles/SFMLExamples.dir/src/MovingObjects.cpp.obj	dd4aa41c242345f8
+2	2911	631109602	CMakeFiles/SFMLExamples.dir/src/main.cpp.obj	aad4df794cbc521
+15	2932	631109602	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
+89	2953	631109602	CMakeFiles/SFMLExamples.dir/src/Board.cpp.obj	411ed01e968d861f
+22	2974	631109602	CMakeFiles/SFMLExamples.dir/src/Menu.cpp.obj	5ad7367b57ae52a3
+2974	3803	631109602	SFMLExamples.exe	8bb050816c271a04
+5	266	631112413	build.ninja	572011c21a6ba28
+1	1225	631112517	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
+1226	1475	631112517	SFMLExamples.exe	8bb050816c271a04
+1	1159	631112572	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
+1159	1369	631112572	SFMLExamples.exe	8bb050816c271a04
+1	1135	631112603	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
+1135	1365	631112603	SFMLExamples.exe	8bb050816c271a04
+1	1127	631112888	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
+1127	1353	631112888	SFMLExamples.exe	8bb050816c271a04
+1	195	631113081	build.ninja	572011c21a6ba28
+1	1029	631113120	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
+1029	1238	631113121	SFMLExamples.exe	8bb050816c271a04
+1	211	631114064	build.ninja	572011c21a6ba28
+1	1428	631114066	CMakeFiles/SFMLExamples.dir/src/Picture.cpp.obj	481fd6c160a5740d
+1429	1656	631114066	SFMLExamples.exe	8bb050816c271a04
+1	1129	631114100	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
+1130	1506	631114101	SFMLExamples.exe	8bb050816c271a04
+1	212	631114276	build.ninja	572011c21a6ba28
+1	1113	631114277	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
+1113	1324	631114277	SFMLExamples.exe	8bb050816c271a04
+1	225	631114304	build.ninja	572011c21a6ba28
+1	220	631114329	build.ninja	572011c21a6ba28
+1	1008	631114420	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
+1008	1223	631114420	SFMLExamples.exe	8bb050816c271a04
+1	968	631114437	CMakeFiles/SFMLExamples.dir/src/Controller.cpp.obj	fe7f9bf0a5eeb18e
+968	1179	631114437	SFMLExamples.exe	8bb050816c271a04
+1	1036	631114539	CMakeFiles/SFMLExamples.dir/src/Board.cpp.obj	411ed01e968d861f
+1036	1269	631114539	SFMLExamples.exe	8bb050816c271a04
+1	1141	631114635	CMakeFiles/SFMLExamples.dir/src/Board.cpp.obj	411ed01e968d861f
+1141	1370	631114635	SFMLExamples.exe	8bb050816c271a04
+1	940	631114838	CMakeFiles/SFMLExamples.dir/src/Board.cpp.obj	411ed01e968d861f
+941	1167	631114838	SFMLExamples.exe	8bb050816c271a04
+>>>>>>> 647d3c4a3af5b43cb8c844b44e2ecf49c8cf7167

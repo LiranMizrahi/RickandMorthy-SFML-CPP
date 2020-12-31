@@ -14,13 +14,6 @@ Board::Board(std::ifstream& file ,  Picture& pic )
     sf::Vector2f location;
 
 
-    //calculate the size of the middle of singal cell 
-    // sub the size of the image frame
-    float tx = (1180 / float(m_width) / 2);
-    float ty = (880 / float(m_height) / 2);
-
-    location.x = 230 - tx;
-    location.y = 35 + ty;
 
     float x_location = location.x;
 
@@ -29,6 +22,15 @@ Board::Board(std::ifstream& file ,  Picture& pic )
 	file >> m_width >> m_height; // take size map
 	file.get();
    
+
+    //calculate the size of the middle of singal cell 
+    // sub the size of the image frame
+    float tx = (1600 / float(m_width) / 2);
+    float ty = (899 / float(m_height) / 2);
+
+    location.x = 130 - tx;
+    location.y = 30 + ty;
+
     // take char with the file and put vector
     for (int i = 0; i < m_width; ++i)
     {
@@ -48,10 +50,10 @@ Board::Board(std::ifstream& file ,  Picture& pic )
 
                 case HERO:
                     m_hero = Hero(*pic.GetHeroTexture() ,location);
-
                     break;
 
                 case FLOOR:
+
                     staticobj.push_back(GameObj(*pic.GetFloorTexture(), location));
 
                     break;
@@ -72,6 +74,7 @@ Board::Board(std::ifstream& file ,  Picture& pic )
                 }
                 location.x += (2 * tx);
             }
+
             file.get();
             location.x = x_location;
             location.y += (2 * ty);
@@ -86,6 +89,8 @@ void Board::draw(sf::RenderWindow& window)
 
     for ( auto & e :staticobj)
     {
+       
+       
         e.draw(window);
 
     }

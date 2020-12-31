@@ -5,7 +5,7 @@ Picture::Picture()
 {
 	m_hero.loadFromFile("digger12.png");
 	m_enemy.loadFromFile("enemy.png");
-	m_board.loadFromFile("boardbig2.jpg");
+	m_board.loadFromFile("level1.jpg");
 	m_gun.loadFromFile("portalgun.png");
 	m_ledder.loadFromFile("ladder.png");
 	m_rope.loadFromFile("rope.png");
