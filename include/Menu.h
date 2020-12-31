@@ -6,12 +6,11 @@ class Menu
 public:
 	Menu();
 	
-	void OpenMenu();
+	bool StartGame();
 private:
 	Picture m_Picture;
 	sf::Vector2f m_location;
 
 	sf::RenderWindow m_window;
-	void Start();
 
 };

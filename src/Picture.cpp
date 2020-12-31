@@ -10,11 +10,8 @@ Picture::Picture()
 	m_ledder.loadFromFile("ladder.png");
 	m_rope.loadFromFile("rope.png");
 	m_floor.loadFromFile("brike.jpg");
-	m_clear.loadFromFile("clear.png");
-	m_save.loadFromFile("save1.png");
-	m_delete.loadFromFile("delete.png");
-	m_background.loadFromFile("background.png");
-	m_insertScreen.loadFromFile("menu.png");
+	m_menu.loadFromFile("menu.png");
+	m_start.loadFromFile("start_button.png");
 
 }
 
@@ -38,19 +35,9 @@ sf::Texture* Picture::GetBoardTexture()
 	return &m_board;
 }
 
-sf::Texture* Picture::GetClearTexture()
-{
-	return &m_clear;
-}
-
 sf::Texture* Picture::GetFloorTexture()
 {
 	return &m_floor;
-}
-
-sf::Texture* Picture::GetDeleteTexture()
-{
-	return &m_delete;
 }
 
 sf::Texture* Picture::GetLedderTexture()
@@ -58,22 +45,17 @@ sf::Texture* Picture::GetLedderTexture()
 	return &m_ledder;
 }
 
-sf::Texture* Picture::GetSaveTexture()
-{
-	return &m_save;
-}
-
 sf::Texture* Picture::GetRopeTexture()
 {
 	return &m_rope;
 }
 
-sf::Texture* Picture::GetbackgroundTexture()
+sf::Texture* Picture::GetMenuTexture()
 {
-	return &m_background;
+	return &m_menu;
 }
 
-sf::Texture* Picture::GetInsertScreenTexture()
+sf::Texture* Picture::GetStartTexture()
 {
-	return &m_insertScreen;
+	return &m_start;
 }
