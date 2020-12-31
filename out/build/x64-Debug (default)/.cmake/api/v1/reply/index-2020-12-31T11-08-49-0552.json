@@ -26,11 +26,7 @@
 	"objects" : 
 	[
 		{
-<<<<<<< HEAD:out/build/x64-Debug (default)/.cmake/api/v1/reply/index-2020-12-31T08-38-27-0268.json
-			"jsonFile" : "codemodel-v2-df3c73fbf56218837352.json",
-=======
-			"jsonFile" : "codemodel-v2-8542f332d2f769a7a4cf.json",
->>>>>>> 647d3c4a3af5b43cb8c844b44e2ecf49c8cf7167:out/build/x64-Debug (default)/.cmake/api/v1/reply/index-2020-12-31T10-38-49-0434.json
+			"jsonFile" : "codemodel-v2-0cbfe1fbe8ee79ac53fa.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
@@ -48,11 +44,7 @@
 			}
 		},
 		{
-<<<<<<< HEAD:out/build/x64-Debug (default)/.cmake/api/v1/reply/index-2020-12-31T08-38-27-0268.json
-			"jsonFile" : "cmakeFiles-v1-896202bf43196de987c9.json",
-=======
-			"jsonFile" : "cmakeFiles-v1-ecd8421484cafc545cdc.json",
->>>>>>> 647d3c4a3af5b43cb8c844b44e2ecf49c8cf7167:out/build/x64-Debug (default)/.cmake/api/v1/reply/index-2020-12-31T10-38-49-0434.json
+			"jsonFile" : "cmakeFiles-v1-c3250fcabd8f617919d6.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -94,11 +86,7 @@
 						}
 					},
 					{
-<<<<<<< HEAD:out/build/x64-Debug (default)/.cmake/api/v1/reply/index-2020-12-31T08-38-27-0268.json
-						"jsonFile" : "cmakeFiles-v1-896202bf43196de987c9.json",
-=======
-						"jsonFile" : "cmakeFiles-v1-ecd8421484cafc545cdc.json",
->>>>>>> 647d3c4a3af5b43cb8c844b44e2ecf49c8cf7167:out/build/x64-Debug (default)/.cmake/api/v1/reply/index-2020-12-31T10-38-49-0434.json
+						"jsonFile" : "cmakeFiles-v1-c3250fcabd8f617919d6.json",
 						"kind" : "cmakeFiles",
 						"version" : 
 						{
@@ -107,11 +95,7 @@
 						}
 					},
 					{
-<<<<<<< HEAD:out/build/x64-Debug (default)/.cmake/api/v1/reply/index-2020-12-31T08-38-27-0268.json
-						"jsonFile" : "codemodel-v2-df3c73fbf56218837352.json",
-=======
-						"jsonFile" : "codemodel-v2-8542f332d2f769a7a4cf.json",
->>>>>>> 647d3c4a3af5b43cb8c844b44e2ecf49c8cf7167:out/build/x64-Debug (default)/.cmake/api/v1/reply/index-2020-12-31T10-38-49-0434.json
+						"jsonFile" : "codemodel-v2-0cbfe1fbe8ee79ac53fa.json",
 						"kind" : "codemodel",
 						"version" : 
 						{
