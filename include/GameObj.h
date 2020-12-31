@@ -6,10 +6,12 @@ class GameObj {
 
 
 public:
-	GameObj() {};
+	GameObj() = default;
 	 GameObj(const sf::Texture& ,const sf::Vector2f&);
-	~GameObj();
-  void draw(sf::RenderWindow&);
+	 virtual ~GameObj();
+
+
+  void draw(sf::RenderWindow&)const;
 
 protected:
 	  sf::Sprite m_sprite;

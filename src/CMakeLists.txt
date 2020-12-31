@@ -8,6 +8,9 @@
                                     "StaticObjects.cpp"
                                     "Hero.cpp"
                                     "Floor.cpp"
+                                    "Enemy.cpp"
+                                    "Rope.cpp"
+                                    "Ladder.cpp"
 
 )
 
