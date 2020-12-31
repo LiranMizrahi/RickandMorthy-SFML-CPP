@@ -15,7 +15,7 @@ class Controller {
 					
 public:			
 	Controller();
-	
+	void run();
 
 				
 private:	
@@ -26,11 +26,12 @@ private:
 	Picture m_pictures;
 	sf::Sprite board;	
 	//Menu m_menu;
-	std::fstream level;
+	std::ifstream m_boardfile;
+	int m_level;
 
 	//private function
 
-	std::fstream openlevelfile(int);
+	std::ifstream openlevelfile(int);
 
 				
 				
