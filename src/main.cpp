@@ -5,7 +5,7 @@ int main()
 
 
 	auto a = Menu();
-   a.OpenMenu();
+   a.StartGame();
 
 
 	/*auto controller = Controller();
