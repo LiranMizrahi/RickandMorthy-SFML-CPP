@@ -4,12 +4,12 @@ int main()
 {
 
 
-	//auto a = Menu();
-  /// a.OpenMenu();
+	auto a = Menu();
+   a.OpenMenu();
 
 
-	auto controller = Controller();
-	controller.run();
+	/*auto controller = Controller();
+	controller.run();*/
 	
 }
 
