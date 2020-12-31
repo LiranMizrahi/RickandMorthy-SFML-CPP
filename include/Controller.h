@@ -7,6 +7,7 @@
 #include "Menu.h"
 #include "Board.h"
 #include "fstream"
+#include "Menu.h"
 
 
 class Controller {
@@ -22,9 +23,11 @@ private:
 
 	//private members
 	Board m_board;
-	sf::RenderWindow m_window;
 	Picture m_pictures;
+	Menu m_menu;
+	sf::RenderWindow m_window;
 	sf::Sprite board;	
+
 	//Menu m_menu;
 	std::ifstream m_boardfile;
 	int m_level;

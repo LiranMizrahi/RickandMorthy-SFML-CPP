@@ -6,11 +6,11 @@ class Menu
 public:
 	Menu();
 	
-	bool StartGame();
+	bool StartGame(sf::RenderWindow &);
 private:
 	Picture m_Picture;
 	sf::Vector2f m_location;
 
-	sf::RenderWindow m_window;
+	sf::RenderWindow window;
 
 };
