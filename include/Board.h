@@ -11,7 +11,7 @@ class Board {
 
 public:
 	Board();
-    Board(std::fstream ,  Picture& pic);
+    Board(std::ifstream& ,  Picture& pic);
 	void draw(sf::RenderWindow&);
 
 private:
