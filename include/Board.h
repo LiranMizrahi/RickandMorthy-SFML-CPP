@@ -23,7 +23,7 @@ private:
 	int m_width, m_height;
 
 	//private function
-	void createObject(Picture& pic,char,const sf::Vector2f &);
+	void createObject( Picture& pic,char,const sf::Vector2f &);
 	
 
 

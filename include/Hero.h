@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObj.h"
+#include "Picture.h"
 #include <SFML/Graphics.hpp>
 #include "MovingObjects.h"
 class Hero : public MovingObjects {
@@ -8,7 +9,7 @@ class Hero : public MovingObjects {
 
    public:
 	   Hero();
-	   Hero(const sf::Texture*, const sf::Vector2f&);
+	   Hero( Picture &, const sf::Vector2f&);
 	   int GetLife();
 	   int GetScore();
 	   void SetScore(int);

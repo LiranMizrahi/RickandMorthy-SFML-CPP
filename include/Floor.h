@@ -1,14 +1,13 @@
 #pragma once
 
-
+#include "StaticObjects.h"
+class Picture;
+#include <SFML/Graphics.hpp>
 class Floor : public StaticObjects {
 
 public:
-	Floor() {};
-	Floor(const sf::Texture* tex, const sf::Vector2f& loc) {
-		m_sprite.setTexture(*tex);
-		m_sprite.setPosition(loc);
-	};
+	Floor() ;
+	Floor(Picture&, const sf::Vector2f& loc);
 
 
 };

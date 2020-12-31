@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Picture.h"
 #include "Floor.h"
+#include "Ladder.h"
 //===============constructors ==============
 Board::Board():m_height(0),m_width(0)
 {
@@ -57,19 +58,21 @@ Board::Board(std::ifstream& file ,  Picture& pic )
 
 void Board::draw(sf::RenderWindow& window)const
 {
-    m_hero.draw(window);
+    float tx = (1600 / float(m_width));
+    float ty = (899 / float(m_height));
+    sf::Vector2f size(tx, ty);
+   
     for (auto& e : m_staticObjects)
-    {
-        e->draw(window);
-        
-    }
-
+        e->draw(window,size);
+       
+    m_hero.draw(window);
 }
 
 
 
-void Board::createObject(Picture & pic,char input, const sf::Vector2f & location)
+void Board::createObject( Picture & pic,char input, const sf::Vector2f & location)
 {
+
     
     switch (input)
     {
@@ -79,13 +82,13 @@ void Board::createObject(Picture & pic,char input, const sf::Vector2f & location
         break;
 
     case HERO:
-        m_hero = Hero(pic.GetHeroTexture(), location);
+       m_hero = Hero(pic, location);
 
         break;
 
     case FLOOR:
        
-       m_staticObjects.push_back(std::move(std::make_unique<Floor>(pic.GetFloorTexture(), location)));
+       m_staticObjects.push_back(std::move(std::make_unique<Floor>(pic, location)));
 
 
         break;
@@ -100,7 +103,7 @@ void Board::createObject(Picture & pic,char input, const sf::Vector2f & location
         break;
 
     case LADDER:
-
+        m_staticObjects.push_back(std::move(std::make_unique<Ladder>(pic, location)));
         break;
 
     }

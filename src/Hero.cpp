@@ -7,10 +7,12 @@ Hero::Hero() :m_life(0), m_score(0)
 }
 
 
-Hero::Hero(const sf::Texture* tex, const sf::Vector2f& loc) :m_life(3), m_score(0)
+Hero::Hero( Picture & pic, const sf::Vector2f& loc) :MovingObjects(*pic.GetHeroTexture(),loc) ,m_life(3), m_score(0)
 {
-	m_sprite.setTexture(*tex);
-	m_sprite.setPosition(loc);
+
+//	m_sprite.setTexture(*tex);
+	//m_sprite.setPosition(loc);
+//	
 }
 
 int Hero::GetLife()
