@@ -18,9 +18,14 @@ public:
     sf::Texture* GetRopeTexture();
     sf::Texture* GetMenuTexture();
     sf::Texture* GetStartTexture();
+    sf::Texture* GetHeroMenu1Texture();
+    sf::Texture* GetHeroMenu2Texture();
+
 
   
    private:
+    sf::Texture m_HeroMenu1;
+    sf::Texture m_HeroMenu2;
     sf::Texture m_hero;
     sf::Texture m_enemy;
     sf::Texture m_gun;

@@ -14,4 +14,6 @@ configure_file ("jerry_back.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("meeseeks_left.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("meeseeks_front.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("meeseeks_back.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("jerry_player.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("rick_player.png" ${CMAKE_BINARY_DIR} COPYONLY)
 

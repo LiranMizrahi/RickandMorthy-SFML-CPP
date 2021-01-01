@@ -19,16 +19,16 @@ bool Menu::StartGame(sf::RenderWindow& window)
 
 
 	
-	auto hero_1 = sf::RectangleShape(sf::Vector2f((74*2.5), (129*2.5)));
-	hero_1.setTexture(m_Picture.GetHeroTexture());
+	auto hero_1 = sf::RectangleShape(sf::Vector2f((193*2), (250*2)));
+	hero_1.setTexture(m_Picture.GetHeroMenu1Texture());
 	//auto hero_1 = sf::Sprite(*m_Picture.GetHeroTexture());
 	hero_1.setOrigin(50, 50);
 	hero_1.setPosition(1000, 500);
 	
 
 
-	auto hero_2 = sf::RectangleShape(sf::Vector2f((77 * 2.5), (129 * 2.5)));
-	hero_2.setTexture(m_Picture.GetEnemyTexture());
+	auto hero_2 = sf::RectangleShape(sf::Vector2f((118 * 2), (250 * 2)));
+	hero_2.setTexture(m_Picture.GetHeroMenu2Texture());
 	//auto hero_2 = sf::Sprite(*m_Picture.GetEnemyTexture());
 	hero_2.setOrigin(50, 50);
 	hero_2.setPosition(750, 500);
@@ -37,21 +37,32 @@ bool Menu::StartGame(sf::RenderWindow& window)
 
 
 
-	auto start_button = sf::RectangleShape(sf::Vector2f((300), (111)));
-	start_button.setTexture(m_Picture.GetStartTexture());
-	//auto hero_2 = sf::Sprite(*m_Picture.GetEnemyTexture());
-	start_button.setOrigin(50, 50);
-	start_button.setPosition(750, 200);
+	//auto start_button = sf::RectangleShape(sf::Vector2f((300), (111)));
+	//start_button.setTexture(m_Picture.GetStartTexture());
+	////auto hero_2 = sf::Sprite(*m_Picture.GetEnemyTexture());
+	//start_button.setOrigin(50, 50);
+	//start_button.setPosition(750, 200);
 
 
-	
+	sf::Text text_1;
+	sf::Font font;
+	//font.loadFromFile("C:/Windows/Fonts/Arial.ttf");
+	font.loadFromFile("C:/Windows/Fonts/BAUHS93.ttf");
+	text_1.setFont(font); // font is a sf::Font
+	text_1.setString("Start");
+	text_1.setCharacterSize(200); // in pixels, not points!
+	text_1.setFillColor(sf::Color::Black);
+	text_1.setStyle(sf::Text::Bold);
+	text_1.setPosition(750, 100);
+	text_1.setOrigin(50, 50);
 
 
 	sf::Text text_2;
-	sf::Font font;
-	font.loadFromFile("C:/Windows/Fonts/Arial.ttf");
+	//sf::Font font;
+	//font.loadFromFile("C:/Windows/Fonts/Arial.ttf");
+	font.loadFromFile("C:/Windows/Fonts/BAUHS93.ttf");
 	text_2.setFont(font); // font is a sf::Font
-	text_2.setString("Choose a player");
+	text_2.setString("Choose a player:");
 	text_2.setCharacterSize(50); // in pixels, not points!
 	text_2.setFillColor(sf::Color::Black);
 	text_2.setStyle(sf::Text::Bold );
@@ -69,7 +80,8 @@ bool Menu::StartGame(sf::RenderWindow& window)
 		window.draw(hero_1);
 		window.draw(hero_2);
 
-		window.draw(start_button);
+		//window.draw(start_button);
+		window.draw(text_1);
 		window.draw(text_2);
 
 		window.display();
@@ -110,7 +122,7 @@ bool Menu::StartGame(sf::RenderWindow& window)
 					hero_2.setOutlineThickness(0);
 
 				}
-				else if(start_button.getGlobalBounds().contains(location))
+				else if(text_1.getGlobalBounds().contains(location))
 				{
 					return heroChoose;
 				}
@@ -118,4 +130,5 @@ bool Menu::StartGame(sf::RenderWindow& window)
 			}
 		}
 	}
+	return heroChoose;
 }

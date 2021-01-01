@@ -12,6 +12,8 @@ Picture::Picture()
 	m_floor.loadFromFile("brike.jpg");
 	m_menu.loadFromFile("menu.png");
 	m_start.loadFromFile("start_button.png");
+	m_HeroMenu1.loadFromFile("jerry_player.png");
+	m_HeroMenu2.loadFromFile("rick_player.png");
 
 }
 
@@ -58,4 +60,14 @@ sf::Texture* Picture::GetMenuTexture()
 sf::Texture* Picture::GetStartTexture()
 {
 	return &m_start;
+}
+
+sf::Texture* Picture::GetHeroMenu1Texture()
+{
+	return &m_HeroMenu1;
+}
+
+sf::Texture* Picture::GetHeroMenu2Texture()
+{
+	return &m_HeroMenu2;
 }
