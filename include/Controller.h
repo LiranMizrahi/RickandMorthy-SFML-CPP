@@ -1,5 +1,5 @@
-#pragma once
-
+ #pragma once
+        
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "GameObj.h"

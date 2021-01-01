@@ -9,7 +9,7 @@
 //===============constructors ==============
 Board::Board():m_height(0),m_width(0)
 {
-    m_hero = Hero();
+   
 }
 
 Board::Board(std::ifstream& file ,  Picture& pic )
