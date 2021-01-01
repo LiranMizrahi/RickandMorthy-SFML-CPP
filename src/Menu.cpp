@@ -1,12 +1,13 @@
 #include "Menu.h"
 #include <iostream>
 
-Menu::Menu():m_window(sf::VideoMode(1800, 1080), "Start Game")
+Menu::Menu()
+	//:window(sf::VideoMode(1800, 1080), "Start Game")
 {
 	
 }
 
-bool Menu::StartGame()
+bool Menu::StartGame(sf::RenderWindow& window)
 {
 	bool heroChoose = false;
 
@@ -59,32 +60,32 @@ bool Menu::StartGame()
 
 	// inside the main loop, between window.clear() and window.display()
 
-	while (m_window.isOpen())
+	while (window.isOpen())
 	{
 
-		m_window.clear();
-		m_window.draw(picture1);
+		window.clear();
+		window.draw(picture1);
 
-		m_window.draw(hero_1);
-		m_window.draw(hero_2);
+		window.draw(hero_1);
+		window.draw(hero_2);
 
-		m_window.draw(start_button);
-		m_window.draw(text_2);
+		window.draw(start_button);
+		window.draw(text_2);
 
-		m_window.display();
+		window.display();
 
 
-		if (auto event = sf::Event{}; m_window.waitEvent(event))
+		if (auto event = sf::Event{}; window.waitEvent(event))
 		{
 			switch (event.type)
 			{
 
 			case sf::Event::Closed:// if close
-				m_window.close();
+				window.close();
 				break;
 
 			case sf::Event::MouseButtonReleased:
-				auto location = m_window.mapPixelToCoords(
+				auto location = window.mapPixelToCoords(
 					{ event.mouseButton.x - 7, event.mouseButton.y + 3 });
 
 
@@ -92,14 +93,21 @@ bool Menu::StartGame()
 				{
 					heroChoose = true;
 					hero_2.setFillColor(sf::Color(255, 255, 255, 130));
-					hero_1.setFillColor(sf::Color(255, 255, 255, 255));
+					hero_2.setOutlineThickness(2);
+					hero_2.setOutlineColor(sf::Color::Blue);
+				//	hero_2.setOutlineColor(sf::Color::Color(153,0,0,153));
 
+					hero_1.setFillColor(sf::Color(255, 255, 255, 255));
+					hero_1.setOutlineThickness(0);
 				}
 				else if(hero_1.getGlobalBounds().contains(location))
 				{
 					heroChoose = false;
 					hero_1.setFillColor(sf::Color(255, 255, 255, 130));
+					hero_1.setOutlineThickness(2);
+					hero_1.setOutlineColor(sf::Color::Green);
 					hero_2.setFillColor(sf::Color(255, 255, 255, 255));
+					hero_2.setOutlineThickness(0);
 
 				}
 				else if(start_button.getGlobalBounds().contains(location))

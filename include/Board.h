@@ -24,6 +24,7 @@ private:
 
 	//private function
 	void createObject( Picture& pic,char,const sf::Vector2f &);
+	void moveCharacters();
 	
 
 

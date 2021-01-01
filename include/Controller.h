@@ -8,8 +8,8 @@
 #include "Board.h"
 #include "fstream"
 #include "Menu.h"
-
-
+					
+										
 class Controller {
 					
 				
@@ -25,17 +25,14 @@ private:
 	Board m_board;
 	Picture m_pictures;
 	Menu m_menu;
+
 	sf::RenderWindow m_window;
 	sf::Sprite board;	
-
-	//Menu m_menu;
+	sf::Clock clock;
 	std::ifstream m_boardfile;
+
 	int m_level;
 
 	//private function
-
-	std::ifstream openlevelfile(int);
-
-				
-				
+	std::ifstream openlevelfile(int);		
 };				

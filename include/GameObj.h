@@ -13,9 +13,9 @@ public:
   void draw(sf::RenderWindow&)const;
 
 protected:
-	  sf::Sprite m_sprite;
+	sf::Sprite m_sprite;
 
-//private:
-
+private:
+	
 
 };

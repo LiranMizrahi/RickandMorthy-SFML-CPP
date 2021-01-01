@@ -14,6 +14,7 @@ class Hero : public MovingObjects {
 	   int GetScore();
 	   void SetScore(int);
 	   void SetLife(int);
+	   void UpdateLocation(float,int);
 private:
 	int m_life, m_score;
 	

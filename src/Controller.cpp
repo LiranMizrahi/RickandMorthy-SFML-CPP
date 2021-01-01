@@ -19,8 +19,33 @@ void Controller::run()
 		m_window.draw(board);
 		m_board.draw(m_window);
 		m_window.display();
-	}
+		sf::Event event;
+		while (m_window.pollEvent(event))
+			
+		{
+			if ((event.type == sf::Event::Closed) ||
+				((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape)))
+			{
+				m_window.close();
+				break;
+			}
 
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			{
+				
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			{
+
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+			{
+				m_menu.StartGame(m_window);
+			}
+
+		}
+	}
 }
 
 

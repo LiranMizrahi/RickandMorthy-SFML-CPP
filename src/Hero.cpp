@@ -30,6 +30,33 @@ void Hero::SetLife(int life)
 	m_life = life;
 }
 
+void Hero::UpdateLocation(float time, int dir)
+{
+	switch (dir)
+	{
+
+	case 1://left
+		this->move((-0.2f) * time ,0);
+		break;
+
+	case 2://right
+		this->move((0.2f) * time, 0);
+		break;
+
+	case 3:
+
+		break;
+
+	case 4:
+
+		break;
+
+	}
+
+
+
+}
+
 void Hero::SetScore(int score)
 {
 	m_score = score;
