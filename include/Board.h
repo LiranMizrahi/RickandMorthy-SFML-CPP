@@ -12,7 +12,7 @@ class Board {
 
 public:
 	Board();
-    Board(std::ifstream& ,  Picture& pic);
+    Board(std::ifstream& ,  Picture& pic,  int);
 	void draw(sf::RenderWindow&)const;
 
 private:
@@ -23,7 +23,7 @@ private:
 	int m_width, m_height;
 
 	//private function
-	void createObject( Picture& pic,char,const sf::Vector2f &);
+	void createObject( Picture& pic,char,const sf::Vector2f &, int);
 	void moveCharacters();
 	
 

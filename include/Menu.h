@@ -6,11 +6,15 @@ class Menu
 public:
 	Menu();
 	
-	bool StartGame(sf::RenderWindow &);
+	int StartGame(sf::RenderWindow &);
 private:
 	Picture m_Picture;
 	sf::Vector2f m_location;
 
 	sf::RenderWindow window;
-
+	enum ChoosingHero
+	{
+		HeroJerry = 1,
+		HeroRick = 2
+	};
 };

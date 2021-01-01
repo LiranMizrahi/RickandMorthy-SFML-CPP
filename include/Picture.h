@@ -9,8 +9,10 @@ public:
 
     Picture();
 
-    sf::Texture* GetHeroTexture();
-    sf::Texture* GetEnemyTexture();
+    sf::Texture* GetHerojerryTexture();
+    sf::Texture* GetHeroRickTexture();
+    sf::Texture* GetEnemyMeeseeksTexture();
+    sf::Texture* GetEnemyMonsterTexture();
     sf::Texture* GetGunTexture();
     sf::Texture* GetBoardTexture();
     sf::Texture* GetFloorTexture();
@@ -26,8 +28,10 @@ public:
    private:
     sf::Texture m_HeroMenu1;
     sf::Texture m_HeroMenu2;
-    sf::Texture m_hero;
-    sf::Texture m_enemy;
+    sf::Texture m_heroJerry;
+    sf::Texture m_heroRick;
+    sf::Texture m_EnemyMeeseeks;
+    sf::Texture m_EnemyMonster;
     sf::Texture m_gun;
     sf::Texture m_board;
     sf::Texture m_ledder;

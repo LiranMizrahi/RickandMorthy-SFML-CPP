@@ -12,7 +12,7 @@ Board::Board():m_height(0),m_width(0)
    
 }
 
-Board::Board(std::ifstream& file ,  Picture& pic )
+Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
 {
     int ll = 3;
 
@@ -44,7 +44,7 @@ Board::Board(std::ifstream& file ,  Picture& pic )
         for (int j = 0; j < m_height; ++j)
         {
                input = file.get();
-               createObject(pic,input,location );
+               createObject(pic,input,location , PlayerSelection);
                location.x += (2 * tx);
         }
          
@@ -71,7 +71,7 @@ void Board::draw(sf::RenderWindow& window)const
 
 
 
-void Board::createObject( Picture & pic,char input, const sf::Vector2f & location)
+void Board::createObject( Picture & pic,char input, const sf::Vector2f & location, int PlayerSelection)
 {
 
     
@@ -79,11 +79,11 @@ void Board::createObject( Picture & pic,char input, const sf::Vector2f & locatio
     {
        
     case ENEMY:
-
+        m_enemys.push_back(std::move(std::make_unique<Enemy>(pic, location, PlayerSelection)));
         break;
 
     case HERO:
-       m_hero = Hero(pic, location);
+       m_hero = Hero(pic, location, PlayerSelection);
 
         break;
 

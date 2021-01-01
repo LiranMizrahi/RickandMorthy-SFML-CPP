@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObj.h"
+#include "Picture.h"
 #include <SFML/Graphics.hpp>
 #include "MovingObjects.h"
 class Enemy : public MovingObjects {
@@ -7,7 +8,7 @@ class Enemy : public MovingObjects {
 
 
 public:
-	Enemy() =default;
+	Enemy(Picture&, const sf::Vector2f&, int);
 
 
 };

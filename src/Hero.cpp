@@ -7,12 +7,27 @@ Hero::Hero() :m_life(0), m_score(0)
 }
 
 
-Hero::Hero( Picture & pic, const sf::Vector2f& loc) :MovingObjects(*pic.GetHeroTexture(),loc) ,m_life(3), m_score(0)
+Hero::Hero(Picture& pic, const sf::Vector2f& loc, int HeroSelection) :m_life(3), m_score(0)
 {
 
-//	m_sprite.setTexture(*tex);
-	//m_sprite.setPosition(loc);
-//	
+
+	if (HeroSelection == 1)
+	{
+		auto hero = *pic.GetHerojerryTexture();
+		m_sprite.setTexture(*pic.GetHerojerryTexture());
+		m_sprite.setPosition(loc);
+		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
+	}
+	else
+	{
+		auto hero = *pic.GetHeroRickTexture();
+		m_sprite.setTexture(*pic.GetHeroRickTexture());
+		m_sprite.setPosition(loc);
+		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
+
+	}
+
+
 }
 
 int Hero::GetLife()

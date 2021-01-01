@@ -154,40 +154,19 @@
 			"path" : "resources/CMakeLists.txt"
 		},
 		{
-			"path" : "resources/boardbig2.jpg"
+			"path" : "resources/start_button.png"
 		},
 		{
 			"path" : "resources/brike.jpg"
 		},
 		{
-			"path" : "resources/digger12.png"
-		},
-		{
 			"path" : "resources/portalgun.png"
-		},
-		{
-			"path" : "resources/save1.png"
-		},
-		{
-			"path" : "resources/clear.png"
-		},
-		{
-			"path" : "resources/delete.png"
 		},
 		{
 			"path" : "resources/rope.png"
 		},
 		{
 			"path" : "resources/ladder.png"
-		},
-		{
-			"path" : "resources/enemy.png"
-		},
-		{
-			"path" : "resources/insetimage.jpg"
-		},
-		{
-			"path" : "resources/background.png"
 		},
 		{
 			"path" : "resources/menu.png"
@@ -211,6 +190,15 @@
 			"path" : "resources/jerry_back.png"
 		},
 		{
+			"path" : "resources/rick_left.png"
+		},
+		{
+			"path" : "resources/rick_front.png"
+		},
+		{
+			"path" : "resources/rick_back.png"
+		},
+		{
 			"path" : "resources/meeseeks_left.png"
 		},
 		{
@@ -218,6 +206,21 @@
 		},
 		{
 			"path" : "resources/meeseeks_back.png"
+		},
+		{
+			"path" : "resources/monster_left.png"
+		},
+		{
+			"path" : "resources/monster_front.png"
+		},
+		{
+			"path" : "resources/monster_back.png"
+		},
+		{
+			"path" : "resources/jerry_player.png"
+		},
+		{
+			"path" : "resources/rick_player.png"
 		}
 	],
 	"kind" : "cmakeFiles",

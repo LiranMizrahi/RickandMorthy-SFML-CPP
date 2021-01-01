@@ -3,8 +3,10 @@
 
 Picture::Picture()
 {
-	m_hero.loadFromFile("jerry_front.png");
-	m_enemy.loadFromFile("meeseeks_front.png");
+	m_heroRick.loadFromFile("rick_front.png");
+	m_heroJerry.loadFromFile("jerry_front.png");
+	m_EnemyMeeseeks.loadFromFile("meeseeks_front.png");
+	m_EnemyMonster.loadFromFile("monster_front.png");
 	m_board.loadFromFile("level1.jpg");
 	m_gun.loadFromFile("portalgun.png");
 	m_ledder.loadFromFile("ladder.png");
@@ -17,14 +19,25 @@ Picture::Picture()
 
 }
 
-sf::Texture* Picture::GetHeroTexture()
+sf::Texture* Picture::GetHerojerryTexture()
 {
-	return &m_hero;
+	return &m_heroJerry;
 }
 
-sf::Texture* Picture::GetEnemyTexture()
+sf::Texture* Picture::GetHeroRickTexture()
 {
-	return &m_enemy;
+	return &m_heroRick;
+}
+
+
+sf::Texture* Picture::GetEnemyMeeseeksTexture()
+{
+	return &m_EnemyMeeseeks;
+}
+
+sf::Texture* Picture::GetEnemyMonsterTexture()
+{
+	return &m_EnemyMonster;
 }
 
 sf::Texture* Picture::GetGunTexture()
