@@ -21,32 +21,20 @@ void Controller::run()
 		m_window.draw(board);
 		m_board.draw(m_window);
 		m_window.display();
+		
+		float deltaTime = clock.restart().asSeconds();
+		
 		sf::Event event;
-		while (m_window.pollEvent(event))
-			
-		{
-			if ((event.type == sf::Event::Closed) ||
-				((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape)))
+		while(m_window.pollEvent(event))
+			if (sf::Keyboard::isKeyPressed(sf:: Keyboard::Escape)|| event.type == sf::Event::Closed)
 			{
 				m_window.close();
 				break;
 			}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-			{
-				
-			}
+			m_board.moveCharacters(deltaTime);
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-			{
-
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
-			{
-				m_menu.StartGame(m_window);
-			}
-
-		}
+		
 	}
 }
 

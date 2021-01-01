@@ -45,29 +45,28 @@ void Hero::SetLife(int life)
 	m_life = life;
 }
 
-void Hero::UpdateLocation(float time, int dir)
+void Hero::UpdateLocation(float time)
 {
-	switch (dir)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-
-	case 1://left
-		this->move((-0.2f) * time ,0);
-		break;
-
-	case 2://right
-		this->move((0.2f) * time, 0);
-		break;
-
-	case 3:
-
-		break;
-
-	case 4:
-
-		break;
-
+		;
 	}
 
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+
+	{
+		this->move(-HEROSPEED *time, 0);
+	}
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+
+	{
+		this->move(HEROSPEED *time, 0);
+	}
 
 
 }

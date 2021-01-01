@@ -3,9 +3,12 @@
 #include "Picture.h"
 #include <SFML/Graphics.hpp>
 #include "MovingObjects.h"
+
+const  float HEROSPEED = 700.f ;
+
 class Hero : public MovingObjects {
 
-
+	
 
    public:
 	   Hero();
@@ -14,9 +17,9 @@ class Hero : public MovingObjects {
 	   int GetScore();
 	   void SetScore(int);
 	   void SetLife(int);
-	   void UpdateLocation(float,int);
+	   void UpdateLocation(float);
 private:
-	int m_life, m_score;
+		int m_life, m_score;
 	
 
 };
