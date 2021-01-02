@@ -21,9 +21,9 @@ GameObj::~GameObj()
 void GameObj::draw(sf::RenderWindow& window, const sf::Vector2f& size)const
 {
 	sf::RectangleShape rec(size);
-	rec.setTexture(m_sprite.getTexture());
 	rec.setPosition(m_sprite.getPosition());
-	rec.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
+	rec.setTexture(m_sprite.getTexture());
+	//rec.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
 	window.draw(rec);
 
 	//window.draw(this->m_sprite);
