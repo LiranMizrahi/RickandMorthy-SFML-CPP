@@ -10,7 +10,7 @@ public:
 		 ~GameObj();
 
 
-  void draw(sf::RenderWindow&)const;
+  void draw(sf::RenderWindow&, const sf::Vector2f&)const;
 
 protected:
 	sf::Sprite m_sprite;

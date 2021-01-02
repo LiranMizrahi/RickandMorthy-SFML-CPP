@@ -14,16 +14,9 @@ Board::Board():m_height(0),m_width(0)
 
 Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
 {
-    int ll = 3;
-
    
     sf::Vector2f location;
 
-
-
-    
-
-    
     char input;
 	file >> m_width >> m_height; // take size map
 	file.get();
@@ -34,7 +27,7 @@ Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
     float tx = (1600 / float(m_width) / 2);
     float ty = (899 / float(m_height) / 2);
 
-    location.x = 130 + tx;
+    location.x = 115 + tx;
     location.y = 30 + ty;
     float x_location = location.x;
     // take char with the file and put vector
@@ -47,9 +40,6 @@ Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
                createObject(pic,input,location , PlayerSelection);
                location.x += (2 * tx);
         }
-         
-    
-
             file.get();
             location.x = x_location;
             location.y += (2 * ty);
@@ -58,22 +48,21 @@ Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
 }
 
 void Board::draw(sf::RenderWindow& window)const
-{
+{   
     float tx = (1600 / float(m_width));
     float ty = (899 / float(m_height));
     sf::Vector2f size(tx, ty);
-   
+    
     for (auto& e : m_staticObjects)
         e->draw(window,size);
     
     for (auto& e : m_enemys)
-        e->draw(window);
+        e->draw(window, size);
 
-
-    m_hero.draw(window);
-}
-
-
+    m_hero.draw(window, size);
+}   
+    
+    
 
 void Board::createObject( Picture & pic,char input, const sf::Vector2f & location, int PlayerSelection)
 {
