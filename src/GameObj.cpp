@@ -18,6 +18,11 @@ GameObj::~GameObj()
 {
 }
 
+bool GameObj::collisonWith(const GameObj& obj)const
+{
+	return this->m_sprite.getGlobalBounds().intersects(obj.m_sprite.getGlobalBounds());	
+}
+
 void GameObj::draw(sf::RenderWindow& window, const sf::Vector2f& size)const
 {
 	sf::RectangleShape rec(size);

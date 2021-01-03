@@ -11,6 +11,7 @@
                                     "Enemy.cpp"
                                     "Rope.cpp"
                                     "Ladder.cpp"
+                                    "RandomEnemy.cpp"
 
 )
 

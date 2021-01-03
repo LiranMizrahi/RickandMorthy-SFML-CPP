@@ -12,3 +12,8 @@ void MovingObjects::move(float xline,float yline)
 {
 	m_sprite.move(xline,yline);
 }
+
+//void MovingObjects::handleColision(Floor& obj)
+//{
+//	//
+//}

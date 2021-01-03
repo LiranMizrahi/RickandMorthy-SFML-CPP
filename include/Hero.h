@@ -20,6 +20,6 @@ class Hero : public MovingObjects {
 	   void UpdateLocation(float);
 private:
 		int m_life, m_score;
-	
+		sf::Vector2f m_LastPosition;
 
 };

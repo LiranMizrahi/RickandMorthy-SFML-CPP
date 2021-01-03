@@ -6,6 +6,8 @@
 #include "Floor.h"
 #include "Ladder.h"
 #include "Rope.h"
+
+#include <iostream>
 //===============constructors ==============
 Board::Board():m_height(0),m_width(0)
 {
@@ -107,6 +109,22 @@ void Board::createObject( Picture & pic,char input, const sf::Vector2f & locatio
 void Board::moveCharacters(float deltaTime)
 {
     m_hero.UpdateLocation(deltaTime);
+
+    for (auto& staticObjects : m_staticObjects)
+    {
+        if (staticObjects->collisonWith(m_hero))
+        {
+            std::cout << "liron\n";
+            break;
+        }
+    }
+    
+
+
+    for (auto& e : m_enemys)
+        e->UpdateLocation(deltaTime);
+
+   
 }
 
   
@@ -114,4 +132,4 @@ void Board::moveCharacters(float deltaTime)
 
 
 
-//================ ========================
+//========================================

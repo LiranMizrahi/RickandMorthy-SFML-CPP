@@ -1,7 +1,7 @@
 #include "Hero.h"
 
 
-Hero::Hero() :m_life(0), m_score(0)
+Hero::Hero() :m_life(0), m_score(0), m_LastPosition(0, 0)
 {
 
 }
@@ -27,7 +27,7 @@ Hero::Hero(Picture& pic, const sf::Vector2f& loc, int HeroSelection) :m_life(3),
 
 	}
 
-
+	m_LastPosition = loc;
 }
 
 int Hero::GetLife()

@@ -9,7 +9,7 @@ if (MSVC)
     add_compile_options (/permissive-)
 endif ()
 
-add_executable (SFMLExamples)  
+add_executable (SFMLExamples "")  
 
 
 add_subdirectory (include)
