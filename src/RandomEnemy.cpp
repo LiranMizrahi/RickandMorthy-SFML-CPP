@@ -8,16 +8,16 @@ void RandomEnemy::UpdateLocation(float time)
 	switch (RandomMov)
 	{
 		
-	LEFT:
+	case LEFT:
 		this->move(-ENEMYSPEED * time, 0);
 		break;
-	RIGHT:
+	case  RIGHT:
 		this->move(ENEMYSPEED * time, 0);
 
 		break;
-	UP:
+	case UP:
 		break;
-	DOWN:
+	case DOWN:
 		break;
 	}
 }

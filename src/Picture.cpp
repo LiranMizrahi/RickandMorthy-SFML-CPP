@@ -3,17 +3,17 @@
 
 Picture::Picture()
 {
-	m_heroRick.loadFromFile("rick_front.png");
-	m_heroJerry.loadFromFile("jerry_front.png");
-	m_EnemyMeeseeks.loadFromFile("meeseeks_front.png");
-	m_EnemyMonster.loadFromFile("monster_front.png");
+	m_heroRick.loadFromFile("rick_left.png");
+	m_heroJerry.loadFromFile("jerry_left.png");
+	m_EnemyMeeseeks.loadFromFile("meeseeks_left.png");
+	m_EnemyMonster.loadFromFile("monster_left.png");
 	m_board.loadFromFile("level1.jpg");
 	m_gun.loadFromFile("portalgun.png");
 	m_ledder.loadFromFile("ladder.png");
 	m_rope.loadFromFile("rope.png");
-	m_floor.loadFromFile("brike.jpg");
+	m_floor.loadFromFile("brike.png");
 	m_menu.loadFromFile("menu.png");
-	m_start.loadFromFile("start_button.png");
+	//m_start.loadFromFile("start_button.png");
 	m_HeroMenu1.loadFromFile("jerry_player.png");
 	m_HeroMenu2.loadFromFile("rick_player.png");
 

@@ -1,0 +1,6 @@
+﻿configure_file ("brike.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("ladder.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("portalgun.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("rope.png" ${CMAKE_BINARY_DIR} COPYONLY)
+#configure_file ("sta" ${CMAKE_BINARY_DIR} COPYONLY)
+#configure_file ("start_button"${CMAKE_BINARY_DIR} COPYONLY)

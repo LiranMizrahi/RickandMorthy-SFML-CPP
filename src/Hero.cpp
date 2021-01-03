@@ -45,27 +45,31 @@ void Hero::SetLife(int life)
 	m_life = life;
 }
 
+
 void Hero::UpdateLocation(float time)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		;
+		this->move( 0,-HEROSPEED * time);
+		
 	}
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-
+		this->move(0,HEROSPEED * time);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 
 	{
 		this->move(-HEROSPEED *time, 0);
+		this->DrawLeftside();
 	}
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 
 	{
 		this->move(HEROSPEED *time, 0);
+		this->DrawRightside();
 	}
 
 

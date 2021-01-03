@@ -7,7 +7,7 @@ class Ladder : public StaticObjects {
 
 public:
 	Ladder();
-	Ladder(Picture&, const sf::Vector2f& loc);
+	Ladder(Picture&, const sf::Vector2f& loc, const sf::Vector2f&);
 
 
 };

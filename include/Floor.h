@@ -7,7 +7,7 @@ class Floor : public StaticObjects {
 
 public:
 	Floor() ;
-	Floor(Picture&, const sf::Vector2f& loc);
+	Floor(Picture&, const sf::Vector2f& loc, const sf::Vector2f&);
 
 
 };

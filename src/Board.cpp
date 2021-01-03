@@ -6,8 +6,8 @@
 #include "Floor.h"
 #include "Ladder.h"
 #include "Rope.h"
-
 #include <iostream>
+
 //===============constructors ==============
 Board::Board():m_height(0),m_width(0)
 {
@@ -29,14 +29,14 @@ Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
     float tx = (1600 / float(m_width) / 2);
     float ty = (899 / float(m_height) / 2);
 
-    location.x = 115 + tx;
+    location.x = 130 + tx;
     location.y = 30 + ty;
     float x_location = location.x;
     // take char with the file and put vector
-    for (int i = 0; i < m_width; ++i)
+    for (int i = 0; i < m_height; ++i)
     {
 
-        for (int j = 0; j < m_height; ++j)
+        for (int j = 0; j < m_width; ++j)
         {
                input = file.get();
                createObject(pic,input,location , PlayerSelection);
@@ -48,7 +48,7 @@ Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
 
     }
 }
-
+//====================================================
 void Board::draw(sf::RenderWindow& window)const
 {   
     float tx = (1600 / float(m_width));
@@ -68,7 +68,7 @@ void Board::draw(sf::RenderWindow& window)const
 
 void Board::createObject( Picture & pic,char input, const sf::Vector2f & location, int PlayerSelection)
 {
-
+    sf::Vector2f boardsize((float)m_height, (float)m_width);
     
     switch (input)
     {
@@ -80,41 +80,42 @@ void Board::createObject( Picture & pic,char input, const sf::Vector2f & locatio
     case HERO:
        m_hero = Hero(pic, location, PlayerSelection);
 
+
         break;
 
     case FLOOR:
        
-       m_staticObjects.push_back(std::move(std::make_unique<Floor>(pic, location)));
-
-
-        break;
+       m_staticObjects.push_back(std::move(std::make_unique<Floor>(pic, location, boardsize)));
+        
+       break;
 
     case ROPE:
-        m_staticObjects.push_back(std::move(std::make_unique<Rope>(pic, location)));
+        m_staticObjects.push_back(std::move(std::make_unique<Rope>(pic, location, boardsize)));
         break;
 
     case GUN:
 
-
         break;
 
     case LADDER:
-        m_staticObjects.push_back(std::move(std::make_unique<Ladder>(pic, location)));
+        m_staticObjects.push_back(std::move(std::make_unique<Ladder>(pic, location, boardsize)));
         break;
 
     }
 
 }
-
+//============================================
 void Board::moveCharacters(float deltaTime)
-{
+{       
+    sf::Vector2f oldlocation = m_hero.GetPosition();
     m_hero.UpdateLocation(deltaTime);
-
+        
     for (auto& staticObjects : m_staticObjects)
     {
         if (staticObjects->collisonWith(m_hero))
         {
-            std::cout << "liron\n";
+           
+            m_hero.SetPosition(oldlocation);
             break;
         }
     }
@@ -126,10 +127,5 @@ void Board::moveCharacters(float deltaTime)
 
    
 }
-
-  
-
-
-
 
 //========================================

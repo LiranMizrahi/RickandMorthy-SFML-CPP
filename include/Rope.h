@@ -7,7 +7,7 @@ class Rope : public StaticObjects {
 
 public:
 	Rope();
-	Rope(Picture&, const sf::Vector2f& loc);
+	Rope(Picture&, const sf::Vector2f& loc, const sf::Vector2f&);
 		
 
 };
