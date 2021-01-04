@@ -24,7 +24,7 @@ Hero::Hero(Picture& pic, const sf::Vector2f& loc, int HeroSelection) :m_life(3),
 		m_sprite.setTexture(*pic.GetHeroRickTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
-
+		
 	}
 
 	m_LastPosition = loc;

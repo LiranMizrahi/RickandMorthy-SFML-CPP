@@ -26,8 +26,8 @@ Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
 
     //calculate the size of the middle of singal cell 
     // sub the size of the image frame
-    float tx = (1600 / float(m_width) / 2);
-    float ty = (899 / float(m_height) / 2);
+    float tx = (BOARDWIDTH / float(m_width) / 2);
+    float ty = (BOARDHEIGHT / float(m_height) / 2);
 
     location.x = 130 + tx;
     location.y = 30 + ty;
@@ -51,8 +51,8 @@ Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
 //====================================================
 void Board::draw(sf::RenderWindow& window)const
 {   
-    float tx = (1600 / float(m_width));
-    float ty = (899 / float(m_height));
+    float tx = (BOARDWIDTH/ float(m_width));
+    float ty = (BOARDHEIGHT / float(m_height));
     sf::Vector2f size(tx, ty);
     
     for (auto& e : m_staticObjects)

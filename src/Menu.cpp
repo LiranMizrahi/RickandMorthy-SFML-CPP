@@ -36,7 +36,7 @@ int Menu::StartGame(sf::RenderWindow& window)
 	sf::Text text_1;
 	sf::Font font;
 	
-	font.loadFromFile("C:/Windows/Fonts/BAUHS93.ttf");
+	font.loadFromFile("BAUHS93.ttf");
 	text_1.setFont(font); // font is a sf::Font
 	text_1.setString("Start");
 	text_1.setCharacterSize(200); // in pixels, not points!

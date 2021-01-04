@@ -1,0 +1,1 @@
+﻿configure_file ("BAUHS93.TTF" ${CMAKE_BINARY_DIR} COPYONLY)
