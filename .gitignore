@@ -12,7 +12,7 @@
 out/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
+CMakeLists.txt/
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

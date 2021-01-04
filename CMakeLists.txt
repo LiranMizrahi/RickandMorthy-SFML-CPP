@@ -24,3 +24,5 @@ find_package (SFML 2.5 COMPONENTS graphics REQUIRED)
 set_target_properties (sfml-main sfml-system sfml-window sfml-graphics sfml-audio sfml-network PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
 
 target_link_libraries (SFMLExamples sfml-graphics sfml-main)
+
+
