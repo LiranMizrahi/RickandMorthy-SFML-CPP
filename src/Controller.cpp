@@ -9,12 +9,13 @@ Controller::Controller(): m_window(sf::VideoMode(1800, 1080), "RICK RUNNER")
 	m_boardfile = openlevelfile(1);
 	
 
-    m_board = Board(m_boardfile, m_pictures, m_menu.StartGame(m_window));
+    m_board = Board(m_boardfile, m_pictures, m_menu.StartGame(m_window, m_pictures));
 	
 }
 
 void Controller::run()
 {
+
 	while (m_window.isOpen())
 	{
 		m_window.clear();

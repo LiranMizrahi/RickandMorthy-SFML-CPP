@@ -3,7 +3,7 @@
 //
 #pragma once
 
-const char GUN = '*';
+const char COIN = '*';
 const char ENEMY = '%';
 const char HERO = '@';
 const char LADDER = 'H';

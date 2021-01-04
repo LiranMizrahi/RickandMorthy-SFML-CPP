@@ -1,21 +1,45 @@
 #pragma once
 #include "picture.h"
+#include <iostream>
 
 Picture::Picture()
 {
-	m_heroRick.loadFromFile("rick_left.png");
-	m_heroJerry.loadFromFile("jerry_left.png");
-	m_EnemyMeeseeks.loadFromFile("meeseeks_left.png");
-	m_EnemyMonster.loadFromFile("monster_left.png");
-	m_board.loadFromFile("level1.jpg");
-	m_gun.loadFromFile("portalgun.png");
-	m_ledder.loadFromFile("ladder.png");
-	m_rope.loadFromFile("rope.png");
-	m_floor.loadFromFile("brike.png");
-	m_menu.loadFromFile("menu.png");
-	//m_start.loadFromFile("start_button.png");
-	m_HeroMenu1.loadFromFile("jerry_player.png");
-	m_HeroMenu2.loadFromFile("rick_player.png");
+	if (!m_heroRick.loadFromFile("rick_left.png"))
+	std::cout << "cant open picture";
+
+	if(!m_heroJerry.loadFromFile("jerry_left.png"))
+	std::cout << "cant open picture";
+
+	if (!m_EnemyMeeseeks.loadFromFile("meeseeks_left.png"))
+	std::cout << "cant open picture";
+
+	if (!m_EnemyMonster.loadFromFile("monster_left.png"))	
+	std::cout << "cant open picture";
+
+	if (!m_board.loadFromFile("level1.jpg"))
+	std::cout << "cant open picture";
+
+	if (!m_coin.loadFromFile("portalgun.png"))
+	std::cout << "cant open picture";
+
+	if (!m_ledder.loadFromFile("ladder.png"))
+	std::cout << "cant open picture";
+
+	if (!m_rope.loadFromFile("rope.png"))
+	std::cout << "cant open picture";
+
+	if (!m_floor.loadFromFile("brike.png"))
+	std::cout << "cant open picture";
+
+	if (!m_menu.loadFromFile("menu.png"))
+	std::cout << "cant open picture";
+
+	if(!m_HeroMenu1.loadFromFile("jerry_player.png"))
+	std::cout << "cant open picture";
+
+	if (!m_HeroMenu2.loadFromFile("rick_player.png"))
+	std::cout << "cant open picture";
+
 
 }
 
@@ -40,9 +64,9 @@ sf::Texture* Picture::GetEnemyMonsterTexture()
 	return &m_EnemyMonster;
 }
 
-sf::Texture* Picture::GetGunTexture()
+sf::Texture* Picture::GetCoinTexture()
 {
-	return &m_gun;
+	return &m_coin;
 }
 
 sf::Texture* Picture::GetBoardTexture()
