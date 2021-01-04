@@ -107,24 +107,25 @@ void Board::createObject( Picture & pic,char input, const sf::Vector2f & locatio
 //============================================
 void Board::moveCharacters(float deltaTime)
 {       
-    sf::Vector2f oldlocation = m_hero.GetPosition();
+
     m_hero.UpdateLocation(deltaTime);
-        
+    
     for (auto& staticObjects : m_staticObjects)
     {
         if (staticObjects->collisonWith(m_hero))
         {
-           
-            m_hero.SetPosition(oldlocation);
-            break;
+            staticObjects->handleColision(m_hero);
+            
         }
     }
-    
+
 
 
     for (auto& e : m_enemys)
         e->UpdateLocation(deltaTime);
 
+    sf::Vector2f oldlocation = m_hero.GetPosition();
+    m_hero.setLastPosition(oldlocation);
    
 }
 

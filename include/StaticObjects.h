@@ -9,7 +9,7 @@ public:
 
 	StaticObjects();
 	StaticObjects(sf::Texture &, const sf::Vector2f& loc, const sf::Vector2f&);
-//	void draw(sf::RenderWindow&, const sf::Vector2f& )const ;
+	//	void draw(sf::RenderWindow&, const sf::Vector2f& )const ;
 	 // ~StaticObjects();
 
 private:

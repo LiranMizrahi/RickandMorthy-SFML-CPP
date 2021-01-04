@@ -7,3 +7,8 @@ Floor::Floor( Picture& pic, const sf::Vector2f& loc, const sf::Vector2f& size):S
 {
 
 }
+
+void Floor::handleColision(Hero&obj)
+{
+	obj.handleColision(*this);
+}

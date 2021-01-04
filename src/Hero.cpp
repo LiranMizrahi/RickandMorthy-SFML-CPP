@@ -45,6 +45,11 @@ void Hero::SetLife(int life)
 	m_life = life;
 }
 
+void Hero::setLastPosition(sf::Vector2f posion)
+{
+	m_oldPosition = posion;
+}
+
 
 void Hero::UpdateLocation(float time)
 {
@@ -74,6 +79,28 @@ void Hero::UpdateLocation(float time)
 
 
 }
+
+void Hero::handleColision(GameObj& obj)
+{
+	obj.handleColision(*this);
+}
+
+void Hero::handleColision(Rope& Obj) 
+{
+	this->m_sprite.setRotation(90.f);
+}
+
+void Hero::handleColision(Floor& obj)
+{
+	m_sprite.setPosition(m_oldPosition);
+}
+
+void Hero::handleColision(Ladder& obj)
+{
+	this->m_sprite.setRotation(180.f);
+}
+
+
 
 void Hero::SetScore(int score)
 {

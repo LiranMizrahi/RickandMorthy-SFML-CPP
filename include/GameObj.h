@@ -1,22 +1,30 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+class Rope;
+class Hero;
+class Floor;
+class Ladder;
+class MovingObjects;
 class GameObj {
 
 
 public:
 	GameObj();
 	GameObj(const sf::Texture&, const sf::Vector2f&, const sf::Vector2f &board_size);
-	~GameObj();
+	 ~GameObj();
 
 	bool collisonWith(const GameObj&)const;
 
   void draw(sf::RenderWindow&, const sf::Vector2f&)const;
 
+    virtual void handleColision(GameObj& obj) = 0;
+	virtual void handleColision(Floor& obj) = 0;
+	virtual void handleColision(Ladder& obj) = 0;
+	virtual void handleColision(Rope& Obj) = 0;
+	virtual void handleColision(Hero& Obj) = 0;
 
-  /*virtual void handleColision(Floor& obj);
-	virtual void handleColision(Ladder& obj);
-	virtual void handleColision(Rope& obj);*/
+
 
 protected:
 	sf::Sprite m_sprite;

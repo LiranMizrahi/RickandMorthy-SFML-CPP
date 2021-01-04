@@ -1,8 +1,7 @@
 #pragma once
 #include "GameObj.h"
-#include"Floor.h"
-#include"Ladder.h"
-#include"Rope.h"
+
+
 class MovingObjects : public GameObj
 {
 public:

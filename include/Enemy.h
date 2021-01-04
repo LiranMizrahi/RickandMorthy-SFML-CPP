@@ -30,6 +30,11 @@ public:
 			break;
 		}
 	};
+	virtual void handleColision(GameObj& obj) {};
+	virtual void handleColision(Rope& Obj) {};
+	virtual void handleColision(Hero& Obj) {};
+	virtual void handleColision(Floor& obj) {};
+	virtual void handleColision(Ladder& obj) {};
 
 private:
 
