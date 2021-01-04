@@ -13,7 +13,9 @@ public:
 	virtual void handleColision(Hero& )override ;
 	virtual void handleColision(Floor& ) override {};
 	virtual void handleColision(Ladder& ) override {};
-	virtual void handleColision(GameObj& obj) {};
+	virtual void handleColision(GameObj& ) override {};
+	virtual void handleColision(Coin&) override {};
+
 
 
 };

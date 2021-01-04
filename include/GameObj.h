@@ -6,6 +6,7 @@ class Hero;
 class Floor;
 class Ladder;
 class MovingObjects;
+class Coin;
 class GameObj {
 
 
@@ -23,6 +24,7 @@ public:
 	virtual void handleColision(Ladder& obj) = 0;
 	virtual void handleColision(Rope& Obj) = 0;
 	virtual void handleColision(Hero& Obj) = 0;
+	virtual void handleColision(Coin& Obj) = 0;
 
 
 

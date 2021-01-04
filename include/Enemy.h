@@ -30,11 +30,13 @@ public:
 			break;
 		}
 	};
-	virtual void handleColision(GameObj& obj) {};
-	virtual void handleColision(Rope& Obj) {};
-	virtual void handleColision(Hero& Obj) {};
-	virtual void handleColision(Floor& obj) {};
-	virtual void handleColision(Ladder& obj) {};
+	virtual void handleColision(GameObj& obj) override {};
+	virtual void handleColision(Rope& Obj) override {};
+	virtual void handleColision(Hero& Obj) override {};
+	virtual void handleColision(Floor& obj)override {};
+	virtual void handleColision(Ladder& obj) override {};
+	virtual void handleColision(Coin&) override {};
+
 
 private:
 

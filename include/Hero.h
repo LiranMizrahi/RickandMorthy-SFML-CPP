@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "MovingObjects.h"
 #include"GameObj.h"
+#include"Coin.h"
 
 
 const  float HEROSPEED = 700.f ;
@@ -21,11 +22,13 @@ class Hero : public MovingObjects {
 	   void setLastPosition(sf::Vector2f);
 	   void UpdateLocation(float);
 
-	   virtual void handleColision(GameObj& obj) ;
-	   virtual void handleColision(Rope& Obj) ;
-	   virtual void handleColision(Hero& Obj)  {};
-	   virtual void handleColision(Floor& obj);
-	   virtual void handleColision(Ladder& obj);
+	   virtual void handleColision(GameObj&)override;
+	   virtual void handleColision(Rope&)override;
+	   virtual void handleColision(Hero&)override {};
+	   virtual void handleColision(Floor&)override;
+	   virtual void handleColision(Ladder&)override;
+	   virtual void handleColision(Coin&) override;
+
 
 private:
 		int m_life, m_score;

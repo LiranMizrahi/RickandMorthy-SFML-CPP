@@ -100,6 +100,11 @@ void Hero::handleColision(Ladder& obj)
 	this->m_sprite.setRotation(180.f);
 }
 
+void Hero::handleColision(Coin&obj)
+{
+	m_score++;
+}
+
 
 
 void Hero::SetScore(int score)
