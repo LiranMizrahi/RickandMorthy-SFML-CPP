@@ -13,7 +13,7 @@ public:
     sf::Texture* GetHeroRickTexture();
     sf::Texture* GetEnemyMeeseeksTexture();
     sf::Texture* GetEnemyMonsterTexture();
-    sf::Texture* GetGunTexture();
+    sf::Texture* GetCoinTexture();
     sf::Texture* GetBoardTexture();
     sf::Texture* GetFloorTexture();
     sf::Texture* GetLedderTexture();
@@ -32,7 +32,7 @@ public:
     sf::Texture m_heroRick;
     sf::Texture m_EnemyMeeseeks;
     sf::Texture m_EnemyMonster;
-    sf::Texture m_gun;
+    sf::Texture m_coin;
     sf::Texture m_board;
     sf::Texture m_ledder;
     sf::Texture m_rope;

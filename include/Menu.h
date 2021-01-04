@@ -6,9 +6,9 @@ class Menu
 public:
 	Menu();
 	
-	int StartGame(sf::RenderWindow &);
+	int StartGame(sf::RenderWindow &,Picture &);
 private:
-	Picture m_Picture;
+	//Picture m_Picture;
 	sf::Vector2f m_location;
 
 	sf::RenderWindow window;

@@ -7,6 +7,7 @@
 #include "Ladder.h"
 #include "Rope.h"
 #include <iostream>
+#include "Coin.h"
 
 //===============constructors ==============
 Board::Board():m_height(0),m_width(0)
@@ -93,7 +94,8 @@ void Board::createObject( Picture & pic,char input, const sf::Vector2f & locatio
         m_staticObjects.push_back(std::move(std::make_unique<Rope>(pic, location, boardsize)));
         break;
 
-    case GUN:
+    case COIN:
+        m_staticObjects.push_back(std::move(std::make_unique<Coin>(pic, location, boardsize)));
 
         break;
 
