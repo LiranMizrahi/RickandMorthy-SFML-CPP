@@ -8,7 +8,7 @@ GameObj::GameObj(const sf::Texture& tex, const sf::Vector2f & location, const sf
 	m_sprite.setTexture(tex);
 	m_sprite.setPosition(location);
 	//     all texture calibrate to board in size 15*25
-	m_sprite.scale(sf::Vector2f((board_size.x/15) ,(board_size.y/25)));
+	m_sprite.setScale(sf::Vector2f((25/board_size.y) ,(15/board_size.x)));
 	m_sprite.setOrigin(sf::Vector2f(tex.getSize() / 2u));
 }
 

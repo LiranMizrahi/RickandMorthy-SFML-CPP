@@ -8,7 +8,7 @@
 #include "Board.h"
 #include "fstream"
 #include "Menu.h"
-					
+#include "Sound.h"
 										
 class Controller {
 					
@@ -25,7 +25,7 @@ private:
 	Board m_board;
 	Picture m_pictures;
 	Menu m_menu;
-
+	Sound m_sound;
 	sf::RenderWindow m_window;
 	sf::Sprite board;	
 	sf::Clock clock;

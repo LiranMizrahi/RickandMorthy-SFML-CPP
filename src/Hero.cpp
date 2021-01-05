@@ -97,7 +97,7 @@ void Hero::handleColision(Floor& obj)
 
 void Hero::handleColision(Ladder& obj)
 {
-	this->m_sprite.setRotation(180.f);
+	//this->m_sprite.setRotation(180.f);
 }
 
 void Hero::handleColision(Coin&obj)

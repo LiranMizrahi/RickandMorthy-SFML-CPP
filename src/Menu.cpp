@@ -2,14 +2,14 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <Windows.h>
-
+#include "Sound.h":
 
 Menu::Menu()
 {
 	
 }
 
-int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture)
+int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture,  Sound& sound)
 {
 	int heroChoose = HeroJerry;
 
@@ -61,21 +61,8 @@ int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture)
 	// inside the main loop, between window.clear() and window.display()
 
 	//create sound items
-	sf::SoundBuffer rick;
-	
-    if (!rick.loadFromFile("ricksound.wav"))
-        std::cout <<"cant open file";
-    sf::Sound ricksound(rick);
 
-    sf::SoundBuffer jerry;
-   if (!jerry.loadFromFile("jerrysound.wav"))
-       std::cout <<"cant open file";
-    sf::Sound jerrysound(jerry);
 
-    sf::SoundBuffer start;
-    if (!start.loadFromFile("start.wav"))
-        std::cout <<"cant open file";
-    sf::Sound startsound(start);
 
 	while (window.isOpen())
 	{
@@ -112,7 +99,7 @@ int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture)
 					hero_2.setFillColor(sf::Color(255, 255, 255, 130));
 					hero_2.setOutlineThickness(2);
 					hero_2.setOutlineColor(sf::Color::Blue);
-					ricksound.play();
+					sound.playRickSound();
 					hero_1.setFillColor(sf::Color(255, 255, 255, 255));
 					hero_1.setOutlineThickness(0);
 				}
@@ -122,14 +109,14 @@ int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture)
 					hero_1.setFillColor(sf::Color(255, 255, 255, 130));
 					hero_1.setOutlineThickness(2);
 					hero_1.setOutlineColor(sf::Color::Green);
-					jerrysound.play();
+					sound.playJerrySound();
 					hero_2.setFillColor(sf::Color(255, 255, 255, 255));
 					hero_2.setOutlineThickness(0);
 
 				}
 				else if(text_1.getGlobalBounds().contains(location))
 				{
-				    startsound.play();
+				   
 
 					return heroChoose;
 					break;

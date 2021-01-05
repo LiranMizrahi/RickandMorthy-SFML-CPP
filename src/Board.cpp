@@ -8,6 +8,7 @@
 #include "Rope.h"
 #include <iostream>
 #include "Coin.h"
+#include "Sound.h"
 
 //===============constructors ==============
 Board::Board():m_height(0),m_width(0)

@@ -1,12 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <Picture.h>
+class Sound;
 class Menu
 {
 public:
 	Menu();
 	
-	int StartGame(sf::RenderWindow &,Picture &);
+	int StartGame(sf::RenderWindow &,Picture &, Sound& );
 private:
 	//Picture m_Picture;
 	sf::Vector2f m_location;

@@ -4,6 +4,19 @@ class Sound
 {
 
 public:
+	Sound();
+
+	void playJerrySound();
+	void playRickSound();
+	void playStartGameSound();
+	void playGameOverSound();
+	
+	void playDeadSozund();
+	void playLevelUpSound();
+	void playCollectCoinSound();
+	void playCollectGiftSound();
+
+
 
 private:
 	sf::SoundBuffer m_jerry;
@@ -23,5 +36,11 @@ private:
 
 	sf::SoundBuffer m_levelUp;
 	sf::Sound m_levelUpSound;
+
+	sf::SoundBuffer m_collectGift;
+	sf::Sound m_collectGiftSound;
+	 
+	sf::SoundBuffer m_collectCoin;
+	sf::Sound m_collectCoinSound;
 
 };

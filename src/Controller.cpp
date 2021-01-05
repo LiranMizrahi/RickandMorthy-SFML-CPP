@@ -6,10 +6,11 @@ Controller::Controller(): m_window(sf::VideoMode(1800, 1080), "RICK RUNNER")
 	int m_level = 1;
 	board.setTexture(*m_pictures.GetBoardTexture());
 	board.setPosition(130.f,30.f);
-	m_boardfile = openlevelfile(1);
+	m_boardfile = openlevelfile(m_level);
 	
 
-    m_board = Board(m_boardfile, m_pictures, m_menu.StartGame(m_window, m_pictures));
+    m_board = Board(m_boardfile, m_pictures, m_menu.StartGame(m_window, m_pictures,m_sound));
+	m_sound.playStartGameSound();
 	
 }
 

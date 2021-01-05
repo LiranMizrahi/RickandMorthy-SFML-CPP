@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "StaticObjects.h"
 class Picture;
+class Sound;
 
 
 class Board {
