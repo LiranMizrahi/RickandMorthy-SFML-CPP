@@ -4,7 +4,7 @@
 Controller::Controller(): m_window(sf::VideoMode(1800, 1080), "RICK RUNNER")
 {	
 	int m_level = 1;
-	board.setTexture(*m_pictures.GetBoardTexture());
+	board.setTexture(*m_pictures.getBoardTexture());
 	board.setPosition(130.f,30.f);
 	m_boardfile = openlevelfile(m_level);
 	

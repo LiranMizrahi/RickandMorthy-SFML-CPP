@@ -13,15 +13,15 @@ Hero::Hero(Picture& pic, const sf::Vector2f& loc, int HeroSelection) :m_life(3),
 
 	if (HeroSelection == 1)
 	{
-		auto hero = *pic.GetHerojerryTexture();
-		m_sprite.setTexture(*pic.GetHerojerryTexture());
+		auto hero = *pic.getHerojerryTexture();
+		m_sprite.setTexture(*pic.getHerojerryTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 	}
 	else
 	{
-		auto hero = *pic.GetHeroRickTexture();
-		m_sprite.setTexture(*pic.GetHeroRickTexture());
+		auto hero = *pic.getHeroRickTexture();
+		m_sprite.setTexture(*pic.getHeroRickTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 		

@@ -4,15 +4,15 @@ Enemy::Enemy(Picture& pic, const sf::Vector2f& loc, int EnemySelection)
 {
 	if (EnemySelection == 1)
 	{
-		auto hero = *pic.GetEnemyMeeseeksTexture();
-		m_sprite.setTexture(*pic.GetEnemyMeeseeksTexture());
+		auto hero = *pic.getEnemyMeeseeksTexture();
+		m_sprite.setTexture(*pic.getEnemyMeeseeksTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 	}
 	else
 	{
-		auto hero = *pic.GetEnemyMonsterTexture();
-		m_sprite.setTexture(*pic.GetEnemyMonsterTexture());
+		auto hero = *pic.getEnemyMonsterTexture();
+		m_sprite.setTexture(*pic.getEnemyMonsterTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 

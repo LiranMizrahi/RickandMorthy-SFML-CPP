@@ -10,10 +10,10 @@ Picture::Picture()
 	if(!m_heroJerry.loadFromFile("jerry_left.png"))
 	std::cout << "cant open picture";
 
-	if (!m_EnemyMeeseeks.loadFromFile("meeseeks_left.png"))
+	if (!m_enemyMeeseeks.loadFromFile("meeseeks_left.png"))
 	std::cout << "cant open picture";
 
-	if (!m_EnemyMonster.loadFromFile("monster_left.png"))	
+	if (!m_enemyMonster.loadFromFile("monster_left.png"))
 	std::cout << "cant open picture";
 
 	if (!m_board.loadFromFile("level1.jpg"))
@@ -34,77 +34,72 @@ Picture::Picture()
 	if (!m_menu.loadFromFile("menu.png"))
 	std::cout << "cant open picture";
 
-	if(!m_HeroMenu1.loadFromFile("jerry_player.png"))
+	if(!m_heroMenu1.loadFromFile("jerry_player.png"))
 	std::cout << "cant open picture";
 
-	if (!m_HeroMenu2.loadFromFile("rick_player.png"))
+	if (!m_heroMenu2.loadFromFile("rick_player.png"))
 	std::cout << "cant open picture";
 
 
 }
 
-sf::Texture* Picture::GetHerojerryTexture()
+sf::Texture* Picture::getHerojerryTexture()
 {
 	return &m_heroJerry;
 }
 
-sf::Texture* Picture::GetHeroRickTexture()
+sf::Texture* Picture::getHeroRickTexture()
 {
 	return &m_heroRick;
 }
 
 
-sf::Texture* Picture::GetEnemyMeeseeksTexture()
+sf::Texture* Picture::getEnemyMeeseeksTexture()
 {
-	return &m_EnemyMeeseeks;
+	return &m_enemyMeeseeks;
 }
 
-sf::Texture* Picture::GetEnemyMonsterTexture()
+sf::Texture* Picture::getEnemyMonsterTexture()
 {
-	return &m_EnemyMonster;
+	return &m_enemyMonster;
 }
 
-sf::Texture* Picture::GetCoinTexture()
+sf::Texture* Picture::getCoinTexture()
 {
 	return &m_coin;
 }
 
-sf::Texture* Picture::GetBoardTexture()
+sf::Texture* Picture::getBoardTexture()
 {
 	return &m_board;
 }
 
-sf::Texture* Picture::GetFloorTexture()
+sf::Texture* Picture::getFloorTexture()
 {
 	return &m_floor;
 }
 
-sf::Texture* Picture::GetLedderTexture()
+sf::Texture* Picture::getLedderTexture()
 {
 	return &m_ledder;
 }
 
-sf::Texture* Picture::GetRopeTexture()
+sf::Texture* Picture::getRopeTexture()
 {
 	return &m_rope;
 }
 
-sf::Texture* Picture::GetMenuTexture()
+sf::Texture* Picture::getMenuTexture()
 {
 	return &m_menu;
 }
 
-sf::Texture* Picture::GetStartTexture()
+sf::Texture* Picture::getJerryTexture()
 {
-	return &m_start;
+	return &m_heroMenu1;
 }
 
-sf::Texture* Picture::GetHeroMenu1Texture()
+sf::Texture* Picture::getRickTexture()
 {
-	return &m_HeroMenu1;
-}
-
-sf::Texture* Picture::GetHeroMenu2Texture()
-{
-	return &m_HeroMenu2;
+	return &m_heroMenu2;
 }

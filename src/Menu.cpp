@@ -2,133 +2,138 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include "Sound.h"
+const int JERRYPOSITIONX = 900 ;
+const int JERRYPOSITIONY = 500;
+const int RICKPOSITIONX =650;
+const int RICKPOSITIONY =500;
+const int STARTTEXTX = 750;
+const int STARTTEXTY = 100;
+const int SELECTX = 750;
+const int SELECTY = 400;
+const int CHARSIZE = 200;
+const int CHARSIZE1 = 50;
 
 Menu::Menu()
 {
 	
 }
-//
-//const int JERRYPOSITIONX ;
-//const int JERRYPOSITIONY;
-//const int RICKPOSITIONX;
-//const int RICKPOSITIONY;
-//const int JERRYPOSITIONX;
-
-
-
 
 int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture,  Sound& sound)
 {
 	int heroChoose = HeroJerry;
+	auto background = sf::Sprite(*m_Picture.getMenuTexture());
+    sf::Text text_1;
+    sf::Text text_2;
+    sf::RectangleShape rickpic,jerrypic;
+    sf::Font font;
 
-	auto picture1 = sf::Sprite(*m_Picture.GetMenuTexture());
+    if (!font.loadFromFile("BAUHS93.ttf"))
+        std::cout << "Cant open font";
 
-
-	auto hero_1 = sf::RectangleShape(sf::Vector2f((193*2), (250*2)));
-	hero_1.setTexture(m_Picture.GetHeroMenu1Texture());
-	hero_1.setOrigin(50, 50);
-	hero_1.setPosition(1000, 500);
-	
-
-
-	auto hero_2 = sf::RectangleShape(sf::Vector2f((118 * 2), (250 * 2)));
-	hero_2.setTexture(m_Picture.GetHeroMenu2Texture());
-	hero_2.setOrigin(50, 50);
-	hero_2.setPosition(750, 500);
-
-
-
-	sf::Text text_1;
-	sf::Font font;
-	
-	if (!font.loadFromFile("BAUHS93.ttf"))
-		std::cout << "Cant open font";
-	text_1.setFont(font); // font is a sf::Font
-	text_1.setString("Start");
-	text_1.setCharacterSize(200); // in pixels, not points!
-	text_1.setFillColor(sf::Color::Black);
-	text_1.setStyle(sf::Text::Bold);
-	text_1.setPosition(750, 100);
-	text_1.setOrigin(50, 50);
-
-
-	sf::Text text_2;
-	
-	font.loadFromFile("BAUHS93.ttf");
-	text_2.setFont(font); // font is a sf::Font
-	text_2.setString("Choose a player:");
-	text_2.setCharacterSize(50); // in pixels, not points!
-	text_2.setFillColor(sf::Color::Black);
-	text_2.setStyle(sf::Text::Bold );
-	text_2.setPosition(750, 400);
-	text_2.setOrigin(50, 50);
-
-	// inside the main loop, between window.clear() and window.display()
-
-	//create sound items
-
-
+    initializeScreenPic(jerrypic, rickpic, background, m_Picture);
+    initializeScreentext(text_1,text_2,font);
 
 	while (window.isOpen())
 	{
 
 		window.clear();
-		window.draw(picture1);
-
-	     window.draw(hero_1);
-		window.draw(hero_2);
+		window.draw(background);
+	     window.draw(jerrypic);
+		window.draw(rickpic);
 		window.draw(text_1);
 		window.draw(text_2);
-
 		window.display();
-
 
 		if (auto event = sf::Event{}; window.waitEvent(event))
 		{
-			switch (event.type)
+            if( event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Key::Escape) {
+                window.close();
+                window.clear();
+                break;
+            }
+          else if  (event.type == sf::Event::MouseButtonReleased)
 		{
-
-			case sf::Event::Closed:// if close
-				window.close();
-				window.clear();
-				break;
-
-			case sf::Event::MouseButtonReleased:
 				auto location = window.mapPixelToCoords(
-					{ event.mouseButton.x - 7, event.mouseButton.y + 3 });
+					{ event.mouseButton.x, event.mouseButton.y});
 
-
-				if (hero_2.getGlobalBounds().contains(location))
+				if (rickpic.getGlobalBounds().contains(location))
 				{
+				    updateSelectPic(rickpic,jerrypic);
 					heroChoose = HeroRick;
-					hero_2.setFillColor(sf::Color(255, 255, 255, 130));
-					hero_2.setOutlineThickness(2);
-					hero_2.setOutlineColor(sf::Color::Blue);
+					rickpic.setOutlineColor(sf::Color::Blue);
 					sound.playRickSound();
-					hero_1.setFillColor(sf::Color(255, 255, 255, 255));
-					hero_1.setOutlineThickness(0);
+
 				}
-				else if(hero_1.getGlobalBounds().contains(location))
+				else if(jerrypic.getGlobalBounds().contains(location))
 				{
 					heroChoose = HeroJerry;
-					hero_1.setFillColor(sf::Color(255, 255, 255, 130));
-					hero_1.setOutlineThickness(2);
-					hero_1.setOutlineColor(sf::Color::Green);
+                    updateSelectPic(jerrypic,rickpic);
+					jerrypic.setOutlineColor(sf::Color::Green);
 					sound.playJerrySound();
-					hero_2.setFillColor(sf::Color(255, 255, 255, 255));
-					hero_2.setOutlineThickness(0);
-
 				}
 				else if(text_1.getGlobalBounds().contains(location))
 				{
-				   
-
 					return heroChoose;
-					break;
 				}
 				
 		}
 		}
 	}
 	return heroChoose;
+}
+//==================================================================
+void Menu::initializeScreenPic(sf::RectangleShape& jerry, sf::RectangleShape& rick,
+                               sf::Sprite& sprite, Picture & picture) {
+
+
+    sprite = sf::Sprite(*picture.getMenuTexture());
+
+
+
+    jerry = sf::RectangleShape();
+    jerry.setTexture(picture.getJerryTexture());
+    jerry.setPosition(JERRYPOSITIONX, JERRYPOSITIONY);
+    jerry.setSize(sf::Vector2f(picture.getJerryTexture()->getSize()));
+    jerry.scale(2,2);
+
+    rick = sf::RectangleShape();
+    rick.setTexture(picture.getRickTexture());
+    rick.setPosition(RICKPOSITIONX, RICKPOSITIONY);
+    rick.setSize(sf::Vector2f(picture.getRickTexture()->getSize()));
+    rick.scale(2,2);
+
+
+}
+//==================================================================
+
+void Menu::initializeScreentext(sf::Text &text_1, sf::Text& text_2,const sf::Font & font) {
+
+
+    text_1.setFont(font); // font is a sf::Font
+    text_1.setString("Start");
+    text_1.setCharacterSize(CHARSIZE); // in pixels, not points!
+    text_1.setFillColor(sf::Color::Black);
+    text_1.setStyle(sf::Text::Bold);
+    text_1.setPosition(STARTTEXTX, STARTTEXTY);
+
+
+    text_2.setFont(font); // font is a sf::Font
+    text_2.setString("Choose a player:");
+    text_2.setCharacterSize(CHARSIZE1); // in pixels, not points!
+    text_2.setFillColor(sf::Color::Black);
+    text_2.setStyle(sf::Text::Bold );
+    text_2.setPosition(SELECTX, SELECTY);
+
+
+}
+//==========================================================
+void Menu::updateSelectPic(sf::RectangleShape &shape, sf::RectangleShape &shape1) {
+
+    shape.setFillColor(sf::Color(255, 255, 255, 130));
+    shape.setOutlineThickness(2);
+
+    shape1.setFillColor(sf::Color(255, 255, 255, 255));
+    shape1.setOutlineThickness(0);
+
+
 }
