@@ -19,7 +19,6 @@ public:
     sf::Texture* getLedderTexture();
     sf::Texture* getRopeTexture();
     sf::Texture* getMenuTexture();
-
     sf::Texture* getJerryTexture();
     sf::Texture* getRickTexture();
 

@@ -1,5 +1,5 @@
 #include "Hero.h"
-
+#include "Macros.h"
 
 Hero::Hero() :m_life(0), m_score(0), m_LastPosition(0, 0)
 {
@@ -26,7 +26,6 @@ Hero::Hero(Picture& pic, const sf::Vector2f& loc, int HeroSelection) :m_life(3),
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 		
 	}
-
 	m_LastPosition = loc;
 }
 

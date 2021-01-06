@@ -1,18 +1,19 @@
 #include "Controller.h"
 #include <string>
 #include <iostream>
+
+
 Controller::Controller(): m_window(sf::VideoMode(1800, 1080), "RICK RUNNER")
 {	
 	int m_level = 1;
 	board.setTexture(*m_pictures.getBoardTexture());
 	board.setPosition(130.f,30.f);
 	m_boardfile = openlevelfile(m_level);
-	
-
     m_board = Board(m_boardfile, m_pictures, m_menu.StartGame(m_window, m_pictures,m_sound));
 	m_sound.playStartGameSound();
 	
 }
+//=============================================================
 
 void Controller::run()
 {
@@ -40,8 +41,7 @@ void Controller::run()
 	}
 }
 
-
-
+//=============================================================
 
 std::ifstream Controller::openlevelfile(int level)
 {
@@ -54,4 +54,4 @@ std::ifstream Controller::openlevelfile(int level)
 			std::cout << "Error while open level file";
 		return file;
 }
-
+//=============================================================

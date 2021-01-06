@@ -31,10 +31,6 @@ Sound::Sound()
 		std::cerr << "Can't open sound file mf";
 
 
-
-
-
-
 	m_jerrySound.setBuffer(m_jerry);
 	m_rickSound.setBuffer(m_rick);
 	m_startGameSound.setBuffer(m_startGame);

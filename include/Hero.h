@@ -6,7 +6,7 @@
 #include"Coin.h"
 
 
-const  float HEROSPEED = 700.f ;
+
 
 class Hero : public MovingObjects {
 

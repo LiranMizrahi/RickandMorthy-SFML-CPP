@@ -18,7 +18,6 @@ Board::Board():m_height(0),m_width(0)
 
 Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
 {
-   
     sf::Vector2f location;
 
     char input;
@@ -64,10 +63,9 @@ void Board::draw(sf::RenderWindow& window)const
         e->draw(window, size);
 
     m_hero.draw(window, size);
-}   
-    
-    
+}
 
+//====================================================
 void Board::createObject( Picture & pic,char input, const sf::Vector2f & location, int PlayerSelection)
 {
     sf::Vector2f boardsize((float)m_height, (float)m_width);
@@ -113,22 +111,15 @@ void Board::moveCharacters(float deltaTime)
     sf::Vector2f oldlocation = m_hero.GetPosition();
     m_hero.setLastPosition(oldlocation);
     m_hero.UpdateLocation(deltaTime);
-    bool ok = false;
+
     for (auto& staticObjects : m_staticObjects)
     {
         if (staticObjects->collisonWith(m_hero))
-        {   ok =true;
+        {
             staticObjects->handleColision(m_hero);
             
         }
     }
-//    if(!ok)
-//    {
-//        m_hero.move(0,100*deltaTime);
-//        m_hero.setLastPosition(sf::Vector2f (m_hero.GetPosition().x,m_hero.GetPosition().y-10));
-//    }
-
-
 
     for (auto& e : m_enemys)
         e->UpdateLocation(deltaTime);

@@ -8,14 +8,12 @@
 
 class Enemy : public MovingObjects {
 public:
-	const  float ENEMYSPEED = 300.f;
 
-	Enemy(Picture&, const sf::Vector2f&, int);
+
+	  Enemy(Picture&, const sf::Vector2f&, int);
      ~Enemy() override = default;
 
 	virtual void UpdateLocation(float time);
-
-
 	virtual void handleColision(GameObj& obj) override {};
 	virtual void handleColision(Rope& Obj) override {};
 	virtual void handleColision(Hero& Obj) override {};
