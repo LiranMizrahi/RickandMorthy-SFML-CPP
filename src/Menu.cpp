@@ -1,24 +1,29 @@
 #include "Menu.h"
 #include <iostream>
 #include <SFML/Audio.hpp>
-#include <Windows.h>
-#include "Sound.h":
+#include "Sound.h"
 
 Menu::Menu()
 {
 	
 }
+//
+//const int JERRYPOSITIONX ;
+//const int JERRYPOSITIONY;
+//const int RICKPOSITIONX;
+//const int RICKPOSITIONY;
+//const int JERRYPOSITIONX;
+
+
+
 
 int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture,  Sound& sound)
 {
 	int heroChoose = HeroJerry;
 
 	auto picture1 = sf::Sprite(*m_Picture.GetMenuTexture());
-	picture1.setOrigin(100, 100);
-	picture1.setPosition(100, 100);
 
 
-	
 	auto hero_1 = sf::RectangleShape(sf::Vector2f((193*2), (250*2)));
 	hero_1.setTexture(m_Picture.GetHeroMenu1Texture());
 	hero_1.setOrigin(50, 50);

@@ -1,4 +1,4 @@
-#include "..\include\GameObj.h"
+#include "GameObj.h"
 
 
 
@@ -16,9 +16,6 @@ GameObj::GameObj()
 {
 }
 
-GameObj::~GameObj()
-{
-}
 
 bool GameObj::collisonWith(const GameObj& obj)const
 {

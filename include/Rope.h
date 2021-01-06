@@ -9,6 +9,7 @@ class Rope : public StaticObjects {
 public:
 	Rope();
 	Rope(Picture&, const sf::Vector2f& loc, const sf::Vector2f&);
+	~Rope () override = default;
 
 	virtual void handleColision(Rope&) override {};
 	virtual void handleColision(Hero&) override;

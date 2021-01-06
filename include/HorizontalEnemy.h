@@ -3,6 +3,7 @@
 
 class HorizontalEnemy: public Enemy
 {
+    ~HorizontalEnemy() override= default;
 public:
 	virtual void UpdateLocation(float);
 

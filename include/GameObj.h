@@ -13,7 +13,7 @@ class GameObj {
 public:
 	GameObj();
 	GameObj(const sf::Texture&, const sf::Vector2f&, const sf::Vector2f &board_size);
-	 ~GameObj();
+	virtual ~GameObj() = default;;
 
 	bool collisonWith(const GameObj&)const;
 

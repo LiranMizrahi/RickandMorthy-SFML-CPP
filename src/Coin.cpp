@@ -1,4 +1,4 @@
-#include "..\include\Coin.h"
+#include "Coin.h"
 #include "Coin.h"
 #include "Picture.h"
 Coin::Coin()

@@ -14,6 +14,7 @@ class Hero : public MovingObjects {
 
    public:
 	   Hero();
+	   ~Hero()override = default;
 	   Hero( Picture &, const sf::Vector2f&,  int );
 	   int GetLife();
 	   int GetScore();

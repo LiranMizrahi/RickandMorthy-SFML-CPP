@@ -9,8 +9,7 @@ public:
 	
 	int StartGame(sf::RenderWindow &,Picture &, Sound& );
 private:
-	//Picture m_Picture;
-	sf::Vector2f m_location;
+
 
 	sf::RenderWindow window;
 	enum ChoosingHero

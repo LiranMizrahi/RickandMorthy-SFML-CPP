@@ -11,25 +11,11 @@ public:
 	const  float ENEMYSPEED = 300.f;
 
 	Enemy(Picture&, const sf::Vector2f&, int);
-	virtual void UpdateLocation(float time) {
-		int RandomMov = std::rand() % 4;
+     ~Enemy() override = default;
 
-		switch (RandomMov)
-		{
+	virtual void UpdateLocation(float time);
 
-		case LEFT:
-			this->move(-ENEMYSPEED * time, 0);
-			break;
-		case RIGHT:
-			this->move(ENEMYSPEED * time, 0);
 
-			break;
-		case UP:
-			break;
-		case DOWN:
-			break;
-		}
-	};
 	virtual void handleColision(GameObj& obj) override {};
 	virtual void handleColision(Rope& Obj) override {};
 	virtual void handleColision(Hero& Obj) override {};

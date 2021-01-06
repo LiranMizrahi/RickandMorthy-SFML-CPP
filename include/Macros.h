@@ -16,3 +16,4 @@ const int	UP = 3;
 const int	DOWN = 4;
 const int BOARDWIDTH = 1600;
 const int BOARDHEIGHT = 899;
+
