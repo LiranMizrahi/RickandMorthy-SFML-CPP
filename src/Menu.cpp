@@ -2,13 +2,13 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include "Sound.h"
-const int JERRYPOSITIONX = 900 ;
+const int JERRYPOSITIONX = 800 ;
 const int JERRYPOSITIONY = 500;
-const int RICKPOSITIONX =650;
+const int RICKPOSITIONX =550;
 const int RICKPOSITIONY =500;
-const int STARTTEXTX = 750;
+const int STARTTEXTX = 650;
 const int STARTTEXTY = 100;
-const int SELECTX = 750;
+const int SELECTX = 650;
 const int SELECTY = 400;
 const int CHARSIZE = 200;
 const int CHARSIZE1 = 50;

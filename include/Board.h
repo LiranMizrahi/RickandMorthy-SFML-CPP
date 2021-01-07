@@ -16,7 +16,7 @@ public:
     Board(std::ifstream& ,  Picture& pic,  int);
 	void draw(sf::RenderWindow&)const;
 	void moveCharacters(float);
-
+	int checkCollisions(float);
 
 private:
 	//private members

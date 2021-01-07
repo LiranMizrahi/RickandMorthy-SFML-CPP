@@ -10,8 +10,6 @@
 
 class Hero : public MovingObjects {
 
-	
-
    public:
 	   Hero();
 	   ~Hero()override = default;
@@ -33,7 +31,6 @@ class Hero : public MovingObjects {
 
 private:
 		int m_life, m_score;
-		sf::Vector2f m_LastPosition;
-		sf::Vector2f m_oldPosition;
+		//sf::Vector2f m_oldPosition;
 
 };

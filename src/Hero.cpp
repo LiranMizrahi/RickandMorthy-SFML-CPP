@@ -1,9 +1,10 @@
 #include "Hero.h"
 #include "Macros.h"
 
-Hero::Hero() :m_life(0), m_score(0), m_LastPosition(0, 0)
+Hero::Hero() :m_life(0), m_score(0)
 {
-
+    m_LastPosition.x =0;
+    m_LastPosition.y=0;
 }
 
 
@@ -43,21 +44,20 @@ void Hero::SetLife(int life)
 {
 	m_life = life;
 }
+//====================================================
 
 void Hero::setLastPosition(sf::Vector2f posion)
 {
-	m_oldPosition = posion;
+	m_LastPosition = posion;
 }
 
-
+//====================================================
 void Hero::UpdateLocation(float time)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		this->move( 0,-HEROSPEED * time);
-		
 	}
-
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		this->move(0,HEROSPEED * time);
@@ -78,35 +78,43 @@ void Hero::UpdateLocation(float time)
 
 
 }
+//====================================================
 
 void Hero::handleColision(GameObj& obj)
 {
 	obj.handleColision(*this);
 }
+//====================================================
 
 void Hero::handleColision(Rope& Obj) 
 {
 	this->m_sprite.setRotation(90.f);
 }
+//====================================================
 
 void Hero::handleColision(Floor& obj)
 {
-	m_sprite.setPosition(m_oldPosition);
+	m_sprite.setPosition(m_LastPosition);
+
+   // this->m_sprite.setRotation(0.f);
 }
+//====================================================
 
 void Hero::handleColision(Ladder& obj)
 {
-	//this->m_sprite.setRotation(180.f);
+	this->m_sprite.setRotation(180.f);
 }
+//====================================================
 
 void Hero::handleColision(Coin&obj)
 {
 	m_score++;
 }
 
-
+//====================================================
 
 void Hero::SetScore(int score)
 {
 	m_score = score;
 }
+//====================================================

@@ -17,8 +17,7 @@ public:
 
 	bool collisonWith(const GameObj&)const;
 
-  void draw(sf::RenderWindow&, const sf::Vector2f&)const;
-
+    void draw(sf::RenderWindow&, const sf::Vector2f&)const;
     virtual void handleColision(GameObj& obj) = 0;
 	virtual void handleColision(Floor& obj) = 0;
 	virtual void handleColision(Ladder& obj) = 0;
@@ -30,8 +29,7 @@ public:
 
 protected:
 	sf::Sprite m_sprite;
+    bool m_isOff = false;
 
 private:
-	
-
 };

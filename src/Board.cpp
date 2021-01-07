@@ -9,7 +9,7 @@
 #include <iostream>
 #include "Coin.h"
 #include "Sound.h"
-
+#include "RandomEnemy.h"
 //===============constructors ==============
 Board::Board():m_height(0),m_width(0)
 {
@@ -30,8 +30,8 @@ Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
     float tx = (BOARDWIDTH / float(m_width) / 2);
     float ty = (BOARDHEIGHT / float(m_height) / 2);
 
-    location.x = 130 + tx;
-    location.y = 30 + ty;
+    location.x = tx;
+    location.y = ty;
     float x_location = location.x;
     // take char with the file and put vector
     for (int i = 0; i < m_height; ++i)
@@ -108,18 +108,9 @@ void Board::createObject( Picture & pic,char input, const sf::Vector2f & locatio
 //============================================
 void Board::moveCharacters(float deltaTime)
 {       
-    sf::Vector2f oldlocation = m_hero.GetPosition();
-    m_hero.setLastPosition(oldlocation);
-    m_hero.UpdateLocation(deltaTime);
 
-    for (auto& staticObjects : m_staticObjects)
-    {
-        if (staticObjects->collisonWith(m_hero))
-        {
-            staticObjects->handleColision(m_hero);
-            
-        }
-    }
+    m_hero.setLastPosition(m_hero.GetPosition());
+    m_hero.UpdateLocation(deltaTime);
 
     for (auto& e : m_enemys)
         e->UpdateLocation(deltaTime);
@@ -127,3 +118,24 @@ void Board::moveCharacters(float deltaTime)
 }
 
 //========================================
+
+int Board::checkCollisions(float deltaTime)
+{
+    //m_hero.setLastPosition(m_hero.GetPosition());
+
+    bool ok =false;
+    for (auto& staticObjects : m_staticObjects)
+    {
+
+        if (staticObjects->collisonWith(m_hero))
+        {
+           ok = true;
+            staticObjects->handleColision(m_hero);
+        }
+    }
+    if(!ok) {
+       m_hero.setLastPosition(m_hero.GetPosition());
+        m_hero.move(0, 100 * deltaTime);
+    }
+    return true;
+}

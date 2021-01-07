@@ -20,6 +20,6 @@ public:
 	virtual void handleColision(Coin&) override {};
 
 private:
-	bool m_isTaken;
+	;
 
 };

@@ -3,11 +3,11 @@
 #include <iostream>
 
 
-Controller::Controller(): m_window(sf::VideoMode(1800, 1080), "RICK RUNNER")
+Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 {	
 	int m_level = 1;
 	board.setTexture(*m_pictures.getBoardTexture());
-	board.setPosition(130.f,30.f);
+	board.setPosition(0,0);
 	m_boardfile = openlevelfile(m_level);
     m_board = Board(m_boardfile, m_pictures, m_menu.StartGame(m_window, m_pictures,m_sound));
 	m_sound.playStartGameSound();
@@ -20,12 +20,13 @@ void Controller::run()
 
 	while (m_window.isOpen())
 	{
+        float deltaTime = clock.restart().asSeconds();
 		m_window.clear();
 		m_window.draw(board);
 		m_board.draw(m_window);
 		m_window.display();
 		
-		float deltaTime = clock.restart().asSeconds();
+
 		
 		sf::Event event;
 		while(m_window.pollEvent(event))
@@ -36,6 +37,8 @@ void Controller::run()
 			}
 
 			m_board.moveCharacters(deltaTime);
+            m_board.checkCollisions(deltaTime);
+
 
 		
 	}

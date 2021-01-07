@@ -15,5 +15,9 @@ public:
 	void DrawLeftside();
 	void DrawRightside();
 
+protected:
+    sf::Vector2f m_LastPosition;
+
+
 
 };

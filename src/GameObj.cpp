@@ -31,6 +31,6 @@ bool GameObj::collisonWith(const GameObj& obj)const
 
 void GameObj::draw(sf::RenderWindow& window, const sf::Vector2f& size)const
 {
-
+    if(!m_isOff)
 	window.draw(this->m_sprite);
 }
