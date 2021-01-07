@@ -12,6 +12,7 @@ const int SELECTX = 650;
 const int SELECTY = 400;
 const int CHARSIZE = 200;
 const int CHARSIZE1 = 50;
+const int SCALEFACTOR = 2;
 
 Menu::Menu()
 {
@@ -22,8 +23,8 @@ int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture,  Sound& soun
 {
 	int heroChoose = HeroJerry;
 	auto background = sf::Sprite(*m_Picture.getMenuTexture());
-    sf::Text text_1;
-    sf::Text text_2;
+    sf::Text start;
+    sf::Text select;
     sf::RectangleShape rickpic,jerrypic;
     sf::Font font;
 
@@ -31,7 +32,7 @@ int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture,  Sound& soun
         std::cout << "Cant open font";
 
     initializeScreenPic(jerrypic, rickpic, background, m_Picture);
-    initializeScreenText(text_1, text_2, font);
+    initializeScreenText(start, select, font);
 
 	while (window.isOpen())
 	{
@@ -40,8 +41,8 @@ int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture,  Sound& soun
 		window.draw(background);
 	     window.draw(jerrypic);
 		window.draw(rickpic);
-		window.draw(text_1);
-		window.draw(text_2);
+		window.draw(start);
+		window.draw(select);
 		window.display();
 
 		if (auto event = sf::Event{}; window.waitEvent(event))
@@ -71,7 +72,7 @@ int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture,  Sound& soun
 					jerrypic.setOutlineColor(sf::Color::Green);
 					sound.playJerrySound();
 				}
-				else if(text_1.getGlobalBounds().contains(location))
+				else if(start.getGlobalBounds().contains(location))
 				{
 					return heroChoose;
 				}
@@ -94,13 +95,13 @@ void Menu::initializeScreenPic(sf::RectangleShape& jerry, sf::RectangleShape& ri
     jerry.setTexture(picture.getJerryTexture());
     jerry.setPosition(JERRYPOSITIONX, JERRYPOSITIONY);
     jerry.setSize(sf::Vector2f(picture.getJerryTexture()->getSize()));
-    jerry.scale(2,2);
+    jerry.scale(SCALEFACTOR,SCALEFACTOR);
 
     rick = sf::RectangleShape();
     rick.setTexture(picture.getRickTexture());
     rick.setPosition(RICKPOSITIONX, RICKPOSITIONY);
     rick.setSize(sf::Vector2f(picture.getRickTexture()->getSize()));
-    rick.scale(2,2);
+    rick.scale(SCALEFACTOR,SCALEFACTOR);
 
 
 }
@@ -130,7 +131,7 @@ void Menu::initializeScreenText(sf::Text& text_1, sf::Text& text_2, const sf::Fo
 void Menu::updateSelectPic(sf::RectangleShape &shape, sf::RectangleShape &shape1) {
 
     shape.setFillColor(sf::Color(255, 255, 255, 130));
-    shape.setOutlineThickness(2);
+    shape.setOutlineThickness(SCALEFACTOR);
 
     shape1.setFillColor(sf::Color(255, 255, 255, 255));
     shape1.setOutlineThickness(0);

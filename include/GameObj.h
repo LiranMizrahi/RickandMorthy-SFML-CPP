@@ -16,6 +16,7 @@ public:
 	virtual ~GameObj() = default;;
 
 	bool collisonWith(const GameObj&)const;
+	sf::Sprite getSprite();
 
     void draw(sf::RenderWindow&, const sf::Vector2f&)const;
     virtual void handleColision(GameObj& obj) = 0;

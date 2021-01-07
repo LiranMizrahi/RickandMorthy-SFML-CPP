@@ -1,6 +1,6 @@
 #include "Hero.h"
 #include "Macros.h"
-
+#include "Floor.h"
 Hero::Hero() :m_life(0), m_score(0)
 {
     m_LastPosition.x =0;
@@ -54,15 +54,17 @@ void Hero::setLastPosition(sf::Vector2f posion)
 //====================================================
 void Hero::UpdateLocation(float time)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-		this->move( 0,-HEROSPEED * time);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		this->move(0,HEROSPEED * time);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+//	{
+//		this->move( 0,-HEROSPEED * time);
+//	}
+//	else
+//	    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+//	{
+//		this->move(0,HEROSPEED * time);
+//	}
+//	else
+	    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 
 	{
 		this->move(-HEROSPEED *time, 0);
@@ -88,13 +90,20 @@ void Hero::handleColision(GameObj& obj)
 
 void Hero::handleColision(Rope& Obj) 
 {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        this->move( 0,HEROSPEED*0.0002 );
+    }
 	this->m_sprite.setRotation(90.f);
 }
 //====================================================
 
 void Hero::handleColision(Floor& obj)
 {
-	m_sprite.setPosition(m_LastPosition);
+   auto rec = sf::RectangleShape(sf::Vector2f (obj.getSprite().getGlobalBounds().height,1));
+    rec.setPosition(obj.getSprite().getPosition());
+    if(m_sprite.getPosition().y > obj.getSprite().getPosition().y)
+ 	        m_sprite.setPosition(m_LastPosition);
 
    // this->m_sprite.setRotation(0.f);
 }
@@ -102,7 +111,18 @@ void Hero::handleColision(Floor& obj)
 
 void Hero::handleColision(Ladder& obj)
 {
-	this->m_sprite.setRotation(180.f);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        this->move( 0,-HEROSPEED*0.0002 );
+    }
+    else
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        this->move(0,HEROSPEED*0.0002 );
+    }
+
+        this->m_sprite.setRotation(180.f);
+
 }
 //====================================================
 

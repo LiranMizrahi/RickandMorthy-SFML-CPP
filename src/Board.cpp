@@ -82,7 +82,6 @@ void Board::createObject( Picture & pic,char input, const sf::Vector2f & locatio
 
 
         break;
-
     case FLOOR:
        
       m_staticObjects.push_back(std::move(std::make_unique<Floor>(pic, location, boardsize)));
@@ -121,7 +120,6 @@ void Board::moveCharacters(float deltaTime)
 
 int Board::checkCollisions(float deltaTime)
 {
-    //m_hero.setLastPosition(m_hero.GetPosition());
 
     bool ok =false;
     for (auto& staticObjects : m_staticObjects)
@@ -135,7 +133,7 @@ int Board::checkCollisions(float deltaTime)
     }
     if(!ok) {
        m_hero.setLastPosition(m_hero.GetPosition());
-        m_hero.move(0, 100 * deltaTime);
+        m_hero.move(0, 400 * deltaTime);
     }
     return true;
 }

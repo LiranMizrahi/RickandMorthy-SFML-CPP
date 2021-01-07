@@ -14,8 +14,18 @@ MovingObjects::MovingObjects(const sf::Texture& tex, const sf::Vector2f& loc, co
 void MovingObjects::move(float xline,float yline)
 {
 
-   // m_LastPosition = m_sprite.getPosition();
+    sf::Vector2f loc = this->m_LastPosition;
+    m_LastPosition = m_sprite.getPosition();
 	m_sprite.move(xline,yline);
+	if (m_sprite.getPosition().x+(m_sprite.getGlobalBounds().width/2) > BOARDWIDTH ||
+            m_sprite.getPosition().y+(m_sprite.getGlobalBounds().height/2) > BOARDHEIGHT
+            ||m_sprite.getPosition().x -(m_sprite.getGlobalBounds().width/2) < 0
+            ||m_sprite.getPosition().y-(m_sprite.getGlobalBounds().height/2) < 0)
+	{
+
+        m_sprite.setPosition(m_LastPosition);
+       // m_LastPosition =loc;
+    }
 }
 //=============================================================
 

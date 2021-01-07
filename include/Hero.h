@@ -31,6 +31,5 @@ class Hero : public MovingObjects {
 
 private:
 		int m_life, m_score;
-		//sf::Vector2f m_oldPosition;
 
 };
