@@ -31,7 +31,7 @@ int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture,  Sound& soun
         std::cout << "Cant open font";
 
     initializeScreenPic(jerrypic, rickpic, background, m_Picture);
-    initializeScreentext(text_1,text_2,font);
+    initializeScreenText(text_1, text_2, font);
 
 	while (window.isOpen())
 	{
@@ -106,7 +106,7 @@ void Menu::initializeScreenPic(sf::RectangleShape& jerry, sf::RectangleShape& ri
 }
 //==================================================================
 
-void Menu::initializeScreentext(sf::Text &text_1, sf::Text& text_2,const sf::Font & font) {
+void Menu::initializeScreenText(sf::Text& text_1, sf::Text& text_2, const sf::Font & font) {
 
 
     text_1.setFont(font); // font is a sf::Font

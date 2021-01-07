@@ -8,19 +8,18 @@ class Picture
 public:
 
     Picture();
-
-    sf::Texture* getHerojerryTexture();
-    sf::Texture* getHeroRickTexture();
-    sf::Texture* getEnemyMeeseeksTexture();
-    sf::Texture* getEnemyMonsterTexture();
-    sf::Texture* getCoinTexture();
-    sf::Texture* getBoardTexture();
-    sf::Texture* getFloorTexture();
-    sf::Texture* getLedderTexture();
-    sf::Texture* getRopeTexture();
-    sf::Texture* getMenuTexture();
-    sf::Texture* getJerryTexture();
-    sf::Texture* getRickTexture();
+    const sf::Texture* getHerojerryTexture();
+    const sf::Texture* getHeroRickTexture();
+    const sf::Texture* getEnemyMeeseeksTexture();
+    const sf::Texture * getEnemyMonsterTexture();
+    const sf::Texture* getCoinTexture();
+    const sf::Texture* getBoardTexture();
+    const sf::Texture* getFloorTexture();
+    const sf::Texture* getLedderTexture();
+    const sf::Texture* getRopeTexture();
+    const sf::Texture* getMenuTexture();
+    const sf::Texture* getJerryTexture();
+    const sf::Texture* getRickTexture();
 
 
   

@@ -18,6 +18,6 @@ private:
 	};
 
     void initializeScreenPic(sf::RectangleShape& , sf::RectangleShape&,sf::Sprite& , Picture &);
-    void initializeScreentext(sf::Text&, sf::Text&,const sf::Font &);
+    void initializeScreenText(sf::Text&, sf::Text&, const sf::Font &);
     void updateSelectPic(sf::RectangleShape &shape, sf::RectangleShape &shape1);
 };
