@@ -2,11 +2,15 @@
 #include "SingletonPicture.h"
 #include <iostream>
 
-SingletonPicture SingletonPicture::m_instance = SingletonPicture();
+
 
 
 SingletonPicture::SingletonPicture()
 {
+	int x = 5;
+
+
+
 	if (!m_heroRick.loadFromFile("rick_left.png"))
 	std::cout << "cant open picture";
 

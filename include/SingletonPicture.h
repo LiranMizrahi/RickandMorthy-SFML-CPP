@@ -30,7 +30,7 @@ public:
     SingletonPicture();
     SingletonPicture(const SingletonPicture &) = default;
     SingletonPicture&  operator=(const SingletonPicture&) = default;
-    static SingletonPicture m_instance;
+    //static SingletonPicture m_instance;
     sf::Texture m_heroMenu1;
     sf::Texture m_heroMenu2;
     sf::Texture m_heroJerry;
