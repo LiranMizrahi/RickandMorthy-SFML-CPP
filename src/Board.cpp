@@ -13,17 +13,20 @@
 //===============constructors ==============
 Board::Board():m_height(0),m_width(0)
 {
-   
+
 }
 
 Board::Board(std::ifstream& file , int PlayerSelection)
 {
-    sf::Vector2f location;
 
+    sf::Vector2f location;
     char input;
 	file >> m_width >> m_height; // take size map
 	file.get();
-   
+
+    cellwidth = (BOARDHEIGHT / float(m_height));
+    cellhight = (BOARDWIDTH/ float(m_width));
+    m_staticObjects.resize(m_height);
 
     //calculate the size of the middle of singal cell 
     // sub the size of the image frame
@@ -36,12 +39,16 @@ Board::Board(std::ifstream& file , int PlayerSelection)
     // take char with the file and put vector
     for (int i = 0; i < m_height; ++i)
     {
-
+         //   m_staticObjects[i];
         for (int j = 0; j < m_width; ++j)
         {
                input = file.get();
-               createObject(input,location , PlayerSelection);
-               location.x += (2 * tx);
+               if(input == ' ')
+                   m_staticObjects[i].push_back(nullptr);
+               else
+                   createObject(input, location, PlayerSelection, i);
+
+                   location.x += (2 * tx);
         }
             file.get();
             location.x = x_location;
@@ -55,10 +62,12 @@ void Board::draw(sf::RenderWindow& window)const
     float tx = (BOARDWIDTH/ float(m_width));
     float ty = (BOARDHEIGHT / float(m_height));
     sf::Vector2f size(tx, ty);
-    
+
     for (auto& e : m_staticObjects)
-        e->draw(window,size);
-    
+        for (auto& d : e) {
+            if(d)
+            d->draw(window, size);
+        }
     for (auto& e : m_enemys)
         e->draw(window, size);
 
@@ -66,7 +75,7 @@ void Board::draw(sf::RenderWindow& window)const
 }
 
 //====================================================
-void Board::createObject( char input, const sf::Vector2f & location, int PlayerSelection)
+void Board::createObject(char input, const sf::Vector2f & location,int PlayerSelection, int i)
 {
     sf::Vector2f boardsize((float)m_height, (float)m_width);
     
@@ -83,21 +92,21 @@ void Board::createObject( char input, const sf::Vector2f & location, int PlayerS
         break;
     case FLOOR:
        
-      m_staticObjects.push_back(std::move(std::make_unique<Floor>(location, boardsize)));
+      m_staticObjects[i].push_back(std::move(std::make_unique<Floor>(location, boardsize)));
         
        break;
 
     case ROPE:
-        m_staticObjects.push_back(std::move(std::make_unique<Rope>(location, boardsize)));
+        m_staticObjects[i].push_back(std::move(std::make_unique<Rope>(location, boardsize)));
         break;
 
     case COIN:
-        m_staticObjects.push_back(std::move(std::make_unique<Coin>(location, boardsize)));
+        m_staticObjects[i].push_back(std::move(std::make_unique<Coin>(location, boardsize)));
 
         break;
 
     case LADDER:
-        m_staticObjects.push_back(std::move(std::make_unique<Ladder>(location, boardsize)));
+        m_staticObjects[i].push_back(std::move(std::make_unique<Ladder>(location, boardsize)));
         break;
 
 
@@ -121,16 +130,45 @@ void Board::moveCharacters(float deltaTime)
 int Board::checkCollisions(float deltaTime)
 {
 
-    bool ok =       false;
+    bool ok =false;
     for (auto& staticObjects : m_staticObjects)
+        for (auto& staticObjectsi : staticObjects)
     {
-
-        if (staticObjects->collisonWith(m_hero))
+        if(staticObjectsi)
+        if (staticObjectsi->collisonWith(m_hero))
         {
            ok = true;
-            staticObjects->handleColision(m_hero);
+            staticObjectsi->handleColision(m_hero);
         }
+    }
+    if(!ok)
+    {
+        m_hero.is_upok =false;
+      //  m_hero.move(0,100*deltaTime);
+
     }
 
     return true;
+}
+
+bool Board::isObjectIsfalling() {
+
+    float index =0;
+    int i;
+    for (i = 0; index < m_hero.getSprite().getPosition().y; ++i) {
+        index+=cellhight;
+    }
+    auto rec = sf::RectangleShape(sf::Vector2f(m_hero.getSprite().getTexture()->getSize().x,100));
+    rec.setOrigin(m_hero.getSprite().getTexture()->getSize().x/2u,0.5);
+    rec.setPosition(m_hero.getSprite().getPosition().x,index);
+    //std::cout << i <<std::endl;
+
+    for( auto & e : m_staticObjects[i+1])
+
+        if(e)
+        if (rec.getGlobalBounds().intersects(e->getSprite().getGlobalBounds()))
+
+              return true;
+        m_hero.move(0,0.02);
+    return false;
 }

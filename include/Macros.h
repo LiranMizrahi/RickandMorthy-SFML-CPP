@@ -18,7 +18,7 @@ const int BOARDWIDTH = 1600;
 const int BOARDHEIGHT = 899;
 const int WIDTHSIZECALI = 25;
 const int HEIGHTSIZECALI = 15;
-const  float HEROSPEED = 700.f ;
+const  float HEROSPEED = 500.f ;
 const  float ENEMYSPEED = 300.f;
 
 

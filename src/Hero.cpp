@@ -54,16 +54,18 @@ void Hero::setLastPosition(sf::Vector2f posion)
 //====================================================
 void Hero::UpdateLocation(float time)
 {
-//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-//	{
-//		this->move( 0,-HEROSPEED * time);
-//	}
-//	else
-//	    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-//	{
-//		this->move(0,HEROSPEED * time);
-//	}
-//	else
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+	    if(is_upok)
+		this->move( 0,-HEROSPEED * time);
+	}
+	else
+	    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+	        if (is_upok)
+		            this->move(0,HEROSPEED * time);
+	}
+	else
 	    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 
 	{
@@ -101,22 +103,14 @@ void Hero::handleColision(Rope& Obj)
 void Hero::handleColision(Floor& obj)
 {
  	        m_sprite.setPosition(m_LastPosition);
-
+    is_upok =false;
    // this->m_sprite.setRotation(0.f);
 }
 //====================================================
 
 void Hero::handleColision(Ladder& obj)
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        this->move( 0,-HEROSPEED*0.0002 );
-    }
-    else
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        this->move(0,HEROSPEED*0.0002 );
-    }
+    is_upok =true;
 
         this->m_sprite.setRotation(180.f);
 
@@ -125,6 +119,7 @@ void Hero::handleColision(Ladder& obj)
 
 void Hero::handleColision(Coin&obj)
 {
+    is_upok =false;
 	m_score++;
 }
 

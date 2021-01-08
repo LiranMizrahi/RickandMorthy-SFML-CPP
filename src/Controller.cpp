@@ -36,9 +36,14 @@ void Controller::run()
 				m_window.close();
 				break;
 			}
+        if(!m_board.isObjectIsfalling()) {
+            std::cout <<
+          m_board.isObjectIsfalling() << std::endl;
+            continue;
+        }
+            m_board.checkCollisions(deltaTime);
 
 			m_board.moveCharacters(deltaTime);
-            m_board.checkCollisions(deltaTime);
 
 
 		
