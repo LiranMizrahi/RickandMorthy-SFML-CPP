@@ -1,8 +1,11 @@
 #pragma once
-#include "picture.h"
+#include "SingletonPicture.h"
 #include <iostream>
 
-Picture::Picture()
+SingletonPicture SingletonPicture::m_instance = SingletonPicture();
+
+
+SingletonPicture::SingletonPicture()
 {
 	if (!m_heroRick.loadFromFile("rick_left.png"))
 	std::cout << "cant open picture";
@@ -43,63 +46,69 @@ Picture::Picture()
 
 }
 
-const sf::Texture* Picture::getHerojerryTexture()
+const sf::Texture* SingletonPicture::getHerojerryTexture()
 {
 	return &m_heroJerry;
 }
 
-const sf::Texture*  Picture::getHeroRickTexture()
+const sf::Texture*  SingletonPicture::getHeroRickTexture()
 {
 	return &m_heroRick;
 }
 
 
-const sf::Texture* Picture::getEnemyMeeseeksTexture()
+const sf::Texture* SingletonPicture::getEnemyMeeseeksTexture()
 {
 	return &  m_enemyMeeseeks;
 }
 
-const sf::Texture * Picture::getEnemyMonsterTexture()
+const sf::Texture * SingletonPicture::getEnemyMonsterTexture()
 {
 	return &m_enemyMonster;
 }
 
-const sf::Texture* Picture::getCoinTexture()
+const sf::Texture* SingletonPicture::getCoinTexture()
 {
 	return &m_coin;
 }
 
-const sf::Texture* Picture::getBoardTexture()
+const sf::Texture* SingletonPicture::getBoardTexture()
 {
 	return &m_board;
 }
 
-const sf::Texture* Picture::getFloorTexture()
+const sf::Texture* SingletonPicture::getFloorTexture()
 {
 	return &m_floor;
 }
 
-const sf::Texture* Picture::getLedderTexture()
+const sf::Texture* SingletonPicture::getLedderTexture()
 {
 	return &m_ledder;
 }
 
-const sf::Texture* Picture::getRopeTexture()
+const sf::Texture* SingletonPicture::getRopeTexture()
 {
 	return &m_rope;
 }
 
-const sf::Texture* Picture::getMenuTexture()
+const sf::Texture* SingletonPicture::getMenuTexture()
 {
 	return &m_menu;
 }
 
-const sf::Texture* Picture::getJerryTexture()
+const sf::Texture* SingletonPicture::getJerryTexture()
 {
 	return &m_heroMenu1;
 }
 
-const sf::Texture* Picture::getRickTexture()
+const sf::Texture* SingletonPicture::getRickTexture()
 {
 	return &m_heroMenu2;
 }
+
+SingletonPicture &SingletonPicture::instance() {
+    static SingletonPicture inst;
+    return inst;
+}
+

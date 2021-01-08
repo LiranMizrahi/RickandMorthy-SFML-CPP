@@ -1,5 +1,5 @@
 #pragma once
-#include "Picture.h"
+#include "SingletonPicture.h"
 #include <SFML/Graphics.hpp>
 #include "MovingObjects.h"
 #include"GameObj.h"
@@ -13,7 +13,7 @@ class Hero : public MovingObjects {
    public:
 	   Hero();
 	   ~Hero()override = default;
-	   Hero( Picture &, const sf::Vector2f&,  int );
+	   Hero(const sf::Vector2f&, int );
 	   int GetLife();
 	   int GetScore();
 	   void SetScore(int);

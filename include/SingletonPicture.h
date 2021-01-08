@@ -2,12 +2,15 @@
 
 
 #include <SFML/Graphics.hpp>
-class Picture
+class SingletonPicture
 {
 
 public:
 
-    Picture();
+    ~SingletonPicture() =default;
+    static SingletonPicture& instance();
+
+
     const sf::Texture* getHerojerryTexture();
     const sf::Texture* getHeroRickTexture();
     const sf::Texture* getEnemyMeeseeksTexture();
@@ -24,6 +27,10 @@ public:
 
   
    private:
+    SingletonPicture();
+    SingletonPicture(const SingletonPicture &) = default;
+    SingletonPicture&  operator=(const SingletonPicture&) = default;
+    static SingletonPicture m_instance;
     sf::Texture m_heroMenu1;
     sf::Texture m_heroMenu2;
     sf::Texture m_heroJerry;

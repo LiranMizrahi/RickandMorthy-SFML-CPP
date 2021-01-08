@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GameObj.h"
-#include "Picture.h"
+#include "SingletonPicture.h"
 
 
 class StaticObjects : public GameObj

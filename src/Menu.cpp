@@ -19,10 +19,10 @@ Menu::Menu()
 	
 }
 
-int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture,  Sound& sound)
+int Menu::StartGame(sf::RenderWindow& window ,  Sound& sound)
 {
 	int heroChoose = HeroJerry;
-	auto background = sf::Sprite(*m_Picture.getMenuTexture());
+	auto background = sf::Sprite(*SingletonPicture::instance().getMenuTexture());
     sf::Text start;
     sf::Text select;
     sf::RectangleShape rickpic,jerrypic;
@@ -31,7 +31,7 @@ int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture,  Sound& soun
     if (!font.loadFromFile("BAUHS93.ttf"))
         std::cout << "Cant open font";
 
-    initializeScreenPic(jerrypic, rickpic, background, m_Picture);
+    initializeScreenPic(jerrypic, rickpic, background);
     initializeScreenText(start, select, font);
 
 	while (window.isOpen())
@@ -84,23 +84,23 @@ int Menu::StartGame(sf::RenderWindow& window , Picture & m_Picture,  Sound& soun
 }
 //==================================================================
 void Menu::initializeScreenPic(sf::RectangleShape& jerry, sf::RectangleShape& rick,
-                               sf::Sprite& sprite, Picture & picture) {
+                               sf::Sprite& sprite) {
 
 
-    sprite = sf::Sprite(*picture.getMenuTexture());
+    sprite = sf::Sprite(*SingletonPicture::instance().getMenuTexture());
 
 
 
     jerry = sf::RectangleShape();
-    jerry.setTexture(picture.getJerryTexture());
+    jerry.setTexture(SingletonPicture::instance().getJerryTexture());
     jerry.setPosition(JERRYPOSITIONX, JERRYPOSITIONY);
-    jerry.setSize(sf::Vector2f(picture.getJerryTexture()->getSize()));
+    jerry.setSize(sf::Vector2f(SingletonPicture::instance().getJerryTexture()->getSize()));
     jerry.scale(SCALEFACTOR,SCALEFACTOR);
 
     rick = sf::RectangleShape();
-    rick.setTexture(picture.getRickTexture());
+    rick.setTexture(SingletonPicture::instance().getRickTexture());
     rick.setPosition(RICKPOSITIONX, RICKPOSITIONY);
-    rick.setSize(sf::Vector2f(picture.getRickTexture()->getSize()));
+    rick.setSize(sf::Vector2f(SingletonPicture::instance().getRickTexture()->getSize()));
     rick.scale(SCALEFACTOR,SCALEFACTOR);
 
 

@@ -1,12 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <Picture.h>
+#include <SingletonPicture.h>
 class Sound;
 class Menu
 {
 public:
 	Menu();
-	int StartGame(sf::RenderWindow &,Picture &, Sound& );
+	int StartGame(sf::RenderWindow &,  Sound& );
 
 
 
@@ -17,7 +17,7 @@ private:
 		HeroRick = 2
 	};
 
-    void initializeScreenPic(sf::RectangleShape& , sf::RectangleShape&,sf::Sprite& , Picture &);
+    void initializeScreenPic(sf::RectangleShape& , sf::RectangleShape&, sf::Sprite& );
     void initializeScreenText(sf::Text&, sf::Text&, const sf::Font &);
     void updateSelectPic(sf::RectangleShape &shape, sf::RectangleShape &shape1);
 };

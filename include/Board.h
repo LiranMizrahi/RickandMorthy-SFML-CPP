@@ -5,7 +5,7 @@
 #include "Hero.h"
 #include "Enemy.h"
 #include "StaticObjects.h"
-class Picture;
+class SingletonPicture;
 class Sound;
 
 
@@ -13,7 +13,7 @@ class Board {
 
 public:
 	Board();
-    Board(std::ifstream& ,  Picture& pic,  int);
+    Board(std::ifstream& , int);
 	void draw(sf::RenderWindow&)const;
 	void moveCharacters(float);
 	int checkCollisions(float);
@@ -26,7 +26,7 @@ private:
 	int m_width, m_height;
 
 	//private function
-	void createObject( Picture& pic,char,const sf::Vector2f &, int);
+	void createObject(char, const sf::Vector2f &, int);
 	
 
 

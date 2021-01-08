@@ -3,7 +3,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "GameObj.h"
-#include "Picture.h"
+#include "SingletonPicture.h"
 #include "Menu.h"
 #include "Board.h"
 #include "fstream"
@@ -23,7 +23,7 @@ private:
 
 	//private members
 	Board m_board;
-	Picture m_pictures;
+	//SingletonPicture m_pictures;
 	Menu m_menu;
 	Sound m_sound;
 	sf::RenderWindow m_window;

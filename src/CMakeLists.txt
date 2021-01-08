@@ -1,7 +1,7 @@
 ﻿target_sources (SFMLExamples PRIVATE "main.cpp"
                                      "Controller.cpp"
                                     "GameObj.cpp"
-                                    "Picture.cpp"
+                                    "SingletonPicture.cpp"
                                     "Menu.cpp"
                                     "Board.cpp"
                                     "MovingObjects.cpp"

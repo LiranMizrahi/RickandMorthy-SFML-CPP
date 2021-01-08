@@ -1,13 +1,13 @@
 #pragma once
 #include "StaticObjects.h"
-class Picture;
+class SingletonPicture;
 #include <SFML/Graphics.hpp>
 #include<Hero.h>
 class Floor : public StaticObjects {
 
 public:
 	Floor() ;
-	Floor(Picture&, const sf::Vector2f& loc, const sf::Vector2f&);
+	Floor(const sf::Vector2f& loc, const sf::Vector2f&);
     virtual ~Floor() {};
 
 	virtual void handleColision(Rope& )override  {};

@@ -1,12 +1,13 @@
 #include "Ladder.h"
-#include "Picture.h"
+#include "SingletonPicture.h"
 
 Ladder::Ladder()
 {
 }
 
-Ladder::Ladder(Picture& pic, const sf::Vector2f& loc , const sf::Vector2f& size):StaticObjects(*pic.getLedderTexture(), loc, size)
+Ladder::Ladder(const sf::Vector2f& loc , const sf::Vector2f& size): StaticObjects(*SingletonPicture::instance().getLedderTexture(), loc, size)
 {
+
 }
 
 void Ladder::handleColision(Hero& obj)

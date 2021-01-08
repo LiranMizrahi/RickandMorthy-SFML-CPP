@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObj.h"
-#include "Picture.h"
+#include "SingletonPicture.h"
 #include <SFML/Graphics.hpp>
 #include "MovingObjects.h"
 #include "Macros.h"
@@ -10,7 +10,7 @@ class Enemy : public MovingObjects {
 public:
 
 
-	  Enemy(Picture&, const sf::Vector2f&, int);
+	  Enemy(const sf::Vector2f&, int);
      ~Enemy() override = default;
 
 	virtual void UpdateLocation(float time);

@@ -1,12 +1,12 @@
 #include "Coin.h"
 #include "Coin.h"
-#include "Picture.h"
+#include "SingletonPicture.h"
 Coin::Coin()
 {
 }
 //=============================================================
- Coin::Coin(Picture& pic, const sf::Vector2f& loc, const sf::Vector2f& size) :
-	StaticObjects(*pic.getCoinTexture(), loc, size)
+ Coin::Coin(const sf::Vector2f& loc, const sf::Vector2f& size) :
+	StaticObjects(*SingletonPicture::instance().getCoinTexture(), loc, size)
 {
 
 }

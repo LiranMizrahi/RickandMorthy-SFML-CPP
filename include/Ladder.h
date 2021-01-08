@@ -1,13 +1,13 @@
 #pragma once
 #include"Hero.h"
 #include "StaticObjects.h"
-class Picture;
+class SingletonPicture;
 #include <SFML/Graphics.hpp>
 class Ladder : public StaticObjects {
 
 public:
 	Ladder();
-	Ladder(Picture&, const sf::Vector2f& loc, const sf::Vector2f&);
+	Ladder(const sf::Vector2f& loc, const sf::Vector2f&);
     ~Ladder() override= default;
 
     virtual void handleColision(Rope& )override {};

@@ -3,14 +3,14 @@
 #include "StaticObjects.h"
 #include <SFML/Graphics.hpp>
 #include "Hero.h"
-class Picture;
+class SingletonPicture;
 
 
 class Coin : public StaticObjects {
 
 public:
 	Coin();
-	Coin(Picture&, const sf::Vector2f& loc, const sf::Vector2f&);
+	Coin(const sf::Vector2f& loc, const sf::Vector2f&);
      ~Coin() override = default;
     virtual void handleColision(Rope&) override {};
 	virtual void handleColision(Hero&) override;

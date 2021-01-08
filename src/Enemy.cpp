@@ -1,18 +1,18 @@
 #include "Enemy.h"
 
-Enemy::Enemy(Picture& pic, const sf::Vector2f& loc, int EnemySelection)
+Enemy::Enemy( const sf::Vector2f& loc, int EnemySelection)
 {
 	if (EnemySelection == 1)
 	{
-		auto hero = *pic.getEnemyMeeseeksTexture();
-		m_sprite.setTexture(*pic.getEnemyMeeseeksTexture());
+		auto hero = *SingletonPicture::instance().getEnemyMeeseeksTexture();
+		m_sprite.setTexture(*SingletonPicture::instance().getEnemyMeeseeksTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 	}
 	else
 	{
-		auto hero = *pic.getEnemyMonsterTexture();
-		m_sprite.setTexture(*pic.getEnemyMonsterTexture());
+		auto hero = *SingletonPicture::instance().getEnemyMonsterTexture();
+		m_sprite.setTexture(*SingletonPicture::instance().getEnemyMonsterTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 

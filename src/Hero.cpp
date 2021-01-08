@@ -8,21 +8,21 @@ Hero::Hero() :m_life(0), m_score(0)
 }
 
 
-Hero::Hero(Picture& pic, const sf::Vector2f& loc, int HeroSelection) :m_life(3), m_score(0)
+Hero::Hero(const sf::Vector2f& loc, int HeroSelection) : m_life(3), m_score(0)
 {
 
 
 	if (HeroSelection == 1)
 	{
-		auto hero = *pic.getHerojerryTexture();
-		m_sprite.setTexture(*pic.getHerojerryTexture());
+		auto hero = *SingletonPicture::instance().getHerojerryTexture();
+		m_sprite.setTexture(*SingletonPicture::instance().getHerojerryTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 	}
 	else
 	{
-		auto hero = *pic.getHeroRickTexture();
-		m_sprite.setTexture(*pic.getHeroRickTexture());
+		auto hero = *SingletonPicture::instance().getHeroRickTexture();
+		m_sprite.setTexture(*SingletonPicture::instance().getHeroRickTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 		
@@ -100,9 +100,6 @@ void Hero::handleColision(Rope& Obj)
 
 void Hero::handleColision(Floor& obj)
 {
-   auto rec = sf::RectangleShape(sf::Vector2f (obj.getSprite().getGlobalBounds().height,1));
-    rec.setPosition(obj.getSprite().getPosition());
-    if(m_sprite.getPosition().y > obj.getSprite().getPosition().y)
  	        m_sprite.setPosition(m_LastPosition);
 
    // this->m_sprite.setRotation(0.f);

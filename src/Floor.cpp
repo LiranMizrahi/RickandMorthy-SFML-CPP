@@ -1,9 +1,9 @@
 #include "Floor.h"
-#include "Picture.h"
+#include "SingletonPicture.h"
 Floor::Floor()
 {
 }
-Floor::Floor( Picture& pic, const sf::Vector2f& loc, const sf::Vector2f& size):StaticObjects(*pic.getFloorTexture(), loc, size)
+Floor::Floor(const sf::Vector2f& loc, const sf::Vector2f& size): StaticObjects(*SingletonPicture::instance().getFloorTexture(), loc, size)
 {
 
 }

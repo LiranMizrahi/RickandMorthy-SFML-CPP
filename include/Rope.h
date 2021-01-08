@@ -1,14 +1,14 @@
 #pragma once
 
 #include "StaticObjects.h"
-class Picture;
+class SingletonPicture;
 #include <SFML/Graphics.hpp>
 #include<Hero.h>
 class Rope : public StaticObjects {
 
 public:
 	Rope();
-	Rope(Picture&, const sf::Vector2f& loc, const sf::Vector2f&);
+	Rope(const sf::Vector2f& loc, const sf::Vector2f&);
 	~Rope () override = default;
 
 	virtual void handleColision(Rope&) override {};

@@ -2,7 +2,7 @@
 #include "Board.h"
 #include "Macros.h"
 #include <SFML/Graphics.hpp>
-#include "Picture.h"
+#include "SingletonPicture.h"
 #include "Floor.h"
 #include "Ladder.h"
 #include "Rope.h"
@@ -16,7 +16,7 @@ Board::Board():m_height(0),m_width(0)
    
 }
 
-Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
+Board::Board(std::ifstream& file , int PlayerSelection)
 {
     sf::Vector2f location;
 
@@ -40,7 +40,7 @@ Board::Board(std::ifstream& file ,  Picture& pic , int PlayerSelection)
         for (int j = 0; j < m_width; ++j)
         {
                input = file.get();
-               createObject(pic,input,location , PlayerSelection);
+               createObject(input,location , PlayerSelection);
                location.x += (2 * tx);
         }
             file.get();
@@ -66,7 +66,7 @@ void Board::draw(sf::RenderWindow& window)const
 }
 
 //====================================================
-void Board::createObject( Picture & pic,char input, const sf::Vector2f & location, int PlayerSelection)
+void Board::createObject( char input, const sf::Vector2f & location, int PlayerSelection)
 {
     sf::Vector2f boardsize((float)m_height, (float)m_width);
     
@@ -74,32 +74,32 @@ void Board::createObject( Picture & pic,char input, const sf::Vector2f & locatio
     {
        
     case ENEMY:
-        m_enemys.push_back(std::move(std::make_unique<Enemy>(pic, location, PlayerSelection)));
+        m_enemys.push_back(std::move(std::make_unique<Enemy>(location, PlayerSelection)));
         break;
 
     case HERO:
-       m_hero = Hero(pic, location, PlayerSelection);
-
+       m_hero = Hero(location, PlayerSelection);
 
         break;
     case FLOOR:
        
-      m_staticObjects.push_back(std::move(std::make_unique<Floor>(pic, location, boardsize)));
+      m_staticObjects.push_back(std::move(std::make_unique<Floor>(location, boardsize)));
         
        break;
 
     case ROPE:
-        m_staticObjects.push_back(std::move(std::make_unique<Rope>(pic, location, boardsize)));
+        m_staticObjects.push_back(std::move(std::make_unique<Rope>(location, boardsize)));
         break;
 
     case COIN:
-        m_staticObjects.push_back(std::move(std::make_unique<Coin>(pic, location, boardsize)));
+        m_staticObjects.push_back(std::move(std::make_unique<Coin>(location, boardsize)));
 
         break;
 
     case LADDER:
-        m_staticObjects.push_back(std::move(std::make_unique<Ladder>(pic, location, boardsize)));
+        m_staticObjects.push_back(std::move(std::make_unique<Ladder>(location, boardsize)));
         break;
+
 
     }
 
@@ -121,7 +121,7 @@ void Board::moveCharacters(float deltaTime)
 int Board::checkCollisions(float deltaTime)
 {
 
-    bool ok =false;
+    bool ok =       false;
     for (auto& staticObjects : m_staticObjects)
     {
 
@@ -131,9 +131,6 @@ int Board::checkCollisions(float deltaTime)
             staticObjects->handleColision(m_hero);
         }
     }
-    if(!ok) {
-       m_hero.setLastPosition(m_hero.GetPosition());
-        m_hero.move(0, 400 * deltaTime);
-    }
+
     return true;
 }
