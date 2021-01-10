@@ -20,7 +20,7 @@ class Hero : public MovingObjects {
 	   void SetLife(int);
 	   void setLastPosition(sf::Vector2f);
 	   void UpdateLocation(float);
-    bool is_upok = false;
+
 
 	   virtual void handleColision(GameObj&)override;
 	   virtual void handleColision(Rope&)override;

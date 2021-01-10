@@ -12,7 +12,7 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 	m_boardfile = openlevelfile(m_level);
     m_board = Board(m_boardfile, m_menu.StartGame(m_window,m_sound));
 	m_sound.playStartGameSound();
-	
+	m_window.setFramerateLimit(60);
 }
 //=============================================================
 
@@ -36,14 +36,11 @@ void Controller::run()
 				m_window.close();
 				break;
 			}
-        if(!m_board.isObjectIsfalling()) {
-            std::cout <<
-          m_board.isObjectIsfalling() << std::endl;
-            continue;
-        }
-            m_board.checkCollisions(deltaTime);
+             m_board.isObjectIsfalling(deltaTime);
 
-			m_board.moveCharacters(deltaTime);
+			 m_board.checkCollisions(deltaTime);
+
+            m_board.moveCharacters(deltaTime);
 
 
 		

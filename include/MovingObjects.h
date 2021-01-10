@@ -15,9 +15,23 @@ public:
 	void DrawLeftside();
 	void DrawRightside();
 
+
+
 protected:
     sf::Vector2f m_LastPosition;
+    bool m_isfalling =false;
+    bool m_isUpAvail = false;
+    bool m_isDownAvail = false;
 
+
+
+public:
+    bool getIsfalling() const;
+
+    void setIsfalling(bool);
+
+public:
+    const sf::Vector2f &getLastPosition() const;
 
 
 };

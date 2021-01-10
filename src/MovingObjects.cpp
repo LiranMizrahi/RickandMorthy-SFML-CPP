@@ -57,4 +57,17 @@ void MovingObjects::DrawRightside()
 
 		m_sprite.scale(-1.f, 1.f);
 }
+
+const sf::Vector2f &MovingObjects::getLastPosition() const {
+    return m_LastPosition;
+}
+
+bool MovingObjects::getIsfalling() const {
+    return m_isfalling;
+}
+//=============================================================
+
+void MovingObjects::setIsfalling(bool isfalling) {
+    m_isfalling = isfalling;
+}
 //=============================================================

@@ -116,10 +116,10 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
 //============================================
 void Board::moveCharacters(float deltaTime)
 {       
-
-    m_hero.setLastPosition(m_hero.GetPosition());
-    m_hero.UpdateLocation(deltaTime);
-
+    if(!m_hero.getIsfalling()) {
+        m_hero.setLastPosition(m_hero.GetPosition());
+        m_hero.UpdateLocation(deltaTime);
+    }
     for (auto& e : m_enemys)
         e->UpdateLocation(deltaTime);
 
@@ -143,32 +143,44 @@ int Board::checkCollisions(float deltaTime)
     }
     if(!ok)
     {
-        m_hero.is_upok =false;
-      //  m_hero.move(0,100*deltaTime);
+    //   m_hero.m_isDownAvail = false;
+
+   //     m_isUpAvail =false;
+
 
     }
 
     return true;
 }
 
-bool Board::isObjectIsfalling() {
+bool Board::isObjectIsfalling(float deltaTime) {
 
-    float index =0;
+    float index =cellhight/2;
     int i;
-    for (i = 0; index < m_hero.getSprite().getPosition().y; ++i) {
+
+
+    for (i = 0; index < m_hero.getSprite().getPosition().y; ++i)
+    {
         index+=cellhight;
     }
-    auto rec = sf::RectangleShape(sf::Vector2f(m_hero.getSprite().getTexture()->getSize().x,100));
-    rec.setOrigin(m_hero.getSprite().getTexture()->getSize().x/2u,0.5);
-    rec.setPosition(m_hero.getSprite().getPosition().x,index);
-    //std::cout << i <<std::endl;
+    auto rec = sf::RectangleShape(sf::Vector2f(cellwidth,cellhight));
 
-    for( auto & e : m_staticObjects[i+1])
+    rec.setPosition(m_hero.getSprite().getPosition());
+    rec.move(0,300*deltaTime);
+    rec.setOrigin(cellwidth/2,cellhight/2);
 
-        if(e)
-        if (rec.getGlobalBounds().intersects(e->getSprite().getGlobalBounds()))
+    for( auto & e : m_staticObjects)
+    {
+        for(auto &d : e)
+        {
+            if(d)
+            if(rec.getGlobalBounds().intersects(d->getSprite().getGlobalBounds())) {
+                m_hero.setIsfalling(false);
+                return false;
+            }
+        }}
 
-              return true;
-        m_hero.move(0,0.02);
-    return false;
+    m_hero.move(0,300*deltaTime);
+    m_hero.setIsfalling(true);
+    return true;
 }

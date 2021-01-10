@@ -4,7 +4,7 @@ Rope::Rope()
 {
 }
 //=============================================================
-Rope::Rope(const sf::Vector2f& loc, const sf::Vector2f& size)//: StaticObjects(*SingletonPicture::instance().getRopeTexture(), loc, size)
+Rope::Rope(const sf::Vector2f& loc, const sf::Vector2f& size): StaticObjects(*SingletonPicture::instance().getRopeTexture(), loc, size)
 
 {
 }

@@ -17,7 +17,7 @@ public:
 	void draw(sf::RenderWindow&)const;
 	void moveCharacters(float);
 	int checkCollisions(float);
-    bool isObjectIsfalling();
+    bool isObjectIsfalling(float);
 
 
 private:
