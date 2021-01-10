@@ -21,22 +21,26 @@ Enemy::Enemy( const sf::Vector2f& loc, int EnemySelection)
 
 void Enemy::UpdateLocation(float time) {
 
-    int RandomMov = std::rand() % 10;
+	int RandomMov = std::rand() % 10;
 
-    switch (RandomMov)
-    {
+	switch (RandomMov)
+	{
 
-        case LEFT:
-            this->move(-ENEMYSPEED * time, 0);
-            break;
-        case RIGHT:
-            this->move(ENEMYSPEED * time, 0);
+	case LEFT:
+		this->move(-ENEMYSPEED * time, 0);
+		break;
+	case RIGHT:
+		this->move(ENEMYSPEED * time, 0);
 
-            break;
-        case UP:
-            break;
-        case DOWN:
-            break;
-    }
+		break;
+	case UP:
+		break;
+	case DOWN:
+		break;
+	}
 
 }
+
+
+
+

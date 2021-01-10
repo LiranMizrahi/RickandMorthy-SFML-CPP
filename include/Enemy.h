@@ -13,7 +13,7 @@ public:
 	  Enemy(const sf::Vector2f&, int);
      ~Enemy() override = default;
 
-	virtual void UpdateLocation(float time);
+	 virtual void UpdateLocation(float time) ;
 	virtual void handleColision(GameObj& obj) override {};
 	virtual void handleColision(Rope& Obj) override {};
 	virtual void handleColision(Hero& Obj) override {};
@@ -21,7 +21,6 @@ public:
 	virtual void handleColision(Ladder& obj) override {};
 	virtual void handleColision(Coin&) override {};
 
-
 private:
-
+	
 };

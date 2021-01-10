@@ -14,6 +14,8 @@
                                     "RandomEnemy.cpp"
                                     "Coin.cpp"
                                     "Sound.cpp"
-                                
+                                    "HorizontalEnemy.cpp"
+                                    "RandomEnemy.cpp"
+                                    "SmartEnemy.cpp"
 )
 
