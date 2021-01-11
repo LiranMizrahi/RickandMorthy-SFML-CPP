@@ -196,9 +196,8 @@ bool Board::isObjectIsfalling(float deltaTime) {
 
 void Board::printGameStatus(sf::RenderWindow & window, int levelnum) {
 
-   initGamestatusbar();
 
-
+    initGamestatusbar();
 
     std::string scorestr = std::to_string(m_hero.getScore());
     std::string scorestring = "Score:";
@@ -241,7 +240,7 @@ void Board::fallingGift(float)
             if (NULL == d)
             {
                 std::cout << m_staticObjects[1][1];
-              //  d = 
+
             }
         }
     }

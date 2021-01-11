@@ -19,6 +19,7 @@ public:
 	int checkCollisions(float);
     bool isObjectIsfalling(float);
 	void fallingGift(float);
+    void printGameStatus(sf::RenderWindow &, int level);
 
 private:
 	//private members
@@ -34,7 +35,7 @@ private:
 
 	//private function
     void createObject(char, const sf::Vector2f &, int, int );
-    void printGameStatus(sf::RenderWindow &, int level);
+
     void initGamestatusbar();
 
     float cellhight,cellwidth;
