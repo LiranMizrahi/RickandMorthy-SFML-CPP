@@ -10,6 +10,8 @@
 #include "Sound.h"
 #include <string>
 #include "RandomEnemy.h"
+#include "SmartEnemy.h"
+#include "HorizontalEnemy.h"
 //===============constructor ==============
 
 Board::Board(std::ifstream& file , int PlayerSelection)
@@ -86,7 +88,8 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
     {
        
     case ENEMY:
-        m_enemys.push_back(std::move(std::make_unique<Enemy>(location, PlayerSelection)));
+        createEnemysVector(location, PlayerSelection);
+        //m_enemys.push_back(std::move(std::make_unique<Enemy>(location, PlayerSelection)));
         break;
 
     case HERO:
@@ -116,6 +119,28 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
     }
 
 }
+void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection)
+{
+
+    srand((unsigned int)time(NULL));
+    int ChoosEnemy = std::rand() % 2;
+    
+
+    switch (ChoosEnemy)
+    {
+    case LEFT:
+        m_enemys.push_back(std::move(std::make_unique<RandomEnemy>(location, PlayerSelection)));
+        break;
+    case RIGHT:
+        m_enemys.push_back(std::move(std::make_unique<HorizontalEnemy>(location, PlayerSelection)));
+        break;
+    case UP:
+        m_enemys.push_back(std::move(std::make_unique<SmartEnemy>(location, PlayerSelection)));
+        break;
+    }
+
+
+}
 //============================================
 void Board::moveCharacters(float deltaTime)
 {       
@@ -124,7 +149,13 @@ void Board::moveCharacters(float deltaTime)
         m_hero.UpdateLocation(deltaTime);
     }
     for (auto& e : m_enemys)
-        e->UpdateLocation(deltaTime);
+    {
+        if (!e->getIsfalling()) {
+            e->setLastPosition(e->GetPosition());
+            e->UpdateLocation(deltaTime);
+        } 
+    }
+        
 
 }
 
@@ -151,6 +182,30 @@ int Board::checkCollisions(float deltaTime)
 
     }
 
+
+
+    
+    for (auto& enemyobj : m_enemys)
+    {
+        bool okenemy = false;
+        for (auto& staticObjects : m_staticObjects)
+            for (auto& staticObjectsi : staticObjects)
+            {
+                if (staticObjectsi)
+                    if (staticObjectsi->collisonWith(*enemyobj))
+                    {
+                        ok = true;
+                        staticObjectsi->handleColision(*enemyobj);
+                    }
+            }
+
+        if (!okenemy)
+        {
+            enemyobj->setIsDownAvail(true);
+            enemyobj->setIsUpAvail(false);
+
+        }
+    }
     return true;
 }
 //==================================================
@@ -188,6 +243,44 @@ bool Board::isObjectIsfalling(float deltaTime) {
     m_hero.move(0,300*deltaTime);
     m_hero.setIsfalling(true);
     return true;
+
+
+    for (auto& enemyobj : m_enemys)
+    {
+        index = cellhight / 2;
+        
+        for (i = 0; index < enemyobj->getSprite().getPosition().y; ++i)
+        {
+            index += cellhight;
+        }
+
+        sf::Sprite checkdown = enemyobj->getSprite();
+        checkdown.move(0, 300 * deltaTime);
+
+        for (int j = i; j < m_staticObjects.size(); ++j) {
+            for (auto& d : m_staticObjects[j])
+            {
+                if (d)
+                {
+                    if (Coin* coinptr = dynamic_cast<Coin*>(d.get()))
+                        continue;
+
+                    if (!d->getIsOff())
+                        if (checkdown.getGlobalBounds().intersects(d->getSprite().getGlobalBounds()))
+                        {
+                            enemyobj->setIsfalling(false);
+                            return false;
+                        }
+                }
+            }
+        }
+
+        enemyobj->move(0, 300 * deltaTime);
+        enemyobj->setIsfalling(true);
+       // return true;
+
+    }
+
 }
 //==================================================
 void Board::printGameStatus(sf::RenderWindow & window, int levelnum) {

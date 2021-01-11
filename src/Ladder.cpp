@@ -14,3 +14,9 @@ void Ladder::handleColision(Hero& obj)
 {
 	obj.handleColision(*this);
 }
+
+void Ladder::handleColision(Enemy& obj)
+{
+	obj.handleColision(*this);
+
+}

@@ -35,7 +35,7 @@ private:
 
 	//private function
     void createObject(char, const sf::Vector2f &, int, int );
-
+	void createEnemysVector(const sf::Vector2f&, int);
     void initGamestatusbar();
 
     float cellhight,cellwidth;

@@ -18,6 +18,8 @@ public:
 	virtual void handleColision(Ladder&) override {};
 	virtual void handleColision(GameObj&) override{};
 	virtual void handleColision(Coin&) override {};
+	virtual void handleColision(Enemy&) override {};
+
 
 private:
 	

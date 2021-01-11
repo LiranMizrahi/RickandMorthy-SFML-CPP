@@ -16,7 +16,6 @@ class Hero : public MovingObjects {
 	   int getScore();
 	   void SetScore(int);
 	   void SetLife(int);
-	   void setLastPosition(sf::Vector2f);
 	   void UpdateLocation(float);
 
 	   virtual void handleColision(GameObj&)override;
@@ -25,6 +24,7 @@ class Hero : public MovingObjects {
 	   virtual void handleColision(Floor&)override;
 	   virtual void handleColision(Ladder&)override;
 	   virtual void handleColision(Coin&) override;
+	   virtual void handleColision(Enemy&) override;
 
 
 private:

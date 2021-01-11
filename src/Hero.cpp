@@ -2,6 +2,7 @@
 #include "Macros.h"
 #include "Floor.h"
 #include "Controller.h"
+#include "Enemy.h"
 
 Hero::Hero(const sf::Vector2f& loc, int HeroSelection) : m_life(3), m_score(123)
 {
@@ -44,12 +45,12 @@ void Hero::SetLife(int life)
 	m_life = life;
 }
 //====================================================
-
+/*
 void Hero::setLastPosition(sf::Vector2f posion)
 {
 	m_LastPosition = posion;
 }
-
+*/
 //====================================================
 void Hero::UpdateLocation(float time)
 {
@@ -115,6 +116,11 @@ void Hero::handleColision(Coin&obj)
     m_isUpAvail =false;
 
 	m_score+=50*Controller::getLevel();
+}
+
+void Hero::handleColision(Enemy& obj )
+{
+	m_life--;
 }
 
 //====================================================

@@ -58,6 +58,12 @@ void MovingObjects::DrawRightside()
 		m_sprite.scale(-1.f, 1.f);
 }
 
+void MovingObjects::setLastPosition(sf::Vector2f posion)
+{
+    m_LastPosition = posion;
+
+}
+
 const sf::Vector2f &MovingObjects::getLastPosition() const {
     return m_LastPosition;
 }

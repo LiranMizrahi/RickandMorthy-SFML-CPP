@@ -14,3 +14,11 @@ void Rope::handleColision(Hero& obj)
 {
 	obj.handleColision(*this);
 }
+
+void Rope::handleColision(Enemy& obj)
+{
+	obj.handleColision(*this);
+
+}
+
+

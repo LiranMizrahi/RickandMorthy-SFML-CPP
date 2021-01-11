@@ -14,6 +14,8 @@ public:
 	void SetPosition(const sf::Vector2f&);
 	void DrawLeftside();
 	void DrawRightside();
+    void setLastPosition(sf::Vector2f);
+
 
 
 

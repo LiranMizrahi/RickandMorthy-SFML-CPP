@@ -12,3 +12,9 @@ void Floor::handleColision(Hero&obj)
 {
 	obj.handleColision(*this);
 }
+
+void Floor::handleColision(Enemy& obj)
+{
+	obj.handleColision(*this);
+
+}

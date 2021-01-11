@@ -1,5 +1,6 @@
 #pragma once
 #include"Hero.h"
+#include"Enemy.h"
 #include "StaticObjects.h"
 class SingletonPicture;
 #include <SFML/Graphics.hpp>
@@ -16,6 +17,7 @@ public:
 	virtual void handleColision(Ladder&) override {};
 	virtual void handleColision(GameObj&)override {};
 	virtual void handleColision(Coin&) override {};
+	virtual void handleColision(Enemy&) override;
 
 
 };

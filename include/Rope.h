@@ -3,6 +3,7 @@
 #include "StaticObjects.h"
 #include <SFML/Graphics.hpp>
 #include<Hero.h>
+#include<Enemy.h>
 
 class SingletonPicture;
 
@@ -19,5 +20,6 @@ public:
 	virtual void handleColision(Ladder&) override {};
 	virtual void handleColision(GameObj&) override {};
 	virtual void handleColision(Coin&) override {};
+	virtual void handleColision(Enemy& )override;
 
 };

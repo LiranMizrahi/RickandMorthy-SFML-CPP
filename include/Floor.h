@@ -3,6 +3,7 @@
 class SingletonPicture;
 #include <SFML/Graphics.hpp>
 #include<Hero.h>
+#include<Enemy.h>
 class Floor : public StaticObjects {
 
 public:
@@ -16,6 +17,8 @@ public:
 	virtual void handleColision(Ladder& ) override {};
 	virtual void handleColision(GameObj& ) override {};
 	virtual void handleColision(Coin&) override {};
+	virtual void handleColision(Enemy&) override;
+
 
 
 
