@@ -20,7 +20,8 @@ Board::Board(std::ifstream& file , int PlayerSelection)
     sf::Vector2f location;
     char input;
     m_staticObjects.clear();
-    m_enemys.clear();
+    //m_enemys.clear();
+    m_movingObjects.clear();
 	file >> m_width >> m_height; // take size map
 	file.get();
 
@@ -75,10 +76,16 @@ void Board::draw(sf::RenderWindow& window)const
             if(d)
             d->draw(window, size);
         }
-    for (auto& e : m_enemys)
+    /*for (auto& e : m_enemys)
         e->draw(window, size);
 
-    m_hero.draw(window, size);
+    m_hero.draw(window, size);*/
+
+    for (auto& movObj : m_movingObjects)
+    {
+        movObj->draw(window,size);
+    }
+
 }
 
 //====================================================
@@ -95,7 +102,8 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
         break;
 
     case HERO:
-       m_hero = Hero(location, PlayerSelection);
+        m_movingObjects.push_back(std::move(std::make_unique<Hero>(location, PlayerSelection)));
+      // m_hero = Hero(location, PlayerSelection);
 
         break;
     case FLOOR:
@@ -124,20 +132,23 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
 void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection)
 {
 
-    srand((unsigned int)time(NULL));
+    
     int ChoosEnemy = std::rand() % 2;
     
 
     switch (ChoosEnemy)
     {
-    case LEFT:
-        m_enemys.push_back(std::move(std::make_unique<RandomEnemy>(location, PlayerSelection)));
+    case 0:
+        m_movingObjects.push_back(std::move(std::make_unique<RandomEnemy>(location, PlayerSelection)));
+       // m_enemys.push_back(std::move(std::make_unique<RandomEnemy>(location, PlayerSelection)));
         break;
-    case RIGHT:
-        m_enemys.push_back(std::move(std::make_unique<HorizontalEnemy>(location, PlayerSelection)));
+    case 1:
+        m_movingObjects.push_back(std::move(std::make_unique<HorizontalEnemy>(location, PlayerSelection)));
+       // m_enemys.push_back(std::move(std::make_unique<HorizontalEnemy>(location, PlayerSelection)));
         break;
     case UP:
-        m_enemys.push_back(std::move(std::make_unique<SmartEnemy>(location, PlayerSelection)));
+        m_movingObjects.push_back(std::move(std::make_unique<SmartEnemy>(location, PlayerSelection)));
+      //  m_enemys.push_back(std::move(std::make_unique<SmartEnemy>(location, PlayerSelection)));
         break;
     }
 
@@ -146,7 +157,7 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
 //============================================
 void Board::moveCharacters(float deltaTime)
 {       
-    if(!m_hero.getIsfalling()) {
+   /* if(!m_hero.getIsfalling()) {
         m_hero.setLastPosition(m_hero.GetPosition());
         m_hero.UpdateLocation(deltaTime);
     }
@@ -156,7 +167,18 @@ void Board::moveCharacters(float deltaTime)
             e->setLastPosition(e->GetPosition());
             e->UpdateLocation(deltaTime);
         } 
+    }*/
+
+    for (auto &movObj : m_movingObjects)
+    {
+        if (!movObj->getIsfalling())
+        {
+            movObj->setLastPosition(movObj->GetPosition());
+            movObj->UpdateLocation(deltaTime);
+        }
     }
+
+    
         
 
 }
@@ -166,7 +188,7 @@ void Board::moveCharacters(float deltaTime)
 int Board::checkCollisions(float deltaTime)
 {
 
-    bool ok =false;
+   /* bool ok =false;
     for (auto& staticObjects : m_staticObjects)
         for (auto& staticObjectsi : staticObjects)
     {
@@ -182,12 +204,19 @@ int Board::checkCollisions(float deltaTime)
     m_hero.setIsDownAvail(true);
     m_hero.setIsUpAvail(false);
 
-    }
+    }*/
+
+    /*for (auto& enemyobj : m_enemys)
+    {
+        enemyobj->collisonWith(m_hero);
+    }*/
+
+
 
 
 
     
-    for (auto& enemyobj : m_enemys)
+   /* for (auto& enemyobj : m_enemys)
     {
         bool okenemy = false;
         for (auto& staticObjects : m_staticObjects)
@@ -208,13 +237,41 @@ int Board::checkCollisions(float deltaTime)
 
         }
     }
+    return true;*/
+
+
+
+
+    for (auto& movObj : m_movingObjects)
+    {
+        bool ok = false;
+        for (auto& staticObjects : m_staticObjects)
+            for (auto& staticObjectsi : staticObjects)
+            {
+                if (staticObjectsi)
+                    if (staticObjectsi->collisonWith(*movObj))
+                    {
+                        ok = true;
+                        staticObjectsi->handleColision(*movObj);
+                    }
+            }
+        if (!ok)
+        {
+            movObj->setIsDownAvail(true);
+            movObj->setIsUpAvail(false);
+
+        }
+    }
+
+
     return true;
+
 }
 //==================================================
 
 bool Board::isObjectIsfalling(float deltaTime) {
 
-        float index =cellhight/2;
+        /*float index =cellhight/2;
         int i;
         for (i = 0; index < m_hero.getSprite().getPosition().y; ++i)
         {
@@ -244,19 +301,56 @@ bool Board::isObjectIsfalling(float deltaTime) {
 
     m_hero.move(0,300*deltaTime);
     m_hero.setIsfalling(true);
-    return true;
+    return true;*/
 
 
-    for (auto& enemyobj : m_enemys)
+    //for (auto& enemyobj : m_enemys)
+    //{
+    //    index = cellhight / 2;
+    //    
+    //    for (i = 0; index < enemyobj->getSprite().getPosition().y; ++i)
+    //    {
+    //        index += cellhight;
+    //    }
+
+    //    sf::Sprite checkdown = enemyobj->getSprite();
+    //    checkdown.move(0, 300 * deltaTime);
+
+    //    for (int j = i; j < m_staticObjects.size(); ++j) {
+    //        for (auto& d : m_staticObjects[j])
+    //        {
+    //            if (d)
+    //            {
+    //                if (Coin* coinptr = dynamic_cast<Coin*>(d.get()))
+    //                    continue;
+
+    //                if (!d->getIsOff())
+    //                    if (checkdown.getGlobalBounds().intersects(d->getSprite().getGlobalBounds()))
+    //                    {
+    //                        enemyobj->setIsfalling(false);
+    //                        return false;
+    //                    }
+    //            }
+    //        }
+    //    }
+
+    //    enemyobj->move(0, 300 * deltaTime);
+    //    enemyobj->setIsfalling(true);
+    //   // return true;
+
+    //}
+
+
+    for (auto& movObj : m_movingObjects)
     {
-        index = cellhight / 2;
-        
-        for (i = 0; index < enemyobj->getSprite().getPosition().y; ++i)
+        float index = cellhight / 2;
+        int i;
+        for (i = 0; index < movObj->getSprite().getPosition().y; ++i)
         {
             index += cellhight;
         }
 
-        sf::Sprite checkdown = enemyobj->getSprite();
+        sf::Sprite checkdown = movObj->getSprite();
         checkdown.move(0, 300 * deltaTime);
 
         for (int j = i; j < m_staticObjects.size(); ++j) {
@@ -270,44 +364,42 @@ bool Board::isObjectIsfalling(float deltaTime) {
                     if (!d->getIsOff())
                         if (checkdown.getGlobalBounds().intersects(d->getSprite().getGlobalBounds()))
                         {
-                            enemyobj->setIsfalling(false);
+                            movObj->setIsfalling(false);
                             return false;
                         }
                 }
             }
         }
 
-        enemyobj->move(0, 300 * deltaTime);
-        enemyobj->setIsfalling(true);
-       // return true;
-
+        movObj->move(0, 300 * deltaTime);
+        movObj->setIsfalling(true);
     }
-
+    return true;
 }
 //==================================================
 void Board::printGameStatus(sf::RenderWindow & window, int levelnum) {
 
 
-    initGamestatusbar();
+    //initGamestatusbar();
 
 
-    std::string scorestr = "000000";
-    if(m_hero.getScore()>=1000000)
-        scorestr+="0";
-    scorestr.replace(scorestr.size()-std::to_string(m_hero.getScore()).size(),
-                     std::to_string(m_hero.getScore()).size(),std::to_string(m_hero.getScore()));
-    m_scoreText.setString("Score:"+scorestr);
-    m_levelText.setString("Level:000" + std::to_string(levelnum));
-    m_lifeText.setString("Life:000"+std::to_string(m_hero.getLife()));
+    //std::string scorestr = "000000";
+    //if(m_hero.getScore()>=1000000)
+    //    scorestr+="0";
+    //scorestr.replace(scorestr.size()-std::to_string(m_hero.getScore()).size(),
+    //                 std::to_string(m_hero.getScore()).size(),std::to_string(m_hero.getScore()));
+    //m_scoreText.setString("Score:"+scorestr);
+    //m_levelText.setString("Level:000" + std::to_string(levelnum));
+    //m_lifeText.setString("Life:000"+std::to_string(m_hero.getLife()));
 
-    m_scoreText.setPosition(50,BOARDHEIGHT);
-    m_levelText.setPosition(m_scoreText.getPosition().x+m_scoreText.getGlobalBounds().width +50,BOARDHEIGHT);
-    m_lifeText.setPosition(m_levelText.getPosition().x+m_levelText.getGlobalBounds().width+50,BOARDHEIGHT);
+    //m_scoreText.setPosition(50,BOARDHEIGHT);
+    //m_levelText.setPosition(m_scoreText.getPosition().x+m_scoreText.getGlobalBounds().width +50,BOARDHEIGHT);
+    //m_lifeText.setPosition(m_levelText.getPosition().x+m_levelText.getGlobalBounds().width+50,BOARDHEIGHT);
 
 
-    window.draw(m_lifeText);
-      window.draw(m_scoreText);
-    window.draw(m_levelText);
+    //window.draw(m_lifeText);
+    //  window.draw(m_scoreText);
+    //window.draw(m_levelText);
 
 
 

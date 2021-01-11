@@ -5,7 +5,7 @@ class HorizontalEnemy: public Enemy
 {
 public:
 	HorizontalEnemy(const sf::Vector2f& loc, int EnemySelection);
-	virtual void UpdateLocation(float);
+	virtual void UpdateLocation(float)override;
 	~HorizontalEnemy() override = default;
 
 	/*virtual void handleColision(GameObj& obj) override {};

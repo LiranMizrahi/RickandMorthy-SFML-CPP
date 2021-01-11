@@ -15,7 +15,7 @@ public:
 	void DrawLeftside();
 	void DrawRightside();
     void setLastPosition(sf::Vector2f);
-
+    virtual void UpdateLocation(float) = 0;
 
 
 

@@ -22,7 +22,7 @@ public:
 	virtual void handleColision(Ladder& obj) override ;
 	virtual void handleColision(Coin&) override {};
 	virtual void handleColision(Enemy& Obj) override {};
-
+	
 
 private:
 	

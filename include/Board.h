@@ -5,6 +5,8 @@
 #include "Hero.h"
 #include "Enemy.h"
 #include "StaticObjects.h"
+#include "MovingObjects.h"
+
 class SingletonPicture;
 class Sound;
 
@@ -23,9 +25,10 @@ public:
 
 private:
 	//private members
-	Hero m_hero;
+	//Hero m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
-	std::vector <std::unique_ptr <Enemy>>m_enemys;
+	//std::vector <std::unique_ptr <Enemy>>m_enemys;
+	std::vector <std::unique_ptr <MovingObjects>>m_movingObjects;
 
 	int m_width, m_height;
     sf::Font m_boardFont;

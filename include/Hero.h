@@ -17,7 +17,7 @@ class Hero : public MovingObjects {
 	   int getScore();
 	   void SetScore(int);
 	   void SetLife(int);
-	   void UpdateLocation(float);
+	   virtual void UpdateLocation(float)override;
 
 	   virtual void handleColision(GameObj&)override;
 	   virtual void handleColision(Rope&)override;
