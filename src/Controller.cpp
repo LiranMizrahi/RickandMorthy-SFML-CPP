@@ -7,12 +7,13 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 {
 
 	int m_level = 1;
+    m_window.setFramerateLimit(60);
 	board.setTexture(*SingletonPicture::instance().getBoardTexture());
 	board.setPosition(0,0);
 	m_boardfile = openlevelfile(m_level);
     m_board = Board(m_boardfile, m_menu.StartGame(m_window,m_sound));
 	m_sound.playStartGameSound();
-	m_window.setFramerateLimit(60);
+
 }
 //=============================================================
 
@@ -25,7 +26,8 @@ void Controller::run()
 		m_window.clear();
 		m_window.draw(board);
 		m_board.draw(m_window);
-		m_window.display();
+        m_board.printGameStatus(m_window,m_level);
+        m_window.display();
 		
 
 		
@@ -41,6 +43,7 @@ void Controller::run()
 			 m_board.checkCollisions(deltaTime);
 
             m_board.moveCharacters(deltaTime);
+
 
 
 		

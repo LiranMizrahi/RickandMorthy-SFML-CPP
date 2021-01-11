@@ -14,8 +14,8 @@ class Hero : public MovingObjects {
 	   Hero();
 	   ~Hero()override = default;
 	   Hero(const sf::Vector2f&, int );
-	   int GetLife();
-	   int GetScore();
+	   int getLife();
+	   int getScore();
 	   void SetScore(int);
 	   void SetLife(int);
 	   void setLastPosition(sf::Vector2f);

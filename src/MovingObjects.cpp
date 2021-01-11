@@ -70,4 +70,20 @@ bool MovingObjects::getIsfalling() const {
 void MovingObjects::setIsfalling(bool isfalling) {
     m_isfalling = isfalling;
 }
+
+bool MovingObjects::isIsUpAvail() const {
+    return m_isUpAvail;
+}
+
+void MovingObjects::setIsUpAvail(bool mIsUpAvail) {
+    m_isUpAvail = mIsUpAvail;
+}
+
+bool MovingObjects::isIsDownAvail() const {
+    return m_isDownAvail;
+}
+
+void MovingObjects::setIsDownAvail(bool mIsDownAvail) {
+    m_isDownAvail = mIsDownAvail;
+}
 //=============================================================

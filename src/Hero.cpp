@@ -30,12 +30,12 @@ Hero::Hero(const sf::Vector2f& loc, int HeroSelection) : m_life(3), m_score(0)
 	m_LastPosition = loc;
 }
 
-int Hero::GetLife()
+int Hero::getLife()
 {
 	return m_life;
 }
 
-int Hero::GetScore()
+int Hero::getScore()
 {
 	return m_score;
 }
@@ -102,7 +102,7 @@ void Hero::handleColision(Rope& Obj)
 void Hero::handleColision(Floor& obj)
 {
  	        m_sprite.setPosition(m_LastPosition);
-    m_isDownAvail = false;
+    //m_isDownAvail = false;
     m_isUpAvail =false;
    // this->m_sprite.setRotation(0.f);
 }
@@ -111,7 +111,7 @@ void Hero::handleColision(Floor& obj)
 void Hero::handleColision(Ladder& obj)
 {
 
-    m_isDownAvail = true;
+   // m_isDownAvail = true;
     m_isUpAvail =true;
 
    //     this->m_sprite.setRotation(180.f);
@@ -121,9 +121,9 @@ void Hero::handleColision(Ladder& obj)
 
 void Hero::handleColision(Coin&obj)
 {
-    m_isDownAvail = false;
+    //m_isDownAvail = false;
     m_isUpAvail =false;
-	m_score++;
+	m_score+=50;
 }
 
 //====================================================

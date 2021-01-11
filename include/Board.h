@@ -12,7 +12,7 @@ class Sound;
 class Board {
 
 public:
-	Board();
+	Board() = default;
     Board(std::ifstream& , int);
 	void draw(sf::RenderWindow&)const;
 	void moveCharacters(float);
@@ -27,9 +27,15 @@ private:
 	std::vector <std::unique_ptr <Enemy>>m_enemys;
 	int m_width, m_height;
 
+    sf::Font m_boardFont;
+    sf::Text m_scoreText;
+    sf::Text m_levelText;
+    sf::Text m_lifeText;
+
 	//private function
     void createObject(char, const sf::Vector2f &, int, int );
-
+    void printGameStatus(sf::RenderWindow &, int level);
+    void initGamestatusbar();
 
     float cellhight,cellwidth;
 

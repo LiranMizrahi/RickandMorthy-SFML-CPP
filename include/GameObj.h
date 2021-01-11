@@ -26,6 +26,7 @@ public:
 	virtual void handleColision(Hero& Obj) = 0;
 	virtual void handleColision(Coin& Obj) = 0;
 
+	bool getIsOff();
 
 
 protected:

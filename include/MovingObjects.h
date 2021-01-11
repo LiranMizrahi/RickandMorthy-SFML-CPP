@@ -22,7 +22,14 @@ protected:
     bool m_isfalling =false;
     bool m_isUpAvail = false;
     bool m_isDownAvail = false;
+public:
+    bool isIsUpAvail() const;
 
+    void setIsUpAvail(bool mIsUpAvail);
+
+    bool isIsDownAvail() const;
+
+    void setIsDownAvail(bool mIsDownAvail);
 
 
 public:
