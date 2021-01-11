@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
- int Controller::m_level = 2;
+ int Controller::m_level = 1;
 
 Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 {
@@ -11,15 +11,17 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 	board.setTexture(*SingletonPicture::instance().getBoardTexture());
 	board.setPosition(0,0);
 	m_boardfile = openlevelfile(m_level);
-    m_board = Board(m_boardfile, m_menu.StartGame(m_window,m_sound));
-	m_sound.playStartGameSound();
+    m_board = Board(m_boardfile, m_menu.StartGame(m_window));
+	m_gameOverSound.setBuffer(Sound::instance().getMGameOver());
+	m_levelUpSoundl.setBuffer(Sound::instance().getMLevelUp());
+	m_startGameSound.setBuffer(Sound::instance().getMStartGame());
 
 }
 //=============================================================
 
 void Controller::run()
 {
-
+    m_startGameSound.play();
 	while (m_window.isOpen())
 	{
         float deltaTime = clock.restart().asSeconds();

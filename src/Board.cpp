@@ -19,6 +19,8 @@ Board::Board(std::ifstream& file , int PlayerSelection)
 
     sf::Vector2f location;
     char input;
+    m_staticObjects.clear();
+    m_enemys.clear();
 	file >> m_width >> m_height; // take size map
 	file.get();
 
@@ -289,9 +291,14 @@ void Board::printGameStatus(sf::RenderWindow & window, int levelnum) {
     initGamestatusbar();
 
 
-    m_scoreText.setString("Score:"+std::to_string(m_hero.getScore()));
-    m_levelText.setString("Level:00" + std::to_string(levelnum));
-    m_lifeText.setString("Life:00"+std::to_string(m_hero.getLife()));
+    std::string scorestr = "000000";
+    if(m_hero.getScore()>=1000000)
+        scorestr+="0";
+    scorestr.replace(scorestr.size()-std::to_string(m_hero.getScore()).size(),
+                     std::to_string(m_hero.getScore()).size(),std::to_string(m_hero.getScore()));
+    m_scoreText.setString("Score:"+scorestr);
+    m_levelText.setString("Level:000" + std::to_string(levelnum));
+    m_lifeText.setString("Life:000"+std::to_string(m_hero.getLife()));
 
     m_scoreText.setPosition(50,BOARDHEIGHT);
     m_levelText.setPosition(m_scoreText.getPosition().x+m_scoreText.getGlobalBounds().width +50,BOARDHEIGHT);

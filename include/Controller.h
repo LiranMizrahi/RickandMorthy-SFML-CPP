@@ -26,12 +26,13 @@ private:
 	//private members
 	Board m_board;
 	Menu m_menu;
-	Sound m_sound;
 	sf::RenderWindow m_window;
 	sf::Sprite board;	
 	sf::Clock clock;
 	std::ifstream m_boardfile;
-
+	sf::Sound m_startGameSound;
+	sf::Sound m_gameOverSound;
+    sf::Sound m_levelUpSoundl;
 
 
 	static  int m_level;

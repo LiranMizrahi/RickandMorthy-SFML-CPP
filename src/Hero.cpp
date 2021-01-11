@@ -24,7 +24,11 @@ Hero::Hero(const sf::Vector2f& loc, int HeroSelection) : m_life(3), m_score(123)
 		
 	}
 
-	m_LastPosition = loc;
+	m_collectCoinSound.setBuffer(Sound::instance().getMCollectCoin());
+    m_collectGiftSound.setBuffer(Sound::instance().getMCollectGift());
+    m_collectDeadSound.setBuffer(Sound::instance().getMDead());
+
+    m_LastPosition = loc;
 }
 //====================================================
 
@@ -83,20 +87,17 @@ void Hero::UpdateLocation(float time)
 
 }
 //====================================================
-
 void Hero::handleColision(GameObj& obj)
 {
 	obj.handleColision(*this);
 }
 //====================================================
-
 void Hero::handleColision(Rope& Obj) 
 {
     m_isUpAvail =false;
 
 }
 //====================================================
-
 void Hero::handleColision(Floor& obj)
 {
  	        m_sprite.setPosition(m_LastPosition);
@@ -104,18 +105,17 @@ void Hero::handleColision(Floor& obj)
    // this->m_sprite.setRotation(0.f);
 }
 //====================================================
-
 void Hero::handleColision(Ladder& obj)
 {
     m_isUpAvail =true;
 }
 //====================================================
-
 void Hero::handleColision(Coin&obj)
 {
     m_isUpAvail =false;
 
 	m_score+=50*Controller::getLevel();
+	playCollectGiftSound();
 }
 
 void Hero::handleColision(Enemy& obj )
@@ -127,5 +127,23 @@ void Hero::handleColision(Enemy& obj )
 void Hero::SetScore(int score)
 {
 	m_score = score;
+}
+//====================================================
+void Hero::playCollectGiftSound() {
+    m_collectGiftSound.play();
+
+}
+//====================================================
+void Hero::playCollectCoinSound() {
+
+    m_collectCoinSound.play();
+
+}
+//====================================================
+
+void Hero::playCollectDeadSound() {
+
+    m_collectDeadSound.play();
+
 }
 //====================================================

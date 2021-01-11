@@ -6,7 +6,7 @@ class Menu
 {
 public:
 	Menu();
-	int StartGame(sf::RenderWindow &,  Sound& );
+	int StartGame(sf::RenderWindow & );
 
 
 

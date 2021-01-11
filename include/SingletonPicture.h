@@ -10,7 +10,6 @@ public:
     ~SingletonPicture() =default;
     static SingletonPicture& instance();
 
-
     const sf::Texture* getHerojerryTexture();
     const sf::Texture* getHeroRickTexture();
     const sf::Texture* getEnemyMeeseeksTexture();

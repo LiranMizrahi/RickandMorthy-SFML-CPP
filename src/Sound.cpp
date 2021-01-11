@@ -31,56 +31,46 @@ Sound::Sound()
 		std::cerr << "Can't open sound file mf";
 
 
-	m_jerrySound.setBuffer(m_jerry);
-	m_rickSound.setBuffer(m_rick);
-	m_startGameSound.setBuffer(m_startGame);
-	m_gameOverSound.setBuffer(m_gameOver);
-	m_deadSound.setBuffer(m_dead);
-	m_levelUpSound.setBuffer(m_levelUp);
-	m_collectCoinSound.setBuffer(m_collectCoin);
-	m_collectGiftSound.setBuffer(m_collectGift);
-
-
-
 }
 
-void Sound::playJerrySound()
-{
-	m_jerrySound.play();
+
+Sound &Sound::instance() {
+
+    static  Sound inst;
+    return inst;
 }
 
-void Sound::playRickSound()
-{
-	m_rickSound.play();
+const sf::SoundBuffer &Sound::getMJerry() const {
+    return m_jerry;
 }
 
-void Sound::playStartGameSound()
-{	
-	m_startGameSound.play();
+const sf::SoundBuffer &Sound::getMRick() const {
+    return m_rick;
 }
 
-void Sound::playGameOverSound()
-{
-	m_gameOverSound.play();
+const sf::SoundBuffer &Sound::getMStartGame() const {
+    return m_startGame;
 }
 
-void Sound::playDeadSozund()
-{
-	m_deadSound.play();
+const sf::SoundBuffer &Sound::getMGameOver() const {
+    return m_gameOver;
 }
 
-void Sound::playLevelUpSound()
-{
-	m_levelUpSound.play();
+const sf::SoundBuffer &Sound::getMDead() const {
+    return m_dead;
 }
 
-void Sound::playCollectCoinSound()
-{
-	m_collectCoinSound.play();
+const sf::SoundBuffer &Sound::getMLevelUp() const {
+    return m_levelUp;
 }
 
-void Sound::playCollectGiftSound()
-{
-	m_collectGiftSound.play();
+const sf::SoundBuffer &Sound::getMCollectGift()  {
+    return m_collectGift;
 }
+
+const sf::SoundBuffer &Sound::getMCollectCoin() const {
+    return m_collectCoin;
+}
+
+
 

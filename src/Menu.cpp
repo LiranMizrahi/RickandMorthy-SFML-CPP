@@ -19,7 +19,7 @@ Menu::Menu()
 	
 }
 
-int Menu::StartGame(sf::RenderWindow& window ,  Sound& sound)
+int Menu::StartGame(sf::RenderWindow& window)
 {
 	int heroChoose = HeroJerry;
 	auto background = sf::Sprite(*SingletonPicture::instance().getMenuTexture());
@@ -27,6 +27,11 @@ int Menu::StartGame(sf::RenderWindow& window ,  Sound& sound)
     sf::Text select;
     sf::RectangleShape rickpic,jerrypic;
     sf::Font font;
+    sf::Sound ricksound;
+    sf::Sound jerrysound;
+
+    ricksound.setBuffer(Sound::instance().getMRick());
+    jerrysound.setBuffer(Sound::instance().getMJerry());
 
     if (!font.loadFromFile("BAUHS93.ttf"))
         std::cout << "Cant open font";
@@ -62,7 +67,7 @@ int Menu::StartGame(sf::RenderWindow& window ,  Sound& sound)
 				    updateSelectPic(rickpic,jerrypic);
 					heroChoose = HeroRick;
 					rickpic.setOutlineColor(sf::Color::Blue);
-					sound.playRickSound();
+				ricksound.play();
 
 				}
 				else if(jerrypic.getGlobalBounds().contains(location))
@@ -70,7 +75,7 @@ int Menu::StartGame(sf::RenderWindow& window ,  Sound& sound)
 					heroChoose = HeroJerry;
                     updateSelectPic(jerrypic,rickpic);
 					jerrypic.setOutlineColor(sf::Color::Green);
-					sound.playJerrySound();
+				        jerrysound.play();
 				}
 				else if(start.getGlobalBounds().contains(location))
 				{

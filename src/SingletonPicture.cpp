@@ -7,10 +7,6 @@
 
 SingletonPicture::SingletonPicture()
 {
-	int x = 5;
-
-
-
 	if (!m_heroRick.loadFromFile("rick_left.png"))
 	std::cout << "cant open picture";
 
@@ -111,8 +107,8 @@ const sf::Texture* SingletonPicture::getRickTexture()
 	return &m_heroMenu2;
 }
 
-SingletonPicture &SingletonPicture::instance() {
-    static SingletonPicture inst;
-    return inst;
-}
+    SingletonPicture &SingletonPicture::instance() {
+        static SingletonPicture inst;
+        return inst;
+    }
 
