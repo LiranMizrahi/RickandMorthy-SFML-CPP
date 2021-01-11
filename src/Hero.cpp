@@ -1,14 +1,9 @@
 #include "Hero.h"
 #include "Macros.h"
 #include "Floor.h"
-Hero::Hero() :m_life(0), m_score(0)
-{
-    m_LastPosition.x =0;
-    m_LastPosition.y=0;
-}
+#include "Controller.h"
 
-
-Hero::Hero(const sf::Vector2f& loc, int HeroSelection) : m_life(3), m_score(0)
+Hero::Hero(const sf::Vector2f& loc, int HeroSelection) : m_life(3), m_score(123)
 {
 
 
@@ -27,18 +22,22 @@ Hero::Hero(const sf::Vector2f& loc, int HeroSelection) : m_life(3), m_score(0)
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 		
 	}
+
 	m_LastPosition = loc;
 }
+//====================================================
 
 int Hero::getLife()
 {
 	return m_life;
 }
+//====================================================
 
 int Hero::getScore()
 {
 	return m_score;
 }
+//====================================================
 
 void Hero::SetLife(int life)
 {
@@ -92,17 +91,14 @@ void Hero::handleColision(GameObj& obj)
 
 void Hero::handleColision(Rope& Obj) 
 {
-    m_isDownAvail = true;
     m_isUpAvail =false;
 
-	//this->m_sprite.setRotation(90.f);
 }
 //====================================================
 
 void Hero::handleColision(Floor& obj)
 {
  	        m_sprite.setPosition(m_LastPosition);
-    //m_isDownAvail = false;
     m_isUpAvail =false;
    // this->m_sprite.setRotation(0.f);
 }
@@ -110,24 +106,18 @@ void Hero::handleColision(Floor& obj)
 
 void Hero::handleColision(Ladder& obj)
 {
-
-   // m_isDownAvail = true;
     m_isUpAvail =true;
-
-   //     this->m_sprite.setRotation(180.f);
-
 }
 //====================================================
 
 void Hero::handleColision(Coin&obj)
 {
-    //m_isDownAvail = false;
     m_isUpAvail =false;
-	m_score+=50;
+
+	m_score+=50*Controller::getLevel();
 }
 
 //====================================================
-
 void Hero::SetScore(int score)
 {
 	m_score = score;

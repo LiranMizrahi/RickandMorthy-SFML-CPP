@@ -10,11 +10,7 @@
 #include "Sound.h"
 #include <string>
 #include "RandomEnemy.h"
-//===============constructors ==============
-//Board::Board():m_height(0),m_width(0)
-//{
-//
-//}
+//===============constructor ==============
 
 Board::Board(std::ifstream& file , int PlayerSelection)
 {
@@ -132,7 +128,7 @@ void Board::moveCharacters(float deltaTime)
 
 }
 
-//========================================
+//==========================================
 
 int Board::checkCollisions(float deltaTime)
 {
@@ -153,39 +149,39 @@ int Board::checkCollisions(float deltaTime)
     m_hero.setIsDownAvail(true);
     m_hero.setIsUpAvail(false);
 
-
     }
 
     return true;
 }
+//==================================================
 
 bool Board::isObjectIsfalling(float deltaTime) {
 
         float index =cellhight/2;
         int i;
-
-
         for (i = 0; index < m_hero.getSprite().getPosition().y; ++i)
         {
             index+=cellhight;
         }
-        auto rec = sf::RectangleShape(sf::Vector2f(cellwidth,cellhight));
 
-        rec.setPosition(m_hero.getSprite().getPosition());
-        rec.move(0,300*deltaTime);
-        rec.setOrigin(cellwidth/2,cellhight/2);
+        sf::Sprite checkdown = m_hero.getSprite();
+        checkdown.move(0,300*deltaTime);
 
-    for( auto & e : m_staticObjects)
-    {
-        for(auto &d : e)
+        for (int j = i; j < m_staticObjects.size(); ++j) {
+            for(auto &d : m_staticObjects[j])
         {
             if(d)
+            {
+                if(Coin* coinptr = dynamic_cast<Coin*>(d.get()))
+                    continue;
+
                 if(!d->getIsOff())
-            if(rec.getGlobalBounds().intersects(d->getSprite().getGlobalBounds()))
+                if(checkdown.getGlobalBounds().intersects(d->getSprite().getGlobalBounds()))
             {
                 m_hero.setIsfalling(false);
                 return false;
             }
+        }
         }
     }
 
@@ -193,23 +189,16 @@ bool Board::isObjectIsfalling(float deltaTime) {
     m_hero.setIsfalling(true);
     return true;
 }
-
+//==================================================
 void Board::printGameStatus(sf::RenderWindow & window, int levelnum) {
 
 
     initGamestatusbar();
 
-    std::string scorestr = std::to_string(m_hero.getScore());
-    std::string scorestring = "Score:";
-    scorestring+=std::string(5 - scorestr.length(), '0') + scorestr;;
 
-    std::string hello = "Score:00000";
-    hello.replace(hello.size()- scorestring.size(),scorestring.size(),scorestring);
-    int lev =3;
-
-    m_scoreText.setString(scorestring);
-    m_levelText.setString("Level:0000" + std::to_string(lev));
-    m_lifeText.setString("Life:0000"+std::to_string(m_hero.getLife()));
+    m_scoreText.setString("Score:"+std::to_string(m_hero.getScore()));
+    m_levelText.setString("Level:00" + std::to_string(levelnum));
+    m_lifeText.setString("Life:00"+std::to_string(m_hero.getLife()));
 
     m_scoreText.setPosition(50,BOARDHEIGHT);
     m_levelText.setPosition(m_scoreText.getPosition().x+m_scoreText.getGlobalBounds().width +50,BOARDHEIGHT);
@@ -220,15 +209,24 @@ void Board::printGameStatus(sf::RenderWindow & window, int levelnum) {
       window.draw(m_scoreText);
     window.draw(m_levelText);
 
-}
 
-void Board::initGamestatusbar() {
+
+}
+//==================================================
+
+void Board::initGamestatusbar()
+{
 
     m_scoreText.setFont(m_boardFont);
     m_levelText.setFont(m_boardFont);
     m_lifeText.setFont(m_boardFont);
 
+    m_lifeText.setCharacterSize(60);
+    m_scoreText.setCharacterSize(60);
+    m_levelText.setCharacterSize(60);
+
 }
+//==================================================
 
 void Board::fallingGift(float)
 {
@@ -245,3 +243,4 @@ void Board::fallingGift(float)
         }
     }
 }
+//==================================================

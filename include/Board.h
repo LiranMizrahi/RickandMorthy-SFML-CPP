@@ -26,8 +26,8 @@ private:
 	Hero m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
 	std::vector <std::unique_ptr <Enemy>>m_enemys;
-	int m_width, m_height;
 
+	int m_width, m_height;
     sf::Font m_boardFont;
     sf::Text m_scoreText;
     sf::Text m_levelText;

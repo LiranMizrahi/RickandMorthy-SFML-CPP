@@ -14,16 +14,17 @@ class Controller {
 					
 				
 					
-public:			
+public:
+
 	Controller();
 	void run();
+	static unsigned int getLevel();
 
-				
-private:	
+
+private:
 
 	//private members
 	Board m_board;
-	//SingletonPicture m_pictures;
 	Menu m_menu;
 	Sound m_sound;
 	sf::RenderWindow m_window;
@@ -31,8 +32,10 @@ private:
 	sf::Clock clock;
 	std::ifstream m_boardfile;
 
-	int m_level;
+
+
+	static  int m_level;
 
 	//private function
-	std::ifstream openlevelfile(int);		
+	std::ifstream openlevelfile(int);
 };				

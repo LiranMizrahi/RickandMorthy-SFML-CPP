@@ -2,11 +2,11 @@
 #include <string>
 #include <iostream>
 
+ int Controller::m_level = 2;
 
 Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 {
 
-	int m_level = 1;
     m_window.setFramerateLimit(60);
 	board.setTexture(*SingletonPicture::instance().getBoardTexture());
 	board.setPosition(0,0);
@@ -28,9 +28,7 @@ void Controller::run()
 		m_board.draw(m_window);
         m_board.printGameStatus(m_window,m_level);
         m_window.display();
-		
 
-		
 		sf::Event event;
 		while(m_window.pollEvent(event))
 			if (sf::Keyboard::isKeyPressed(sf:: Keyboard::Escape)|| event.type == sf::Event::Closed)
@@ -38,15 +36,12 @@ void Controller::run()
 				m_window.close();
 				break;
 			}
-             m_board.isObjectIsfalling(deltaTime);
 
-			 m_board.checkCollisions(deltaTime);
-
-            m_board.moveCharacters(deltaTime);
-
+        m_board.isObjectIsfalling(deltaTime);
+        m_board.checkCollisions(deltaTime);
+        m_board.moveCharacters(deltaTime);
 
 
-		
 	}
 }
 
@@ -60,7 +55,14 @@ std::ifstream Controller::openlevelfile(int level)
 		std::ifstream file;
 		file.open(filename);
 		if(!file.is_open())
+
 			std::cout << "Error while open level file";
 		return file;
 }
+
+unsigned int Controller::getLevel() {
+    return m_level;
+}
+
+
 //=============================================================

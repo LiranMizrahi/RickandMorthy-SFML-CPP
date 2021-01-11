@@ -13,8 +13,9 @@ Coin::Coin()
 
 void Coin::handleColision(Hero&obj)
 {
-    m_isOff =true;
+
 
     if(!m_isOff)
 	obj.handleColision(*this);
+    m_isOff =true;
 }

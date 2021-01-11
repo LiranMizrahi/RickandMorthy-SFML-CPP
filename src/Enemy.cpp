@@ -29,10 +29,10 @@ void Enemy::UpdateLocation(float time1) {
 	{
 
 	case LEFT:
-		this->move(-ENEMYSPEED * time1, 0);
+	//	this->move(-ENEMYSPEED * time1, 0);
 		break;
 	case RIGHT:
-		this->move(ENEMYSPEED * time1, 0);
+	//	this->move(ENEMYSPEED * time1, 0);
 
 		break;
 	case UP:
