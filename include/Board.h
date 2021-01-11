@@ -18,7 +18,7 @@ public:
 	void moveCharacters(float);
 	int checkCollisions(float);
     bool isObjectIsfalling(float);
-
+	void fallingGift(float);
 
 private:
 	//private members

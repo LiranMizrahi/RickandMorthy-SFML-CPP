@@ -17,5 +17,6 @@
                                     "HorizontalEnemy.cpp"
                                     "RandomEnemy.cpp"
                                     "SmartEnemy.cpp"
+                                    "Present.cpp"
 )
 

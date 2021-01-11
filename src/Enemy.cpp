@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include <time.h>
 
 Enemy::Enemy( const sf::Vector2f& loc, int EnemySelection)
 {
@@ -19,18 +20,19 @@ Enemy::Enemy( const sf::Vector2f& loc, int EnemySelection)
 	}
 }
 
-void Enemy::UpdateLocation(float time) {
+void Enemy::UpdateLocation(float time1) {
+	srand((unsigned int)time(NULL));
+	int RandomMov = std::rand() % 3;
 
-	int RandomMov = std::rand() % 10;
 
 	switch (RandomMov)
 	{
 
 	case LEFT:
-		this->move(-ENEMYSPEED * time, 0);
+		this->move(-ENEMYSPEED * time1, 0);
 		break;
 	case RIGHT:
-		this->move(ENEMYSPEED * time, 0);
+		this->move(ENEMYSPEED * time1, 0);
 
 		break;
 	case UP:

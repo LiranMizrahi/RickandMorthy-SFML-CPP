@@ -1,5 +1,4 @@
 #include "Coin.h"
-#include "Coin.h"
 #include "SingletonPicture.h"
 Coin::Coin()
 {

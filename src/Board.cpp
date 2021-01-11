@@ -184,3 +184,19 @@ bool Board::isObjectIsfalling(float deltaTime) {
     m_hero.setIsfalling(true);
     return true;
 }
+
+void Board::fallingGift(float)
+{
+    //m_staticObjects
+    for (auto& e : m_staticObjects)
+    {
+        for (auto& d : e)
+        {
+            if (NULL == d)
+            {
+                std::cout << m_staticObjects[1][1];
+              //  d = 
+            }
+        }
+    }
+}
