@@ -40,7 +40,7 @@ void Controller::run()
 				break;
 			}
 
-      //  m_board.checkIfObjectFalling(deltaTime);
+        m_board.checkIfObjectFalling(deltaTime);
         m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime);
 

@@ -319,7 +319,9 @@ bool Board::handleCollisions(GameObj &obj)
 
 
         }
-    return false;
 
-}}
+
+}
+    return false;
+}
 //==================================================
