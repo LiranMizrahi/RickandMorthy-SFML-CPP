@@ -8,7 +8,7 @@
 #include "Board.h"
 #include "fstream"
 #include "Menu.h"
-#include "Sound.h"
+#include "SingletonSound.h"
 #include"Coin.h"
 										
 class Controller {
@@ -42,5 +42,7 @@ private:
 	
 	//private function
 	std::ifstream openlevelfile(int);
-	void levelUp();
+    bool checkIfLevelDone();
+	void upgradeLevel();
+
 };				

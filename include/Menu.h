@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SingletonPicture.h>
-class Sound;
+class SingletonSound;
 class Menu
 {
 public:

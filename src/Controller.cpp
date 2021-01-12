@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 
+#include "Coin.h"
+
  int Controller::m_level = 1;
 
 Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
@@ -11,12 +13,13 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 	board.setTexture(*SingletonPicture::instance().getBoardTexture());
 	board.setPosition(0,0);
 	m_boardfile = openlevelfile(m_level);
+
 	m_choes = m_menu.StartGame(m_window);
     m_board = Board(m_boardfile, m_choes);
-	m_gameOverSound.setBuffer(Sound::instance().getMGameOver());
-	m_levelUpSoundl.setBuffer(Sound::instance().getMLevelUp());
-	m_startGameSound.setBuffer(Sound::instance().getMStartGame());
-
+	m_gameOverSound.setBuffer(SingletonSound::instance().getMGameOver());
+	m_levelUpSoundl.setBuffer(SingletonSound::instance().getMLevelUp());
+	m_startGameSound.setBuffer(SingletonSound::instance().getMStartGame());
+    m_boardfile.close();
 }
 //=============================================================
 
@@ -43,6 +46,12 @@ void Controller::run()
         m_board.checkIfObjectFalling(deltaTime);
         m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime);
+        //check if there is no move available coins to get
+        if(checkIfLevelDone())
+            //if there is no more coins move to the next level
+            upgradeLevel();
+
+
 
 
 	}
@@ -62,9 +71,28 @@ std::ifstream Controller::openlevelfile(int level)
 			std::cout << "Error while open level file";
 		return file;
 }
+//=============================================================
 
 unsigned int Controller::getLevel() {
     return m_level;
+}
+//=============================================================
+
+bool Controller::checkIfLevelDone() {
+    return (Coin::getNowCoins() == 0);
+}
+//=============================================================
+
+void Controller::upgradeLevel() {
+
+    {
+     m_level++;
+     m_boardfile = openlevelfile(m_level);
+     m_levelUpSoundl.play();
+     m_board = Board(m_boardfile,0);
+
+    }
+
 }
 
 

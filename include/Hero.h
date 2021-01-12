@@ -29,7 +29,7 @@ class Hero : public MovingObjects {
 
 
 private:
-		int m_life, m_score;
+		static int m_life, m_score;
 		sf::Sound m_collectGiftSound;
         sf::Sound m_collectCoinSound;
         sf::Sound m_collectDeadSound;

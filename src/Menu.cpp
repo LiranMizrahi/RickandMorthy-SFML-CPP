@@ -1,7 +1,7 @@
 #include "Menu.h"
 #include <iostream>
 #include <SFML/Audio.hpp>
-#include "Sound.h"
+#include "SingletonSound.h"
 const int JERRYPOSITIONX = 800 ;
 const int JERRYPOSITIONY = 500;
 const int RICKPOSITIONX =550;
@@ -30,8 +30,10 @@ int Menu::StartGame(sf::RenderWindow& window)
     sf::Sound ricksound;
     sf::Sound jerrysound;
 
-    ricksound.setBuffer(Sound::instance().getMRick());
-    jerrysound.setBuffer(Sound::instance().getMJerry());
+
+
+    ricksound.setBuffer(SingletonSound::instance().getMRick());
+    jerrysound.setBuffer(SingletonSound::instance().getMJerry());
 
     if (!font.loadFromFile("BAUHS93.ttf"))
         std::cout << "Cant open font";

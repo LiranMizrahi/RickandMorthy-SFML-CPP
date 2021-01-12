@@ -1,12 +1,12 @@
 #include <SFML/Audio.hpp>
 
-class Sound 
+class SingletonSound
 {
 
 public:
 
-    ~Sound() =default;
-    static Sound& instance();
+    ~SingletonSound() =default;
+    static SingletonSound& instance();
 
     const sf::SoundBuffer &getMJerry() const;
     const sf::SoundBuffer &getMRick() const;
@@ -21,7 +21,7 @@ public:
 
 
 private:
-    Sound();
+    SingletonSound();
 	sf::SoundBuffer m_jerry;
 	sf::SoundBuffer m_rick;
 	sf::SoundBuffer m_startGame;

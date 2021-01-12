@@ -1,5 +1,13 @@
 #include "Coin.h"
 #include "SingletonPicture.h"
+//=============================================================
+
+size_t Coin:: m_allCoins = 0;
+size_t Coin:: m_currentCoins = 0;
+
+//=============================================================
+
+
 Coin::Coin()
 {
 }
@@ -20,15 +28,19 @@ Coin::Coin()
 void Coin::handleColision(Hero&obj)
 {
 
-    if(!m_isOff)
-	obj.handleColision(*this);
+    if(!m_isOff) {
+        obj.handleColision(*this);
+        m_currentCoins--;
+    }
     m_isOff =true;
 }
+//=============================================================
 
 void Coin::handleColision(GameObj &obj) {
    // if(&obj == this)return;
     obj.handleColision(*this);
 }
+//=============================================================
 
 size_t Coin::getNowCoins() 
 {
@@ -38,11 +50,11 @@ size_t Coin::getNowCoins()
 	}
 	return m_currentCoins;
 }
+//=============================================================
 
 void Coin::incCoins()
 {
 	m_currentCoins--;
 }
+//=============================================================
 
-size_t Coin:: m_allCoins = 0;
-size_t Coin:: m_currentCoins = 0;

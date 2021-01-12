@@ -8,7 +8,7 @@
 #include "MovingObjects.h"
 
 class SingletonPicture;
-class Sound;
+class SingletonSound;
 
 
 class Board {

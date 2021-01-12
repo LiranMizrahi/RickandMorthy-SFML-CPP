@@ -3,8 +3,9 @@
 #include "Floor.h"
 #include "Controller.h"
 #include "Enemy.h"
-
-Hero::Hero(const sf::Vector2f& loc, int HeroSelection) : m_life(3), m_score(123)
+int Hero::m_life = 3;
+int Hero::m_score = 0;
+Hero::Hero(const sf::Vector2f& loc, int HeroSelection) //: m_life(3), m_score(123)
 {
 
 
@@ -24,9 +25,9 @@ Hero::Hero(const sf::Vector2f& loc, int HeroSelection) : m_life(3), m_score(123)
 		
 	}
 
-	m_collectCoinSound.setBuffer(Sound::instance().getMCollectCoin());
-    m_collectGiftSound.setBuffer(Sound::instance().getMCollectGift());
-    m_collectDeadSound.setBuffer(Sound::instance().getMDead());
+	m_collectCoinSound.setBuffer(SingletonSound::instance().getMCollectCoin());
+    m_collectGiftSound.setBuffer(SingletonSound::instance().getMCollectGift());
+    m_collectDeadSound.setBuffer(SingletonSound::instance().getMDead());
 
     m_LastPosition = loc;
 }

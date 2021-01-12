@@ -1,8 +1,8 @@
-#include "Sound.h"
+#include "SingletonSound.h"
 #include <iostream>
 
 
-Sound::Sound()
+SingletonSound::SingletonSound()
 {
 	if (!m_jerry.loadFromFile("jerrysound.wav"))
 		std::cerr << "Can't open sound file mf";
@@ -34,41 +34,41 @@ Sound::Sound()
 }
 
 
-Sound &Sound::instance() {
+SingletonSound &SingletonSound::instance() {
 
-    static  Sound inst;
+    static  SingletonSound inst;
     return inst;
 }
 
-const sf::SoundBuffer &Sound::getMJerry() const {
+const sf::SoundBuffer &SingletonSound::getMJerry() const {
     return m_jerry;
 }
 
-const sf::SoundBuffer &Sound::getMRick() const {
+const sf::SoundBuffer &SingletonSound::getMRick() const {
     return m_rick;
 }
 
-const sf::SoundBuffer &Sound::getMStartGame() const {
+const sf::SoundBuffer &SingletonSound::getMStartGame() const {
     return m_startGame;
 }
 
-const sf::SoundBuffer &Sound::getMGameOver() const {
+const sf::SoundBuffer &SingletonSound::getMGameOver() const {
     return m_gameOver;
 }
 
-const sf::SoundBuffer &Sound::getMDead() const {
+const sf::SoundBuffer &SingletonSound::getMDead() const {
     return m_dead;
 }
 
-const sf::SoundBuffer &Sound::getMLevelUp() const {
+const sf::SoundBuffer &SingletonSound::getMLevelUp() const {
     return m_levelUp;
 }
 
-const sf::SoundBuffer &Sound::getMCollectGift()  {
+const sf::SoundBuffer &SingletonSound::getMCollectGift()  {
     return m_collectGift;
 }
 
-const sf::SoundBuffer &Sound::getMCollectCoin() const {
+const sf::SoundBuffer &SingletonSound::getMCollectCoin() const {
     return m_collectCoin;
 }
 

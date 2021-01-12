@@ -7,7 +7,7 @@
 #include "Rope.h"
 #include <iostream>
 #include "Coin.h"
-#include "Sound.h"
+#include "SingletonSound.h"
 #include <string>
 #include "RandomEnemy.h"
 #include "SmartEnemy.h"

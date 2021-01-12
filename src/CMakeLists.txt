@@ -13,7 +13,7 @@
                                     "Ladder.cpp"
                                     "RandomEnemy.cpp"
                                     "Coin.cpp"
-                                    "Sound.cpp"
+                                    "SingletonSound.cpp"
                                     "HorizontalEnemy.cpp"
                                     "RandomEnemy.cpp"
                                     "SmartEnemy.cpp"
