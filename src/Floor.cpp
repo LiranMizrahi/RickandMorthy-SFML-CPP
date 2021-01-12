@@ -18,3 +18,8 @@ void Floor::handleColision(Enemy& obj)
 	obj.handleColision(*this);
 
 }
+
+void Floor::handleColision(GameObj &obj) {
+    obj.handleColision(*this);
+
+}

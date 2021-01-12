@@ -17,15 +17,15 @@ class Hero : public MovingObjects {
 	   int getScore();
 	   void SetScore(int);
 	   void SetLife(int);
-	   virtual void UpdateLocation(float)override;
+	    void UpdateLocation(float)override;
 
-	   virtual void handleColision(GameObj&)override;
-	   virtual void handleColision(Rope&)override;
-	   virtual void handleColision(Hero&)override {};
-	   virtual void handleColision(Floor&)override;
-	   virtual void handleColision(Ladder&)override;
-	   virtual void handleColision(Coin&) override;
-	   virtual void handleColision(Enemy&) override;
+	    void handleColision(GameObj&)override;
+	    void handleColision(Rope&)override;
+	    void handleColision(Hero&)override;
+	    void handleColision(Floor&)override;
+	    void handleColision(Ladder&)override;
+	    void handleColision(Coin&) override;
+	    void handleColision(Enemy&) override;
 
 
 private:

@@ -25,7 +25,7 @@ public:
 
 private:
 	//private members
-	//Hero m_hero;
+    Hero* m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
 	//std::vector <std::unique_ptr <Enemy>>m_enemys;
 	std::vector <std::unique_ptr <MovingObjects>>m_movingObjects;
@@ -39,6 +39,9 @@ private:
 	//private function
     void createObject(char, const sf::Vector2f &, int, int );
 	void createEnemysVector(const sf::Vector2f&, int);
+	bool handleCollisions(GameObj &obj);
+
+
     void initGamestatusbar();
 
     float cellhight,cellwidth;

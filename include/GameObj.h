@@ -17,7 +17,7 @@ public:
 	virtual ~GameObj() = default;;
 
 	bool collisonWith(const GameObj&)const;
-	sf::Sprite getSprite();
+	sf::Sprite getSprite()const;
 
     void draw(sf::RenderWindow&, const sf::Vector2f&)const;
     virtual void handleColision(GameObj& obj) = 0;
@@ -29,7 +29,7 @@ public:
 	virtual void handleColision(Enemy& Obj) = 0;
 
 
-	bool getIsOff();
+	bool getIsOff()const;
 
 
 protected:

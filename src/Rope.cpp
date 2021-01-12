@@ -21,4 +21,8 @@ void Rope::handleColision(Enemy& obj)
 
 }
 
+void Rope::handleColision(GameObj &obj) {
+    obj.handleColision(*this);
+}
+
 

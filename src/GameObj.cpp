@@ -36,10 +36,10 @@ void GameObj::draw(sf::RenderWindow& window, const sf::Vector2f& size)const
 	window.draw(this->m_sprite);
 }
 
-sf::Sprite GameObj::getSprite() {
+sf::Sprite GameObj::getSprite() const{
     return m_sprite;
 }
 
-bool GameObj::getIsOff() {
+bool GameObj::getIsOff()const {
     return m_isOff;
 }

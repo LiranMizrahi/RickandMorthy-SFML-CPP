@@ -14,8 +14,12 @@ Coin::Coin()
 void Coin::handleColision(Hero&obj)
 {
 
-
     if(!m_isOff)
 	obj.handleColision(*this);
     m_isOff =true;
+}
+
+void Coin::handleColision(GameObj &obj) {
+   // if(&obj == this)return;
+   // obj.handleColision(*this);
 }

@@ -48,13 +48,7 @@ void Hero::SetLife(int life)
 {
 	m_life = life;
 }
-//====================================================
-/*
-void Hero::setLastPosition(sf::Vector2f posion)
-{
-	m_LastPosition = posion;
-}
-*/
+
 //====================================================
 void Hero::UpdateLocation(float time)
 {
@@ -66,7 +60,7 @@ void Hero::UpdateLocation(float time)
 	else
 	    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-	        if (m_isDownAvail)
+	    //    if (m_isDownAvail)
 		            this->move(0,HEROSPEED * time);
 	}
 	else
@@ -100,7 +94,7 @@ void Hero::handleColision(Rope& Obj)
 //====================================================
 void Hero::handleColision(Floor& obj)
 {
- 	        m_sprite.setPosition(m_LastPosition);
+    m_sprite.setPosition(m_LastPosition);
     m_isUpAvail =false;
    // this->m_sprite.setRotation(0.f);
 }
@@ -108,6 +102,7 @@ void Hero::handleColision(Floor& obj)
 void Hero::handleColision(Ladder& obj)
 {
     m_isUpAvail =true;
+
 }
 //====================================================
 void Hero::handleColision(Coin&obj)
@@ -116,6 +111,7 @@ void Hero::handleColision(Coin&obj)
 
 	m_score+=50*Controller::getLevel();
 	playCollectGiftSound();
+	//obj.handleColision(*this);
 }
 
 void Hero::handleColision(Enemy& obj )
@@ -144,6 +140,11 @@ void Hero::playCollectCoinSound() {
 void Hero::playCollectDeadSound() {
 
     m_collectDeadSound.play();
+
+}
+//====================================================
+
+void Hero::handleColision(Hero &) {
 
 }
 //====================================================
