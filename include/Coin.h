@@ -20,8 +20,10 @@ public:
 	virtual void handleColision(Coin&) override {};
 	virtual void handleColision(Enemy&) override {};
 
-
+	static size_t getNowCoins();
+	static void incCoins();
 private:
 	
-
+	static size_t m_allCoins;
+	static size_t m_currentCoins;
 };

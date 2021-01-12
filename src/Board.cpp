@@ -363,7 +363,7 @@ bool Board::handleCollisions(GameObj &obj)
              obj.handleColision(*stsobj);
         }
         }
-
+    return true;
 
 }
 //==================================================

@@ -11,7 +11,8 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 	board.setTexture(*SingletonPicture::instance().getBoardTexture());
 	board.setPosition(0,0);
 	m_boardfile = openlevelfile(m_level);
-    m_board = Board(m_boardfile, m_menu.StartGame(m_window));
+	m_choes = m_menu.StartGame(m_window);
+    m_board = Board(m_boardfile, m_choes);
 	m_gameOverSound.setBuffer(Sound::instance().getMGameOver());
 	m_levelUpSoundl.setBuffer(Sound::instance().getMLevelUp());
 	m_startGameSound.setBuffer(Sound::instance().getMStartGame());
@@ -39,11 +40,12 @@ void Controller::run()
 				break;
 			}
 
-       m_board.isObjectIsfalling(deltaTime);
+        m_board.isObjectIsfalling(deltaTime);
         m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime);
 
-
+		if (Coin::getNowCoins() == 0)
+			levelUp();
 	}
 }
 
@@ -60,6 +62,14 @@ std::ifstream Controller::openlevelfile(int level)
 
 			std::cout << "Error while open level file";
 		return file;
+}
+
+void Controller::levelUp()
+{
+	if (m_level == m_maxLevel)
+		return;
+	m_boardfile = openlevelfile(++m_level);
+	m_board = Board(m_boardfile, m_choes);
 }
 
 unsigned int Controller::getLevel() {
