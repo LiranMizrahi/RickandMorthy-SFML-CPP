@@ -16,7 +16,7 @@ public:
 
       void UpdateLocation(float time) override{};
 
-	 void handleColision(GameObj& obj) override {};
+	 void handleColision(GameObj& obj) override;
 	 void handleColision(Rope& Obj) override;
 	 void handleColision(Hero& Obj) override ;
 	 void handleColision(Floor& obj)override;

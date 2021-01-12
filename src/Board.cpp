@@ -12,6 +12,7 @@
 #include "RandomEnemy.h"
 #include "SmartEnemy.h"
 #include "HorizontalEnemy.h"
+
 //===============constructor ==============
 
 Board::Board(std::ifstream& file , int PlayerSelection)
@@ -58,8 +59,7 @@ Board::Board(std::ifstream& file , int PlayerSelection)
             location.y += (2 * ty);
 
     }
-        m_movingObjects.push_back(std::move(std::make_unique<Hero>(heroloc, PlayerSelection)));
-
+    m_movingObjects.push_back(std::move(std::make_unique<Hero>(heroloc, PlayerSelection)));
     m_hero = dynamic_cast<Hero*>(m_movingObjects[m_movingObjects.size()-1].get());
     if(!m_boardFont.loadFromFile("Pixel Emulator.otf"))
             std::cout << "Cant open Font file";
@@ -79,10 +79,6 @@ void Board::draw(sf::RenderWindow& window)const
             if(d)
             d->draw(window, size);
         }
-    /*for (auto& e : m_enemys)
-        e->draw(window, size);
-
-    m_hero.draw(window, size);*/
 
     for (auto& movObj : m_movingObjects)
     {
@@ -101,7 +97,6 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
        
     case ENEMY:
         createEnemysVector(location, PlayerSelection);
-        //m_enemys.push_back(std::move(std::make_unique<Enemy>(location, PlayerSelection)));
         break;
 
 //    case HERO:
@@ -132,6 +127,8 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
     }
 
 }
+//============================================
+
 void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection)
 {
 
@@ -158,20 +155,22 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
 
 }
 //============================================
-void Board::moveCharacters(float deltaTime)
-{       
+void Board::moveCharacters(float deltaTime) {
 
-    for (auto & movObj : m_movingObjects)
-    {
-        if (!movObj->getIsfalling())
-        {
+    for (auto &movObj : m_movingObjects) {
+        if (!movObj->getIsfalling()) {
 
             movObj->UpdateLocation(deltaTime);
         }
     }
 
+}
+//============================================
 
+bool Board::checkIfObjectFalling(float deltatime) {
 
+    for(auto& movingobj : m_movingObjects)
+        isObjectIsFalling(deltatime,*movingobj.get());
 
 }
 
@@ -183,104 +182,59 @@ int Board::checkCollisions(float deltaTime)
     for(auto & mov:m_movingObjects)
         handleCollisions(*mov);
 
-  //  for(auto & unmov:m_staticObjects)
-   //     handleCollisions(*unmov);
-
-   /* bool ok =false;
-    for (auto& staticObjects : m_staticObjects)
-        for (auto& staticObjectsi : staticObjects)
-    {
-        if(staticObjectsi)
-        if (staticObjectsi->collisonWith(m_hero))
-        {
-           ok = true;
-            staticObjectsi->handleColision(m_hero);
-        }
-    }
-    if(!ok)
-    {
-    m_hero.setIsDownAvail(true);
-    m_hero.setIsUpAvail(false);
-
-    }*/
-
-
     return true;
 
 }
 //==================================================
 
-bool Board::isObjectIsfalling(float deltaTime) {
+bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
+{
 
-        float index =cellhight/2;
-        int i;
-        for (i = 0; index < m_hero->getSprite().getPosition().y; ++i)
-        {
-            index+=cellhight;
+    float index = cellhight / 2;
+    int i;
+        for (i = 0;index < movingobject.getSprite().getPosition().y; ++i) {
+            index += cellhight;
         }
 
-        sf::Sprite checkdown = m_hero->getSprite();
-        checkdown.move(0,300*deltaTime);
 
-        for (int j = i; j < m_staticObjects.size(); ++j) {
-            for(auto &d : m_staticObjects[j])
+        sf::Sprite checkdown = movingobject.getSprite();
+        checkdown.move(0, 300 * deltaTime);
+
+        for (int j = i; j < m_staticObjects.size(); ++j)
         {
-            if(d)
+            for (auto &d : m_staticObjects[j])
             {
-                if(Coin* coinptr = dynamic_cast<Coin*>(d.get()))
-                    continue;
+                if (d) {
+                    if (Coin *coinptr = dynamic_cast<Coin *>(d.get()))
+                        continue;
 
-                if(!d->getIsOff())
-                if(checkdown.getGlobalBounds().intersects(d->getSprite().getGlobalBounds()))
-            {
-                m_hero->setIsfalling(false);
-                return false;
+                    if(Rope *Rhope = dynamic_cast<Rope *>(d.get()))
+                        if(movingobject.getSprite().getPosition().y-d->getSprite().getPosition().y < 15)
+                            continue;
+
+                    if (!d->getIsOff())
+                        if (checkdown.getGlobalBounds().intersects(
+                                d->getSprite().getGlobalBounds())) {
+                            movingobject.setIsfalling(false);
+
+                            return false;
+                        }
+                }
+
             }
         }
-        }
-    }
 
-    m_hero->move(0,300*deltaTime);
-    m_hero->setIsfalling(true);
-    return true;
+        movingobject.move(0, 300 * deltaTime);
+        movingobject.setIsfalling(true);
 
 
-//    for (auto& movObj : m_movingObjects)
-//    {
+
 //
-//        for (i = 0; index < movObj->getSprite().getPosition().y; ++i)
-//        {
-//            index += cellhight;
-//        }
-//
-//        sf::Sprite checkdown = movObj->getSprite();
-//        checkdown.move(0, 300 * deltaTime);
-//
-//        for (int j = i; j < m_staticObjects.size(); ++j) {
-//            for (auto& d : m_staticObjects[j])
-//            {
-//                if (d)
-//                {
-//                    if (Coin* coinptr = dynamic_cast<Coin*>(d.get()))
-//                        continue;
-//
-//                    if (!d->getIsOff())
-//                        if (checkdown.getGlobalBounds().intersects(d->getSprite().getGlobalBounds()))
-//                        {
-//                            movObj->setIsfalling(false);
-//                            return c;
-//                        }
-//                }
-//            }
-//        }
-//
-//        movObj->move(0, 300 * deltaTime);
-//        movObj->setIsfalling(true);
-//    }
     return true;
 }
 //==================================================
-void Board::printGameStatus(sf::RenderWindow & window, int levelnum) {
+void Board::printGameStatus(sf::RenderWindow & window, int levelnum)
+{
 
 
     initGamestatusbar();
@@ -305,7 +259,7 @@ void Board::printGameStatus(sf::RenderWindow & window, int levelnum) {
       window.draw(m_scoreText);
     window.draw(m_levelText);
 
-//
+
 
 }
 //==================================================
@@ -333,7 +287,7 @@ void Board::fallingGift(float)
         {
             if (NULL == d)
             {
-                std::cout << m_staticObjects[1][1];
+              //  d = Gift;
 
             }
         }
@@ -347,23 +301,25 @@ bool Board::handleCollisions(GameObj &obj)
  {
      if(obj.collisonWith(*movingobject))
      {
-
          obj.handleColision(*movingobject);
      }
  }
 
-    for (auto& staticObjects : m_staticObjects)
-        for (auto& stsobj : staticObjects)
-        {
+    for (auto& staticObjects : m_staticObjects) {
+        for (auto &stsobj : staticObjects) {
 
-            if(stsobj)
-            if(!stsobj->getIsOff())
-            {
-            if(obj.collisonWith(*stsobj))
-             obj.handleColision(*stsobj);
-        }
-        }
-    return true;
+            if (stsobj)
+                if (!stsobj->getIsOff())
+                {
+                    if (obj.collisonWith(*stsobj))
+                    {
+                        obj.handleColision(*stsobj);
+                }
+                }
 
-}
+
+        }
+    return false;
+
+}}
 //==================================================

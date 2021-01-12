@@ -107,7 +107,6 @@ void Hero::handleColision(Ladder& obj)
 //====================================================
 void Hero::handleColision(Coin&obj)
 {
-	Coin::incCoins();
     m_isUpAvail =false;
 
 	m_score+=50*Controller::getLevel();
@@ -143,7 +142,7 @@ void Hero::playCollectDeadSound() {
     m_collectDeadSound.play();
 
 }
-//====================================================
+//=======================   =============================
 
 void Hero::handleColision(Hero &) {
 

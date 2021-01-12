@@ -42,6 +42,12 @@ void Enemy::handleColision(Ladder& obj)
 
 }
 
+void Enemy::handleColision(GameObj &obj) {
+
+    obj.handleColision(*this);
+
+}
+
 
 
 

@@ -19,8 +19,8 @@ public:
 	void draw(sf::RenderWindow&)const;
 	void moveCharacters(float);
 	int checkCollisions(float);
-    bool isObjectIsfalling(float);
-	void fallingGift(float);
+    bool checkIfObjectFalling(float);
+    void fallingGift(float);
     void printGameStatus(sf::RenderWindow &, int level);
 
 private:
@@ -41,6 +41,7 @@ private:
 	void createEnemysVector(const sf::Vector2f&, int);
 	bool handleCollisions(GameObj &obj);
 
+    bool isObjectIsFalling(float, MovingObjects&);
 
     void initGamestatusbar();
 

@@ -27,7 +27,7 @@ void Coin::handleColision(Hero&obj)
 
 void Coin::handleColision(GameObj &obj) {
    // if(&obj == this)return;
-   // obj.handleColision(*this);
+    obj.handleColision(*this);
 }
 
 size_t Coin::getNowCoins() 

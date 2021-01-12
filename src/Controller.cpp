@@ -40,12 +40,11 @@ void Controller::run()
 				break;
 			}
 
-        m_board.isObjectIsfalling(deltaTime);
+      //  m_board.checkIfObjectFalling(deltaTime);
         m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime);
 
-		if (Coin::getNowCoins() == 0)
-			levelUp();
+
 	}
 }
 
@@ -62,14 +61,6 @@ std::ifstream Controller::openlevelfile(int level)
 
 			std::cout << "Error while open level file";
 		return file;
-}
-
-void Controller::levelUp()
-{
-	if (m_level == m_maxLevel)
-		return;
-	m_boardfile = openlevelfile(++m_level);
-	m_board = Board(m_boardfile, m_choes);
 }
 
 unsigned int Controller::getLevel() {
