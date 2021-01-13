@@ -8,24 +8,32 @@
 
 Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 {
+    m_gameOverSound.setBuffer(SingletonSound::instance().getMGameOver());
+    m_levelUpSoundl.setBuffer(SingletonSound::instance().getMLevelUp());
+    m_startGameSound.setBuffer(SingletonSound::instance().getMStartGame());
 
     m_window.setFramerateLimit(60);
 	board.setTexture(*SingletonPicture::instance().getBoardTexture());
 	board.setPosition(0,0);
-	m_boardfile = openlevelfile(m_level);
+    printStartGameScreen();
 
-	m_choes = m_menu.StartGame(m_window);
+    m_boardfile = openlevelfile(m_level);
+    m_choes = m_menu.StartGame(m_window);
     m_board = Board(m_boardfile, m_choes);
-	m_gameOverSound.setBuffer(SingletonSound::instance().getMGameOver());
-	m_levelUpSoundl.setBuffer(SingletonSound::instance().getMLevelUp());
-	m_startGameSound.setBuffer(SingletonSound::instance().getMStartGame());
+
+
+
     m_boardfile.close();
 }
 //=============================================================
 
 void Controller::run()
 {
+<<<<<<< HEAD
 	int gift = 0;
+=======
+
+>>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
     m_startGameSound.play();
 	while (m_window.isOpen())
 	{
@@ -35,6 +43,7 @@ void Controller::run()
 		m_board.draw(m_window);
         m_board.printGameStatus(m_window,m_level);
         m_window.display();
+
 
 		sf::Event event;
 		while(m_window.pollEvent(event))
@@ -47,10 +56,19 @@ void Controller::run()
         m_board.checkIfObjectFalling(deltaTime);
         m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime);
+
+
+
         //check if there is no move available coins to get
-        if(checkIfLevelDone())
+        if(checkIfLevelDone()) {
+
+            //check if there is move level to upgrade
+            if(m_level == NUMBEROFLEVELS)
+                gameOverHandler(true);
+            m_level++;
             //if there is no more coins move to the next level
             upgradeLevel();
+<<<<<<< HEAD
 
 		if(gift == 0)
 		{
@@ -58,6 +76,10 @@ void Controller::run()
 			m_board.fallingGift(deltaTime);
 		}
 		
+=======
+        }
+
+>>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
 
 
 	}
@@ -91,9 +113,22 @@ bool Controller::checkIfLevelDone() {
 
 void Controller::upgradeLevel() {
 
+<<<<<<< HEAD
 	
     
      m_level++;
+=======
+    {
+        sf::Sprite uplevel;
+       uplevel.setTexture(*SingletonPicture::instance().getMLevelUp());
+       uplevel.setPosition(0,0);
+       m_window.clear();
+       m_window.draw(uplevel);
+       m_window.display();
+       sf::sleep(sf::seconds(2));
+
+
+>>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
      m_boardfile = openlevelfile(m_level);
      m_levelUpSoundl.play();
      m_board = Board(m_boardfile,0);
@@ -101,6 +136,111 @@ void Controller::upgradeLevel() {
     
 
 }
+//=============================================================
+
+void Controller::printStartGameScreen() {
+
+ auto soundmusic = sf::Sound(SingletonSound::instance().getOpenGame());
+    soundmusic.play();
+    sf::Sprite openpic(*SingletonPicture::instance().getMStartGame());
+
+    while (m_window.isOpen())
+    {
+        if (auto event = sf::Event{}; m_window.waitEvent(event)) {}
+
+            m_window.clear();
+            m_window.draw(openpic);
+            m_window.display();
+
+            sf::sleep(sf::seconds(4));
+            return;
+
+    }
+}
+//=============================================================
+
+void Controller::gameOverHandler(bool isplyerwin) {
+
+    auto gameoverpic = sf::Sprite();
+    gameoverpic.setTexture(*SingletonPicture::instance().getMGameOver());
+    auto soundmusic = sf::Sound(SingletonSound::instance().getMDead());
+    auto fonti = sf::Font();
+    auto gameexitstatus = sf::Text();
+    auto exitgame = sf::Text();
+    auto newgame = sf::Text();
+    const bool EXIT = true;
+    const bool NEWGAME = false;
+    bool choose = EXIT;
+
+    fonti.loadFromFile("Nosifer-Regular.ttf");
+
+    gameexitstatus.setFont(fonti);
+    exitgame.setFont(fonti);
+    newgame.setFont(fonti);
+    newgame.setCharacterSize(55);
+    exitgame.setCharacterSize(55);
+    exitgame.setStyle(exitgame.Underlined);
+
+    gameexitstatus.setCharacterSize(80);
+
+    if (isplyerwin)
+        gameexitstatus.setString("YOU WON");
+    else
+        gameexitstatus.setString("YOU LOST");
+
+    gameexitstatus.setPosition(580, 250);
+
+    exitgame.setString("EXIT");
+    newgame.setPosition(620, 600);
+
+    exitgame.setPosition(730, 700);
+    newgame.setString("NEW GAME");
+    sf::sleep(sf::seconds(3));
+    soundmusic.play();
+    auto event = sf::Event();
+    while (m_window.isOpen()) {
+        if (m_window.pollEvent(event)) {
+            m_window.clear();
+            m_window.draw(gameoverpic);
+            m_window.draw(exitgame);
+            m_window.draw(newgame);
+            m_window.draw(gameexitstatus);
+            m_window.display();
+
+            if (event.type== sf::Event::KeyReleased)
+                if(event.key.code ==sf::Keyboard::Up) {
+                choose = NEWGAME;
+                newgame.setStyle(exitgame.Underlined);
+                exitgame.setStyle(0);
+
+            }
+            else if (event.key.code ==sf::Keyboard::Down) {
+                choose = EXIT;
+                exitgame.setStyle(exitgame.Underlined);
+                newgame.setStyle(0);
+
+            } else if (event.key.code ==sf::Keyboard::Enter) {
+
+                if (choose == EXIT) {
+                    m_window.close();
+                    exit(EXIT_SUCCESS);
+                }
+
+                if (choose == NEWGAME) {
+                    //will to same shit
+
+                }
+
+            }
+
+
+        }
+
+
+    }
+
+}
+
 
 
 //=============================================================

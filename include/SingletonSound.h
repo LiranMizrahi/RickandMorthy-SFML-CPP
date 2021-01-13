@@ -30,5 +30,8 @@ private:
 	sf::SoundBuffer m_levelUp;
 	sf::SoundBuffer m_collectGift;
 	sf::SoundBuffer m_collectCoin;
+    sf::SoundBuffer m_openGame;
+public:
+    const sf::SoundBuffer &getOpenGame() const;
 
 };

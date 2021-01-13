@@ -13,20 +13,17 @@
 										
 class Controller {
 					
-				
-					
+
 public:
 
 	Controller();
 	void run();
 	static unsigned int getLevel();
 
-
 private:
 
 	//private members
 	int m_choes;
-	int m_maxLevel = 2;
 	Board m_board;
 	Menu m_menu;
 	sf::RenderWindow m_window;
@@ -44,5 +41,8 @@ private:
 	std::ifstream openlevelfile(int);
     bool checkIfLevelDone();
 	void upgradeLevel();
+	void printStartGameScreen();
+	void gameOverHandler(bool);
+
 
 };				

@@ -2,4 +2,4 @@
 configure_file ("boardstatus.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("get_schwifty 2.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Pixel Emulator.otf" ${CMAKE_BINARY_DIR} COPYONLY)
-
+configure_file ("Nosifer-Regular.ttf" ${CMAKE_BINARY_DIR} COPYONLY)

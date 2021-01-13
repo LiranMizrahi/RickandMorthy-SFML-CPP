@@ -20,5 +20,6 @@ const int WIDTHSIZECALI = 25;
 const int HEIGHTSIZECALI = 15;
 const  float HEROSPEED = 350.f ;
 const  float ENEMYSPEED = 300.f;
+const int NUMBEROFLEVELS = 2;
 
 
