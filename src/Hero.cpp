@@ -123,13 +123,11 @@ void Hero::handleColision(Enemy& obj )
 void Hero::handleColision(GiftAddingLife&)
 {
 	m_life++;
-	std::cout << "life\b";
 }
 
 void Hero::handleColision(GiftAddingScore&)
 {
 	m_score =+ 300;
-	std::cout << "score\b";
 }
 
 //====================================================

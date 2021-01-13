@@ -10,7 +10,7 @@ if (MSVC)
     add_compile_options (/permissive-)
 endif  ()
 
-add_executable (SFMLExamples "" src/SingletonFont.cpp include/SingletonFont.h)
+add_executable (SFMLExamples "")
 
 add_subdirectory (include)
 add_subdirectory (src)
