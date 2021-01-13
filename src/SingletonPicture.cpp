@@ -43,6 +43,8 @@ SingletonPicture::SingletonPicture()
 	if (!m_heroMenu2.loadFromFile("rick_player.png"))
 	std::cout << "cant open picture";
 
+	if (!m_gift.loadFromFile("gift.png"))
+		std::cout << "cant open picture";
 
 }
 
@@ -105,6 +107,11 @@ const sf::Texture* SingletonPicture::getJerryTexture()
 const sf::Texture* SingletonPicture::getRickTexture()
 {
 	return &m_heroMenu2;
+}
+
+const sf::Texture* SingletonPicture::getGiftTexture()
+{
+	return &m_gift;
 }
 
     SingletonPicture &SingletonPicture::instance() {

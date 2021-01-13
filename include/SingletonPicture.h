@@ -22,7 +22,7 @@ public:
     const sf::Texture* getMenuTexture();
     const sf::Texture* getJerryTexture();
     const sf::Texture* getRickTexture();
-
+    const sf::Texture* getGiftTexture();
 
   
    private:
@@ -42,7 +42,7 @@ public:
     sf::Texture m_rope;
     sf::Texture m_floor;
     sf::Texture m_menu;
-
+    sf::Texture m_gift;
 
 };
 

@@ -12,6 +12,10 @@
 #include "RandomEnemy.h"
 #include "SmartEnemy.h"
 #include "HorizontalEnemy.h"
+#include "Present.h"
+#include"PresentAddingLife.h"
+#include"PresentAddingEnemy.h"
+#include"PresentAddingScore.h"
 
 //===============constructor ==============
 
@@ -132,7 +136,7 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
 void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection)
 {
 
-
+    srand((unsigned int)time(NULL));
     int ChoosEnemy = std::rand() % 2;
     
 
@@ -146,7 +150,7 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
         m_movingObjects.push_back(std::move(std::make_unique<HorizontalEnemy>(location, PlayerSelection)));
        // m_enemys.push_back(std::move(std::make_unique<HorizontalEnemy>(location, PlayerSelection)));
         break;
-    case UP:
+    case 2:
         m_movingObjects.push_back(std::move(std::make_unique<SmartEnemy>(location, PlayerSelection)));
       //  m_enemys.push_back(std::move(std::make_unique<SmartEnemy>(location, PlayerSelection)));
         break;
@@ -171,7 +175,7 @@ bool Board::checkIfObjectFalling(float deltatime) {
 
     for(auto& movingobj : m_movingObjects)
         isObjectIsFalling(deltatime,*movingobj.get());
-
+    return true;
 }
 
 //==========================================
@@ -278,20 +282,50 @@ void Board::initGamestatusbar()
 }
 //==================================================
 
-void Board::fallingGift(float)
+void Board::fallingGift(float deltaTime)
 {
-    //m_staticObjects
-    for (auto& e : m_staticObjects)
-    {
-        for (auto& d : e)
-        {
-            if (NULL == d)
-            {
-              //  d = Gift;
+    sf::Vector2f boardsize((float)m_height, (float)m_width);
+    srand((unsigned int)time(NULL));
+    int i = (std::rand() % (m_width/2));
+    int j = (std::rand() % (m_height/2));
+    sf::Vector2f location;
 
+    for ( i; i < m_staticObjects.size(); ++i)
+    {
+        for ( j; j < m_staticObjects[i].size(); ++j)
+        {
+            if (NULL == m_staticObjects[i][j])
+            {
+                if (NULL != m_staticObjects[i+1][j])
+                    {
+                    location.y = ((cellwidth / 2) + (cellwidth * i)); 
+                    location.x = ((cellhight / 2) + (cellhight * j));
+
+
+
+
+                    srand((unsigned int)time(NULL));
+                    int ChoosEnemy = std::rand() % 2;
+
+
+                    switch (ChoosEnemy)
+                    {
+                    case 0:
+                        m_staticObjects[i][j] = std::move(std::make_unique <PresentAddingLife>(location, boardsize));
+                        break;
+                    case 1:
+                        m_staticObjects[i][j] = std::move(std::make_unique <PresentAddingScore>(location, boardsize));
+                        break;
+                    case 3:
+                        m_staticObjects[i][j] = std::move(std::make_unique <PresentAddingEnemy>(location, boardsize));
+                        break;
+                    }
+
+                    return;
+                } 
             }
         }
-    }
+    }  
 }
 //==================================================
 bool Board::handleCollisions(GameObj &obj)

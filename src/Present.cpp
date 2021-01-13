@@ -4,7 +4,7 @@
 
 
 Present::Present(const sf::Vector2f& loc, const sf::Vector2f& size):
-	StaticObjects(*SingletonPicture::instance().getCoinTexture(), loc, size)
+	StaticObjects(*SingletonPicture::instance().getGiftTexture(), loc, size)
 {
 
 }

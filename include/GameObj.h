@@ -8,6 +8,9 @@ class Ladder;
 class MovingObjects;
 class Coin;
 class Enemy;
+class PresentAddingLife;
+class PresentAddingScore;
+class PresentAddingEnemy;
 class GameObj {
 
 
@@ -27,6 +30,9 @@ public:
 	virtual void handleColision(Hero& Obj) = 0;
 	virtual void handleColision(Coin& Obj) = 0;
 	virtual void handleColision(Enemy& Obj) = 0;
+	virtual void handleColision(PresentAddingLife& Obj) = 0;
+	virtual void handleColision(PresentAddingScore& Obj) = 0;
+	virtual void handleColision(PresentAddingEnemy& Obj) = 0;
 
 
 	bool getIsOff()const;

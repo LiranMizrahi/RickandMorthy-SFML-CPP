@@ -25,6 +25,7 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 
 void Controller::run()
 {
+	int gift = 0;
     m_startGameSound.play();
 	while (m_window.isOpen())
 	{
@@ -51,7 +52,12 @@ void Controller::run()
             //if there is no more coins move to the next level
             upgradeLevel();
 
-
+		if(gift == 0)
+		{
+			++gift;
+			m_board.fallingGift(deltaTime);
+		}
+		
 
 
 	}
@@ -85,13 +91,14 @@ bool Controller::checkIfLevelDone() {
 
 void Controller::upgradeLevel() {
 
-    {
+	
+    
      m_level++;
      m_boardfile = openlevelfile(m_level);
      m_levelUpSoundl.play();
      m_board = Board(m_boardfile,0);
 
-    }
+    
 
 }
 

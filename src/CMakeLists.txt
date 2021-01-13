@@ -18,5 +18,8 @@
                                     "RandomEnemy.cpp"
                                     "SmartEnemy.cpp"
                                     "Present.cpp"
+                                    "PresentAddingEnemy.cpp"
+                                    "PresentAddingLife .cpp"
+                                    "PresentAddingScore.cpp"
 )
 
