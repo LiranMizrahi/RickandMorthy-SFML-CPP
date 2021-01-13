@@ -6,7 +6,11 @@
 #include "Macros.h"
 #include"Hero.h"
 
+const int ENEMYTYPES =3;
 
+enum e_Enemy {
+    SMART =1,RANDOM,Horizontal
+};
 class Enemy : public MovingObjects {
 public:
 

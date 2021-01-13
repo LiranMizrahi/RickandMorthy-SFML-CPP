@@ -4,8 +4,11 @@
 
 SingletonSound::SingletonSound()
 {
-	if (!m_jerry.loadFromFile("jerrysound.wav"))
-		std::cerr << "Can't open sound file mf";
+    bool isok =true;
+	//if (!
+
+	isok&m_jerry.loadFromFile("jerrysound.wav");//)
+	//	std::cerr << "Can't open sound file mf";
 		
 	if (!m_rick.loadFromFile("ricksound.wav"))
 		std::cerr << "Can't open sound file mf";
@@ -21,7 +24,6 @@ SingletonSound::SingletonSound()
 
 	if (!m_levelUp.loadFromFile("levelup.wav"))
 		std::cerr << "Can't open sound file mf";
-
 
 	if (!m_collectCoin.loadFromFile("collectcoin.wav"))
 		std::cerr << "Can't open sound file mf";

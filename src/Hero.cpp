@@ -9,14 +9,14 @@ Hero::Hero(const sf::Vector2f& loc, int HeroSelection) //: m_life(3), m_score(12
 {
     sf::sleep(sf::seconds(3));
 
-	if (HeroSelection == 1)
+	if (HeroSelection == HEROASJERRY)
 	{
 		auto hero = *SingletonPicture::instance().getHerojerryTexture();
 		m_sprite.setTexture(*SingletonPicture::instance().getHerojerryTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 	}
-	else
+	else if(HeroSelection == HEROASRICK)
 	{
 		auto hero = *SingletonPicture::instance().getHeroRickTexture();
 		m_sprite.setTexture(*SingletonPicture::instance().getHeroRickTexture());

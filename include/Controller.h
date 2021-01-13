@@ -23,7 +23,7 @@ public:
 private:
 
 	//private members
-	int m_choes;
+	int m_herroSelect;
 	Board m_board;
 	Menu m_menu;
 	sf::RenderWindow m_window;

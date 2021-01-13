@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include "SingletonSound.h"
+#include "Macros.h"
 const int JERRYPOSITIONX = 800 ;
 const int JERRYPOSITIONY = 500;
 const int RICKPOSITIONX =550;
@@ -21,7 +22,7 @@ Menu::Menu()
 
 int Menu::StartGame(sf::RenderWindow& window)
 {
-	int heroChoose = HeroJerry;
+	int heroChoose = HEROASJERRY;
 	auto background = sf::Sprite(*SingletonPicture::instance().getMenuTexture());
     sf::Text start;
     sf::Text select;
@@ -67,14 +68,14 @@ int Menu::StartGame(sf::RenderWindow& window)
 				if (rickpic.getGlobalBounds().contains(location))
 				{
 				    updateSelectPic(rickpic,jerrypic);
-					heroChoose = HeroRick;
+					heroChoose = HEROASRICK;
 					rickpic.setOutlineColor(sf::Color::Blue);
 				ricksound.play();
 
 				}
 				else if(jerrypic.getGlobalBounds().contains(location))
 				{
-					heroChoose = HeroJerry;
+					heroChoose = HEROASJERRY;
                     updateSelectPic(jerrypic,rickpic);
 					jerrypic.setOutlineColor(sf::Color::Green);
 				        jerrysound.play();
