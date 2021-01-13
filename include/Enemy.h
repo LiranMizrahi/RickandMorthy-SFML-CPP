@@ -27,7 +27,9 @@ public:
 	 void handleColision(Ladder& obj) override ;
 	 void handleColision(Coin&) override {};
 	 void handleColision(Enemy& Obj) override {};
-	
+	 virtual void handleColision(PresentAddingLife&) override {};
+	 virtual void handleColision(PresentAddingScore&) override {};
+	 virtual void handleColision(PresentAddingEnemy&) override {};
 
 private:
 	

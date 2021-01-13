@@ -19,6 +19,9 @@ public:
 	virtual void handleColision(GameObj&) override;
 	virtual void handleColision(Coin&) override {};
 	virtual void handleColision(Enemy&) override {};
+	virtual void handleColision(PresentAddingLife&) override {};
+	virtual void handleColision(PresentAddingScore&) override {};
+	virtual void handleColision(PresentAddingEnemy&) override {};
 
 	static size_t getNowCoins();
 	static void incCoins();
