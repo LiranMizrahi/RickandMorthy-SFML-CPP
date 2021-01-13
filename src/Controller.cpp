@@ -1,7 +1,7 @@
 #include "Controller.h"
 #include <string>
 #include <iostream>
-
+#include "SingletonFont.h"
 #include "Coin.h"
 
  int Controller::m_level = 1;
@@ -13,7 +13,7 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
     m_startGameSound.setBuffer(SingletonSound::instance().getMStartGame());
 
     m_window.setFramerateLimit(60);
-	board.setTexture(*SingletonPicture::instance().getBoardTexture());
+	board.setTexture(SingletonPicture::instance().getBoardTexture());
 	board.setPosition(0,0);
     printStartGameScreen();
 
@@ -109,7 +109,7 @@ void Controller::upgradeLevel() {
 
     {
         sf::Sprite uplevel;
-       uplevel.setTexture(*SingletonPicture::instance().getMLevelUp());
+       uplevel.setTexture(SingletonPicture::instance().getMLevelUp());
        uplevel.setPosition(0,0);
        m_window.clear();
        m_window.draw(uplevel);
@@ -130,7 +130,7 @@ void Controller::printStartGameScreen() {
 
  auto soundmusic = sf::Sound(SingletonSound::instance().getOpenGame());
     soundmusic.play();
-    sf::Sprite openpic(*SingletonPicture::instance().getMStartGame());
+    sf::Sprite openpic(SingletonPicture::instance().getMStartGame());
 
     while (m_window.isOpen())
     {
@@ -151,7 +151,7 @@ void Controller::gameOverHandler(bool isplyerwin)
 {
 
     auto gameoverpic = sf::Sprite();
-    gameoverpic.setTexture(*SingletonPicture::instance().getMGameOver());
+    gameoverpic.setTexture(SingletonPicture::instance().getMGameOver());
     auto soundmusic = sf::Sound(SingletonSound::instance().getMDead());
     auto fonti = sf::Font();
     auto gameexitstatus = sf::Text();
@@ -161,11 +161,11 @@ void Controller::gameOverHandler(bool isplyerwin)
     const bool NEWGAME = false;
     bool choose = EXIT;
 
-    fonti.loadFromFile("Nosifer-Regular.ttf");
 
-    gameexitstatus.setFont(fonti);
-    exitgame.setFont(fonti);
-    newgame.setFont(fonti);
+
+    gameexitstatus.setFont(SingletonFont::instance().getMGameover());
+    exitgame.setFont(SingletonFont::instance().getMGameover());
+    newgame.setFont(SingletonFont::instance().getMGameover());
     newgame.setCharacterSize(55);
     exitgame.setCharacterSize(55);
     exitgame.setStyle(exitgame.Underlined);

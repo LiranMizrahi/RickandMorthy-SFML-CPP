@@ -1,13 +1,13 @@
 #pragma once
 
-#include"Present.h"
+#include"Gift.h"
 #include"Hero.h"
 
-class PresentAddingEnemy : public Present
+class GiftAddingEnemy : public Gift
 {
 public:
-	PresentAddingEnemy(const sf::Vector2f& loc, const sf::Vector2f&);
-	~PresentAddingEnemy()override = default;
+	GiftAddingEnemy(const sf::Vector2f& loc, const sf::Vector2f&);
+	~GiftAddingEnemy()override = default;
 
 
 	virtual void handleColision(GameObj& obj) override {};
@@ -16,9 +16,9 @@ public:
 	virtual void handleColision(Floor& obj)override {};
 	virtual void handleColision(Ladder& obj) override {};
 	virtual void handleColision(Coin&) override {};
-	virtual void handleColision(PresentAddingLife&) override {};
-	virtual void handleColision(PresentAddingScore&) override {};
-	virtual void handleColision(PresentAddingEnemy&) override {};
+	virtual void handleColision(GiftAddingLife&) override {};
+	virtual void handleColision(GiftAddingScore&) override {};
+	virtual void handleColision(GiftAddingEnemy&) override {};
 private:
 
 };

@@ -1,5 +1,4 @@
 #pragma once
-
 #include "vector"
 #include <fstream>
 #include "Hero.h"
@@ -9,7 +8,6 @@
 
 class SingletonPicture;
 class SingletonSound;
-
 
 class Board {
 
@@ -31,7 +29,6 @@ private:
 	std::vector <std::unique_ptr <MovingObjects>>m_movingObjects;
 
 	int m_width, m_height;
-    sf::Font m_boardFont;
     sf::Text m_scoreText;
     sf::Text m_levelText;
     sf::Text m_lifeText;

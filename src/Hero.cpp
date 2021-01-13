@@ -11,15 +11,15 @@ Hero::Hero(const sf::Vector2f& loc, int HeroSelection) //: m_life(3), m_score(12
 
 	if (HeroSelection == HEROASJERRY)
 	{
-		auto hero = *SingletonPicture::instance().getHerojerryTexture();
-		m_sprite.setTexture(*SingletonPicture::instance().getHerojerryTexture());
+		auto hero = SingletonPicture::instance().getHerojerryTexture();
+		m_sprite.setTexture(SingletonPicture::instance().getHerojerryTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 	}
 	else if(HeroSelection == HEROASRICK)
 	{
-		auto hero = *SingletonPicture::instance().getHeroRickTexture();
-		m_sprite.setTexture(*SingletonPicture::instance().getHeroRickTexture());
+		auto hero = SingletonPicture::instance().getHeroRickTexture();
+		m_sprite.setTexture(SingletonPicture::instance().getHeroRickTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 		
@@ -120,13 +120,13 @@ void Hero::handleColision(Enemy& obj )
 	m_life--;
 }
 
-void Hero::handleColision(PresentAddingLife&)
+void Hero::handleColision(GiftAddingLife&)
 {
 	m_life++;
 	std::cout << "life\b";
 }
 
-void Hero::handleColision(PresentAddingScore&)
+void Hero::handleColision(GiftAddingScore&)
 {
 	m_score =+ 300;
 	std::cout << "score\b";

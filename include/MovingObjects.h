@@ -19,6 +19,7 @@ public:
 
 
 
+
 protected:
     sf::Vector2f m_LastPosition;
     bool m_isfalling =false;

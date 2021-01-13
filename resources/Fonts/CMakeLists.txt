@@ -1,5 +1,3 @@
-﻿configure_file ("BAUHS93.TTF" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("boardstatus.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("get_schwifty 2.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("Pixel Emulator.otf" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("Nosifer-Regular.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
+﻿configure_file ("menufont.TTF" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("gamestatusfont.otf" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("gameoverfont.ttf" ${CMAKE_BINARY_DIR} COPYONLY)

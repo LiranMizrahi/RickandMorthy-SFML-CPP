@@ -4,14 +4,18 @@
 #include <SFML/Graphics.hpp>
 #include "Hero.h"
 class SingletonPicture;
+const int TYPESOFGIFS =3;
 
+enum GiftTypes  {
+    AddLife =0,AddScore,AddEnemy
+};
 
-class Present : public StaticObjects {
+class Gift : public StaticObjects {
 
 public:
-	Present() {};
-	Present(const sf::Vector2f& loc, const sf::Vector2f&);
-	~Present() override = default;
+	Gift() {};
+	Gift(const sf::Vector2f& loc, const sf::Vector2f&);
+	~Gift() override = default;
 	virtual void handleColision(Rope&) override {};
 	virtual void handleColision(Hero&) override {};
 	virtual void handleColision(Floor&) override {};
@@ -19,9 +23,11 @@ public:
 	virtual void handleColision(GameObj&) override {};
 	virtual void handleColision(Coin&) override {};
 	virtual void handleColision(Enemy&) override {};
-	virtual void handleColision(PresentAddingLife&) override {};
-	virtual void handleColision(PresentAddingScore&) override {};
-	virtual void handleColision(PresentAddingEnemy&) override {};
+	virtual void handleColision(GiftAddingLife&) override {};
+	virtual void handleColision(GiftAddingScore&) override {};
+	virtual void handleColision(GiftAddingEnemy&) override {};
+    virtual bool isObjectIsStandable(GameObj&)override;
+
 private:
 	//void fallingGift(float);
 

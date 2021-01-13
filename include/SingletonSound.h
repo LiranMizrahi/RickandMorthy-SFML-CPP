@@ -16,7 +16,7 @@ public:
     const sf::SoundBuffer &getMLevelUp() const;
     const sf::SoundBuffer &getMCollectGift() ;
     const sf::SoundBuffer &getMCollectCoin() const;
-
+    const sf::SoundBuffer &getOpenGame() const;
 
 
 
@@ -31,7 +31,6 @@ private:
 	sf::SoundBuffer m_collectGift;
 	sf::SoundBuffer m_collectCoin;
     sf::SoundBuffer m_openGame;
-public:
-    const sf::SoundBuffer &getOpenGame() const;
+
 
 };

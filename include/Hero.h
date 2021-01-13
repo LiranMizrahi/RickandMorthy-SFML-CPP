@@ -27,9 +27,9 @@ class Hero : public MovingObjects {
 	    void handleColision(Ladder&)override;
 	    void handleColision(Coin&) override;
 	    void handleColision(Enemy&) override;
-		virtual void handleColision(PresentAddingLife&) override;
-		virtual void handleColision(PresentAddingScore&) override;
-		virtual void handleColision(PresentAddingEnemy&) override {};
+		virtual void handleColision(GiftAddingLife&) override;
+		virtual void handleColision(GiftAddingScore&) override;
+		virtual void handleColision(GiftAddingEnemy&) override {};
 
 private:
 		static int m_life, m_score;

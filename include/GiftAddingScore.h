@@ -1,14 +1,14 @@
 #pragma once
 
-#include"Present.h"
+#include"Gift.h"
 #include"Hero.h"
 #include<iostream>
 
-class PresentAddingScore : public Present
+class GiftAddingScore : public Gift
 {
 public:
-	PresentAddingScore(const sf::Vector2f& loc, const sf::Vector2f&);
-	~PresentAddingScore()override = default;
+	GiftAddingScore(const sf::Vector2f& loc, const sf::Vector2f&);
+	~GiftAddingScore()override = default;
 
 
 	virtual void handleColision(GameObj& obj) override {};
@@ -17,9 +17,9 @@ public:
 	virtual void handleColision(Floor& obj)override {};
 	virtual void handleColision(Ladder& obj) override {};
 	virtual void handleColision(Coin&) override {};
-	virtual void handleColision(PresentAddingLife&) override {};
-	virtual void handleColision(PresentAddingScore&) override {};
-	virtual void handleColision(PresentAddingEnemy&) override {};
+	virtual void handleColision(GiftAddingLife&) override {};
+	virtual void handleColision(GiftAddingScore&) override {};
+	virtual void handleColision(GiftAddingEnemy&) override {};
 
 private:
 

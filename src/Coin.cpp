@@ -13,7 +13,7 @@ Coin::Coin()
 }
 //=============================================================
  Coin::Coin(const sf::Vector2f& loc, const sf::Vector2f& size) :
-	StaticObjects(*SingletonPicture::instance().getCoinTexture(), loc, size)
+	StaticObjects(SingletonPicture::instance().getCoinTexture(), loc, size)
 {
 	 m_allCoins++;
 	 m_currentCoins++;
@@ -55,6 +55,10 @@ size_t Coin::getNowCoins()
 void Coin::incCoins()
 {
 	m_currentCoins--;
+}
+
+bool Coin::isObjectIsStandable(GameObj & obj) {
+    return false;
 }
 //=============================================================
 

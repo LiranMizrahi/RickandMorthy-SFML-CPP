@@ -12,10 +12,11 @@
 #include "RandomEnemy.h"
 #include "SmartEnemy.h"
 #include "HorizontalEnemy.h"
-#include "Present.h"
-#include"PresentAddingLife.h"
-#include"PresentAddingEnemy.h"
-#include"PresentAddingScore.h"
+#include "Gift.h"
+#include"GiftAddingLife.h"
+#include"GiftAddingEnemy.h"
+#include"GiftAddingScore.h"
+#include "SingletonFont.h"
 
 //===============constructor ==============
 
@@ -50,7 +51,7 @@ Board::Board(std::ifstream& file , int PlayerSelection)
                input = file.get();
                if(input == ' ')
                    m_staticObjects[i].push_back(nullptr);
-               else if(input == '@')
+               else if(input == HERO)
                 heroloc = location;
                else
                    createObject(input, location, PlayerSelection, i);
@@ -64,9 +65,6 @@ Board::Board(std::ifstream& file , int PlayerSelection)
     }
     m_movingObjects.push_back(std::move(std::make_unique<Hero>(heroloc, PlayerSelection)));
     m_hero = dynamic_cast<Hero*>(m_movingObjects[m_movingObjects.size()-1].get());
-    if(!m_boardFont.loadFromFile("Pixel Emulator.otf"))
-            std::cout << "Cant open Font file";
-
 
 
 }
@@ -205,18 +203,14 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
 
 
         sf::Sprite checkdown = movingobject.getSprite();
-        checkdown.move(0, 300 * deltaTime);
+        checkdown.move(0, FALLINGSPEED * deltaTime);
 
         for (int j = i; j < m_staticObjects.size(); ++j)
         {
             for (auto &d : m_staticObjects[j])
             {
                 if (d) {
-                    if(Coin *coinptr = dynamic_cast<Coin *>(d.get()))
-                            continue;
-
-                    if(Rope *Rhope = dynamic_cast<Rope *>(d.get()))
-                        if(movingobject.getSprite().getPosition().y-d->getSprite().getPosition().y < 15)
+                    if(!d->isObjectIsStandable(movingobject))
                             continue;
 
                     if (!d->getIsOff())
@@ -231,12 +225,12 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
             }
         }
 
-        movingobject.move(0, 300 * deltaTime);
+        movingobject.move(0, FALLINGSPEED * deltaTime);
         movingobject.setIsfalling(true);
 
 
 
-//
+
     return true;
 }
 //==================================================
@@ -271,9 +265,9 @@ void Board::printGameStatus(sf::RenderWindow & window, int levelnum)
 void Board::initGamestatusbar()
 {
 
-    m_scoreText.setFont(m_boardFont);
-    m_levelText.setFont(m_boardFont);
-    m_lifeText.setFont(m_boardFont);
+    m_scoreText.setFont(SingletonFont::instance().getMBoardstatus());
+    m_levelText.setFont(SingletonFont::instance().getMBoardstatus());
+    m_lifeText.setFont(SingletonFont::instance().getMBoardstatus());
 
     m_lifeText.setCharacterSize(60);
     m_scoreText.setCharacterSize(60);
@@ -303,22 +297,19 @@ void Board::fallingGift(float deltaTime)
                     location.x = ((cellhight / 2) + (cellhight * j));
 
 
-
-
-                    srand((unsigned int)time(NULL));
-                    int ChoosEnemy = std::rand() % 2;
+                    int ChoosEnemy = std::rand() % TYPESOFGIFS;
 
 
                     switch (ChoosEnemy)
                     {
-                    case 0:
-                        m_staticObjects[i][j] = std::move(std::make_unique <PresentAddingLife>(location, boardsize));
+                    case AddLife:
+                        m_staticObjects[i][j] = std::move(std::make_unique <GiftAddingLife>(location, boardsize));
                         break;
-                    case 1:
-                        m_staticObjects[i][j] = std::move(std::make_unique <PresentAddingScore>(location, boardsize));
+                    case AddScore:
+                        m_staticObjects[i][j] = std::move(std::make_unique <GiftAddingScore>(location, boardsize));
                         break;
-                    case 3:
-                        m_staticObjects[i][j] = std::move(std::make_unique <PresentAddingEnemy>(location, boardsize));
+                    case AddEnemy:
+                        m_staticObjects[i][j] = std::move(std::make_unique <GiftAddingEnemy>(location, boardsize));
                         break;
                     }
 
@@ -351,7 +342,6 @@ bool Board::handleCollisions(GameObj &obj)
                         obj.handleColision(*stsobj);
                 }
                 }
-
 
         }
 

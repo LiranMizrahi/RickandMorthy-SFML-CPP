@@ -17,9 +17,9 @@
                                     "HorizontalEnemy.cpp"
                                     "RandomEnemy.cpp"
                                     "SmartEnemy.cpp"
-                                    "Present.cpp"
-                                    "PresentAddingEnemy.cpp"
+                                    "Gift.cpp"
+                                    "GiftAddingEnemy.cpp"
                                     "PresentAddingLife .cpp"
-                                    "PresentAddingScore.cpp"
+                                    "GiftAddingScore.cpp"
 )
 

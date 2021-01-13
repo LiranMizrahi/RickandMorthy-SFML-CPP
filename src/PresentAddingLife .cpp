@@ -1,12 +1,14 @@
-#include"PresentAddingLife.h"
+#include"GiftAddingLife.h"
 
 
-PresentAddingLife::PresentAddingLife(const sf::Vector2f& loc, const sf::Vector2f& size) :Present(loc, size)
+GiftAddingLife::GiftAddingLife(const sf::Vector2f& loc, const sf::Vector2f& size) : Gift(loc, size)
 {
 }
 
-void PresentAddingLife::handleColision(Hero& Obj)
+void GiftAddingLife::handleColision(Hero& Obj)
 {
-	Obj.handleColision(*this);	
+    if(m_isOff)
+        Obj.handleColision(*this);
+    m_isOff = true;
 }
 

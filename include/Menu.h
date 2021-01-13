@@ -10,6 +10,6 @@ public:
 
 
     void initializeScreenPic(sf::RectangleShape& , sf::RectangleShape&, sf::Sprite& );
-    void initializeScreenText(sf::Text&, sf::Text&, const sf::Font &);
+    void initializeScreenText(sf::Text &text_1, sf::Text &text_2);
     void updateSelectPic(sf::RectangleShape &shape, sf::RectangleShape &shape1);
 };

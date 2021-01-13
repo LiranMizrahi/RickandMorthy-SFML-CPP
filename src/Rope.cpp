@@ -4,7 +4,7 @@ Rope::Rope()
 {
 }
 //=============================================================
-Rope::Rope(const sf::Vector2f& loc, const sf::Vector2f& size): StaticObjects(*SingletonPicture::instance().getRopeTexture(), loc, size)
+Rope::Rope(const sf::Vector2f& loc, const sf::Vector2f& size): StaticObjects(SingletonPicture::instance().getRopeTexture(), loc, size)
 
 {
 }
@@ -24,5 +24,11 @@ void Rope::handleColision(Enemy& obj)
 void Rope::handleColision(GameObj &obj) {
     obj.handleColision(*this);
 }
+
+bool Rope::isObjectIsStandable(GameObj & movingobject) {
+   return (movingobject.getSprite().getPosition().y-this->getSprite().getPosition().y > 15);
+
+}
+
 
 

@@ -5,7 +5,7 @@ Ladder::Ladder()
 {
 }
 
-Ladder::Ladder(const sf::Vector2f& loc , const sf::Vector2f& size): StaticObjects(*SingletonPicture::instance().getLedderTexture(), loc, size)
+Ladder::Ladder(const sf::Vector2f& loc , const sf::Vector2f& size): StaticObjects(SingletonPicture::instance().getLedderTexture(), loc, size)
 {
 
 }
@@ -25,3 +25,8 @@ void Ladder::handleColision(GameObj &obj) {
     obj.handleColision(*this);
 
 }
+
+bool Ladder::isObjectIsStandable(GameObj &) {
+    return true;
+}
+

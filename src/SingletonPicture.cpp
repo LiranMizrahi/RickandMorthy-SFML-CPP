@@ -59,74 +59,72 @@ SingletonPicture::SingletonPicture()
         std::cout << "cant open picture";
 
 
-//>>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
-
 }
 
-const sf::Texture* SingletonPicture::getHerojerryTexture()
+const sf::Texture & SingletonPicture::getHerojerryTexture()const
 {
-	return &m_heroJerry;
+	return m_heroJerry;
 }
 
-const sf::Texture*  SingletonPicture::getHeroRickTexture()
+const sf::Texture&  SingletonPicture::getHeroRickTexture()const
 {
-	return &m_heroRick;
+	return m_heroRick;
 }
 
 
-const sf::Texture* SingletonPicture::getEnemyMeeseeksTexture()
+const sf::Texture& SingletonPicture::getEnemyMeeseeksTexture()const
 {
-	return &  m_enemyMeeseeks;
+	return m_enemyMeeseeks;
 }
 
-const sf::Texture * SingletonPicture::getEnemyMonsterTexture()
+const sf::Texture& SingletonPicture::getEnemyMonsterTexture()const
 {
-	return &m_enemyMonster;
+	return m_enemyMonster;
 }
 
-const sf::Texture* SingletonPicture::getCoinTexture()
+const sf::Texture& SingletonPicture::getCoinTexture()const
 {
-	return &m_coin;
+	return m_coin;
 }
 
-const sf::Texture* SingletonPicture::getBoardTexture()
+const sf::Texture& SingletonPicture::getBoardTexture()const
 {
-	return &m_board;
+	return m_board;
 }
 
-const sf::Texture* SingletonPicture::getFloorTexture()
+const sf::Texture& SingletonPicture::getFloorTexture()const
 {
-	return &m_floor;
+	return m_floor;
 }
 
-const sf::Texture* SingletonPicture::getLedderTexture()
+const sf::Texture& SingletonPicture::getLedderTexture()const
 {
-	return &m_ledder;
+	return m_ledder;
 }
 
-const sf::Texture* SingletonPicture::getRopeTexture()
+const sf::Texture& SingletonPicture::getRopeTexture()const
 {
-	return &m_rope;
+	return m_rope;
 }
 
-const sf::Texture* SingletonPicture::getMenuTexture()
+const sf::Texture& SingletonPicture::getMenuTexture()const
 {
-	return &m_menu;
+	return m_menu;
 }
 
-const sf::Texture* SingletonPicture::getJerryTexture()
+const sf::Texture& SingletonPicture::getJerryTexture()const
 {
-	return &m_heroMenu1;
+	return m_heroMenu1;
 }
 
-const sf::Texture* SingletonPicture::getRickTexture()
+const sf::Texture& SingletonPicture::getRickTexture()const
 {
-	return &m_heroMenu2;
+	return m_heroMenu2;
 }
 
-const sf::Texture* SingletonPicture::getGiftTexture()
+const sf::Texture& SingletonPicture::getGiftTexture()const
 {
-	return &m_gift;
+	return m_gift;
 }
 
     SingletonPicture &SingletonPicture::instance() {
@@ -134,19 +132,22 @@ const sf::Texture* SingletonPicture::getGiftTexture()
         return inst;
     }
 
-const sf::Texture* SingletonPicture::getMLevelUp()  {
-    return &m_levelUp;
+const sf::Texture& SingletonPicture::getMLevelUp() const
+{
+    return m_levelUp;
 }
 
-const sf::Texture* SingletonPicture::getMStartGame()  {
-    return &m_startGame;
+const sf::Texture& SingletonPicture::getMStartGame()const
+{
+    return m_startGame;
 }
 
-const sf::Texture* SingletonPicture::getMHeroIsdead()  {
-    return &m_heroIsdead;
+const sf::Texture& SingletonPicture::getMHeroIsdead() const
+{
+    return m_heroIsdead;
 }
 
-const sf::Texture* SingletonPicture::getMGameOver()  {
-    return &m_gameOver;
+const sf::Texture& SingletonPicture::getMGameOver() const {
+    return m_gameOver;
 }
 

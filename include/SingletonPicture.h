@@ -10,26 +10,25 @@ public:
     ~SingletonPicture() =default;
     static SingletonPicture& instance();
 
-    const sf::Texture* getHerojerryTexture();
-    const sf::Texture* getHeroRickTexture();
-    const sf::Texture* getEnemyMeeseeksTexture();
-    const sf::Texture * getEnemyMonsterTexture();
-    const sf::Texture* getCoinTexture();
-    const sf::Texture* getBoardTexture();
-    const sf::Texture* getFloorTexture();
-    const sf::Texture* getLedderTexture();
-    const sf::Texture* getRopeTexture();
-    const sf::Texture* getMenuTexture();
-    const sf::Texture* getJerryTexture();
-    const sf::Texture* getRickTexture();
-//<<<<<< HEAD
-    const sf::Texture* getGiftTexture();
-//=======
-    const sf::Texture* getMLevelUp() ;
-    const sf::Texture* getMStartGame() ;
-    const sf::Texture* getMHeroIsdead() ;
-    const sf::Texture* getMGameOver() ;
-//>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
+    const sf::Texture & getHerojerryTexture()const;
+    const sf::Texture& getHeroRickTexture()const;
+    const sf::Texture& getEnemyMeeseeksTexture()const;
+    const sf::Texture & getEnemyMonsterTexture()const;
+    const sf::Texture& getCoinTexture()const;
+    const sf::Texture& getBoardTexture()const;
+    const sf::Texture& getFloorTexture()const;
+    const sf::Texture& getLedderTexture()const;
+    const sf::Texture& getRopeTexture()const;
+    const sf::Texture& getMenuTexture()const;
+    const sf::Texture& getJerryTexture()const;
+    const sf::Texture& getRickTexture()const;
+    const sf::Texture& getGiftTexture()const;
+
+    const sf::Texture& getMLevelUp() const;
+    const sf::Texture& getMStartGame()const ;
+    const sf::Texture& getMHeroIsdead()const ;
+    const sf::Texture& getMGameOver() const;
+
 
   
    private:

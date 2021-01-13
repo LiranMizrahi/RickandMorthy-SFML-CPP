@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include "SingletonSound.h"
+#include "SingletonFont.h"
 #include "Macros.h"
 const int JERRYPOSITIONX = 800 ;
 const int JERRYPOSITIONY = 500;
@@ -23,11 +24,10 @@ Menu::Menu()
 int Menu::StartGame(sf::RenderWindow& window)
 {
 	int heroChoose = HEROASJERRY;
-	auto background = sf::Sprite(*SingletonPicture::instance().getMenuTexture());
+	auto background = sf::Sprite(SingletonPicture::instance().getMenuTexture());
     sf::Text start;
     sf::Text select;
     sf::RectangleShape rickpic,jerrypic;
-    sf::Font font;
     sf::Sound ricksound;
     sf::Sound jerrysound;
 
@@ -36,11 +36,9 @@ int Menu::StartGame(sf::RenderWindow& window)
     ricksound.setBuffer(SingletonSound::instance().getMRick());
     jerrysound.setBuffer(SingletonSound::instance().getMJerry());
 
-    if (!font.loadFromFile("BAUHS93.ttf"))
-        std::cout << "Cant open font";
 
     initializeScreenPic(jerrypic, rickpic, background);
-    initializeScreenText(start, select, font);
+    initializeScreenText(start, select);
 
 	while (window.isOpen())
 	{
@@ -95,30 +93,30 @@ void Menu::initializeScreenPic(sf::RectangleShape& jerry, sf::RectangleShape& ri
                                sf::Sprite& sprite) {
 
 
-    sprite = sf::Sprite(*SingletonPicture::instance().getMenuTexture());
+    sprite = sf::Sprite(SingletonPicture::instance().getMenuTexture());
 
 
 
     jerry = sf::RectangleShape();
-    jerry.setTexture(SingletonPicture::instance().getJerryTexture());
+    jerry.setTexture(&SingletonPicture::instance().getJerryTexture());
     jerry.setPosition(JERRYPOSITIONX, JERRYPOSITIONY);
-    jerry.setSize(sf::Vector2f(SingletonPicture::instance().getJerryTexture()->getSize()));
+    jerry.setSize(sf::Vector2f(SingletonPicture::instance().getJerryTexture().getSize()));
     jerry.scale(SCALEFACTOR,SCALEFACTOR);
 
     rick = sf::RectangleShape();
-    rick.setTexture(SingletonPicture::instance().getRickTexture());
+    rick.setTexture(&SingletonPicture::instance().getRickTexture());
     rick.setPosition(RICKPOSITIONX, RICKPOSITIONY);
-    rick.setSize(sf::Vector2f(SingletonPicture::instance().getRickTexture()->getSize()));
+    rick.setSize(sf::Vector2f(SingletonPicture::instance().getRickTexture().getSize()));
     rick.scale(SCALEFACTOR,SCALEFACTOR);
 
 
 }
 //==================================================================
 
-void Menu::initializeScreenText(sf::Text& text_1, sf::Text& text_2, const sf::Font & font) {
+void Menu::initializeScreenText(sf::Text &text_1, sf::Text &text_2) {
 
 
-    text_1.setFont(font); // font is a sf::Font
+    text_1.setFont(SingletonFont::instance().getMMenu()); // font is a sf::Font
     text_1.setString("Start");
     text_1.setCharacterSize(CHARSIZE); // in pixels, not points!
     text_1.setFillColor(sf::Color::Black);
@@ -126,7 +124,7 @@ void Menu::initializeScreenText(sf::Text& text_1, sf::Text& text_2, const sf::Fo
     text_1.setPosition(STARTTEXTX, STARTTEXTY);
 
 
-    text_2.setFont(font); // font is a sf::Font
+    text_2.setFont(SingletonFont::instance().getMMenu()); // font is a sf::Font
     text_2.setString("Choose a player:");
     text_2.setCharacterSize(CHARSIZE1); // in pixels, not points!
     text_2.setFillColor(sf::Color::Black);
