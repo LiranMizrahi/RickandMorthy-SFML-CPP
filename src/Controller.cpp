@@ -29,11 +29,10 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 
 void Controller::run()
 {
-<<<<<<< HEAD
-	int gift = 0;
-=======
 
->>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
+	int gift = 0;
+
+
     m_startGameSound.play();
 	while (m_window.isOpen())
 	{
@@ -68,7 +67,6 @@ void Controller::run()
             m_level++;
             //if there is no more coins move to the next level
             upgradeLevel();
-<<<<<<< HEAD
 
 		if(gift == 0)
 		{
@@ -76,10 +74,10 @@ void Controller::run()
 			m_board.fallingGift(deltaTime);
 		}
 		
-=======
+
         }
 
->>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
+
 
 
 	}
@@ -111,35 +109,27 @@ bool Controller::checkIfLevelDone() {
 }
 //=============================================================
 
-void Controller::upgradeLevel() {
-
-<<<<<<< HEAD
-	
-    
-     m_level++;
-=======
-    {
+void Controller::upgradeLevel() 
+{
+  
         sf::Sprite uplevel;
-       uplevel.setTexture(*SingletonPicture::instance().getMLevelUp());
-       uplevel.setPosition(0,0);
-       m_window.clear();
-       m_window.draw(uplevel);
-       m_window.display();
-       sf::sleep(sf::seconds(2));
+        uplevel.setTexture(*SingletonPicture::instance().getMLevelUp());
+        uplevel.setPosition(0, 0);
+        m_window.clear();
+        m_window.draw(uplevel);
+        m_window.display();
+        sf::sleep(sf::seconds(2));
 
 
->>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
-     m_boardfile = openlevelfile(m_level);
-     m_levelUpSoundl.play();
-     m_board = Board(m_boardfile,0);
-
-    
+        m_boardfile = openlevelfile(m_level);
+        m_levelUpSoundl.play();
+        m_board = Board(m_boardfile, 0);
 
 }
 //=============================================================
 
-void Controller::printStartGameScreen() {
-
+void Controller::printStartGameScreen() 
+{
  auto soundmusic = sf::Sound(SingletonSound::instance().getOpenGame());
     soundmusic.play();
     sf::Sprite openpic(*SingletonPicture::instance().getMStartGame());

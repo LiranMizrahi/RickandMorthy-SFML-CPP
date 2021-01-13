@@ -291,7 +291,7 @@ void Board::fallingGift(float deltaTime)
     int j = (std::rand() % (m_height/2));
     sf::Vector2f location;
 
-    for ( i; i < m_staticObjects.size(); ++i)
+    for ( i; i < m_staticObjects.size() - 1; ++i)
     {
         for ( j; j < m_staticObjects[i].size(); ++j)
         {
@@ -301,9 +301,6 @@ void Board::fallingGift(float deltaTime)
                     {
                     location.y = ((cellwidth / 2) + (cellwidth * i)); 
                     location.x = ((cellhight / 2) + (cellhight * j));
-
-
-
 
                     srand((unsigned int)time(NULL));
                     int ChoosEnemy = std::rand() % 2;
