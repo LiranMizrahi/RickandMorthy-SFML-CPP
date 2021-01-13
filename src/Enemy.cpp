@@ -1,15 +1,15 @@
 #include "Enemy.h"
-
+#include "Macros.h"
 Enemy::Enemy( const sf::Vector2f& loc, int EnemySelection)
 {
-	if (EnemySelection == 1)
+	if (EnemySelection == HEROASJERRY)
 	{
 		auto hero = *SingletonPicture::instance().getEnemyMeeseeksTexture();
 		m_sprite.setTexture(*SingletonPicture::instance().getEnemyMeeseeksTexture());
 		m_sprite.setPosition(loc);
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 	}
-	else
+	else if (EnemySelection == HEROASRICK)
 	{
 		auto hero = *SingletonPicture::instance().getEnemyMonsterTexture();
 		m_sprite.setTexture(*SingletonPicture::instance().getEnemyMonsterTexture());

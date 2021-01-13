@@ -18,8 +18,8 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
     printStartGameScreen();
 
     m_boardfile = openlevelfile(m_level);
-    m_choes = m_menu.StartGame(m_window);
-    m_board = Board(m_boardfile, m_choes);
+    m_herroSelect = m_menu.StartGame(m_window);
+    m_board = Board(m_boardfile, m_herroSelect);
 
 
 
@@ -52,7 +52,9 @@ void Controller::run()
         m_board.checkIfObjectFalling(deltaTime);
         m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime);
-
+        //m_board check if hero alive
+        //m_board check if hero got gift
+        //m_board check if hero took coin
 
 
         //check if there is no move available coins to get
@@ -61,9 +63,11 @@ void Controller::run()
             //check if there is move level to upgrade
             if(m_level == NUMBEROFLEVELS)
                 gameOverHandler(true);
-            m_level++;
-            //if there is no more coins move to the next level
-            upgradeLevel();
+            else {
+                m_level++;
+                //if there is no more coins move to the next level
+                upgradeLevel();
+            }
         }
 
 
@@ -111,7 +115,7 @@ void Controller::upgradeLevel() {
 
      m_boardfile = openlevelfile(m_level);
      m_levelUpSoundl.play();
-     m_board = Board(m_boardfile,0);
+     m_board = Board(m_boardfile,m_herroSelect);
 
     }
 
@@ -139,7 +143,8 @@ void Controller::printStartGameScreen() {
 }
 //=============================================================
 
-void Controller::gameOverHandler(bool isplyerwin) {
+void Controller::gameOverHandler(bool isplyerwin)
+{
 
     auto gameoverpic = sf::Sprite();
     gameoverpic.setTexture(*SingletonPicture::instance().getMGameOver());
@@ -178,45 +183,53 @@ void Controller::gameOverHandler(bool isplyerwin) {
     sf::sleep(sf::seconds(3));
     soundmusic.play();
     auto event = sf::Event();
-    while (m_window.isOpen()) {
-        if (m_window.pollEvent(event)) {
-            m_window.clear();
-            m_window.draw(gameoverpic);
-            m_window.draw(exitgame);
-            m_window.draw(newgame);
-            m_window.draw(gameexitstatus);
-            m_window.display();
+    while (m_window.isOpen())
+    {
+        m_window.clear();
+        m_window.draw(gameoverpic);
+        m_window.draw(exitgame);
+        m_window.draw(newgame);
+        m_window.draw(gameexitstatus);
+        m_window.display();
+        if (m_window.waitEvent(event)) {
 
-            if (event.type== sf::Event::KeyReleased)
-                if(event.key.code ==sf::Keyboard::Up) {
+            if (event.type == sf::Event::KeyReleased)
+            {
+                if(event.key.code ==sf::Keyboard::Up)
+                {
                 choose = NEWGAME;
                 newgame.setStyle(exitgame.Underlined);
                 exitgame.setStyle(0);
+                }
 
-            }
-            else if (event.key.code ==sf::Keyboard::Down) {
+            else if (event.key.code ==sf::Keyboard::Down)
+            {
                 choose = EXIT;
                 exitgame.setStyle(exitgame.Underlined);
                 newgame.setStyle(0);
 
-            } else if (event.key.code ==sf::Keyboard::Enter) {
-
-                if (choose == EXIT) {
+            }
+            else if (event.key.code ==sf::Keyboard::Enter)
+            {
+                if (choose == EXIT)
+                {
                     m_window.close();
                     exit(EXIT_SUCCESS);
                 }
 
-                if (choose == NEWGAME) {
-                    //will to same shit
-
+                if (choose == NEWGAME)
+                {
+                    m_level = 1;
+                    upgradeLevel();
+                    return;
                 }
 
             }
 
 
+          }
+
         }
-
-
     }
 
 }

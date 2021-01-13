@@ -21,7 +21,6 @@ Board::Board(std::ifstream& file , int PlayerSelection)
     sf::Vector2f location;
     char input;
     m_staticObjects.clear();
-    //m_enemys.clear();
     m_movingObjects.clear();
 	file >> m_width >> m_height; // take size map
 	file.get();
@@ -128,27 +127,30 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
 
 }
 //============================================
+//there is ENEMYTYPES (set as 3 for now ) of enemy types
+//this function add the vector enemy
+//the type of the enemy will be randomly
+//============================================
 
 void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection)
 {
 
-
-    int ChoosEnemy = std::rand() % 2;
+    int ChooseEnemy = std::rand() % ENEMYTYPES;
     
 
-    switch (ChoosEnemy)
+    switch (ChooseEnemy)
     {
-    case 0:
+    case RANDOM:
         m_movingObjects.push_back(std::move(std::make_unique<RandomEnemy>(location, PlayerSelection)));
-       // m_enemys.push_back(std::move(std::make_unique<RandomEnemy>(location, PlayerSelection)));
+
         break;
-    case 1:
+    case Horizontal:
         m_movingObjects.push_back(std::move(std::make_unique<HorizontalEnemy>(location, PlayerSelection)));
-       // m_enemys.push_back(std::move(std::make_unique<HorizontalEnemy>(location, PlayerSelection)));
+
         break;
-    case UP:
+    case SMART:
         m_movingObjects.push_back(std::move(std::make_unique<SmartEnemy>(location, PlayerSelection)));
-      //  m_enemys.push_back(std::move(std::make_unique<SmartEnemy>(location, PlayerSelection)));
+
         break;
     }
 
@@ -205,8 +207,8 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
             for (auto &d : m_staticObjects[j])
             {
                 if (d) {
-                    if (Coin *coinptr = dynamic_cast<Coin *>(d.get()))
-                        continue;
+                    if(Coin *coinptr = dynamic_cast<Coin *>(d.get()))
+                            continue;
 
                     if(Rope *Rhope = dynamic_cast<Rope *>(d.get()))
                         if(movingobject.getSprite().getPosition().y-d->getSprite().getPosition().y < 15)
@@ -235,14 +237,12 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
 //==================================================
 void Board::printGameStatus(sf::RenderWindow & window, int levelnum)
 {
-
-
     initGamestatusbar();
-
 
     std::string scorestr = "000000";
     if(m_hero->getScore()>=1000000)
         scorestr+="0";
+
     scorestr.replace(scorestr.size()-std::to_string(m_hero->getScore()).size(),
                      std::to_string(m_hero->getScore()).size(),std::to_string(m_hero->getScore()));
     m_scoreText.setString("Score:"+scorestr);
@@ -256,9 +256,8 @@ void Board::printGameStatus(sf::RenderWindow & window, int levelnum)
 
 
     window.draw(m_lifeText);
-      window.draw(m_scoreText);
+    window.draw(m_scoreText);
     window.draw(m_levelText);
-
 
 
 }
