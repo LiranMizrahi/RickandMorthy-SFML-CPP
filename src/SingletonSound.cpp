@@ -30,7 +30,8 @@ SingletonSound::SingletonSound()
 	if (!m_collectGift.loadFromFile("collectgift.wav"))
 		std::cerr << "Can't open sound file mf";
 
-
+    if (!m_openGame.loadFromFile("opengamenew.wav"))
+        std::cerr << "Can't open sound file mf";
 }
 
 
@@ -70,6 +71,10 @@ const sf::SoundBuffer &SingletonSound::getMCollectGift()  {
 
 const sf::SoundBuffer &SingletonSound::getMCollectCoin() const {
     return m_collectCoin;
+}
+
+const sf::SoundBuffer &SingletonSound::getOpenGame() const {
+    return m_openGame;
 }
 
 

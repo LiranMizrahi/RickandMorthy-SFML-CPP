@@ -7,7 +7,7 @@ int Hero::m_life = 3;
 int Hero::m_score = 0;
 Hero::Hero(const sf::Vector2f& loc, int HeroSelection) //: m_life(3), m_score(123)
 {
-
+    sf::sleep(sf::seconds(3));
 
 	if (HeroSelection == 1)
 	{

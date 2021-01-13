@@ -43,6 +43,18 @@ SingletonPicture::SingletonPicture()
 	if (!m_heroMenu2.loadFromFile("rick_player.png"))
 	std::cout << "cant open picture";
 
+    if (!m_levelUp.loadFromFile("leveluppic.jpg"))
+        std::cout << "cant open picture";
+    if (!m_startGame.loadFromFile("openGamepic.jpg"))
+        std::cout << "cant open picture";
+
+    if (!m_heroIsdead.loadFromFile("rick_player.png"))
+        std::cout << "cant open picture";
+
+    if (!m_gameOver.loadFromFile("gameoverpic.jpg"))
+        std::cout << "cant open picture";
+
+
 
 }
 
@@ -111,4 +123,20 @@ const sf::Texture* SingletonPicture::getRickTexture()
         static SingletonPicture inst;
         return inst;
     }
+
+const sf::Texture* SingletonPicture::getMLevelUp()  {
+    return &m_levelUp;
+}
+
+const sf::Texture* SingletonPicture::getMStartGame()  {
+    return &m_startGame;
+}
+
+const sf::Texture* SingletonPicture::getMHeroIsdead()  {
+    return &m_heroIsdead;
+}
+
+const sf::Texture* SingletonPicture::getMGameOver()  {
+    return &m_gameOver;
+}
 

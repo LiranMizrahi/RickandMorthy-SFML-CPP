@@ -18,14 +18,14 @@ add_subdirectory(resources)
 
 if( APPLE )
     #this is for macos==============================
-    include_directories(/usr/local/include)
+    include_directories(/usr/local/include )
 
     find_package(SFML 2.5.1 COMPONENTS system window graphics network audio REQUIRED)
     if (SFML_FOUND)
         include_directories(${SFML_INCLUDE_DIRS})
         target_link_libraries(SFMLExamples sfml-window sfml-graphics sfml-audio sfml-network)
     endif()
-    #=========================================
+    #================================ =========
 else()
     #this is for windows==============================
 set (SFML_STATIC_LIBRARIES TRUE)
@@ -38,7 +38,7 @@ set_target_properties (sfml-main sfml-system sfml-window sfml-graphics sfml-audi
 target_link_libraries (SFMLExamples sfml-audio sfml-graphics sfml-main)
 
 configure_file (C:/SFML/SFML-2.5.1/bin/openal32.dll ${CMAKE_BINARY_DIR} COPYONLY)
- 
+
     #=========================================
 endif()
 

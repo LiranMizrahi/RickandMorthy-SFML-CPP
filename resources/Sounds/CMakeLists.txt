@@ -8,4 +8,6 @@ configure_file ("gameover.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("collectgift.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("levelup.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 
+configure_file ("opengamenew.wav" ${CMAKE_BINARY_DIR} COPYONLY)
+
 

@@ -239,7 +239,6 @@ void Board::printGameStatus(sf::RenderWindow & window, int levelnum)
 
     initGamestatusbar();
 
-      //  Hero hero  = dynamic_cast<Hero*>(&m_movingObjects[m_movingObjects.size()-1]);
 
     std::string scorestr = "000000";
     if(m_hero->getScore()>=1000000)
@@ -250,6 +249,7 @@ void Board::printGameStatus(sf::RenderWindow & window, int levelnum)
     m_levelText.setString("Level:000" + std::to_string(levelnum));
     m_lifeText.setString("Life:000"+std::to_string(m_hero->getLife()));
 
+    m_lifeText.setOutlineColor(sf::Color::White);
     m_scoreText.setPosition(50,BOARDHEIGHT);
     m_levelText.setPosition(m_scoreText.getPosition().x+m_scoreText.getGlobalBounds().width +50,BOARDHEIGHT);
     m_lifeText.setPosition(m_levelText.getPosition().x+m_levelText.getGlobalBounds().width+50,BOARDHEIGHT);
@@ -274,6 +274,7 @@ void Board::initGamestatusbar()
     m_lifeText.setCharacterSize(60);
     m_scoreText.setCharacterSize(60);
     m_levelText.setCharacterSize(60);
+
 
 }
 //==================================================
