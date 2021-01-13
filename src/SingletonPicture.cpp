@@ -43,10 +43,10 @@ SingletonPicture::SingletonPicture()
 	if (!m_heroMenu2.loadFromFile("rick_player.png"))
 	std::cout << "cant open picture";
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	if (!m_gift.loadFromFile("gift.png"))
 		std::cout << "cant open picture";
-=======
+//=======
     if (!m_levelUp.loadFromFile("leveluppic.jpg"))
         std::cout << "cant open picture";
     if (!m_startGame.loadFromFile("openGamepic.jpg"))
@@ -59,7 +59,7 @@ SingletonPicture::SingletonPicture()
         std::cout << "cant open picture";
 
 
->>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
+//>>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
 
 }
 

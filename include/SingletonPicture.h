@@ -22,14 +22,14 @@ public:
     const sf::Texture* getMenuTexture();
     const sf::Texture* getJerryTexture();
     const sf::Texture* getRickTexture();
-<<<<<<< HEAD
+//<<<<<< HEAD
     const sf::Texture* getGiftTexture();
-=======
+//=======
     const sf::Texture* getMLevelUp() ;
     const sf::Texture* getMStartGame() ;
     const sf::Texture* getMHeroIsdead() ;
     const sf::Texture* getMGameOver() ;
->>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
+//>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
 
   
    private:
@@ -49,15 +49,15 @@ public:
     sf::Texture m_rope;
     sf::Texture m_floor;
     sf::Texture m_menu;
-<<<<<<< HEAD
+//<<<<<< HEAD
     sf::Texture m_gift;
-=======
+//=======
     sf::Texture m_levelUp;
     sf::Texture m_startGame;
     sf::Texture m_heroIsdead;
     sf::Texture m_gameOver;
 
->>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
+//>>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
 
 };
 
