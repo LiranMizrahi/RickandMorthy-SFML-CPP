@@ -29,7 +29,6 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 
 void Controller::run()
 {
-	int gift = 0;
     m_startGameSound.play();
 	while (m_window.isOpen())
 	{
@@ -69,13 +68,6 @@ void Controller::run()
                 upgradeLevel();
             }
         }
-
-        if(gift == 0)
-        {
-            ++gift;
-            m_board.fallingGift(deltaTime);
-        }
-
 	}
 }
 

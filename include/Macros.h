@@ -10,6 +10,7 @@ const char LADDER = 'H';
 const char ROPE = '-';
 const char SPACE = ' ';
 const char FLOOR = '#';
+const char GIFT = '+';
 
 const int	LEFT = 1;
 const int	RIGHT = 2;

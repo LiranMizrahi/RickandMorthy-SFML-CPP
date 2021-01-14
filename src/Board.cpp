@@ -126,8 +126,8 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
     case LADDER:
         m_staticObjects[i].push_back(std::move(std::make_unique<Ladder>(location, boardsize)));
         break;
-
-
+    case GIFT:
+        addGiftToStaticVector(location, boardsize, i);
     }
 
 }
@@ -280,47 +280,22 @@ void Board::initGamestatusbar()
 }
 //==================================================
 
-void Board::fallingGift(float deltaTime)
+void Board::addGiftToStaticVector(const sf::Vector2f& location, sf::Vector2f boardsize, int i )
 {
-    sf::Vector2f boardsize((float)m_height, (float)m_width);
-    srand((unsigned int)time(NULL));
-    int i = (std::rand() % (m_width/2));
-    int j = (std::rand() % (m_height/2));
-    sf::Vector2f location;
+ int ChoosEnemy = std::rand() % 2; //TYPESOFGIFS
 
-    for ( i; i < m_staticObjects.size() - 1; ++i)
+    switch (ChoosEnemy)
     {
-        for ( j; j < m_staticObjects[i].size(); ++j)
-        {
-            if (NULL == m_staticObjects[i][j])
-            {
-                if (NULL != m_staticObjects[i+1][j])
-                    {
-                    location.y = ((cellwidth / 2) + (cellwidth * i));
-                    location.x = ((cellhight / 2) + (cellhight * j));
-
-
-                    int ChoosEnemy = std::rand() % TYPESOFGIFS;
-
-
-                    switch (ChoosEnemy)
-                    {
-                    case AddLife:
-                        m_staticObjects[i][j] = std::move(std::make_unique <GiftAddingLife>(location, boardsize));
-                        break;
-                    case AddScore:
-                        m_staticObjects[i][j] = std::move(std::make_unique <GiftAddingScore>(location, boardsize));
-                        break;
-                    case AddEnemy:
-                        m_staticObjects[i][j] = std::move(std::make_unique <GiftAddingEnemy>(location, boardsize));
-                        break;
-                    }
-
-                    return;
-                }
-            }
-        }
-    }
+    case AddLife:
+         m_staticObjects[i].push_back(std::move(std::make_unique <GiftAddingLife>(location, boardsize)));
+         break;
+    case AddScore:
+        m_staticObjects[i].push_back(std::move(std::make_unique <GiftAddingScore>(location, boardsize)));
+        break;
+    case AddEnemy:
+         m_staticObjects[i].push_back(std::move(std::make_unique <GiftAddingEnemy>(location, boardsize)));
+        break;
+    } 
 }
 //==================================================
 bool Board::handleCollisions(GameObj &obj)
