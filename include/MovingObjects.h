@@ -27,11 +27,8 @@ protected:
     bool m_isDownAvail = false;
 public:
     bool isIsUpAvail() const;
-
     void setIsUpAvail(bool mIsUpAvail);
-
     bool isIsDownAvail() const;
-
     void setIsDownAvail(bool mIsDownAvail);
 
 

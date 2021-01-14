@@ -6,6 +6,7 @@ class SingletonSound
 public:
 
     ~SingletonSound() =default;
+
     static SingletonSound& instance();
 
     const sf::SoundBuffer &getMJerry() const;

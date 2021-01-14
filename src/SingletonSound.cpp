@@ -5,11 +5,9 @@
 SingletonSound::SingletonSound()
 {
     bool isok =true;
-	//if (!
+	 if (!m_jerry.loadFromFile("jerrysound.wav"))
+		std::cerr << "Can't open sound file mf";
 
-	isok&m_jerry.loadFromFile("jerrysound.wav");//)
-	//	std::cerr << "Can't open sound file mf";
-		
 	if (!m_rick.loadFromFile("ricksound.wav"))
 		std::cerr << "Can't open sound file mf";
 	

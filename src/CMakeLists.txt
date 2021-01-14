@@ -21,5 +21,9 @@
                                     "GiftAddingEnemy.cpp"
                                     "PresentAddingLife .cpp"
                                     "GiftAddingScore.cpp"
+                                    "SingletonFont.cpp"
+                                    "GameOverState.cpp"
+                                    "StartGameState.cpp"
+                                    "State.cpp"
 )
 

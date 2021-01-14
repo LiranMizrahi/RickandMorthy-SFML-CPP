@@ -10,6 +10,7 @@
 #include "Menu.h"
 #include "SingletonSound.h"
 #include"Coin.h"
+#include "GameOverState.h"
 										
 class Controller {
 					
@@ -33,6 +34,7 @@ private:
 	sf::Sound m_startGameSound;
 	sf::Sound m_gameOverSound;
     sf::Sound m_levelUpSoundl;
+    GameOverState m_gameOverState;
 
 
 	static  int m_level;

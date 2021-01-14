@@ -63,8 +63,12 @@ Board::Board(std::ifstream& file , int PlayerSelection)
             location.y += (2 * ty);
 
     }
+
+
+
     m_movingObjects.push_back(std::move(std::make_unique<Hero>(heroloc, PlayerSelection)));
-    m_hero = dynamic_cast<Hero*>(m_movingObjects[m_movingObjects.size()-1].get());
+
+    m_hero = (Hero*)m_movingObjects[m_movingObjects.size()-1].get();
 
 
 }
@@ -100,11 +104,10 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
         createEnemysVector(location, PlayerSelection);
         break;
 
-//    case HERO:
-//        //m_movingObjects.push_back(std::move(std::make_unique<Hero>(location, PlayerSelection)));
-//       m_hero = Hero(location, PlayerSelection);
-//
-//        break;
+//      case HERO:
+//          m_movingObjects.push_back(std::move(std::make_unique<Hero>(location, PlayerSelection)));
+//          m_hero = Hero(location, PlayerSelection);
+//          break;
     case FLOOR:
        
       m_staticObjects[i].push_back(std::move(std::make_unique<Floor>(location, boardsize)));
