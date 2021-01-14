@@ -16,16 +16,16 @@ public:
 	Gift() {};
 	Gift(const sf::Vector2f& loc, const sf::Vector2f&);
 	~Gift() override = default;
-	virtual void handleColision(Rope&) override {};
-	virtual void handleColision(Hero&) override {};
-	virtual void handleColision(Floor&) override {};
-	virtual void handleColision(Ladder&) override {};
-	virtual void handleColision(GameObj&) override {};
-	virtual void handleColision(Coin&) override {};
-	virtual void handleColision(Enemy&) override {};
-	virtual void handleColision(GiftAddingLife&) override {};
-	virtual void handleColision(GiftAddingScore&) override {};
-	virtual void handleColision(GiftAddingEnemy&) override {};
+	virtual void handleColision(Rope&) override = 0;
+	virtual void handleColision(Hero&) override = 0;
+	virtual void handleColision(Floor&) override  = 0;
+	virtual void handleColision(Ladder&) override  = 0;
+	virtual void handleColision(GameObj&) override  = 0;
+	virtual void handleColision(Coin&) override  = 0;
+	virtual void handleColision(Enemy&) override  = 0;
+	virtual void handleColision(GiftAddingLife&) override  = 0;
+	virtual void handleColision(GiftAddingScore&) override  = 0;
+	virtual void handleColision(GiftAddingEnemy&) override  = 0;
     virtual bool isObjectIsStandable(GameObj&)override;
 
 private:

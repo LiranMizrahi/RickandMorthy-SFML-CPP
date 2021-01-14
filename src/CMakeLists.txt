@@ -19,7 +19,7 @@
                                     "SmartEnemy.cpp"
                                     "Gift.cpp"
                                     "GiftAddingEnemy.cpp"
-                                    "PresentAddingLife .cpp"
+                                    "GiftAddingLife .cpp"
                                     "GiftAddingScore.cpp"
                                     "SingletonFont.cpp"
                                     "GameOverState.cpp"

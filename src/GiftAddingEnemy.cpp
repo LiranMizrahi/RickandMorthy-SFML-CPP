@@ -4,6 +4,11 @@ GiftAddingEnemy::GiftAddingEnemy(const sf::Vector2f& loc, const sf::Vector2f& si
 {
 }
 
+void GiftAddingEnemy::handleColision(GameObj& obj)
+{
+    obj.handleColision(*this);
+}
+
 void GiftAddingEnemy::handleColision(Hero& Obj)
 {
     if(m_isOff)
