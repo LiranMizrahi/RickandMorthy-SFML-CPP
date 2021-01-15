@@ -176,7 +176,7 @@ void Hero::digHole(std::vector<std::vector<std::unique_ptr<StaticObjects>>> & m_
     }
 
 
-
+        row++;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
     {
         col++;
