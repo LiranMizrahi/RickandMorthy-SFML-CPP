@@ -184,18 +184,20 @@ void Hero::digHole(
     for ( row = 0; pointposition < this->getSprite().getPosition().y+(this->m_sprite.getGlobalBounds().width) ; ++row) {
         pointposition += cellsize.x;
 
-
-     pointposition= cellsize.y;
-
-    for ( ; pointposition < this->getSprite().getPosition().x+(this->m_sprite.getGlobalBounds().height; ++col) {
-        pointposition+= cellsize.y;
     }
 
-    std::cout << col<<std::endl;
+        pointposition = cellsize.y;
 
-     if(row >= 0 &&col >= 0 && row < boardsize.x && col <boardsize.y)
-        if(m_staticobj[row][col])
-            m_staticobj[row][col]->setIsOff(true);
+        for (; pointposition < this->getSprite().getPosition().x +
+                               (this->m_sprite.getGlobalBounds().height); ++col) {
+            pointposition += cellsize.y;
+        }
+
+        std::cout << col << std::endl;
+
+        if (row >= 0 && col >= 0 && row < boardsize.x && col < boardsize.y)
+            if (m_staticobj[row][col])
+                m_staticobj[row][col]->setIsOff(true);
 
 
     }
