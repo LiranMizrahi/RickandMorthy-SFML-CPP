@@ -330,7 +330,8 @@ bool Board::handleCollisions(GameObj &obj)
 
 void Board::checkIfHeroDig() {
 
-    m_hero->digHole(m_staticObjects, sf::Vector2f(m_cellWidth,m_cellHight));
+    m_hero->digHole(m_staticObjects, sf::Vector2f(m_cellWidth, m_cellHight),
+                    sf::Vector2f(m_cellWidth,m_cellHight));
 
 }
 //==================================================

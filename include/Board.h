@@ -39,7 +39,6 @@ private:
 	void createEnemysVector(const sf::Vector2f&, int);
 	void addGiftToStaticVector(const sf::Vector2f&, sf::Vector2f, int);
 	bool handleCollisions(GameObj &obj);
-
     bool isObjectIsFalling(float, MovingObjects&);
 
     void initGamestatusbar();

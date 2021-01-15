@@ -7,7 +7,6 @@ int Hero::m_life = 3;
 int Hero::m_score = 0;
 Hero::Hero(const sf::Vector2f& loc, int HeroSelection) //: m_life(3), m_score(123)
 {
-    sf::sleep(sf::seconds(3));
 
 	if (HeroSelection == HEROASJERRY)
 	{
@@ -160,40 +159,41 @@ void Hero::handleColision(Hero &) {
 }
 
 
-void Hero::digHole(std::vector<std::vector<std::unique_ptr<StaticObjects>>> & m_staticobj,
-                   const sf::Vector2f &cellsize) {
+void Hero::digHole(
+        std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
+        const sf::Vector2f &cellsize, const sf::Vector2f &boardsize)
+{
 
-    int row,col;
+    int row,col = 0;
     float pointposition= cellsize.x/2;
 
-    for ( row = 0; pointposition < this->getSprite().getPosition().y ; ++row) {
-        pointposition += cellsize.x;
-    }
-
-     pointposition= cellsize.y/2;
-    for ( col = 0; pointposition < this->getSprite().getPosition().x ; ++col) {
-        pointposition+= cellsize.y;
-    }
-
-
-        row++;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
     {
-        col++;
-        std::cout <<row<<" " << col<<std::endl;
-
-        if(m_staticobj[row][col])
-        m_staticobj[row][col]->setIsOff(true);
-
+       // col++;
     }
 
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         col-=2;
-        std::cout <<row<<" " << col<<std::endl;
-        if(m_staticobj[row][col])
-                m_staticobj[row][col]->setIsOff(true);
+
     }
+
+
+    else return;
+    time_t liran = clock();
+    for ( row = 0; pointposition < this->getSprite().getPosition().y+(this->m_sprite.getGlobalBounds().width) ; ++row) {
+        pointposition += cellsize.x;
+    }
+
+     pointposition= cellsize.y/2;
+    for ( ; pointposition < this->getSprite().getPosition().x+(this->m_sprite.getGlobalBounds().height/2) ; ++col) {
+        pointposition+= cellsize.y;
+    }
+
+
+     if(row >= 0 &&col >= 0 && row < boardsize.x && col <boardsize.y)
+        if(m_staticobj[row][col])
+            m_staticobj[row][col]->setIsOff(true);
 
 
     }

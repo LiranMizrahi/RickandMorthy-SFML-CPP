@@ -19,8 +19,9 @@ class Hero : public MovingObjects {
 	   void SetScore(int);
 	   void SetLife(int);
 	    void UpdateLocation(float)override;
-	    void digHole(std::vector<std::vector<std::unique_ptr<StaticObjects>>> &,
-                     const sf::Vector2f &cellsize);
+	    void digHole(
+                std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
+                const sf::Vector2f &cellsize, const sf::Vector2f &boardsize);
 
 	    void handleColision(GameObj&)override;
 	    void handleColision(Rope&)override;

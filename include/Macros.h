@@ -25,7 +25,7 @@ const int WIDTHSIZECALI = 25;
 const int HEIGHTSIZECALI = 15;
 
 //define all speeds of moving objects
-const float FALLINGSPEED = 300.f;
+const float FALLINGSPEED = 250.f;
 const  float HEROSPEED = 350.f ;
 const  float ENEMYSPEED = 300.f;
 const int NUMBEROFLEVELS = 2;
