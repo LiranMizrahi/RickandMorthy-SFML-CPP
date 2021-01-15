@@ -30,3 +30,7 @@ bool Ladder::isObjectIsStandable(GameObj &) {
     return true;
 }
 
+bool Ladder::isObjectDigable() {
+    return false;
+}
+

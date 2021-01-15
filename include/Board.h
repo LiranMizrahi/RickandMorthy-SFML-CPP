@@ -19,18 +19,18 @@ public:
 	void moveCharacters(float);
 	int checkCollisions(float);
     bool checkIfObjectFalling(float);
-	void readFile(std::vector <std::vector<char>> file, int PlayerSelection);
     
-    void printGameStatus(sf::RenderWindow &, int level, sf::Time, sf::Clock);
+    void printGameStatus(sf::RenderWindow &, int level, sf::Time , sf::Clock);
 
 private:
 	//private members
     Hero* m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
-	//std::vector <std::unique_ptr <Enemy>>m_enemys;
 	std::vector <std::unique_ptr <MovingObjects>>m_movingObjects;
 
 	int m_width, m_height;
+    float m_cellHight,m_cellWidth;
+
     sf::Text m_scoreText;
     sf::Text m_levelText;
     sf::Text m_lifeText;
@@ -41,12 +41,10 @@ private:
 	void createEnemysVector(const sf::Vector2f&, int);
 	void addGiftToStaticVector(const sf::Vector2f&, sf::Vector2f, int);
 	bool handleCollisions(GameObj &obj);
-
     bool isObjectIsFalling(float, MovingObjects&);
-
+	void readFile(std::vector <std::vector<char>> , int);
     void initGamestatusbar();
 
-    float cellhight,cellwidth;
 
 
 };

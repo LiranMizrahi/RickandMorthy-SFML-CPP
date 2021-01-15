@@ -60,5 +60,9 @@ void Coin::incCoins()
 bool Coin::isObjectIsStandable(GameObj & obj) {
     return false;
 }
+
+bool Coin::isObjectDigable() {
+    return false;
+}
 //=============================================================
 

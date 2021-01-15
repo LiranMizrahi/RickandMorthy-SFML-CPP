@@ -30,5 +30,9 @@ bool Rope::isObjectIsStandable(GameObj & movingobject) {
 
 }
 
+bool Rope::isObjectDigable() {
+    return false;
+}
+
 
 

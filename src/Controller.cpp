@@ -55,6 +55,7 @@ void Controller::run()
         m_board.checkIfObjectFalling(deltaTime);
         m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime);
+       // m_board.checkIfHeroDig();
         //m_board check if hero alive
         //m_board check if hero got gift
         //m_board check if hero took coin

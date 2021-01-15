@@ -27,3 +27,7 @@ void Floor::handleColision(GameObj &obj) {
 bool Floor::isObjectIsStandable(GameObj &) {
     return true;
 }
+
+bool Floor::isObjectDigable() {
+    return true;
+}

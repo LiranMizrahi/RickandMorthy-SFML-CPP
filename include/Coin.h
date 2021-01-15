@@ -24,6 +24,8 @@ public:
 	virtual void handleColision(GiftAddingEnemy&) override {};
     virtual bool isObjectIsStandable(GameObj&)override;
 	static size_t getNowCoins();
+    virtual bool isObjectDigable() override;
+
 	static void incCoins();
 private:
 	
