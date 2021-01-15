@@ -1,4 +1,4 @@
-#include "Board.h"
+﻿#include "Board.h"
 #include "Macros.h"
 #include <SFML/Graphics.hpp>
 #include "SingletonPicture.h"
@@ -20,30 +20,26 @@
 
 //===============constructor ==============
 
-Board::Board(std::vector <std::vector<char>> file , int PlayerSelection, int width, int height)
+Board::Board(std::vector <std::vector<char>> file , int PlayerSelection)
 {
-    m_height = height;
-    m_width = width;
+    m_height = file.size();
+    m_width = file[1].size();
     readFile(file, PlayerSelection);
 }
 //====================================================
 void Board::draw(sf::RenderWindow& window)const
 {   
-    float tx = (BOARDWIDTH/ float(m_width));
-    float ty = (BOARDHEIGHT / float(m_height));
-    sf::Vector2f size(tx, ty);
     //draw static object
     for (auto& e : m_staticObjects)
         for (auto& d : e) {
             if(d)
-            d->draw(window, size);
+            d->draw(window);
         }
     //draw mov object
     for (auto& movObj : m_movingObjects)
     {
-        movObj->draw(window,size);
+        movObj->draw(window);
     }
-
 }
 
 //====================================================
@@ -136,11 +132,9 @@ bool Board::checkIfObjectFalling(float deltatime) {
 void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
 {
     sf::Vector2f location;
-    char input;
     m_staticObjects.clear();
     m_movingObjects.clear();
-    //file >> m_width >> m_height >> timeGame; // take size map
-    //file.get();
+    
 
      m_cellWidth = (BOARDHEIGHT / float(m_height));
      m_cellHight = (BOARDWIDTH / float(m_width));
@@ -152,7 +146,6 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
     float ty = (BOARDHEIGHT / float(m_height) / 2);
     location.x = tx;
     location.y = ty;
-    float x_location = location.x;
     sf::Vector2f heroloc;
     // take char with the file and put vector
     for (int i = 0; i < m_height; ++i)
@@ -160,29 +153,24 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
         //   m_staticObjects[i];
         for (int j = 0; j < m_width; ++j)
         {
-            input = file[i][j] ;
-            if (input == ' ')
+            
+            if (file[i][j] == ' ')
                 m_staticObjects[i].push_back(nullptr);
-            else if (input == HERO)
+            else if (file[i][j] == HERO)
                 heroloc = location;
             else
-                createObject(input, location, PlayerSelection, i);
+                createObject(file[i][j], location, PlayerSelection, i);
 
             location.x += (2 * tx);
         }
         
-        location.x = x_location;
+        location.x = tx;
         location.y += (2 * ty);
 
     }
-
-
-
+    
     m_movingObjects.push_back(std::move(std::make_unique<Hero>(heroloc, PlayerSelection)));
-
     m_hero = (Hero*)m_movingObjects[m_movingObjects.size() - 1].get();
-
-
 }
 
 //==========================================
@@ -238,7 +226,7 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
     return true;
 }
 //==================================================
-void Board::printGameStatus(sf::RenderWindow & window, int levelnum, sf::Time timeLevel, sf::Clock time )
+void Board::printGameStatus(sf::RenderWindow & window, int levelnum, sf::Time timeLevel, sf::Clock time , bool m_isOnTime)
 {
     initGamestatusbar();
 
@@ -251,18 +239,26 @@ void Board::printGameStatus(sf::RenderWindow & window, int levelnum, sf::Time ti
     m_scoreText.setString("Score:"+scorestr);
     m_levelText.setString("Level:000" + std::to_string(levelnum));
     m_lifeText.setString("Life:000"+std::to_string(m_hero->getLife()));
-    m_timeTheLevel.setString("Time:" + std::to_string(timeLevel.asSeconds()-time.getElapsedTime().asSeconds()));
+    
+    if (m_isOnTime)
+    {
+        m_timeTheLevel.setString("Time:" + std::to_string(timeLevel.asSeconds() - time.getElapsedTime().asSeconds()));
+    }
+    else
+    {
+        m_timeTheLevel.setString("Time: 9999");
+    }
+
 
     m_lifeText.setOutlineColor(sf::Color::White);
-    m_scoreText.setPosition(25,BOARDHEIGHT);
-    m_levelText.setPosition(m_scoreText.getPosition().x+m_scoreText.getGlobalBounds().width +25,BOARDHEIGHT);
-    m_lifeText.setPosition(m_levelText.getPosition().x+m_levelText.getGlobalBounds().width+25,BOARDHEIGHT);
-    m_timeTheLevel.setPosition(m_lifeText.getPosition().x + m_lifeText.getGlobalBounds().width + 25, BOARDHEIGHT);
+    m_scoreText.setPosition(30,BOARDHEIGHT);
+    m_levelText.setPosition(m_scoreText.getPosition().x+m_scoreText.getGlobalBounds().width +30,BOARDHEIGHT);
+    m_lifeText.setPosition(m_levelText.getPosition().x+m_levelText.getGlobalBounds().width+30,BOARDHEIGHT);
+    m_timeTheLevel.setPosition(m_lifeText.getPosition().x + m_lifeText.getGlobalBounds().width + 30, BOARDHEIGHT);
 
     window.draw(m_lifeText);
     window.draw(m_scoreText);
     window.draw(m_levelText);
-   // if(false)
     window.draw(m_timeTheLevel);
 
 }
@@ -276,10 +272,10 @@ void Board::initGamestatusbar()
     m_lifeText.setFont(SingletonFont::instance().getMBoardstatus());
     m_timeTheLevel.setFont(SingletonFont::instance().getMBoardstatus());
 
-    m_lifeText.setCharacterSize(40);
-    m_scoreText.setCharacterSize(40);
-    m_levelText.setCharacterSize(40);
-    m_timeTheLevel.setCharacterSize(40);
+    m_lifeText.setCharacterSize(50);
+    m_scoreText.setCharacterSize(50);
+    m_levelText.setCharacterSize(50);
+    m_timeTheLevel.setCharacterSize(50);
 
 }
 
@@ -330,3 +326,9 @@ bool Board::handleCollisions(GameObj &obj)
     return false;
 }
 //==================================================
+void Board::checkIfHeroDig() {
+
+    m_hero->digHole(m_staticObjects, sf::Vector2f(m_cellWidth, m_cellHight),
+        sf::Vector2f(m_cellHight, m_cellWidth));
+
+}

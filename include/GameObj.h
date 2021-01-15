@@ -22,7 +22,7 @@ public:
 	bool collisonWith(const GameObj&)const;
 	sf::Sprite getSprite()const;
 
-    void draw(sf::RenderWindow&, const sf::Vector2f&)const;
+    void draw(sf::RenderWindow&)const;
     virtual void handleColision(GameObj& obj) = 0;
 	virtual void handleColision(Floor& obj) = 0;
 	virtual void handleColision(Ladder& obj) = 0;

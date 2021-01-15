@@ -24,8 +24,8 @@ public:
 private:
 
 	//private members
-	int m_width, m_height;
-	int m_timeTheLevel;
+	bool m_isOnTime;
+	float m_timeTheLevel;
 	int m_herroSelect;
 	Board m_board;
 	Menu m_menu;
@@ -50,6 +50,6 @@ private:
 	void upgradeLevel();
 	void printStartGameScreen();
 	void gameOverHandler(bool);
-
+	void CheckingTimes();
 
 };				

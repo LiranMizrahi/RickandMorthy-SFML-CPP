@@ -13,22 +13,21 @@ class Board {
 
 public:
 	Board() = default;
-    //Board(std::ifstream& , int);
-	Board(std::vector <std::vector<char>>, int, int, int);
+	Board(std::vector <std::vector<char>>, int);
 	void draw(sf::RenderWindow&)const;
 	void moveCharacters(float);
 	int checkCollisions(float);
     bool checkIfObjectFalling(float);
     
-    void printGameStatus(sf::RenderWindow &, int level, sf::Time , sf::Clock);
-
+    void printGameStatus(sf::RenderWindow &, int level, sf::Time , sf::Clock, bool);
+	void checkIfHeroDig();
 private:
 	//private members
     Hero* m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
 	std::vector <std::unique_ptr <MovingObjects>>m_movingObjects;
 
-	int m_width, m_height;
+	size_t m_width, m_height;
     float m_cellHight,m_cellWidth;
 
     sf::Text m_scoreText;

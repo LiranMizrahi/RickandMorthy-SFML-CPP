@@ -21,18 +21,15 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
     m_time.restart();
     m_playingTime = sf::seconds(m_timeTheLevel);
     m_herroSelect = m_menu.StartGame(m_window);
-    m_board = Board(m_boardChar, m_herroSelect, m_width, m_height);
+    m_board = Board(m_boardChar, m_herroSelect);
 
-
-
-    
 }
 //=============================================================
 
 void Controller::run()
 {
     
-
+    m_time.restart();
     m_startGameSound.play();
 	while (m_window.isOpen())
 	{
@@ -40,7 +37,7 @@ void Controller::run()
 		m_window.clear();
 		m_window.draw(board);
 		m_board.draw(m_window);
-        m_board.printGameStatus(m_window,m_level, m_playingTime, m_time);
+        m_board.printGameStatus(m_window,m_level, m_playingTime, m_time, m_isOnTime);
         m_window.display();
 
 
@@ -55,7 +52,7 @@ void Controller::run()
         m_board.checkIfObjectFalling(deltaTime);
         m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime);
-       // m_board.checkIfHeroDig();
+        m_board.checkIfHeroDig();
         //m_board check if hero alive
         //m_board check if hero got gift
         //m_board check if hero took coin
@@ -74,9 +71,9 @@ void Controller::run()
             }
         }
 
-
+        CheckingTimes();
+        
        
-       //std::cout<< m_playingTime.asSeconds() - m_time.getElapsedTime().asSeconds() <<std::endl;
 
        
 	}
@@ -87,7 +84,7 @@ void Controller::run()
 std::vector<std::vector<char>> Controller::openlevelfile(int level)
 {
     std::vector<std::vector<char>> temp;
-
+    int width, height;
     m_time.restart();
 	std::string filename = "level";
 		filename += std::to_string(level);
@@ -98,15 +95,17 @@ std::vector<std::vector<char>> Controller::openlevelfile(int level)
 			std::cout << "Error while open level file";
 
 
-        file >> m_width >> m_height >> m_timeTheLevel; // take size map
+        file >> width >> height >> m_timeTheLevel; // take size map
         file.get();
 
+        if (-1 < m_timeTheLevel)
+            m_isOnTime = true;
 
-        for (int i = 0; i < m_height; ++i)
+        for (int i = 0; i < height; ++i)
         {
             std::vector<char> row;
 
-            for (int j = 0; j < m_width; ++j)
+            for (int j = 0; j < width; ++j)
             { 
                 row.push_back(file.get());
             }
@@ -144,7 +143,7 @@ void Controller::upgradeLevel() {
 
      m_boardChar = openlevelfile(m_level);
      m_levelUpSoundl.play();
-     m_board = Board(m_boardChar,m_herroSelect, m_width, m_height);
+     m_board = Board(m_boardChar,m_herroSelect);
 
     
 
@@ -177,6 +176,15 @@ void Controller::gameOverHandler(bool isplyerwin)
     m_gameOverState.openstate(m_window,isplyerwin);
     m_level = 0;
 
+}
+//=============================================================
+void Controller::CheckingTimes()
+{
+    if (m_isOnTime)
+        if (m_playingTime.asSeconds() - m_time.getElapsedTime().asSeconds() <= 0)
+        {
+            gameOverHandler(true);
+        }
 }
 
 
