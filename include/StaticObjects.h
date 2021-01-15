@@ -13,6 +13,7 @@ public:
 	//	void draw(sf::RenderWindow&, const sf::Vector2f& )const ;
 	 ~StaticObjects() override= default;;
     virtual bool isObjectIsStandable(GameObj&) = 0;
+    virtual bool isObjectDigable() = 0;
 private:
 
 };

@@ -13,4 +13,8 @@ bool Gift::isObjectIsStandable(GameObj &) {
     return false;
 }
 
+bool Gift::isObjectDigable() {
+    return false;
+}
+
 

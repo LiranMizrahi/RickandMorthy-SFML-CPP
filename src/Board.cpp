@@ -30,8 +30,8 @@ Board::Board(std::ifstream& file , int PlayerSelection)
 	file >> m_width >> m_height; // take size map
 	file.get();
 
-    cellwidth = (BOARDHEIGHT / float(m_height));
-    cellhight = (BOARDWIDTH/ float(m_width));
+    m_cellWidth = (BOARDHEIGHT / float(m_height));
+    m_cellHight = (BOARDWIDTH / float(m_width));
     m_staticObjects.resize(m_height);
 
     //calculate the size of the middle of singal cell 
@@ -49,7 +49,7 @@ Board::Board(std::ifstream& file , int PlayerSelection)
         for (int j = 0; j < m_width; ++j)
         {
                input = file.get();
-               if(input == ' ')
+               if(input == SPACE)
                    m_staticObjects[i].push_back(nullptr);
                else if(input == HERO)
                 heroloc = location;
@@ -142,8 +142,6 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
     srand((unsigned int)time(NULL));
     int ChooseEnemy = std::rand() % ENEMYTYPES;
 
-    
-
     switch (ChooseEnemy)
     {
     case RANDOM:
@@ -198,10 +196,10 @@ int Board::checkCollisions(float deltaTime)
 bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
 {
 
-    float index = cellhight / 2;
+    float index = m_cellHight / 2;
     int i;
         for (i = 0;index < movingobject.getSprite().getPosition().y; ++i) {
-            index += cellhight;
+            index += m_cellHight;
         }
 
 
@@ -301,16 +299,18 @@ void Board::addGiftToStaticVector(const sf::Vector2f& location, sf::Vector2f boa
 bool Board::handleCollisions(GameObj &obj)
 {
 
- for(auto & movingobject :m_movingObjects)
- {
-     if(obj.collisonWith(*movingobject))
+     for(auto & movingobject :m_movingObjects)
      {
-         obj.handleColision(*movingobject);
+         if(obj.collisonWith(*movingobject))
+         {
+             obj.handleColision(*movingobject);
+         }
      }
- }
 
-    for (auto& staticObjects : m_staticObjects) {
-        for (auto &stsobj : staticObjects) {
+    for (auto& staticObjects : m_staticObjects)
+    {
+        for (auto &stsobj : staticObjects)
+        {
 
             if (stsobj)
                 if (!stsobj->getIsOff())
@@ -326,5 +326,11 @@ bool Board::handleCollisions(GameObj &obj)
 
 }
     return false;
+}
+
+void Board::checkIfHeroDig() {
+
+    m_hero->digHole(m_staticObjects, sf::Vector2f(m_cellWidth,m_cellHight));
+
 }
 //==================================================

@@ -12,10 +12,12 @@ const char SPACE = ' ';
 const char FLOOR = '#';
 const char GIFT = '+';
 
+
 const int	LEFT = 1;
 const int	RIGHT = 2;
 const int	UP = 3;
 const int	DOWN = 4;
+
 
 const int BOARDWIDTH = 1600;
 const int BOARDHEIGHT = 899;

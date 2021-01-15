@@ -18,17 +18,18 @@ public:
 	void moveCharacters(float);
 	int checkCollisions(float);
     bool checkIfObjectFalling(float);
-    
+    void checkIfHeroDig();
     void printGameStatus(sf::RenderWindow &, int level);
 
 private:
 	//private members
     Hero* m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
-	//std::vector <std::unique_ptr <Enemy>>m_enemys;
 	std::vector <std::unique_ptr <MovingObjects>>m_movingObjects;
 
 	int m_width, m_height;
+    float m_cellHight,m_cellWidth;
+
     sf::Text m_scoreText;
     sf::Text m_levelText;
     sf::Text m_lifeText;
@@ -43,7 +44,6 @@ private:
 
     void initGamestatusbar();
 
-    float cellhight,cellwidth;
 
 
 };

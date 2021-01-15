@@ -43,3 +43,8 @@ sf::Sprite GameObj::getSprite() const{
 bool GameObj::getIsOff()const {
     return m_isOff;
 }
+
+void GameObj::setIsOff(bool isoff) {
+    m_isOff = isoff;
+
+}

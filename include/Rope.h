@@ -26,4 +26,5 @@ public:
 	virtual void handleColision(GiftAddingEnemy&) override {};
 
     virtual bool isObjectIsStandable(GameObj&)override;
+    virtual bool isObjectDigable()override;
 };

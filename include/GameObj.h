@@ -36,6 +36,7 @@ public:
 
 
 	bool getIsOff()const;
+	void setIsOff(bool isoff);
 
 
 protected:

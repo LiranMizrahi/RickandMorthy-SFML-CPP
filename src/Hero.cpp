@@ -127,7 +127,7 @@ void Hero::handleColision(GiftAddingLife&)
 
 void Hero::handleColision(GiftAddingScore&)
 {
-	m_score =+ 300;
+	m_score += 300;
 }
 
 //====================================================
@@ -158,4 +158,43 @@ void Hero::playCollectDeadSound() {
 void Hero::handleColision(Hero &) {
 
 }
+
+
+void Hero::digHole(std::vector<std::vector<std::unique_ptr<StaticObjects>>> & m_staticobj,
+                   const sf::Vector2f &cellsize) {
+
+    int row,col;
+    float pointposition= cellsize.x/2;
+
+    for ( row = 0; pointposition < this->getSprite().getPosition().y ; ++row) {
+        pointposition += cellsize.x;
+    }
+
+     pointposition= cellsize.y/2;
+    for ( col = 0; pointposition < this->getSprite().getPosition().x ; ++col) {
+        pointposition+= cellsize.y;
+    }
+
+
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+    {
+        col++;
+        std::cout <<row<<" " << col<<std::endl;
+
+        if(m_staticobj[row][col])
+        m_staticobj[row][col]->setIsOff(true);
+
+    }
+
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+    {
+        col-=2;
+        std::cout <<row<<" " << col<<std::endl;
+        if(m_staticobj[row][col])
+                m_staticobj[row][col]->setIsOff(true);
+    }
+
+
+    }
 //====================================================
