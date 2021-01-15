@@ -13,13 +13,15 @@ class Board {
 
 public:
 	Board() = default;
-    Board(std::ifstream& , int);
+    //Board(std::ifstream& , int);
+	Board(std::vector <std::vector<char>>, int, int, int);
 	void draw(sf::RenderWindow&)const;
 	void moveCharacters(float);
 	int checkCollisions(float);
     bool checkIfObjectFalling(float);
+	void readFile(std::vector <std::vector<char>> file, int PlayerSelection);
     
-    void printGameStatus(sf::RenderWindow &, int level);
+    void printGameStatus(sf::RenderWindow &, int level, sf::Time, sf::Clock);
 
 private:
 	//private members
@@ -32,6 +34,7 @@ private:
     sf::Text m_scoreText;
     sf::Text m_levelText;
     sf::Text m_lifeText;
+	sf::Text m_timeTheLevel;
 
 	//private function
     void createObject(char, const sf::Vector2f &, int, int );

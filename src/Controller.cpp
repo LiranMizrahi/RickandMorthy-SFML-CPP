@@ -17,18 +17,22 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 	board.setPosition(0,0);
     printStartGameScreen();
 
-    m_boardfile = openlevelfile(m_level);
+    m_boardChar = openlevelfile(m_level);
+    m_time.restart();
+    m_playingTime = sf::seconds(m_timeTheLevel);
     m_herroSelect = m_menu.StartGame(m_window);
-    m_board = Board(m_boardfile, m_herroSelect);
+    m_board = Board(m_boardChar, m_herroSelect, m_width, m_height);
 
 
 
-    m_boardfile.close();
+    
 }
 //=============================================================
 
 void Controller::run()
 {
+    
+
     m_startGameSound.play();
 	while (m_window.isOpen())
 	{
@@ -36,7 +40,7 @@ void Controller::run()
 		m_window.clear();
 		m_window.draw(board);
 		m_board.draw(m_window);
-        m_board.printGameStatus(m_window,m_level);
+        m_board.printGameStatus(m_window,m_level, m_playingTime, m_time);
         m_window.display();
 
 
@@ -68,22 +72,50 @@ void Controller::run()
                 upgradeLevel();
             }
         }
+
+
+       
+       //std::cout<< m_playingTime.asSeconds() - m_time.getElapsedTime().asSeconds() <<std::endl;
+
+       
 	}
 }
 
 //=============================================================
 
-std::ifstream Controller::openlevelfile(int level)
+std::vector<std::vector<char>> Controller::openlevelfile(int level)
 {
+    std::vector<std::vector<char>> temp;
+
+    m_time.restart();
 	std::string filename = "level";
 		filename += std::to_string(level);
 		filename += ".txt";
 		std::ifstream file;
 		file.open(filename);
 		if(!file.is_open())
-
 			std::cout << "Error while open level file";
-		return file;
+
+
+        file >> m_width >> m_height >> m_timeTheLevel; // take size map
+        file.get();
+
+
+        for (int i = 0; i < m_height; ++i)
+        {
+            std::vector<char> row;
+
+            for (int j = 0; j < m_width; ++j)
+            { 
+                row.push_back(file.get());
+            }
+            file.get();
+            temp.push_back(row);
+        }
+        file.close();
+
+
+        return temp;
 }
 //=============================================================
 
@@ -99,7 +131,7 @@ bool Controller::checkIfLevelDone() {
 
 void Controller::upgradeLevel() {
 
-    {
+    
         sf::Sprite uplevel;
        uplevel.setTexture(SingletonPicture::instance().getMLevelUp());
        uplevel.setPosition(0,0);
@@ -109,11 +141,11 @@ void Controller::upgradeLevel() {
        sf::sleep(sf::seconds(2));
 
 
-     m_boardfile = openlevelfile(m_level);
+     m_boardChar = openlevelfile(m_level);
      m_levelUpSoundl.play();
-     m_board = Board(m_boardfile,m_herroSelect);
+     m_board = Board(m_boardChar,m_herroSelect, m_width, m_height);
 
-    }
+    
 
 }
 //=============================================================
@@ -141,8 +173,8 @@ void Controller::printStartGameScreen() {
 
 void Controller::gameOverHandler(bool isplyerwin)
 {
-m_gameOverState.openstate(m_window,isplyerwin);
-m_level = 0;
+    m_gameOverState.openstate(m_window,isplyerwin);
+    m_level = 0;
 
 }
 

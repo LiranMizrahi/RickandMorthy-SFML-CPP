@@ -20,57 +20,11 @@
 
 //===============constructor ==============
 
-Board::Board(std::ifstream& file , int PlayerSelection)
+Board::Board(std::vector <std::vector<char>> file , int PlayerSelection, int width, int height)
 {
-
-    sf::Vector2f location;
-    char input;
-    m_staticObjects.clear();
-    m_movingObjects.clear();
-	file >> m_width >> m_height; // take size map
-	file.get();
-
-    cellwidth = (BOARDHEIGHT / float(m_height));
-    cellhight = (BOARDWIDTH/ float(m_width));
-    m_staticObjects.resize(m_height);
-
-    //calculate the size of the middle of singal cell 
-    // sub the size of the image frame
-    float tx = (BOARDWIDTH / float(m_width) / 2);
-    float ty = (BOARDHEIGHT / float(m_height) / 2);
-    location.x = tx;
-    location.y = ty;
-    float x_location = location.x;
-    sf::Vector2f heroloc;
-    // take char with the file and put vector
-    for (int i = 0; i < m_height; ++i)
-    {
-         //   m_staticObjects[i];
-        for (int j = 0; j < m_width; ++j)
-        {
-               input = file.get();
-               if(input == ' ')
-                   m_staticObjects[i].push_back(nullptr);
-               else if(input == HERO)
-                heroloc = location;
-               else
-                   createObject(input, location, PlayerSelection, i);
-
-                   location.x += (2 * tx);
-        }
-            file.get();
-            location.x = x_location;
-            location.y += (2 * ty);
-
-    }
-
-
-
-    m_movingObjects.push_back(std::move(std::make_unique<Hero>(heroloc, PlayerSelection)));
-
-    m_hero = (Hero*)m_movingObjects[m_movingObjects.size()-1].get();
-
-
+    m_height = height;
+    m_width = width;
+    readFile(file, PlayerSelection);
 }
 //====================================================
 void Board::draw(sf::RenderWindow& window)const
@@ -78,13 +32,13 @@ void Board::draw(sf::RenderWindow& window)const
     float tx = (BOARDWIDTH/ float(m_width));
     float ty = (BOARDHEIGHT / float(m_height));
     sf::Vector2f size(tx, ty);
-
+    //draw static object
     for (auto& e : m_staticObjects)
         for (auto& d : e) {
             if(d)
             d->draw(window, size);
         }
-
+    //draw mov object
     for (auto& movObj : m_movingObjects)
     {
         movObj->draw(window,size);
@@ -104,10 +58,6 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
         createEnemysVector(location, PlayerSelection);
         break;
 
-//      case HERO:
-//          m_movingObjects.push_back(std::move(std::make_unique<Hero>(location, PlayerSelection)));
-//          m_hero = Hero(location, PlayerSelection);
-//          break;
     case FLOOR:
        
       m_staticObjects[i].push_back(std::move(std::make_unique<Floor>(location, boardsize)));
@@ -182,6 +132,59 @@ bool Board::checkIfObjectFalling(float deltatime) {
     return true;
 }
 
+//============================================
+void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
+{
+    sf::Vector2f location;
+    char input;
+    m_staticObjects.clear();
+    m_movingObjects.clear();
+    //file >> m_width >> m_height >> timeGame; // take size map
+    //file.get();
+
+    cellwidth = (BOARDHEIGHT / float(m_height));
+    cellhight = (BOARDWIDTH / float(m_width));
+    m_staticObjects.resize(m_height);
+
+    //calculate the size of the middle of singal cell 
+    // sub the size of the image frame
+    float tx = (BOARDWIDTH / float(m_width) / 2);
+    float ty = (BOARDHEIGHT / float(m_height) / 2);
+    location.x = tx;
+    location.y = ty;
+    float x_location = location.x;
+    sf::Vector2f heroloc;
+    // take char with the file and put vector
+    for (int i = 0; i < m_height; ++i)
+    {
+        //   m_staticObjects[i];
+        for (int j = 0; j < m_width; ++j)
+        {
+            input = file[i][j] ;
+            if (input == ' ')
+                m_staticObjects[i].push_back(nullptr);
+            else if (input == HERO)
+                heroloc = location;
+            else
+                createObject(input, location, PlayerSelection, i);
+
+            location.x += (2 * tx);
+        }
+        
+        location.x = x_location;
+        location.y += (2 * ty);
+
+    }
+
+
+
+    m_movingObjects.push_back(std::move(std::make_unique<Hero>(heroloc, PlayerSelection)));
+
+    m_hero = (Hero*)m_movingObjects[m_movingObjects.size() - 1].get();
+
+
+}
+
 //==========================================
 
 int Board::checkCollisions(float deltaTime)
@@ -232,12 +235,10 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
         movingobject.setIsfalling(true);
 
 
-
-
     return true;
 }
 //==================================================
-void Board::printGameStatus(sf::RenderWindow & window, int levelnum)
+void Board::printGameStatus(sf::RenderWindow & window, int levelnum, sf::Time timeLevel, sf::Clock time )
 {
     initGamestatusbar();
 
@@ -250,17 +251,19 @@ void Board::printGameStatus(sf::RenderWindow & window, int levelnum)
     m_scoreText.setString("Score:"+scorestr);
     m_levelText.setString("Level:000" + std::to_string(levelnum));
     m_lifeText.setString("Life:000"+std::to_string(m_hero->getLife()));
+    m_timeTheLevel.setString("Time:" + std::to_string(timeLevel.asSeconds()-time.getElapsedTime().asSeconds()));
 
     m_lifeText.setOutlineColor(sf::Color::White);
-    m_scoreText.setPosition(50,BOARDHEIGHT);
-    m_levelText.setPosition(m_scoreText.getPosition().x+m_scoreText.getGlobalBounds().width +50,BOARDHEIGHT);
-    m_lifeText.setPosition(m_levelText.getPosition().x+m_levelText.getGlobalBounds().width+50,BOARDHEIGHT);
-
+    m_scoreText.setPosition(25,BOARDHEIGHT);
+    m_levelText.setPosition(m_scoreText.getPosition().x+m_scoreText.getGlobalBounds().width +25,BOARDHEIGHT);
+    m_lifeText.setPosition(m_levelText.getPosition().x+m_levelText.getGlobalBounds().width+25,BOARDHEIGHT);
+    m_timeTheLevel.setPosition(m_lifeText.getPosition().x + m_lifeText.getGlobalBounds().width + 25, BOARDHEIGHT);
 
     window.draw(m_lifeText);
     window.draw(m_scoreText);
     window.draw(m_levelText);
-
+   // if(false)
+    window.draw(m_timeTheLevel);
 
 }
 //==================================================
@@ -271,13 +274,15 @@ void Board::initGamestatusbar()
     m_scoreText.setFont(SingletonFont::instance().getMBoardstatus());
     m_levelText.setFont(SingletonFont::instance().getMBoardstatus());
     m_lifeText.setFont(SingletonFont::instance().getMBoardstatus());
+    m_timeTheLevel.setFont(SingletonFont::instance().getMBoardstatus());
 
-    m_lifeText.setCharacterSize(60);
-    m_scoreText.setCharacterSize(60);
-    m_levelText.setCharacterSize(60);
-
+    m_lifeText.setCharacterSize(40);
+    m_scoreText.setCharacterSize(40);
+    m_levelText.setCharacterSize(40);
+    m_timeTheLevel.setCharacterSize(40);
 
 }
+
 //==================================================
 
 void Board::addGiftToStaticVector(const sf::Vector2f& location, sf::Vector2f boardsize, int i )
@@ -318,13 +323,10 @@ bool Board::handleCollisions(GameObj &obj)
                     if (obj.collisonWith(*stsobj))
                     {
                         obj.handleColision(*stsobj);
+                    }
                 }
-                }
-
         }
-
-
-}
+    }
     return false;
 }
 //==================================================

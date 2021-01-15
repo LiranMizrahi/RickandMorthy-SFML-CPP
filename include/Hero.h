@@ -13,7 +13,7 @@ class Hero : public MovingObjects {
    public:
 	   Hero() = default;
 	   ~Hero()override = default;
-	   Hero(const sf::Vector2f&, int );
+	   Hero(const sf::Vector2f&, int);
 	   int getLife();
 	   int getScore();
 	   void SetScore(int);
