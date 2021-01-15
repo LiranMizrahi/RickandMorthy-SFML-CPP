@@ -142,8 +142,8 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
     //file >> m_width >> m_height >> timeGame; // take size map
     //file.get();
 
-     cellwidth = (BOARDHEIGHT / float(m_height));
-     cellhight = (BOARDWIDTH / float(m_width));
+     m_cellWidth = (BOARDHEIGHT / float(m_height));
+     m_cellHight = (BOARDWIDTH / float(m_width));
     m_staticObjects.resize(m_height);
 
     //calculate the size of the middle of singal cell 
@@ -201,7 +201,7 @@ int Board::checkCollisions(float deltaTime)
 bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
 {
 
-    float index = cellHight / 2;
+    float index = m_cellHight / 2;
     int i;
         for (i = 0;index < movingobject.getSprite().getPosition().y; ++i) {
             index += m_cellHight;
