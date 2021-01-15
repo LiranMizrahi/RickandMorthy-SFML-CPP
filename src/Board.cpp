@@ -92,7 +92,7 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
     srand((unsigned int)time(NULL));
     int ChooseEnemy = std::rand() % ENEMYTYPES;
 
-    
+
 
     switch (ChooseEnemy)
     {
@@ -146,7 +146,7 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
      m_cellHight = (BOARDWIDTH / float(m_width));
     m_staticObjects.resize(m_height);
 
-    //calculate the size of the middle of singal cell 
+    //calculate the size of the middle of singal cell
     // sub the size of the image frame
     float tx = (BOARDWIDTH / float(m_width) / 2);
     float ty = (BOARDHEIGHT / float(m_height) / 2);
@@ -170,7 +170,7 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
 
             location.x += (2 * tx);
         }
-        
+
         location.x = x_location;
         location.y += (2 * ty);
 
@@ -233,6 +233,8 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
 
         movingobject.move(0, FALLINGSPEED * deltaTime);
         movingobject.setIsfalling(true);
+
+
 
 
     return true;
@@ -323,10 +325,18 @@ bool Board::handleCollisions(GameObj &obj)
                     if (obj.collisonWith(*stsobj))
                     {
                         obj.handleColision(*stsobj);
-                    }
                 }
+                }
+
         }
     }
     return false;
+}
+
+void Board::checkIfHeroDig() {
+
+    m_hero->digHole(m_staticObjects, sf::Vector2f(m_cellWidth, m_cellHight),
+                    sf::Vector2f(m_cellHight,m_cellWidth));
+
 }
 //==================================================

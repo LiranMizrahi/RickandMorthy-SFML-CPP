@@ -169,12 +169,12 @@ void Hero::digHole(
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
     {
-       // col++;
+       col = 1;
     }
 
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        col-=2;
+       col =-1;
 
     }
 
@@ -185,11 +185,13 @@ void Hero::digHole(
         pointposition += cellsize.x;
     }
 
-     pointposition= cellsize.y/2;
-    for ( ; pointposition < this->getSprite().getPosition().x+(this->m_sprite.getGlobalBounds().height/2) ; ++col) {
+     pointposition= cellsize.y;
+
+    for ( ; pointposition < this->getSprite().getPosition().x; ++col) {
         pointposition+= cellsize.y;
     }
 
+    std::cout << col<<std::endl;
 
      if(row >= 0 &&col >= 0 && row < boardsize.x && col <boardsize.y)
         if(m_staticobj[row][col])

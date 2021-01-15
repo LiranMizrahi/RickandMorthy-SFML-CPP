@@ -19,7 +19,7 @@ public:
 	void moveCharacters(float);
 	int checkCollisions(float);
     bool checkIfObjectFalling(float);
-    
+    void checkIfHeroDig();
     void printGameStatus(sf::RenderWindow &, int level, sf::Time , sf::Clock);
 
 private:
