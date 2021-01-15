@@ -183,11 +183,11 @@ void Hero::digHole(
     time_t liran = clock();
     for ( row = 0; pointposition < this->getSprite().getPosition().y+(this->m_sprite.getGlobalBounds().width) ; ++row) {
         pointposition += cellsize.x;
-    }
+
 
      pointposition= cellsize.y;
 
-    for ( ; pointposition < this->getSprite().getPosition().x; ++col) {
+    for ( ; pointposition < this->getSprite().getPosition().x+(this->m_sprite.getGlobalBounds().height; ++col) {
         pointposition+= cellsize.y;
     }
 
