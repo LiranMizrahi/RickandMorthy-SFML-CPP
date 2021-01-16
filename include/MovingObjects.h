@@ -16,11 +16,12 @@ public:
 	void DrawRightside();
     void setLastPosition(sf::Vector2f);
     virtual void UpdateLocation(float) = 0;
-
+    void setStartPosion();
 
 
 
 protected:
+    sf::Vector2f m_firstPosition;
     sf::Vector2f m_LastPosition;
     bool m_isfalling =false;
     bool m_isUpAvail = false;

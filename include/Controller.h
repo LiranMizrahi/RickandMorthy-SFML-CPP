@@ -46,6 +46,7 @@ private:
 	//private function
 	std::vector<std::vector<char>> openlevelfile(int);
     bool checkIfLevelDone();
+	void ResetCoins();
 	void upgradeLevel();
 	void printStartGameScreen();
 	void gameOverHandler(bool);
@@ -53,5 +54,6 @@ private:
 
 	void CheckingTimes();
 	void newGame();
+	void ResetLevel();
 
 };				

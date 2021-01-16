@@ -56,13 +56,18 @@ void Coin::incCoins()
 {
 	m_currentCoins--;
 }
-
+//=============================================================
 bool Coin::isObjectIsStandable(GameObj & obj) {
     return false;
 }
-
+//=============================================================
 bool Coin::isObjectDigable() {
     return false;
+}
+//=============================================================
+void Coin::CoinInitialization()
+{
+	m_currentCoins = m_allCoins;
 }
 //=============================================================
 

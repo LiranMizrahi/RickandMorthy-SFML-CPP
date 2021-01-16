@@ -27,7 +27,7 @@ Hero::Hero(const sf::Vector2f& loc, int HeroSelection) //: m_life(3), m_score(12
 	m_collectCoinSound.setBuffer(SingletonSound::instance().getMCollectCoin());
     m_collectGiftSound.setBuffer(SingletonSound::instance().getMCollectGift());
     m_collectDeadSound.setBuffer(SingletonSound::instance().getMDead());
-
+	m_firstPosition = loc;
     m_LastPosition = loc;
 }
 //====================================================
@@ -116,6 +116,7 @@ void Hero::handleColision(Coin&obj)
 
 void Hero::handleColision(Enemy& obj )
 {
+	m_isOff = true;
 	m_life--;
 }
 

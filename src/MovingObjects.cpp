@@ -5,7 +5,7 @@ MovingObjects::MovingObjects()
 }
 //=============================================================
 
-MovingObjects::MovingObjects(const sf::Texture& tex, const sf::Vector2f& loc, const sf::Vector2f& size) :GameObj(tex, loc,size)
+MovingObjects::MovingObjects(const sf::Texture& tex, const sf::Vector2f& loc, const sf::Vector2f& size) :GameObj(tex, loc,size), m_firstPosition(loc)
 {
 
 }
@@ -62,6 +62,11 @@ void MovingObjects::setLastPosition(sf::Vector2f posion)
 {
     m_LastPosition = posion;
 
+}
+
+void MovingObjects::setStartPosion()
+{
+    this->SetPosition(m_firstPosition);
 }
 
 const sf::Vector2f &MovingObjects::getLastPosition() const {

@@ -189,7 +189,10 @@ int Board::checkCollisions(float deltaTime)
     for(auto & mov:m_movingObjects)
         handleCollisions(*mov);
 
+    if(m_hero->getIsOff())
     return true;
+
+    return false;
 
 }
 //==================================================
@@ -290,6 +293,24 @@ void Board::initGamestatusbar()
 }
 
 //==================================================
+void Board::ResetMap()
+{
+
+    for(auto& staticObj : m_staticObjects)
+        for (auto& rowStaticObj : staticObj)
+        {
+            if(rowStaticObj)
+            rowStaticObj->setIsOff(false);
+        }
+
+    for (auto& movObj : m_movingObjects)
+        movObj->setStartPosion();
+
+
+        m_hero->setIsOff(false);
+}
+
+//==================================================
 
 void Board::addGiftToStaticVector(const sf::Vector2f& location, sf::Vector2f boardsize, int i )
 {
@@ -312,7 +333,7 @@ void Board::addGiftToStaticVector(const sf::Vector2f& location, sf::Vector2f boa
     } 
 }
 //==================================================
-bool Board::handleCollisions(GameObj &obj)
+void Board::handleCollisions(GameObj &obj)
 {
 
  for(auto & movingobject :m_movingObjects)
@@ -337,7 +358,7 @@ bool Board::handleCollisions(GameObj &obj)
 
         }
     }
-    return false;
+    
 }
 //==================================================
 void Board::checkIfHeroDig() {

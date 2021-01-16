@@ -21,6 +21,8 @@ public:
     void andEnemyRandomly(int playerselect);
     void printGameStatus(sf::RenderWindow &, int level, sf::Time , sf::Clock, bool);
 	void checkIfHeroDig();
+	void ResetMap();
+
 private:
 	//private members
     Hero* m_hero;
@@ -39,7 +41,7 @@ private:
     void createObject(char, const sf::Vector2f &, int, int );
 	void createEnemysVector(const sf::Vector2f&, int);
 	void addGiftToStaticVector(const sf::Vector2f&, sf::Vector2f, int);
-	bool handleCollisions(GameObj &obj);
+	void handleCollisions(GameObj &obj);
     bool isObjectIsFalling(float, MovingObjects&);
 	void readFile(std::vector <std::vector<char>> , int);
     void initGamestatusbar();

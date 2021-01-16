@@ -14,10 +14,10 @@ class Hero : public MovingObjects {
 	   Hero() = default;
 	   ~Hero()override = default;
 	   Hero(const sf::Vector2f&, int);
-	   int getLife();
-	   int getScore();
+	   static int getLife();
+	   static int getScore();
 	   void SetScore(int);
-	   void SetLife(int);
+	   static void SetLife(int);
 	    void UpdateLocation(float)override;
 	    void digHole(std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
                      float m_cellWidth, float m_cellHight, int m_height, int m_width);

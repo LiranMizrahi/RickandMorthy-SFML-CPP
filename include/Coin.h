@@ -26,7 +26,7 @@ public:
 	virtual void handleColision(GiftAddingTime&) override {};
 	static size_t getNowCoins();
     virtual bool isObjectDigable() override;
-
+	static void CoinInitialization();
 	static void incCoins();
 private:
 	

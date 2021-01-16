@@ -18,7 +18,7 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
     printStartGameScreen();
 
     m_boardChar = openlevelfile(m_level);
-    m_time.restart();
+   // m_time.restart();
     newGame();
 
 }
@@ -48,13 +48,18 @@ void Controller::run()
 			}
 
         m_board.checkIfObjectFalling(deltaTime);
-        m_board.checkCollisions(deltaTime);
+        if (m_board.checkCollisions(deltaTime))
+            ResetLevel();
+        
         m_board.moveCharacters(deltaTime);
         m_board.checkIfHeroDig();
         //m_board check if hero alive
         //m_board check if hero got gift
         //m_board check if hero took coin
-
+        if ( 0 >= Hero::getLife())
+        {
+            gameOverHandler(false);
+        }
 
         //check if there is no move available coins to get
         if(checkIfLevelDone()) {
@@ -135,6 +140,11 @@ bool Controller::checkIfLevelDone() {
     return (Coin::getNowCoins() == 0);
 }
 //=============================================================
+void Controller::ResetCoins()
+{
+    Coin::CoinInitialization();
+}
+//=============================================================
 
 void Controller::upgradeLevel() {
 
@@ -182,6 +192,7 @@ void Controller::gameOverHandler(bool isplyerwin)
 {
     m_gameOverState.openstate(m_window,isplyerwin);
     m_level = 0;
+    newGame();
 
 }
 //=============================================================
@@ -190,14 +201,26 @@ void Controller::CheckingTimes()
     if (m_isOnTime)
         if (m_playingTime.asSeconds() - m_time.getElapsedTime().asSeconds() <= 0)
         {
-            gameOverHandler(true);
+            Hero::SetLife(Hero::getLife() - 1);
+            ResetLevel();
         }
 }
 //=============================================================
 void Controller::newGame()
 {
+    Hero::SetLife(3);
     m_herroSelect = m_menu.StartGame(m_window);
     m_board = Board(m_boardChar, m_herroSelect);
+    m_time.restart();
+
+}
+
+void Controller::ResetLevel()
+{
+
+    m_time.restart();
+    ResetCoins();
+    m_board.ResetMap();
 }
 
 
