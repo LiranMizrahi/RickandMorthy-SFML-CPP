@@ -100,7 +100,7 @@ const sf::Texture& SingletonPicture::getCoinTexture()const
 
 const sf::Texture& SingletonPicture::getBoardTexture(int level)const
 {
-	return m_levelbackgrounds[(level % m_levelbackgrounds.size())];
+	return m_levelbackgrounds[(level-1) % m_levelbackgrounds.size()];
 }
 
 const sf::Texture& SingletonPicture::getFloorTexture()const

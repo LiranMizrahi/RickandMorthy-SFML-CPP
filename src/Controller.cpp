@@ -15,7 +15,7 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
     m_startGameSound.setBuffer(SingletonSound::instance().getMStartGame());
     m_level =1;
     m_window.setFramerateLimit(60);
-	board.setTexture(SingletonPicture::instance().getBoardTexture(m_level-1));
+	board.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
 	board.setPosition(0,0);
     printStartGameScreen();
 
