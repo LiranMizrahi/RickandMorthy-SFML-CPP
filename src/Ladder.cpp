@@ -30,7 +30,7 @@ bool Ladder::isObjectIsStandable(GameObj &) {
     return true;
 }
 
-bool Ladder::isObjectDigable() {
+bool Ladder::isObjectDigable(const sf::Time &) {
     return false;
 }
 

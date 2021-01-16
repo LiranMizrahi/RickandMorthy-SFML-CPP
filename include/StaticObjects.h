@@ -15,7 +15,7 @@ public:
 	 virtual void handleColision(GiftAddingTime&) override {};
 
     virtual bool isObjectIsStandable(GameObj&) = 0;
-    virtual bool isObjectDigable() = 0;
+    virtual bool isObjectDigable(const sf::Time&) = 0;
 private:
 
 };

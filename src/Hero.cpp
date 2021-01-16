@@ -157,13 +157,14 @@ void Hero::playCollectDeadSound() {
 void Hero::handleColision(Hero &) {
 
 }
-
-
 void Hero::digHole(
         std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
-        float m_cellWidth, float m_cellHight, int m_height, int m_width)
+        float m_cellWidth, float m_cellHight, int m_height, int m_width,
+        const sf::Time &time)
 {
 
+    if(time.asMilliseconds()-m_lastdigtime.asMilliseconds()<HERODIGDELTATIME)
+        return;
     int row,col = 0;
 
 
@@ -178,19 +179,19 @@ void Hero::digHole(
 
     }
 
-
     else return;
 
-    float pointposition= m_cellWidth;
+    float pointposition= m_cellHight;
     for ( row = 0; pointposition <= this->getSprite().getPosition().y; ++row) {
-        pointposition += m_cellWidth;
+
+        pointposition += m_cellHight;
 
     }
 
-        pointposition = m_cellHight;
+        pointposition = m_cellWidth;
 
         for (; pointposition <= this->getSprite().getPosition().x; ++col) {
-            pointposition += m_cellHight;
+            pointposition += m_cellWidth;
         }
     row++;
         std::cout <<"row "<<row<< "col "<< col << std::endl;
@@ -198,9 +199,11 @@ void Hero::digHole(
         if (row >= 0 && col >= 0 && row < m_height && col < m_width)
             if (m_staticobj[row][col])
             {
-
-                m_staticobj[row][col]->setIsOff(true);
-               auto floor =  (Floor*)m_staticobj[row][col].get();
+                if(m_staticobj[row][col]->isObjectDigable(time))
+                {
+                    m_lastdigtime = time;
+                    m_staticobj[row][col]->setIsOff(true);
+                }
 
             }
 

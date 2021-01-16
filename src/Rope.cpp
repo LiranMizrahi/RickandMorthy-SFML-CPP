@@ -30,7 +30,7 @@ bool Rope::isObjectIsStandable(GameObj & movingobject) {
 
 }
 
-bool Rope::isObjectDigable() {
+bool Rope::isObjectDigable(const sf::Time &) {
     return false;
 }
 

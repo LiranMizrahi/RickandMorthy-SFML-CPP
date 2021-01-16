@@ -28,6 +28,11 @@ const int HEIGHTSIZECALI = 15;
 const float FALLINGSPEED = 250.f;
 const  float HEROSPEED = 350.f ;
 const  float ENEMYSPEED = 300.f;
+
+const float RESTOREFLOORTIME = 2;
+
+const int ADDTIMEGIFTTIME = 15;
+const int HERODIGDELTATIME = 200;
 const int NUMBEROFLEVELS = 4;
 
 //this consts is for the player select in the menu

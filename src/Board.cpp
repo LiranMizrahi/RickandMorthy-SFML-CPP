@@ -293,7 +293,7 @@ void Board::initGamestatusbar()
 
 void Board::addGiftToStaticVector(const sf::Vector2f& location, sf::Vector2f boardsize, int i )
 {
-    int ChoosEnemy = 2; //std::rand() % TYPESOFGIFS;
+    int ChoosEnemy = std::rand() % TYPESOFGIFS;
 
     switch (ChoosEnemy)
     {
@@ -340,9 +340,10 @@ bool Board::handleCollisions(GameObj &obj)
     return false;
 }
 //==================================================
-void Board::checkIfHeroDig() {
+void Board::checkIfHeroDig(const sf::Time &time) {
 
-    m_hero->digHole(m_staticObjects,m_cellHight,m_cellWidth,m_height,m_width);
+    m_hero->digHole(m_staticObjects, m_cellWidth, m_cellHight, m_height,
+                    m_width, time);
 
 }
 //==================================================
@@ -356,7 +357,8 @@ void Board::andEnemyRandomly(int playerselect) {
     }
     while(m_staticObjects[i][j] != nullptr);
 
-    createEnemysVector(sf::Vector2f( m_cellWidth/2+j*m_cellWidth,m_cellHight/2+m_cellHight*i),playerselect);
+    createEnemysVector(sf::Vector2f( m_cellWidth/2+j*m_cellWidth,
+                                     m_cellHight/2+m_cellHight*i),playerselect);
 
 
 

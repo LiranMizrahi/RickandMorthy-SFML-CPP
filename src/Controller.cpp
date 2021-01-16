@@ -50,10 +50,9 @@ void Controller::run()
         m_board.checkIfObjectFalling(deltaTime);
         m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime);
-        m_board.checkIfHeroDig();
+    m_board.checkIfHeroDig(m_time.getElapsedTime());
         //m_board check if hero alive
-        //m_board check if hero got gift
-        //m_board check if hero took coin
+
 
 
         //check if there is no move available coins to get
@@ -178,9 +177,9 @@ void Controller::printStartGameScreen() {
 }
 //=============================================================
 
-void Controller::gameOverHandler(bool isplyerwin)
+void Controller::gameOverHandler(bool isplayerwin)
 {
-    m_gameOverState.openstate(m_window,isplyerwin);
+    m_gameOverState.openstate(m_window, isplayerwin);
     m_level = 0;
 
 }

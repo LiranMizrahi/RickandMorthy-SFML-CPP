@@ -13,7 +13,7 @@ bool Gift::isObjectIsStandable(GameObj &) {
     return false;
 }
 
-bool Gift::isObjectDigable() {
+bool Gift::isObjectDigable(const sf::Time &) {
     return false;
 }
 
