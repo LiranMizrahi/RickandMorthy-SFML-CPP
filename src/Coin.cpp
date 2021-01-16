@@ -61,7 +61,7 @@ bool Coin::isObjectIsStandable(GameObj & obj) {
     return false;
 }
 //=============================================================
-bool Coin::isObjectDigable() {
+bool Coin::isObjectDigable(const sf::Time&) {
     return false;
 }
 //=============================================================

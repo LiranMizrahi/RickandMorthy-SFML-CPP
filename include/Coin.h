@@ -25,7 +25,7 @@ public:
     virtual bool isObjectIsStandable(GameObj&)override;
 	virtual void handleColision(GiftAddingTime&) override {};
 	static size_t getNowCoins();
-    virtual bool isObjectDigable() override;
+    virtual bool isObjectDigable(const sf::Time&) override;
 	static void CoinInitialization();
 	static void incCoins();
 private:
