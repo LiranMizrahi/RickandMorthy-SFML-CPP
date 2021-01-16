@@ -12,7 +12,7 @@ class SingletonSound;
 class Board {
 
 public:
-	Board() = default;
+	Board();
 	Board(std::vector <std::vector<char>>, int);
 	void draw(sf::RenderWindow&)const;
 	void moveCharacters(float);
@@ -24,7 +24,7 @@ public:
     void ResetMap();
     void restroreGameObjects(const sf::Time &time);
 
-        private:
+    private:
 	//private members
     Hero* m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;

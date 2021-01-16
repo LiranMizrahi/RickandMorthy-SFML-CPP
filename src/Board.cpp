@@ -20,6 +20,10 @@
 #include "GiftAddingTime.h"
 //===============constructor ==============
 
+Board::Board():m_width(0), m_height(0), m_cellHight(0), m_cellWidth(0), m_hero()
+{
+}
+
 Board::Board(std::vector <std::vector<char>> file , int PlayerSelection)
 {
     m_height = file.size();
@@ -340,7 +344,11 @@ void Board::handleCollisions(GameObj &obj)
  {
      if(obj.collisonWith(*movingobject))
      {
+         if (m_hero->getIsOff())
+             return;
+
          obj.handleColision(*movingobject);
+         
      }
  }
 
