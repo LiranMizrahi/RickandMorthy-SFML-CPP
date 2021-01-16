@@ -161,15 +161,15 @@ void Hero::handleColision(Hero &) {
 
 void Hero::digHole(
         std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
-        const sf::Vector2f &cellsize, const sf::Vector2f &boardsize)
+        float m_cellWidth, float m_cellHight, int m_height, int m_width)
 {
 
     int row,col = 0;
-    float pointposition= cellsize.x/2;
+
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
     {
-       col = 1;
+        col = 1;
     }
 
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
@@ -180,25 +180,29 @@ void Hero::digHole(
 
 
     else return;
-    time_t liran = clock();
-    for ( row = 0; pointposition < this->getSprite().getPosition().y+(this->m_sprite.getGlobalBounds().width) ; ++row) {
-        pointposition += cellsize.x;
+
+    float pointposition= m_cellWidth;
+    for ( row = 0; pointposition <= this->getSprite().getPosition().y; ++row) {
+        pointposition += m_cellWidth;
 
     }
 
-        pointposition = cellsize.y;
+        pointposition = m_cellHight;
 
-        for (; pointposition < this->getSprite().getPosition().x +
-                               (this->m_sprite.getGlobalBounds().height); ++col) {
-            pointposition += cellsize.y;
+        for (; pointposition <= this->getSprite().getPosition().x; ++col) {
+            pointposition += m_cellHight;
         }
+    row++;
+        std::cout <<"row "<<row<< "col "<< col << std::endl;
 
-        std::cout << col << std::endl;
-
-        if (row >= 0 && col >= 0 && row < boardsize.x && col < boardsize.y)
+        if (row >= 0 && col >= 0 && row < m_height && col < m_width)
             if (m_staticobj[row][col])
-                m_staticobj[row][col]->setIsOff(true);
+            {
 
+                m_staticobj[row][col]->setIsOff(true);
+               auto floor =  (Floor*)m_staticobj[row][col].get();
+
+            }
 
     }
 //====================================================

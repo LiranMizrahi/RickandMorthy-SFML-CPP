@@ -2,6 +2,7 @@
 
 GiftAddingScore::GiftAddingScore(const sf::Vector2f& loc, const sf::Vector2f& size) : Gift(loc, size)
 {
+
 }
 
 void GiftAddingScore::handleColision(GameObj& obj)

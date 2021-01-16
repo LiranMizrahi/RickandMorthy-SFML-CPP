@@ -18,7 +18,7 @@ public:
 	void moveCharacters(float);
 	int checkCollisions(float);
     bool checkIfObjectFalling(float);
-    
+    void andEnemyRandomly(int playerselect);
     void printGameStatus(sf::RenderWindow &, int level, sf::Time , sf::Clock, bool);
 	void checkIfHeroDig();
 private:

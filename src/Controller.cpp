@@ -3,7 +3,8 @@
 #include <iostream>
 #include "SingletonFont.h"
 #include "Coin.h"
-
+#include "GiftAddingEnemy.h"
+#include "GiftAddingTime.h"
  int Controller::m_level = 1;
 
 Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
@@ -53,6 +54,7 @@ void Controller::run()
         m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime);
         m_board.checkIfHeroDig();
+        reedemGifts();
         //m_board check if hero alive
         //m_board check if hero got gift
         //m_board check if hero took coin
@@ -186,6 +188,24 @@ void Controller::CheckingTimes()
             gameOverHandler(true);
         }
 }
+//=============================================================
+
+void Controller::reedemGifts() {
+
+    for (int i = 0; i < GiftAddingEnemy::getNumberOfGiftAddingRnemy(); ++i) {
+            m_board.andEnemyRandomly(m_herroSelect);
+            GiftAddingEnemy::redeemGift();
+    }
+
+    for (int i = 0; i < GiftAddingTime::getNumberofgiftaddingtime(); ++i) {
+
+        m_playingTime += sf::seconds(ADDTIMEGIFTTIME);
+            GiftAddingTime::redeenGift();
+    }
+
+}
+//=============================================================
+
 
 
 

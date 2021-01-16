@@ -7,8 +7,10 @@ class GiftAddingEnemy : public Gift
 {
 public:
 	GiftAddingEnemy(const sf::Vector2f& loc, const sf::Vector2f&);
-	~GiftAddingEnemy()override = default;
+	~GiftAddingEnemy()override;
 
+	static int getNumberOfGiftAddingRnemy();
+	static void redeemGift();
 
 	virtual void handleColision(GameObj& obj) override ;
 	virtual void handleColision(Rope& Obj) override {};
@@ -22,4 +24,5 @@ public:
 	virtual void handleColision(GiftAddingEnemy&) override {};
 private:
 
+        static int m_numberofgiftaddingenemy;
 };

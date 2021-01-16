@@ -29,6 +29,9 @@ const float FALLINGSPEED = 250.f;
 const  float HEROSPEED = 350.f ;
 const  float ENEMYSPEED = 300.f;
 const int NUMBEROFLEVELS = 2;
+const float RESTOREFLOORTIME = 2;
+
+const int ADDTIMEGIFTTIME = 15;
 
 //this consts is for the player select in the menu
 const int HEROASJERRY = 1;

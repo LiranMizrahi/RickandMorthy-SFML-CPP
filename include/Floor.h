@@ -24,5 +24,8 @@ public:
     virtual bool isObjectIsStandable(GameObj&)override;
     virtual bool isObjectDigable()override;
 
+    virtual void setIsOff(bool isoff)override;
+    sf::Time m_digtimestamp;
+
 
 };

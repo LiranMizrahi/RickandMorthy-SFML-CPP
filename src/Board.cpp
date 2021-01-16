@@ -17,7 +17,7 @@
 #include"GiftAddingEnemy.h"
 #include"GiftAddingScore.h"
 #include "SingletonFont.h"
-
+#include "GiftAddingTime.h"
 //===============constructor ==============
 
 Board::Board(std::vector <std::vector<char>> file , int PlayerSelection)
@@ -28,7 +28,7 @@ Board::Board(std::vector <std::vector<char>> file , int PlayerSelection)
 }
 //====================================================
 void Board::draw(sf::RenderWindow& window)const
-{   
+{
     //draw static object
     for (auto& e : m_staticObjects)
         for (auto& d : e) {
@@ -40,6 +40,7 @@ void Board::draw(sf::RenderWindow& window)const
     {
         movObj->draw(window);
     }
+
 }
 
 //====================================================
@@ -88,7 +89,7 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
     srand((unsigned int)time(NULL));
     int ChooseEnemy = std::rand() % ENEMYTYPES;
 
-    
+
 
     switch (ChooseEnemy)
     {
@@ -134,13 +135,17 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
     sf::Vector2f location;
     m_staticObjects.clear();
     m_movingObjects.clear();
-    
 
-     m_cellWidth = (BOARDHEIGHT / float(m_height));
-     m_cellHight = (BOARDWIDTH / float(m_width));
+
+    // m_cellWidth = (BOARDHEIGHT / float(m_height));
+  //   m_cellHight = (BOARDWIDTH / float(m_width));
+
+    m_cellWidth = (BOARDWIDTH / float(m_width));
+    m_cellHight = (BOARDHEIGHT / float(m_height));
+
     m_staticObjects.resize(m_height);
 
-    //calculate the size of the middle of singal cell 
+    //calculate the size of the middle of singal cell
     // sub the size of the image frame
     float tx = (BOARDWIDTH / float(m_width) / 2);
     float ty = (BOARDHEIGHT / float(m_height) / 2);
@@ -153,7 +158,7 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
         //   m_staticObjects[i];
         for (int j = 0; j < m_width; ++j)
         {
-            
+
             if (file[i][j] == ' ')
                 m_staticObjects[i].push_back(nullptr);
             else if (file[i][j] == HERO)
@@ -163,14 +168,17 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
 
             location.x += (2 * tx);
         }
-        
+
         location.x = tx;
         location.y += (2 * ty);
 
     }
-    
+
     m_movingObjects.push_back(std::move(std::make_unique<Hero>(heroloc, PlayerSelection)));
+
     m_hero = (Hero*)m_movingObjects[m_movingObjects.size() - 1].get();
+
+
 }
 
 //==========================================
@@ -189,7 +197,7 @@ int Board::checkCollisions(float deltaTime)
 bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
 {
 
-    float index = m_cellHight / 2;
+    float index = m_cellHight;
     int i;
         for (i = 0;index < movingobject.getSprite().getPosition().y; ++i) {
             index += m_cellHight;
@@ -218,9 +226,10 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
 
             }
         }
-
         movingobject.move(0, FALLINGSPEED * deltaTime);
         movingobject.setIsfalling(true);
+
+
 
 
     return true;
@@ -239,7 +248,7 @@ void Board::printGameStatus(sf::RenderWindow & window, int levelnum, sf::Time ti
     m_scoreText.setString("Score:"+scorestr);
     m_levelText.setString("Level:000" + std::to_string(levelnum));
     m_lifeText.setString("Life:000"+std::to_string(m_hero->getLife()));
-    
+
     if (m_isOnTime)
     {
         m_timeTheLevel.setString("Time:" + std::to_string(timeLevel.asSeconds() - time.getElapsedTime().asSeconds()));
@@ -259,6 +268,7 @@ void Board::printGameStatus(sf::RenderWindow & window, int levelnum, sf::Time ti
     window.draw(m_lifeText);
     window.draw(m_scoreText);
     window.draw(m_levelText);
+   // if(false)
     window.draw(m_timeTheLevel);
 
 }
@@ -283,7 +293,7 @@ void Board::initGamestatusbar()
 
 void Board::addGiftToStaticVector(const sf::Vector2f& location, sf::Vector2f boardsize, int i )
 {
- int ChoosEnemy = std::rand() % 2; //TYPESOFGIFS
+ int ChoosEnemy = std::rand() % TYPESOFGIFS;
 
     switch (ChoosEnemy)
     {
@@ -296,6 +306,9 @@ void Board::addGiftToStaticVector(const sf::Vector2f& location, sf::Vector2f boa
     case AddEnemy:
          m_staticObjects[i].push_back(std::move(std::make_unique <GiftAddingEnemy>(location, boardsize)));
         break;
+    case AddTime:
+        m_staticObjects[i].push_back(std::move(std::make_unique <GiftAddingTime>(location, boardsize)));
+            break;
     } 
 }
 //==================================================
@@ -321,6 +334,7 @@ bool Board::handleCollisions(GameObj &obj)
                         obj.handleColision(*stsobj);
                     }
                 }
+
         }
     }
     return false;
@@ -328,7 +342,24 @@ bool Board::handleCollisions(GameObj &obj)
 //==================================================
 void Board::checkIfHeroDig() {
 
-    m_hero->digHole(m_staticObjects, sf::Vector2f(m_cellWidth, m_cellHight),
-        sf::Vector2f(m_cellHight, m_cellWidth));
+    m_hero->digHole(m_staticObjects,m_cellHight,m_cellWidth,m_height,m_width);
 
 }
+//==================================================
+
+void Board::andEnemyRandomly(int playerselect) {
+
+    int i,j;
+    do {
+         i =rand()% m_height;
+         j = rand() &m_width;
+    }
+    while(m_staticObjects[i][j] != nullptr);
+
+    createEnemysVector(sf::Vector2f( m_cellWidth/2+j*m_cellWidth,m_cellHight/2+m_cellHight*i),playerselect);
+
+
+
+
+}
+//==================================================
