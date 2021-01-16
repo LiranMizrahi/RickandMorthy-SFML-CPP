@@ -40,7 +40,7 @@ void Controller::run()
         m_board.printGameStatus(m_window,m_level, m_playingTime, m_time, m_isOnTime);
         m_window.display();
 
-
+//dsadas
 		sf::Event event;
 		while(m_window.pollEvent(event))
 			if (sf::Keyboard::isKeyPressed(sf:: Keyboard::Escape)|| event.type == sf::Event::Closed)
@@ -52,7 +52,7 @@ void Controller::run()
         m_board.checkIfObjectFalling(deltaTime);
         if (m_board.checkCollisions(deltaTime))
             ResetLevel();
-
+//43424324
         m_board.moveCharacters(deltaTime);
         m_board.checkIfHeroDig(m_time.getElapsedTime());
         m_board.restroreGameObjects(m_time.getElapsedTime());
