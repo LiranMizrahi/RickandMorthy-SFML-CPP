@@ -3,6 +3,8 @@
 #include <iostream>
 #include "SingletonFont.h"
 #include "Coin.h"
+#include "GiftAddingTime.h"
+#include "GiftAddingEnemy.h"
 
  int Controller::m_level = 1;
 
@@ -50,9 +52,14 @@ void Controller::run()
         m_board.checkIfObjectFalling(deltaTime);
         if (m_board.checkCollisions(deltaTime))
             ResetLevel();
-        
+
         m_board.moveCharacters(deltaTime);
-        m_board.checkIfHeroDig();
+        m_board.checkIfHeroDig(m_time.getElapsedTime());
+        m_board.restroreGameObjects(m_time.getElapsedTime());
+
+        reedemGifts();
+
+        m_board.checkIfHeroDig(m_time.getElapsedTime());
         //m_board check if hero alive
         //m_board check if hero got gift
         //m_board check if hero took coin
@@ -222,6 +229,19 @@ void Controller::ResetLevel()
     ResetCoins();
     m_board.ResetMap();
 }
+//=============================================================
 
+void Controller::reedemGifts() {
 
+    for (int i = 0; i < GiftAddingEnemy::getNumberOfGiftAddingRnemy(); ++i) {
+        m_board.andEnemyRandomly(m_herroSelect);
+        GiftAddingEnemy::redeemGift();
+    }
 
+    for (int i = 0; i < GiftAddingTime::getNumberofgiftaddingtime(); ++i) {
+
+        m_playingTime += sf::seconds(ADDTIMEGIFTTIME);
+        GiftAddingTime::redeenGift();
+    }
+
+}

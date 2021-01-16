@@ -48,3 +48,8 @@ void GameObj::setIsOff(bool isoff) {
     m_isOff = isoff;
 
 }
+
+void GameObj::restoreGameObj(const sf::Time &time) {
+
+
+}

@@ -11,12 +11,13 @@ void GiftAddingEnemy::handleColision(GameObj& obj)
     obj.handleColision(*this);
 }
 
-void GiftAddingEnemy::handleColision(Hero& Obj)
+void GiftAddingEnemy::handleColision(Hero& obj)
 {
     m_numberofgiftaddingenemy++;
-    if(m_isOff)
-	Obj.handleColision(*this);
+    if(!m_isOff)
+        obj.handleColision(*this);
     m_isOff = true;
+    m_isreedem = true;
 }
 
 GiftAddingEnemy::~GiftAddingEnemy() {

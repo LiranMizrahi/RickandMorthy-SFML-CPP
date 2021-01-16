@@ -37,3 +37,8 @@ void Floor::setIsOff(bool isoff) {
     m_isOff = isoff;
 
 }
+
+void Floor::restoreGameObj(const sf::Time &time) {
+    if(time.asMilliseconds()-m_digtimestamp.asMilliseconds() >RESTOREFLOORTIME)
+        m_isOff = false;
+}

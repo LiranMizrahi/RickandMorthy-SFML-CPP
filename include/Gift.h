@@ -30,9 +30,11 @@ public:
 
     virtual bool isObjectIsStandable(GameObj&)override;
     virtual bool isObjectDigable(const sf::Time &) override;
+    virtual void restoreGameObj(const sf::Time &)override;
 
 
-private:
-
+protected:
+    bool m_isreedem = false;
+    sf::Time m_showTime;
 
 };

@@ -12,12 +12,10 @@ const char SPACE = ' ';
 const char FLOOR = '#';
 const char GIFT = '+';
 
-
 const int	LEFT = 1;
 const int	RIGHT = 2;
 const int	UP = 3;
 const int	DOWN = 4;
-
 
 const int BOARDWIDTH = 1600;
 const int BOARDHEIGHT = 899;
@@ -29,7 +27,8 @@ const float FALLINGSPEED = 250.f;
 const  float HEROSPEED = 350.f ;
 const  float ENEMYSPEED = 300.f;
 
-const float RESTOREFLOORTIME = 2;
+const float RESTOREFLOORTIME = 3000;
+const int GIFTSHOWTIME = 3000;
 
 const int ADDTIMEGIFTTIME = 15;
 const int HERODIGDELTATIME = 200;
