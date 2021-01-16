@@ -7,6 +7,7 @@
 #include"GameObj.h"
 #include"Coin.h"
 #include<iostream>
+
 class Hero : public MovingObjects {
 
    public:
@@ -31,6 +32,8 @@ class Hero : public MovingObjects {
 		virtual void handleColision(GiftAddingLife&) override;
 		virtual void handleColision(GiftAddingScore&) override;
 		virtual void handleColision(GiftAddingEnemy&) override {};
+		virtual void handleColision(GiftAddingTime&) override {};
+
 
 private:
 		static int m_life, m_score;

@@ -23,6 +23,7 @@ public:
 	virtual void handleColision(GiftAddingScore&) override {};
 	virtual void handleColision(GiftAddingEnemy&) override {};
     virtual bool isObjectIsStandable(GameObj&)override;
+	virtual void handleColision(GiftAddingTime&) override {};
 	static size_t getNowCoins();
     virtual bool isObjectDigable() override;
 

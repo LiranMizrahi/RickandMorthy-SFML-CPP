@@ -33,7 +33,7 @@ void Controller::run()
     
     m_time.restart();
     m_startGameSound.play();
-	while (m_window.isOpen())
+    	while (m_window.isOpen())
 	{
         float deltaTime = clock.restart().asSeconds();
 		m_window.clear();
@@ -189,7 +189,7 @@ void Controller::CheckingTimes()
     if (m_isOnTime)
         if (m_playingTime.asSeconds() - m_time.getElapsedTime().asSeconds() <= 0)
         {
-            gameOverHandler(true);
+         //   gameOverHandler(true);
         }
 }
 //=============================================================

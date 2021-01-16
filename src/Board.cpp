@@ -293,7 +293,7 @@ void Board::initGamestatusbar()
 
 void Board::addGiftToStaticVector(const sf::Vector2f& location, sf::Vector2f boardsize, int i )
 {
- int ChoosEnemy = std::rand() % TYPESOFGIFS;
+    int ChoosEnemy = 2; //std::rand() % TYPESOFGIFS;
 
     switch (ChoosEnemy)
     {
@@ -351,8 +351,8 @@ void Board::andEnemyRandomly(int playerselect) {
 
     int i,j;
     do {
-         i =rand()% m_height;
-         j = rand() &m_width;
+         i = rand()% m_height;
+         j = rand() %m_width;
     }
     while(m_staticObjects[i][j] != nullptr);
 

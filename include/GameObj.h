@@ -11,6 +11,8 @@ class Enemy;
 class GiftAddingLife;
 class GiftAddingScore;
 class GiftAddingEnemy;
+class GiftAddingTime;
+
 class GameObj {
 
 
@@ -33,6 +35,7 @@ public:
 	virtual void handleColision(GiftAddingLife& Obj) = 0;
 	virtual void handleColision(GiftAddingScore& Obj) = 0;
 	virtual void handleColision(GiftAddingEnemy& Obj) = 0;
+	virtual void handleColision(GiftAddingTime& Obj) = 0;
 
 
 	bool getIsOff()const;
