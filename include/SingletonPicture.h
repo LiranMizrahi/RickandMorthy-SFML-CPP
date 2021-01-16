@@ -15,7 +15,7 @@ public:
     const sf::Texture& getEnemyMeeseeksTexture()const;
     const sf::Texture & getEnemyMonsterTexture()const;
     const sf::Texture& getCoinTexture()const;
-    const sf::Texture& getBoardTexture()const;
+    const sf::Texture& getBoardTexture(int )const;
     const sf::Texture& getFloorTexture()const;
     const sf::Texture& getLedderTexture()const;
     const sf::Texture& getRopeTexture()const;
@@ -28,6 +28,7 @@ public:
     const sf::Texture& getMStartGame()const ;
     const sf::Texture& getMHeroIsdead()const ;
     const sf::Texture& getMGameOver() const;
+
 
 
   
@@ -48,7 +49,7 @@ public:
     sf::Texture m_rope;
     sf::Texture m_floor;
     sf::Texture m_menu;
-//<<<<<< HEAD
+    std::vector <sf::Texture> m_levelbackgrounds;
     sf::Texture m_gift;
 //=======
     sf::Texture m_levelUp;

@@ -241,60 +241,7 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
 
     return true;
 }
-//==================================================
-void Board::printGameStatus(sf::RenderWindow & window, int levelnum, sf::Time timeLevel, sf::Clock time , bool m_isOnTime)
-{
-    initGamestatusbar();
 
-    std::string scorestr = "000000";
-    if(m_hero->getScore()>=1000000)
-        scorestr+="0";
-
-    scorestr.replace(scorestr.size()-std::to_string(m_hero->getScore()).size(),
-                     std::to_string(m_hero->getScore()).size(),std::to_string(m_hero->getScore()));
-    m_scoreText.setString("Score:"+scorestr);
-    m_levelText.setString("Level:000" + std::to_string(levelnum));
-    m_lifeText.setString("Life:000"+std::to_string(m_hero->getLife()));
-
-    if (m_isOnTime)
-    {
-        m_timeTheLevel.setString("Time:" + std::to_string(timeLevel.asSeconds() - time.getElapsedTime().asSeconds()));
-    }
-    else
-    {
-        m_timeTheLevel.setString("Time: 9999");
-    }
-
-
-    m_lifeText.setOutlineColor(sf::Color::White);
-    m_scoreText.setPosition(30,BOARDHEIGHT);
-    m_levelText.setPosition(m_scoreText.getPosition().x+m_scoreText.getGlobalBounds().width +30,BOARDHEIGHT);
-    m_lifeText.setPosition(m_levelText.getPosition().x+m_levelText.getGlobalBounds().width+30,BOARDHEIGHT);
-    m_timeTheLevel.setPosition(m_lifeText.getPosition().x + m_lifeText.getGlobalBounds().width + 30, BOARDHEIGHT);
-
-    window.draw(m_lifeText);
-    window.draw(m_scoreText);
-    window.draw(m_levelText);
-   // if(false)
-    window.draw(m_timeTheLevel);
-
-}
-//==================================================
-
-void Board::initGamestatusbar()
-{
-
-    m_scoreText.setFont(SingletonFont::instance().getMBoardstatus());
-    m_levelText.setFont(SingletonFont::instance().getMBoardstatus());
-    m_lifeText.setFont(SingletonFont::instance().getMBoardstatus());
-    m_timeTheLevel.setFont(SingletonFont::instance().getMBoardstatus());
-
-    m_lifeText.setCharacterSize(50);
-    m_scoreText.setCharacterSize(50);
-    m_levelText.setCharacterSize(50);
-    m_timeTheLevel.setCharacterSize(50);
-
-}
 
 //==================================================
 void Board::ResetMap()
@@ -401,5 +348,15 @@ void Board::restroreGameObjects(const sf::Time &time) {
                 staticObjectsi->restoreGameObj(time);
 
 
+}
+//==================================================
+
+int Board::getHeroScore() {
+   return m_hero->getScore();
+}
+//==================================================
+
+int Board::getHerolife() {
+    return m_hero->getLife();
 }
 //==================================================

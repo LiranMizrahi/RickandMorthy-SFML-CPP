@@ -4,14 +4,15 @@
 #include <SFML/Graphics.hpp>
 #include "GameObj.h"
 #include "SingletonPicture.h"
-#include "Menu.h"
+#include "MenuState.h"
 #include "Board.h"
 #include "fstream"
-#include "Menu.h"
+#include "MenuState.h"
 #include "SingletonSound.h"
 #include"Coin.h"
 #include "GameOverState.h"
-										
+
+#include "GameStatusBar.h"
 class Controller {
 					
 
@@ -28,7 +29,7 @@ private:
 	float m_timeTheLevel;
 	int m_herroSelect;
 	Board m_board;
-	Menu m_menu;
+	MenuState m_menu;
 	sf::RenderWindow m_window;
 	sf::Sprite board;	
 	sf::Clock clock;
@@ -39,6 +40,7 @@ private:
     GameOverState m_gameOverState;
 	sf::Time m_playingTime ;
 	sf::Clock m_time;
+	GameStatusBar m_gameStatusBar;
 
 
 	static  int m_level;

@@ -19,10 +19,12 @@ public:
 	int checkCollisions(float);
     bool checkIfObjectFalling(float);
     void andEnemyRandomly(int playerselect);
-    void printGameStatus(sf::RenderWindow &, int level, sf::Time , sf::Clock, bool);
+
 	void checkIfHeroDig(const sf::Time&);
 	void ResetMap();
     void restroreGameObjects(const sf::Time &time);
+    int getHerolife();
+    int getHeroScore();
     private:
 	//private members
     Hero* m_hero;
@@ -31,11 +33,6 @@ public:
 
 	size_t m_width, m_height;
     float m_cellHight,m_cellWidth;
-
-    sf::Text m_scoreText;
-    sf::Text m_levelText;
-    sf::Text m_lifeText;
-	sf::Text m_timeTheLevel;
 
 	//private function
     void createObject(char, const sf::Vector2f &, int, int );
