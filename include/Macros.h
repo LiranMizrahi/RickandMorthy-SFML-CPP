@@ -28,7 +28,7 @@ const int HEIGHTSIZECALI = 15;
 const float FALLINGSPEED = 250.f;
 const  float HEROSPEED = 350.f ;
 const  float ENEMYSPEED = 300.f;
-const int NUMBEROFLEVELS = 2;
+const int NUMBEROFLEVELS = 4;
 
 //this consts is for the player select in the menu
 const int HEROASJERRY = 1;

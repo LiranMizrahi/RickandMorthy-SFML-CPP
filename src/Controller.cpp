@@ -19,9 +19,6 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
 
     m_boardChar = openlevelfile(m_level);
     m_time.restart();
-    m_playingTime = sf::seconds(m_timeTheLevel);
-   /* m_herroSelect = m_menu.StartGame(m_window);
-    m_board = Board(m_boardChar, m_herroSelect);*/
     newGame();
 
 }
@@ -103,7 +100,13 @@ std::vector<std::vector<char>> Controller::openlevelfile(int level)
         file.get();
 
         if (-1 < m_timeTheLevel)
+        {
+            m_playingTime = sf::seconds(m_timeTheLevel);
             m_isOnTime = true;
+            m_time.restart();
+        }
+        else
+            m_isOnTime = false;
 
         for (int i = 0; i < height; ++i)
         {
@@ -190,7 +193,7 @@ void Controller::CheckingTimes()
             gameOverHandler(true);
         }
 }
-
+//=============================================================
 void Controller::newGame()
 {
     m_herroSelect = m_menu.StartGame(m_window);
@@ -199,4 +202,3 @@ void Controller::newGame()
 
 
 
-//=============================================================
