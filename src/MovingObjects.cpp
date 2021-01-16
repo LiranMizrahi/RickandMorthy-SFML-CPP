@@ -97,4 +97,6 @@ bool MovingObjects::isIsDownAvail() const {
 void MovingObjects::setIsDownAvail(bool mIsDownAvail) {
     m_isDownAvail = mIsDownAvail;
 }
+
+
 //=============================================================

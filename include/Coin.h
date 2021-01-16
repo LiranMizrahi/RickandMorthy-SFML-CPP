@@ -22,7 +22,10 @@ public:
 	virtual void handleColision(GiftAddingLife&) override {};
 	virtual void handleColision(GiftAddingScore&) override {};
 	virtual void handleColision(GiftAddingEnemy&) override {};
-    virtual bool isObjectIsStandable(GameObj&)override;
+
+    virtual bool isObjectIsStandable(Hero&)override;
+
+    virtual bool isObjectIsStandable(Enemy&)override;
 	virtual void handleColision(GiftAddingTime&) override {};
 	static size_t getNowCoins();
     virtual bool isObjectDigable(const sf::Time&) override;

@@ -5,8 +5,8 @@ Rope::Rope()
 }
 //=============================================================
 Rope::Rope(const sf::Vector2f& loc, const sf::Vector2f& size): StaticObjects(SingletonPicture::instance().getRopeTexture(), loc, size)
-
 {
+
 }
 //=============================================================
 
@@ -25,10 +25,15 @@ void Rope::handleColision(GameObj &obj) {
     obj.handleColision(*this);
 }
 
-bool Rope::isObjectIsStandable(GameObj & movingobject) {
-   return (movingobject.getSprite().getPosition().y-this->getSprite().getPosition().y > 15);
+bool Rope::isObjectIsStandable(Hero & ) {
+   return true ;//(movingobject.getSprite().getPosition().y-this->getSprite().getPosition().y > 15);
 
 }
+bool Rope::isObjectIsStandable(Enemy & ) {
+    return true ;//(movingobject.getSprite().getPosition().y-this->getSprite().getPosition().y > 15);
+
+}
+
 
 bool Rope::isObjectDigable(const sf::Time &) {
     return false;

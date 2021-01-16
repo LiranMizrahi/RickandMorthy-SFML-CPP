@@ -31,8 +31,14 @@ public:
 	 virtual void handleColision(GiftAddingScore&) override {};
 	 virtual void handleColision(GiftAddingEnemy&) override {};
 	 virtual void handleColision(GiftAddingTime&) override {};
+     virtual bool isObjectIsStandable(StaticObjects &stas)override;
 
 
 private:
-	
+	sf::Vector2f m_locationbeforefalling;
+public:
+    void setLocationbeforefalling(const sf::Vector2f &mLocationbeforefalling);
+
+public:
+    const sf::Vector2f &getLocationbeforefalling() const;
 };

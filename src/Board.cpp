@@ -215,10 +215,10 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
             for (auto &d : m_staticObjects[j])
             {
                 if (d) {
-                    if(!d->isObjectIsStandable(movingobject))
+                    if(!movingobject.isObjectIsStandable(*d))
                             continue;
-
-                    if (!d->getIsOff())
+                    //if (!d->getIsOff())
+                    else
                         if (checkdown.getGlobalBounds().intersects(
                                 d->getSprite().getGlobalBounds())) {
                             movingobject.setIsfalling(false);
@@ -300,7 +300,7 @@ void Board::ResetMap()
         for (auto& rowStaticObj : staticObj)
         {
             if(rowStaticObj)
-            rowStaticObj->setIsOff(false);
+                rowStaticObj->setIsOff(false);
         }
 
     for (auto& movObj : m_movingObjects)
@@ -373,7 +373,7 @@ void Board::andEnemyRandomly(int playerselect) {
 
     int i,j;
     do {
-         i = rand()% m_height;
+         i = rand() % m_height;
          j = rand() %m_width;
     }
     while(m_staticObjects[i][j] != nullptr);
@@ -382,9 +382,8 @@ void Board::andEnemyRandomly(int playerselect) {
                                      m_cellHight/2+m_cellHight*i),playerselect);
 
 
-
-
 }
+//==================================================
 
 void Board::restroreGameObjects(const sf::Time &time) {
 

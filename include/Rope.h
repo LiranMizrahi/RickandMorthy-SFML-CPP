@@ -26,6 +26,7 @@ public:
 	virtual void handleColision(GiftAddingEnemy&) override {};
 	virtual void handleColision(GiftAddingTime&) override {};
 
-    virtual bool isObjectIsStandable(GameObj&)override;
+    virtual bool isObjectIsStandable(Enemy&)override;
+    virtual bool isObjectIsStandable(Hero&)override;
     virtual bool isObjectDigable(const sf::Time &) override;
 };

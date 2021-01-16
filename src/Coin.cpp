@@ -57,9 +57,18 @@ void Coin::incCoins()
 	m_currentCoins--;
 }
 //=============================================================
-bool Coin::isObjectIsStandable(GameObj & obj) {
+bool Coin::isObjectIsStandable(Hero & obj) {
     return false;
 }
+
+//=============================================================
+
+bool Coin::isObjectIsStandable(Enemy & obj) {
+    return false;
+}
+
+
+
 //=============================================================
 bool Coin::isObjectDigable(const sf::Time&) {
     return false;

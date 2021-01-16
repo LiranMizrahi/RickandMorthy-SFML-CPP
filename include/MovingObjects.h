@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObj.h"
-
+#include "StaticObjects.h"
 
 class MovingObjects : public GameObj
 {
@@ -17,7 +17,7 @@ public:
     void setLastPosition(sf::Vector2f);
     virtual void UpdateLocation(float) = 0;
     void setStartPosion();
-
+    virtual bool isObjectIsStandable(StaticObjects&) = 0;
 
 
 protected:

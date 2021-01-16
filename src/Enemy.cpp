@@ -48,6 +48,18 @@ void Enemy::handleColision(GameObj &obj) {
 
 }
 
+bool Enemy::isObjectIsStandable(StaticObjects &stas) {
+    return stas.isObjectIsStandable(*this);
+}
+
+const sf::Vector2f &Enemy::getLocationbeforefalling() const {
+    return m_locationbeforefalling;
+}
+
+void
+Enemy::setLocationbeforefalling(const sf::Vector2f &mLocationbeforefalling) {
+    m_locationbeforefalling = mLocationbeforefalling;
+}
 
 
 

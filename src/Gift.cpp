@@ -10,7 +10,11 @@ Gift::Gift(const sf::Vector2f& loc, const sf::Vector2f& size):
     m_showTime = sf::milliseconds(rand()% GIFTSHOWTIME + 1000 );
 }
 
-bool Gift::isObjectIsStandable(GameObj &) {
+bool Gift::isObjectIsStandable(Hero &) {
+    return false;
+}
+
+bool Gift::isObjectIsStandable(Enemy &) {
     return false;
 }
 

@@ -26,9 +26,14 @@ void Ladder::handleColision(GameObj &obj) {
 
 }
 
-bool Ladder::isObjectIsStandable(GameObj &) {
+bool Ladder::isObjectIsStandable(Hero &) {
     return true;
 }
+
+bool Ladder::isObjectIsStandable(Enemy &) {
+    return true;
+}
+
 
 bool Ladder::isObjectDigable(const sf::Time &) {
     return false;

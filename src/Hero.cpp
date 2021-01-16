@@ -209,4 +209,8 @@ void Hero::digHole(
             }
 
     }
+
+bool Hero::isObjectIsStandable(StaticObjects &stas) {
+    return stas.isObjectIsStandable(*this);
+}
 //====================================================

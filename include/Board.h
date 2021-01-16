@@ -20,8 +20,11 @@ public:
     bool checkIfObjectFalling(float);
     void andEnemyRandomly(int playerselect);
     void printGameStatus(sf::RenderWindow &, int level, sf::Time , sf::Clock, bool);
-	void checkIfHeroDig();
-	void ResetMap();
+	void checkIfHeroDig(const sf::Time &time);
+    void restroreGameObjects(const sf::Time &time);
+
+
+        void ResetMap();
 
         private:
 	//private members

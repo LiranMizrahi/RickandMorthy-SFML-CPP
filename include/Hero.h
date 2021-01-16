@@ -35,7 +35,7 @@ class Hero : public MovingObjects {
 		virtual void handleColision(GiftAddingScore&) override;
 		virtual void handleColision(GiftAddingEnemy&) override {};
 		virtual void handleColision(GiftAddingTime&) override {};
-
+       virtual bool isObjectIsStandable(StaticObjects&)override;
 
 private:
 		static int m_life, m_score;

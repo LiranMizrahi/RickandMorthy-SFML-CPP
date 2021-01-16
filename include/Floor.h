@@ -18,18 +18,19 @@ public:
 	virtual void handleColision(GameObj& ) override;
 	virtual void handleColision(Coin&) override {};
 	virtual void handleColision(Enemy&) override;
+
 	virtual void handleColision(GiftAddingLife&) override {};
 	virtual void handleColision(GiftAddingScore&) override {};
 	virtual void handleColision(GiftAddingEnemy&) override {};
 	virtual void handleColision(GiftAddingTime&) override {};
 
-    virtual bool isObjectIsStandable(GameObj&)override;
+    virtual bool isObjectIsStandable(Hero&)override;
+    virtual bool isObjectIsStandable(Enemy&)override;
+
     virtual bool isObjectDigable(const sf::Time &) override;
     virtual void restoreGameObj(const sf::Time &)override;
 
-
     virtual void setIsOff(bool isoff)override;
     sf::Time m_digtimestamp;
-
 
 };

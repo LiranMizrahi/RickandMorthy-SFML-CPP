@@ -24,7 +24,21 @@ void Floor::handleColision(GameObj &obj) {
 
 }
 
-bool Floor::isObjectIsStandable(GameObj &) {
+bool Floor::isObjectIsStandable(Enemy &enemy) {
+
+
+    if(m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7 ||!m_isOff) {
+            enemy.setLocationbeforefalling(enemy.getSprite().getPosition());
+        return true;
+    }
+    if(!m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7)
+    enemy.getSprite().setPosition(enemy.getLocationbeforefalling());
+   // if(this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 15)
+    if(!m_isOff)return true;
+    return false;
+}
+bool Floor::isObjectIsStandable(Hero &) {
+    if(m_isOff)return false;
     return true;
 }
 
