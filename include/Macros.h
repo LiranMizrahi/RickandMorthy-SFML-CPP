@@ -33,8 +33,11 @@ const int GIFTSHOWTIME = 3000;
 const int ADDTIMEGIFTTIME = 15;
 const int HERODIGDELTATIME = 200;
 const int NUMBEROFLEVELS = 4;
+const int NUMBEROFLEVELBACKGROUD =4;
 
 //this consts is for the player select in the menu
 const int HEROASJERRY = 1;
 const int HEROASRICK = 2;
+
+
 

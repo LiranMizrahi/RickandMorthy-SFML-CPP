@@ -3,8 +3,7 @@
 
 class StartGameState:State {
 
-    StartGameState(const sf::Texture &unnamed,
-                   const sf::SoundBuffer &unnamed1);
+    StartGameState();
     void openstate(sf::RenderWindow &m_window, bool isplayerwin)override;
 
 

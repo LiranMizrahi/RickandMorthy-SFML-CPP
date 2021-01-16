@@ -1,10 +1,10 @@
-#include "Menu.h"
+#include "MenuState.h"
 #include "Controller.h"
 int main()
 {
 
 
-	//auto a = Menu();
+	//auto a = MenuState();
  //  a.OpenMenu();
 
 

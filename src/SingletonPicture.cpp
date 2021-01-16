@@ -1,6 +1,7 @@
 #pragma once
 #include "SingletonPicture.h"
 #include <iostream>
+#include "Macros.h"
 
 
 
@@ -17,9 +18,6 @@ SingletonPicture::SingletonPicture()
 	std::cout << "cant open picture";
 
 	if (!m_enemyMonster.loadFromFile("monster_left.png"))
-	std::cout << "cant open picture";
-
-	if (!m_board.loadFromFile("level1.jpg"))
 	std::cout << "cant open picture";
 
 	if (!m_coin.loadFromFile("portalgun.png"))
@@ -58,6 +56,19 @@ SingletonPicture::SingletonPicture()
     if (!m_gameOver.loadFromFile("gameoverpic.jpg"))
         std::cout << "cant open picture";
 
+    std::string  filename = "level";
+    std::string filetype = "jpg";
+
+    for (int i = 1; i <= NUMBEROFLEVELS ; ++i) {
+
+        std::string  filename = "level";
+        std::string filetype = ".jpg";
+        auto level = sf::Texture();
+        level.loadFromFile(filename+= std::to_string(i)+filetype);
+        m_levelbackgrounds.push_back(level);
+    }
+
+
 
 }
 
@@ -87,9 +98,9 @@ const sf::Texture& SingletonPicture::getCoinTexture()const
 	return m_coin;
 }
 
-const sf::Texture& SingletonPicture::getBoardTexture()const
+const sf::Texture& SingletonPicture::getBoardTexture(int level)const
 {
-	return m_board;
+	return m_levelbackgrounds[(level-1) % m_levelbackgrounds.size()];
 }
 
 const sf::Texture& SingletonPicture::getFloorTexture()const

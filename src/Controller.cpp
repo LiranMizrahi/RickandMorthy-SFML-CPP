@@ -13,9 +13,9 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
     m_gameOverSound.setBuffer(SingletonSound::instance().getMGameOver());
     m_levelUpSoundl.setBuffer(SingletonSound::instance().getMLevelUp());
     m_startGameSound.setBuffer(SingletonSound::instance().getMStartGame());
-
+    m_level =1;
     m_window.setFramerateLimit(60);
-	board.setTexture(SingletonPicture::instance().getBoardTexture());
+	board.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
 	board.setPosition(0,0);
     printStartGameScreen();
 
@@ -37,7 +37,7 @@ void Controller::run()
 		m_window.clear();
 		m_window.draw(board);
 		m_board.draw(m_window);
-        m_board.printGameStatus(m_window,m_level, m_playingTime, m_time, m_isOnTime);
+        m_gameStatusBar.printGameStatus(m_window,m_level, m_playingTime, m_time, m_isOnTime,m_board.getHeroScore(),m_board.getHerolife());
         m_window.display();
 
 //dsadas
@@ -81,6 +81,8 @@ void Controller::run()
                 m_level++;
                 //if there is no more coins move to the next level
                 upgradeLevel();
+                board.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
+
             }
         }
 

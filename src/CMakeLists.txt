@@ -2,7 +2,7 @@
                                      "Controller.cpp"
                                      "GameObj.cpp"
                                      "SingletonPicture.cpp"
-                                     "Menu.cpp"
+                                     "MenuState.cpp"
                                      "Board.cpp"
                                      "MovingObjects.cpp"
                                      "StaticObjects.cpp"

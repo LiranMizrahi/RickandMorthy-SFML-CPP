@@ -8,8 +8,7 @@
 #include "SingletonFont.h"
 
 
-StartGameState::StartGameState(const sf::Texture &unnamed,
-                               const sf::SoundBuffer &unnamed1) : State(unnamed, unnamed1) {//:State(SingletonPicture::instance().getMStartGame(),sf::Sound(SingletonSound::instance().getOpenGame())){
+StartGameState::StartGameState() :State(SingletonPicture::instance().getMStartGame(),SingletonSound::instance().getOpenGame()){
 
 }
 
@@ -17,15 +16,15 @@ StartGameState::StartGameState(const sf::Texture &unnamed,
 
 void StartGameState::openstate(sf::RenderWindow &m_window, bool isplayerwin) {
 
-    auto soundmusic = sf::Sound(SingletonSound::instance().getOpenGame());
-    soundmusic.play();
-    sf::Sprite openpic(SingletonPicture::instance().getMStartGame());
+
+    m_stateSound.play();
+
 
     while (m_window.isOpen()) {
         if (auto event = sf::Event{}; m_window.waitEvent(event)) {}
 
         m_window.clear();
-        m_window.draw(openpic);
+        m_window.draw(m_stateBackround);
         m_window.display();
 
         sf::sleep(sf::seconds(4));
