@@ -54,7 +54,7 @@ void Controller::run()
             ResetLevel();
         
         m_board.moveCharacters(deltaTime);
-        m_board.checkIfHeroDig();
+        m_board.checkIfHeroDig(m_time.getElapsedTime());
         //m_board check if hero alive
         //m_board check if hero got gift
         //m_board check if hero took coin

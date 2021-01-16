@@ -59,7 +59,7 @@ int Menu::StartGame(sf::RenderWindow& window)
                 break;
             }
           else if (event.type == sf::Event::MouseButtonReleased)
-		{
+		  {
 				auto location = window.mapPixelToCoords(
 					{ event.mouseButton.x, event.mouseButton.y});
 
@@ -67,7 +67,7 @@ int Menu::StartGame(sf::RenderWindow& window)
 				{
 				    updateSelectPic(rickpic,jerrypic);
 					heroChoose = HEROASRICK;
-					rickpic.setOutlineColor(sf::Color::Blue);
+					rickpic.setOutlineColor(sf::Color::White);
 				ricksound.play();
 
 				}
@@ -75,15 +75,29 @@ int Menu::StartGame(sf::RenderWindow& window)
 				{
 					heroChoose = HEROASJERRY;
                     updateSelectPic(jerrypic,rickpic);
-					jerrypic.setOutlineColor(sf::Color::Green);
+					jerrypic.setOutlineColor(sf::Color::White);
 				        jerrysound.play();
 				}
 				else if(start.getGlobalBounds().contains(location))
 				{
 					return heroChoose;
-				}
-				
-		}
+				}	
+		  }
+          else if(sf::Event::MouseMoved)
+            {
+                auto location = window.mapPixelToCoords(
+                    { event.mouseMove.x, event.mouseMove.y });
+                if (start.getGlobalBounds().contains(location))
+                {
+                    start.setColor(sf::Color::White);
+                }
+                else
+                {
+                    start.setColor(sf::Color::Black);
+
+                }
+            }
+          
 		}
 	}
 	return heroChoose;
