@@ -51,5 +51,6 @@ private:
 	void printStartGameScreen();
 	void gameOverHandler(bool);
 	void CheckingTimes();
+	void newGame();
 
 };				
