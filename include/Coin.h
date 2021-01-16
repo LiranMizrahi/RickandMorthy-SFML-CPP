@@ -27,9 +27,9 @@ public:
 	static size_t getNowCoins();
     virtual bool isObjectDigable(const sf::Time&) override;
 	static void CoinInitialization();
-	static void incCoins();
+
+    static void incCoins();
 private:
-	
 	static size_t m_allCoins;
 	static size_t m_currentCoins;
 };

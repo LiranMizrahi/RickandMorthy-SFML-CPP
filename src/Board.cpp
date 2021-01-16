@@ -385,4 +385,14 @@ void Board::andEnemyRandomly(int playerselect) {
 
 
 }
+
+void Board::restroreGameObjects(const sf::Time &time) {
+
+    for(auto &staticObjects : m_staticObjects)
+        for(auto& staticObjectsi : staticObjects )
+            if(staticObjectsi)
+                staticObjectsi->restoreGameObj(time);
+
+
+}
 //==================================================

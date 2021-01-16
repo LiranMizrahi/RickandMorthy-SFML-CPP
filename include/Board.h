@@ -20,10 +20,11 @@ public:
     bool checkIfObjectFalling(float);
     void andEnemyRandomly(int playerselect);
     void printGameStatus(sf::RenderWindow &, int level, sf::Time , sf::Clock, bool);
-	void checkIfHeroDig(const sf::Time& time);
-	void ResetMap();
+	void checkIfHeroDig(const sf::Time &time);
+    void ResetMap();
+    void restroreGameObjects(const sf::Time &time);
 
-private:
+        private:
 	//private members
     Hero* m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;

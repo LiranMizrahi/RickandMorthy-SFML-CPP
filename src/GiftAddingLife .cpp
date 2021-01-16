@@ -10,10 +10,11 @@ void GiftAddingLife::handleColision(GameObj& obj)
     obj.handleColision(*this);
 }
 
-void GiftAddingLife::handleColision(Hero& Obj)
+void GiftAddingLife::handleColision(Hero& obj)
 {
     if(!m_isOff)
-        Obj.handleColision(*this);
+        obj.handleColision(*this);
     m_isOff = true;
+    m_isreedem = true;
 }
 

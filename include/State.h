@@ -8,7 +8,6 @@ public:
     virtual void openstate(sf::RenderWindow &m_window, bool isplayerwin) = 0;
 
 
-
 protected:
     sf::Sprite m_stateBackround;
     sf::Sound m_stateSound;
