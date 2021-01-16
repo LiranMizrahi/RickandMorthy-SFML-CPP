@@ -45,7 +45,6 @@ public:
     bool isObjectIsFalling(float, MovingObjects&);
 	void readFile(std::vector <std::vector<char>> , int);
     void initGamestatusbar();
-	void restroreGameObjects(const sf::Time& time);
 
 
 };
