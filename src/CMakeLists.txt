@@ -25,5 +25,6 @@
                                     "GameOverState.cpp"
                                     "StartGameState.cpp"
                                     "State.cpp"
+                              "GiftAddingTime.cpp"
 )
 

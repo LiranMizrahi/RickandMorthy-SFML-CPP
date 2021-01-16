@@ -18,3 +18,16 @@ bool Gift::isObjectDigable() {
 }
 
 
+void Gift::handleColision(Hero &obj) {
+    if(!m_isOff)
+        obj.handleColision(*this);
+    m_isOff = true;
+
+}
+
+void Gift::handleColision(GameObj &obj) {
+    obj.handleColision(*this);
+}
+
+
+

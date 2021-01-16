@@ -7,6 +7,7 @@
 #include"GameObj.h"
 #include"Coin.h"
 #include<iostream>
+
 class Hero : public MovingObjects {
 
    public:
@@ -19,7 +20,7 @@ class Hero : public MovingObjects {
 	   void SetLife(int);
 	    void UpdateLocation(float)override;
 	    void digHole(std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
-                  const sf::Vector2f &cellsize, const sf::Vector2f &boardsize);
+                     float m_cellWidth, float m_cellHight, int m_height, int m_width);
 
 	    void handleColision(GameObj&)override;
 	    void handleColision(Rope&)override;
@@ -31,6 +32,8 @@ class Hero : public MovingObjects {
 		virtual void handleColision(GiftAddingLife&) override;
 		virtual void handleColision(GiftAddingScore&) override;
 		virtual void handleColision(GiftAddingEnemy&) override {};
+		virtual void handleColision(GiftAddingTime&) override {};
+
 
 private:
 		static int m_life, m_score;

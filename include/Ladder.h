@@ -21,6 +21,8 @@ public:
 	virtual void handleColision(GiftAddingLife&) override {};
 	virtual void handleColision(GiftAddingScore&) override {};
 	virtual void handleColision(GiftAddingEnemy&) override {};
+	virtual void handleColision(GiftAddingTime&) override {};
+
     virtual bool isObjectIsStandable(GameObj&)override;
     virtual bool isObjectDigable()override;
 };

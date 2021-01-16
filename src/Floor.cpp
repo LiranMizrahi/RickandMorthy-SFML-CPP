@@ -31,3 +31,8 @@ bool Floor::isObjectIsStandable(GameObj &) {
 bool Floor::isObjectDigable() {
     return true;
 }
+
+void Floor::setIsOff(bool isoff) {
+    m_isOff = isoff;
+
+}

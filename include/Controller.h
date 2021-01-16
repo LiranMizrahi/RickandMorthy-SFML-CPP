@@ -23,7 +23,7 @@ public:
 
 private:
 
-	//private members
+	//private member
 	bool m_isOnTime;
 	float m_timeTheLevel;
 	int m_herroSelect;
@@ -32,7 +32,6 @@ private:
 	sf::RenderWindow m_window;
 	sf::Sprite board;	
 	sf::Clock clock;
-	//std::ifstream m_boardfile;
 	std::vector<std::vector<char>> m_boardChar;
 	sf::Sound m_startGameSound;
 	sf::Sound m_gameOverSound;
@@ -50,6 +49,8 @@ private:
 	void upgradeLevel();
 	void printStartGameScreen();
 	void gameOverHandler(bool);
+	void reedemGifts();
+
 	void CheckingTimes();
 	void newGame();
 

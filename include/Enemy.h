@@ -9,7 +9,7 @@
 const int ENEMYTYPES =3;
 
 enum e_Enemy {
-    SMART =1,RANDOM,Horizontal
+    SMART =0,RANDOM,Horizontal
 };
 class Enemy : public MovingObjects {
 public:
@@ -30,6 +30,8 @@ public:
 	 virtual void handleColision(GiftAddingLife&) override {};
 	 virtual void handleColision(GiftAddingScore&) override {};
 	 virtual void handleColision(GiftAddingEnemy&) override {};
+	 virtual void handleColision(GiftAddingTime&) override {};
+
 
 private:
 	
