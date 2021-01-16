@@ -31,6 +31,9 @@ public:
     virtual void restoreGameObj(const sf::Time &)override;
 
     virtual void setIsOff(bool isoff)override;
+	virtual void resetObj()override;
+
+
     sf::Time m_digtimestamp;
 
 };

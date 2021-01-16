@@ -22,6 +22,7 @@ public:
 	virtual void handleColision(GiftAddingLife&) override {};
 	virtual void handleColision(GiftAddingScore&) override {};
 	virtual void handleColision(GiftAddingEnemy&) override {};
+	virtual void resetObj()override;
 
     virtual bool isObjectIsStandable(Hero&)override;
 
@@ -32,6 +33,7 @@ public:
 	static void CoinInitialization();
 
     static void incCoins();
+	static void resetCoins();
 private:
 	static size_t m_allCoins;
 	static size_t m_currentCoins;

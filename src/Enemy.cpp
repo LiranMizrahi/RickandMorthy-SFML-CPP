@@ -17,6 +17,8 @@ Enemy::Enemy( const sf::Vector2f& loc, int EnemySelection)
 		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 
 	}
+	m_firstPosition = loc;
+
 }
 
 void Enemy::handleColision(Rope& Obj)
@@ -50,6 +52,11 @@ void Enemy::handleColision(GameObj &obj) {
 
 bool Enemy::isObjectIsStandable(StaticObjects &stas) {
     return stas.isObjectIsStandable(*this);
+}
+
+void Enemy::resetObj()
+{
+	this->SetPosition(m_firstPosition);
 }
 
 const sf::Vector2f &Enemy::getLocationbeforefalling() const {

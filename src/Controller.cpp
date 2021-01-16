@@ -215,16 +215,18 @@ void Controller::CheckingTimes()
 //=============================================================
 void Controller::newGame()
 {
+    Coin::resetCoins();
     Hero::SetLife(3);
+    m_level = 1;
+    m_boardChar = openlevelfile(m_level);
     m_herroSelect = m_menu.StartGame(m_window);
     m_board = Board(m_boardChar, m_herroSelect);
     m_time.restart();
-
+    
 }
 
 void Controller::ResetLevel()
 {
-
     m_time.restart();
     ResetCoins();
     m_board.ResetMap();
