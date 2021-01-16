@@ -58,7 +58,7 @@ int Menu::StartGame(sf::RenderWindow& window)
                 window.clear();
                 break;
             }
-          else if  (event.type == sf::Event::MouseButtonReleased)
+          else if (event.type == sf::Event::MouseButtonReleased)
 		{
 				auto location = window.mapPixelToCoords(
 					{ event.mouseButton.x, event.mouseButton.y});

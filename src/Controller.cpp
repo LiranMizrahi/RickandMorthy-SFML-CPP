@@ -21,8 +21,9 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
     m_boardChar = openlevelfile(m_level);
     m_time.restart();
     m_playingTime = sf::seconds(m_timeTheLevel);
-    m_herroSelect = m_menu.StartGame(m_window);
-    m_board = Board(m_boardChar, m_herroSelect);
+   /* m_herroSelect = m_menu.StartGame(m_window);
+    m_board = Board(m_boardChar, m_herroSelect);*/
+    newGame();
 
 }
 //=============================================================
@@ -64,8 +65,11 @@ void Controller::run()
         if(checkIfLevelDone()) {
 
             //check if there is move level to upgrade
-            if(m_level == NUMBEROFLEVELS)
+            if (m_level == NUMBEROFLEVELS)
+            {
                 gameOverHandler(true);
+                newGame();
+            }
             else {
                 m_level++;
                 //if there is no more coins move to the next level
@@ -206,6 +210,12 @@ void Controller::reedemGifts() {
 }
 //=============================================================
 
+
+void Controller::newGame()
+{
+    m_herroSelect = m_menu.StartGame(m_window);
+    m_board = Board(m_boardChar, m_herroSelect);
+}
 
 
 

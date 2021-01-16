@@ -52,5 +52,6 @@ private:
 	void reedemGifts();
 
 	void CheckingTimes();
+	void newGame();
 
 };				
