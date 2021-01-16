@@ -52,8 +52,10 @@ void Controller::run()
         m_board.checkIfObjectFalling(deltaTime);
         if (m_board.checkCollisions(deltaTime))
             ResetLevel();
-
+        
         m_board.moveCharacters(deltaTime);
+        m_board.checkIfHeroDig(m_time.getElapsedTime());
+
         m_board.checkIfHeroDig(m_time.getElapsedTime());
         m_board.restroreGameObjects(m_time.getElapsedTime());
 

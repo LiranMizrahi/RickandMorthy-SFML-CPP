@@ -153,11 +153,12 @@ void Hero::playCollectDeadSound() {
     m_collectDeadSound.play();
 
 }
-//=======================   =============================
+//======================================================
 
 void Hero::handleColision(Hero &) {
 
 }
+//======================================================
 void Hero::digHole(
         std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
         float m_cellWidth, float m_cellHight, int m_height, int m_width,

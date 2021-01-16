@@ -12,7 +12,7 @@ class SingletonSound;
 class Board {
 
 public:
-	Board() = default;
+	Board();
 	Board(std::vector <std::vector<char>>, int);
 	void draw(sf::RenderWindow&)const;
 	void moveCharacters(float);
@@ -20,13 +20,10 @@ public:
     bool checkIfObjectFalling(float);
     void andEnemyRandomly(int playerselect);
     void printGameStatus(sf::RenderWindow &, int level, sf::Time , sf::Clock, bool);
-	void checkIfHeroDig(const sf::Time &time);
+	void checkIfHeroDig(const sf::Time&);
+	void ResetMap();
     void restroreGameObjects(const sf::Time &time);
-
-
-        void ResetMap();
-
-        private:
+    private:
 	//private members
     Hero* m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
@@ -48,7 +45,7 @@ public:
     bool isObjectIsFalling(float, MovingObjects&);
 	void readFile(std::vector <std::vector<char>> , int);
     void initGamestatusbar();
-
+	void restroreGameObjects(const sf::Time& time);
 
 
 };
