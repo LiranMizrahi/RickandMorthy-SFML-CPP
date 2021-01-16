@@ -28,7 +28,8 @@ bool Floor::isObjectIsStandable(GameObj &) {
     return true;
 }
 
-bool Floor::isObjectDigable() {
+bool Floor::isObjectDigable(const sf::Time &time) {
+    m_digtimestamp = time;
     return true;
 }
 

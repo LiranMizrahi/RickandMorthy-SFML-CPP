@@ -49,7 +49,7 @@ private:
 	void ResetCoins();
 	void upgradeLevel();
 	void printStartGameScreen();
-	void gameOverHandler(bool);
+	void gameOverHandler(bool isplayerwin);
 	void reedemGifts();
 
 	void CheckingTimes();

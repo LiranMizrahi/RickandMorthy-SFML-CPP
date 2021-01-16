@@ -19,8 +19,10 @@ class Hero : public MovingObjects {
 	   void SetScore(int);
 	   static void SetLife(int);
 	    void UpdateLocation(float)override;
-	    void digHole(std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
-                     float m_cellWidth, float m_cellHight, int m_height, int m_width);
+	    void
+        digHole(std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
+                float m_cellWidth, float m_cellHight, int m_height, int m_width,
+                const sf::Time &time);
 
 	    void handleColision(GameObj&)override;
 	    void handleColision(Rope&)override;
@@ -40,6 +42,7 @@ private:
 		sf::Sound m_collectGiftSound;
         sf::Sound m_collectCoinSound;
         sf::Sound m_collectDeadSound;
+        sf::Time m_lastdigtime;
 
 
         void playCollectGiftSound();
