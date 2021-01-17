@@ -9,7 +9,7 @@ public:
 	MovingObjects();
 	~MovingObjects() override = default;
 	MovingObjects(const sf::Texture& tex, const sf::Vector2f& loc, const sf::Vector2f&);
-	void move(float,float);
+	virtual void move(float,float);
 	sf::Vector2f GetPosition()const;
 	void SetPosition(const sf::Vector2f&);
 	void DrawLeftside();

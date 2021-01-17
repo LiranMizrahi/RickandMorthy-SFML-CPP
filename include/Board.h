@@ -50,7 +50,7 @@ private:
 	void addGiftToStaticVector(const sf::Vector2f&, sf::Vector2f, int);
 	void handleCollisions(GameObj &obj);
     bool isObjectIsFalling(float, MovingObjects&);
-	void readFile(std::vector <std::vector<char>> , int);
+	void readFile(const std::vector <std::vector<char>> &, int);
 
 
 };

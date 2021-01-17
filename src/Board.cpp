@@ -121,11 +121,6 @@ void Board::moveCharacters(float deltaTime) {
     for (auto &movObj : m_movingObjects) {
         if (!movObj->getIsfalling()) {
 
-            if (typeid(movObj) != typeid(SmartEnemy))
-            {
-
-            }
-            else
             {
                 movObj->UpdateLocation(deltaTime);
             }
@@ -143,7 +138,7 @@ bool Board::checkIfObjectFalling(float deltatime) {
 }
 
 //============================================
-void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
+void Board::readFile(const  std::vector <std::vector<char>> &file, int PlayerSelection)
 {
     sf::Vector2f location;
     m_staticObjects.clear();
