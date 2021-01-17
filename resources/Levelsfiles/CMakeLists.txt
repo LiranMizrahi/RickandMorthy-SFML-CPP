@@ -2,4 +2,5 @@
 configure_file ("level2.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("level3.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("level4.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("level5.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 

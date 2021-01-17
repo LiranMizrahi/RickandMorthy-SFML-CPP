@@ -32,7 +32,7 @@ const int GIFTSHOWTIME = 3000;
 
 const int ADDTIMEGIFTTIME = 15;
 const int HERODIGDELTATIME = 200;
-const int NUMBEROFLEVELS = 4;
+const int NUMBEROFLEVELS = 5;
 const int NUMBEROFLEVELBACKGROUD =4;
 
 //this consts is for the player select in the menu

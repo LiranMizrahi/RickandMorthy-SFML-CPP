@@ -9,6 +9,7 @@ public:
                 const sf::Vector2f &boardsize);
     ~RandomEnemy()override = default;
 	virtual void UpdateLocation(float)override;
+
 private:
 
 };

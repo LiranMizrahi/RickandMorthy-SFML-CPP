@@ -113,6 +113,7 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
     }
 
 
+
 }
 //============================================
 void Board::moveCharacters(float deltaTime) {
@@ -167,7 +168,7 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
     // take char with the file and put vector
     for (int i = 0; i < m_height; ++i)
     {
-        //   m_staticObjects[i];
+
         for (int j = 0; j < m_width; ++j)
         {
 
@@ -187,7 +188,6 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
     }
 
     m_movingObjects.push_back(std::move(std::make_unique<Hero>(heroloc, PlayerSelection,sf::Vector2f(m_cellWidth,m_cellHight))));
-
     m_hero = (Hero*)m_movingObjects[m_movingObjects.size() - 1].get();
 
 
@@ -229,7 +229,6 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
                 if (d) {
                     if(!movingobject.isObjectIsStandable(*d))
                             continue;
-                    //if (!d->getIsOff())
                     else
                         if (checkdown.getGlobalBounds().intersects(
                                 d->getSprite().getGlobalBounds())) {
@@ -265,6 +264,16 @@ void Board::ResetMap()
     for (auto& movObj : m_movingObjects)
         movObj->resetObj();
     m_hero->resetTime();
+}
+//==================================================
+
+float Board::getCellHight() const {
+    return m_cellHight;
+}
+//==================================================
+
+float Board::getCellWidth() const {
+    return m_cellWidth;
 }
 
 //==================================================
@@ -324,8 +333,7 @@ void Board::handleCollisions(GameObj &obj)
 //==================================================
 void Board::checkIfHeroDig(const sf::Time &time) {
 
-    m_hero->digHole(m_staticObjects, m_cellWidth, m_cellHight, m_height,
-                    m_width, time);
+    m_hero->digHole(*this, time);
 
 }
 //==================================================
@@ -351,8 +359,9 @@ void Board::restroreGameObjects(const sf::Time &time) {
     for(auto &staticObjects : m_staticObjects)
         for(auto& staticObjectsi : staticObjects )
             if(staticObjectsi)
-                staticObjectsi->restoreGameObj(time);
-
+                staticObjectsi->restoreGameObj(time, 0);
+    for(auto&  movi : m_movingObjects)
+        movi->restoreGameObj(time, m_cellHight);
 
 }
 //==================================================
@@ -365,4 +374,26 @@ int Board::getHeroScore() {
 int Board::getHerolife() {
     return m_hero->getLife();
 }
+//==================================================
+
+MovingObjects * Board::getSMovingObjectsFromVector(int i) {
+    return m_movingObjects[i].get();
+}
+//==================================================
+
+StaticObjects *Board::getStaticObjectsFromVector(int i, int j) {
+    return m_staticObjects[i][j].get();
+}
+//==================================================
+
+size_t Board::getHeight() {
+    return m_height;
+}
+//==================================================
+
+size_t Board::getWidth() {
+    return m_width;
+}
+
+
 //==================================================

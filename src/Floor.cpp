@@ -27,12 +27,15 @@ void Floor::handleColision(GameObj &obj) {
 bool Floor::isObjectIsStandable(Enemy &enemy) {
 
 
-    if(m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7 ||!m_isOff) {
-            enemy.setLocationbeforefalling(enemy.getSprite().getPosition());
+    if((m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7) ||!m_isOff) {
+            if((m_isOff)) {
+                enemy.setIsingidedfloor(true);
+                enemy.setDiggedfloortime(this->m_digtimestamp);
+            }
         return true;
     }
-    if(!m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7)
-    enemy.getSprite().setPosition(enemy.getLocationbeforefalling());
+    //if(!m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7)
+   // enemy.getSprite().setPosition(enemy.getLocationbeforefalling());
    // if(this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 15)
     if(!m_isOff)return true;
     return false;
@@ -56,7 +59,11 @@ void Floor::setIsOff(bool isoff) {
 
 }
 
-void Floor::restoreGameObj(const sf::Time &time) {
+void Floor::restoreGameObj(const sf::Time &time, float cellheight) {
     if(time.asMilliseconds()-m_digtimestamp.asMilliseconds() >RESTOREFLOORTIME)
         m_isOff = false;
+}
+
+const sf::Time &Floor::getDigtimestamp() const {
+    return m_digtimestamp;
 }

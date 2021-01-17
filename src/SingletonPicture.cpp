@@ -59,7 +59,7 @@ SingletonPicture::SingletonPicture()
     std::string  filename = "level";
     std::string filetype = "jpg";
 
-    for (int i = 1; i <= NUMBEROFLEVELS ; ++i) {
+    for (int i = 1; i <= NUMBEROFLEVELBACKGROUD ; ++i) {
 
         std::string  filename = "level";
         std::string filetype = ".jpg";

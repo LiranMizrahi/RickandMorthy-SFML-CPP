@@ -36,7 +36,7 @@ void Gift::handleColision(GameObj &obj) {
 }
 
 
-void Gift::restoreGameObj(const sf::Time & time) {
+void Gift::restoreGameObj(const sf::Time &time, float cellheight) {
     if(!m_isreedem)
     if(time.asMilliseconds()-m_showTime.asMilliseconds()>0)
         m_isOff = false;

@@ -3,6 +3,7 @@
 #include "Floor.h"
 #include "Controller.h"
 #include "Enemy.h"
+#include "Board.h"
 int Hero::m_life = 3;
 int Hero::m_score = 0;
 Hero::Hero(const sf::Vector2f &loc, int HeroSelection,
@@ -154,16 +155,12 @@ void Hero::handleColision(Hero &) {
 
 }
 //======================================================
-void Hero::digHole(
-        std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
-        float m_cellWidth, float m_cellHight, int m_height, int m_width,
-        const sf::Time &time)
+void Hero::digHole(Board& board,const sf::Time &time)
 {
 
     if(time.asMilliseconds()-m_lastdigtime.asMilliseconds()<HERODIGDELTATIME)
         return;
     int row,col = 0;
-
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
     {
@@ -178,32 +175,32 @@ void Hero::digHole(
 
     else return;
 
-    float pointposition= m_cellHight;
+    float pointposition= board.getCellHight();
     for ( row = 0; pointposition <= this->getSprite().getPosition().y; ++row) {
 
-        pointposition += m_cellHight;
+        pointposition += board.getCellHight();
 
     }
 
-        pointposition = m_cellWidth;
+        pointposition = board.getCellWidth();
 
         for (; pointposition <= this->getSprite().getPosition().x; ++col) {
-            pointposition += m_cellWidth;
+            pointposition += board.getCellWidth();
         }
     row++;
-        std::cout <<"row "<<row<< "col "<< col << std::endl;
 
-        if (row >= 0 && col >= 0 && row < m_height && col < m_width)
-            if (m_staticobj[row][col])
+
+        if (row >= 0 && col >= 0 && row < board.getHeight() && col < board.getWidth())
+        {       auto staticobj = board.getStaticObjectsFromVector(row, col);
+            if (staticobj)
             {
-                if(m_staticobj[row][col]->isObjectDigable(time))
-                {
+                if (staticobj->isObjectDigable(time)) {
                     m_lastdigtime = time;
-                    m_staticobj[row][col]->setIsOff(true);
+                    staticobj->setIsOff(true);
                 }
 
             }
-
+        }
     }
 
 bool Hero::isObjectIsStandable(StaticObjects &stas) {

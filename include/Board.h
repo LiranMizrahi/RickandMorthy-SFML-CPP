@@ -19,6 +19,10 @@ public:
 	int checkCollisions(float);
     bool checkIfObjectFalling(float);
     void andEnemyRandomly(int playerselect);
+    size_t getWidth();
+    size_t getHeight();
+    StaticObjects* getStaticObjectsFromVector(int,int);
+    MovingObjects* getSMovingObjectsFromVector(int);
 
 	void checkIfHeroDig(const sf::Time&);
 	void ResetMap();
@@ -33,15 +37,20 @@ public:
 
 	size_t m_width, m_height;
     float m_cellHight,m_cellWidth;
+public:
+    float getCellHight() const;
 
-	//private function
+    float getCellWidth() const;
+
+private:
+
+    //private function
     void createObject(char, const sf::Vector2f &, int, int );
 	void createEnemysVector(const sf::Vector2f&, int);
 	void addGiftToStaticVector(const sf::Vector2f&, sf::Vector2f, int);
 	void handleCollisions(GameObj &obj);
     bool isObjectIsFalling(float, MovingObjects&);
 	void readFile(std::vector <std::vector<char>> , int);
-    void initGamestatusbar();
 
 
 };
