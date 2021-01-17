@@ -57,28 +57,21 @@ void Hero::UpdateLocation(float time)
 	    if(m_isUpAvail)
 		this->move( 0,-HEROSPEED * time);
 	}
-	else
-	    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 	    //    if (m_isDownAvail)
 		            this->move(0,HEROSPEED * time);
 	}
-	else
-	    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		this->move(-HEROSPEED *time, 0);
 		this->DrawLeftside();
 	}
-
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-
 	{
 		this->move(HEROSPEED *time, 0);
 		this->DrawRightside();
 	}
-
-
 }
 //====================================================
 void Hero::handleColision(GameObj& obj)

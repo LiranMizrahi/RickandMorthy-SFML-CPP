@@ -9,8 +9,6 @@ public:
 	~SmartEnemy() override = default;
 	virtual void UpdateLocation(float)override;
 
-
-
 private:
 
 };

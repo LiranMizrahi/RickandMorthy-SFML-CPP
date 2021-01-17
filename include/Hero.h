@@ -19,25 +19,26 @@ class Hero : public MovingObjects {
 	   static int getScore();
 	   void SetScore(int);
 	   static void SetLife(int);
-	    void UpdateLocation(float)override;
-	    void digHole(std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
+	   void UpdateLocation(float)override;
+	   void digHole(std::vector<std::vector<std::unique_ptr<StaticObjects>>> &m_staticobj,
                 float m_cellWidth, float m_cellHight, int m_height, int m_width,
                 const sf::Time &time);
 
-	    void handleColision(GameObj&)override;
-	    void handleColision(Rope&)override;
-	    void handleColision(Hero&)override;
-	    void handleColision(Floor&)override;
-	    void handleColision(Ladder&)override;
-	    void handleColision(Coin&) override;
-	    void handleColision(Enemy&) override;
-		virtual void handleColision(GiftAddingLife&) override;
-		virtual void handleColision(GiftAddingScore&) override;
-		virtual void handleColision(GiftAddingEnemy&) override {};
-		virtual void handleColision(GiftAddingTime&) override {};
+	   void resetTime();
+	   void handleColision(GameObj&)override;
+	   void handleColision(Rope&)override;
+	   void handleColision(Hero&)override;
+	   void handleColision(Floor&)override;
+	   void handleColision(Ladder&)override;
+	   void handleColision(Coin&) override;
+	   void handleColision(Enemy&) override;
+	   virtual void handleColision(GiftAddingLife&) override;
+	   virtual void handleColision(GiftAddingScore&) override;
+	   virtual void handleColision(GiftAddingEnemy&) override {};
+	   virtual void handleColision(GiftAddingTime&) override {};
        virtual bool isObjectIsStandable(StaticObjects&)override;
 	   virtual void resetObj()override;
-	   void resetTime();
+	    
 
 private:
 		static int m_life, m_score;

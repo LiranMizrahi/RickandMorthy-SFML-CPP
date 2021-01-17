@@ -9,10 +9,10 @@ SmartEnemy::SmartEnemy(const sf::Vector2f &loc, int EnemySelection,
 
 void SmartEnemy::UpdateLocation(float time)
 {
+    
+   
 
-    int RandomMov = std::rand() % 2;
-
-    switch (RandomMov)
+    switch (5)
     {
 
         case LEFT:

@@ -93,7 +93,7 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
 
     sf::Vector2f boaradsize(m_cellWidth,m_cellWidth);
     int ChooseEnemy = std::rand() % ENEMYTYPES;
-
+   //int ChooseEnemy = 1;
 
 
     switch (ChooseEnemy)
@@ -120,7 +120,14 @@ void Board::moveCharacters(float deltaTime) {
     for (auto &movObj : m_movingObjects) {
         if (!movObj->getIsfalling()) {
 
-            movObj->UpdateLocation(deltaTime);
+            if (typeid(movObj) != typeid(SmartEnemy))
+            {
+
+            }
+            else
+            {
+                movObj->UpdateLocation(deltaTime);
+            }
         }
     }
 

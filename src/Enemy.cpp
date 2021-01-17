@@ -17,12 +17,13 @@ Enemy::Enemy(const sf::Vector2f &loc, int EnemySelection,
     m_sprite.setPosition(loc);
     m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
 
-	}
-
 	m_firstPosition = loc;
-
-
 }
+
+	
+
+
+
 
 void Enemy::handleColision(Rope& Obj)
 {
