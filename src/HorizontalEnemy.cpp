@@ -1,6 +1,9 @@
 #include"HorizontalEnemy.h"
 
-HorizontalEnemy::HorizontalEnemy(const sf::Vector2f& loc, int EnemySelection):Enemy(loc, EnemySelection)
+HorizontalEnemy::HorizontalEnemy(const sf::Vector2f &loc,
+                                 int EnemySelection,
+                                 const sf::Vector2f &boardsize) : Enemy(
+        loc, EnemySelection, sf::Vector2f())
 {
 
 }

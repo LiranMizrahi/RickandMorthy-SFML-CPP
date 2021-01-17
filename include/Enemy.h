@@ -15,7 +15,8 @@ class Enemy : public MovingObjects {
 public:
 
 
-	  Enemy(const sf::Vector2f&, int);
+	  Enemy(const sf::Vector2f &loc, int EnemySelection,
+            sf::Vector2f boardsize);
      ~Enemy() override = default;
 
       void UpdateLocation(float time) override{};

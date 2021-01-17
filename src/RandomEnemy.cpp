@@ -3,13 +3,14 @@
 #include <time.h>
 
 
-RandomEnemy::RandomEnemy(const sf::Vector2f& loc, int EnemySelection) :Enemy(loc, EnemySelection)
+RandomEnemy::RandomEnemy(const sf::Vector2f &loc, int EnemySelection,
+                         const sf::Vector2f &boardsize) : Enemy(
+        loc, EnemySelection, boardsize)
 {
 }
 
 void RandomEnemy::UpdateLocation(float time1)
 {
-	srand((unsigned int)time(NULL));
 
 	int RandomMov = std::rand() % 4;
 

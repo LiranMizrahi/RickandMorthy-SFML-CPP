@@ -4,7 +4,9 @@
 class HorizontalEnemy: public Enemy
 {
 public:
-	HorizontalEnemy(const sf::Vector2f& loc, int EnemySelection);
+	HorizontalEnemy(const sf::Vector2f &loc,
+                    int EnemySelection,
+                    const sf::Vector2f &boardsize);
 	virtual void UpdateLocation(float)override;
 	~HorizontalEnemy() override = default;
 

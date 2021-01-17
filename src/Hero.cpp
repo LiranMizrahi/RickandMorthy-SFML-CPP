@@ -5,26 +5,26 @@
 #include "Enemy.h"
 int Hero::m_life = 3;
 int Hero::m_score = 0;
-Hero::Hero(const sf::Vector2f& loc, int HeroSelection) //: m_life(3), m_score(123)
+Hero::Hero(const sf::Vector2f &loc, int HeroSelection,
+           sf::Vector2f boardsize) //: m_life(3), m_score(123)
 {
 
 	if (HeroSelection == HEROASJERRY)
 	{
-		auto hero = SingletonPicture::instance().getHerojerryTexture();
 		m_sprite.setTexture(SingletonPicture::instance().getHerojerryTexture());
-		m_sprite.setPosition(loc);
-		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
 	}
 	else if(HeroSelection == HEROASRICK)
 	{
-		auto hero = SingletonPicture::instance().getHeroRickTexture();
 		m_sprite.setTexture(SingletonPicture::instance().getHeroRickTexture());
-		m_sprite.setPosition(loc);
-		m_sprite.setOrigin(sf::Vector2f(hero.getSize() / 2u));
+
 		
 	}
+    m_sprite.setPosition(loc);
+    m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
+    m_sprite.setScale(sf::Vector2f(boardsize.x/(m_sprite.getTexture()->getSize().x+15) ,(boardsize.y/(m_sprite.getTexture()->getSize().y+15))));
 
-	m_collectCoinSound.setBuffer(SingletonSound::instance().getMCollectCoin());
+
+    m_collectCoinSound.setBuffer(SingletonSound::instance().getMCollectCoin());
     m_collectGiftSound.setBuffer(SingletonSound::instance().getMCollectGift());
     m_collectDeadSound.setBuffer(SingletonSound::instance().getMDead());
 	m_firstPosition = loc;

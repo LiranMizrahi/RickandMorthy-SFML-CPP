@@ -90,7 +90,8 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
 
 void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection)
 {
-    srand((unsigned int)time(NULL));
+
+    sf::Vector2f boaradsize(m_cellWidth,m_cellWidth);
     int ChooseEnemy = std::rand() % ENEMYTYPES;
 
 
@@ -98,15 +99,15 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
     switch (ChooseEnemy)
     {
     case RANDOM:
-        m_movingObjects.push_back(std::move(std::make_unique<RandomEnemy>(location, PlayerSelection)));
+        m_movingObjects.push_back(std::move(std::make_unique<RandomEnemy>(location, PlayerSelection,boaradsize)));
 
         break;
     case Horizontal:
-        m_movingObjects.push_back(std::move(std::make_unique<HorizontalEnemy>(location, PlayerSelection)));
+        m_movingObjects.push_back(std::move(std::make_unique<HorizontalEnemy>(location, PlayerSelection,boaradsize)));
 
         break;
     case SMART:
-        m_movingObjects.push_back(std::move(std::make_unique<SmartEnemy>(location, PlayerSelection)));
+        m_movingObjects.push_back(std::move(std::make_unique<SmartEnemy>(location, PlayerSelection,boaradsize)));
 
         break;
     }
@@ -163,7 +164,7 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
         for (int j = 0; j < m_width; ++j)
         {
 
-            if (file[i][j] == ' ')
+            if (file[i][j] == SPACE)
                 m_staticObjects[i].push_back(nullptr);
             else if (file[i][j] == HERO)
                 heroloc = location;
@@ -178,7 +179,7 @@ void Board::readFile(std::vector <std::vector<char>> file, int PlayerSelection)
 
     }
 
-    m_movingObjects.push_back(std::move(std::make_unique<Hero>(heroloc, PlayerSelection)));
+    m_movingObjects.push_back(std::move(std::make_unique<Hero>(heroloc, PlayerSelection,sf::Vector2f(m_cellWidth,m_cellHight))));
 
     m_hero = (Hero*)m_movingObjects[m_movingObjects.size() - 1].get();
 
