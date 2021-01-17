@@ -40,6 +40,10 @@ void Coin::handleColision(GameObj &obj) {
    // if(&obj == this)return;
     obj.handleColision(*this);
 }
+void Coin::resetObj()
+{
+	m_isOff = false;
+}
 //=============================================================
 
 size_t Coin::getNowCoins() 
@@ -55,6 +59,11 @@ size_t Coin::getNowCoins()
 void Coin::incCoins()
 {
 	m_currentCoins--;
+}
+void Coin::resetCoins()
+{
+	m_allCoins = 0;
+	m_currentCoins = 0;
 }
 //=============================================================
 bool Coin::isObjectIsStandable(Hero & obj) {

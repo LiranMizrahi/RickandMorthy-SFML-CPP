@@ -33,7 +33,7 @@ public:
 	 virtual void handleColision(GiftAddingEnemy&) override {};
 	 virtual void handleColision(GiftAddingTime&) override {};
      virtual bool isObjectIsStandable(StaticObjects &stas)override;
-
+	 virtual void resetObj()override;
 
 private:
 	sf::Vector2f m_locationbeforefalling;

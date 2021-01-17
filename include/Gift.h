@@ -33,6 +33,7 @@ public:
 
     virtual bool isObjectDigable(const sf::Time &) override;
     virtual void restoreGameObj(const sf::Time &)override;
+	virtual void resetObj()override {};
 
 
 protected:

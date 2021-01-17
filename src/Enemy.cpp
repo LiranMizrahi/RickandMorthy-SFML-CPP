@@ -5,9 +5,8 @@ Enemy::Enemy(const sf::Vector2f &loc, int EnemySelection,
 {
 	if (EnemySelection == HEROASJERRY)
 	{
-		m_sprite.setTexture(SingletonPicture::instance().getEnemyMeeseeksTexture());
-
-	}
+        m_sprite.setTexture(SingletonPicture::instance().getEnemyMeeseeksTexture());
+    }
 	else if (EnemySelection == HEROASRICK)
 	{
         m_sprite.setTexture(SingletonPicture::instance().getEnemyMonsterTexture());
@@ -17,6 +16,10 @@ Enemy::Enemy(const sf::Vector2f &loc, int EnemySelection,
 
     m_sprite.setPosition(loc);
     m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
+
+	}
+
+	m_firstPosition = loc;
 
 
 }
@@ -52,6 +55,11 @@ void Enemy::handleColision(GameObj &obj) {
 
 bool Enemy::isObjectIsStandable(StaticObjects &stas) {
     return stas.isObjectIsStandable(*this);
+}
+
+void Enemy::resetObj()
+{
+	this->SetPosition(m_firstPosition);
 }
 
 const sf::Vector2f &Enemy::getLocationbeforefalling() const {

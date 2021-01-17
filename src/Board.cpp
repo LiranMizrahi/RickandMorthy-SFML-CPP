@@ -251,15 +251,13 @@ void Board::ResetMap()
     for(auto& staticObj : m_staticObjects)
         for (auto& rowStaticObj : staticObj)
         {
-            if(rowStaticObj)
-                rowStaticObj->setIsOff(false);
+            if (rowStaticObj)
+                rowStaticObj->resetObj();
         }
 
     for (auto& movObj : m_movingObjects)
-        movObj->setStartPosion();
-
-
-        m_hero->setIsOff(false);
+        movObj->resetObj();
+    m_hero->resetTime();
 }
 
 //==================================================

@@ -18,6 +18,7 @@ public:
     virtual void UpdateLocation(float) = 0;
     void setStartPosion();
     virtual bool isObjectIsStandable(StaticObjects&) = 0;
+    //virtual void resetObj()override = 0;
 
 
 protected:

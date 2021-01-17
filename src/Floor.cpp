@@ -37,6 +37,10 @@ bool Floor::isObjectIsStandable(Enemy &enemy) {
     if(!m_isOff)return true;
     return false;
 }
+void Floor::resetObj()
+{
+    m_isOff = false;
+}
 bool Floor::isObjectIsStandable(Hero &) {
     if(m_isOff)return false;
     return true;

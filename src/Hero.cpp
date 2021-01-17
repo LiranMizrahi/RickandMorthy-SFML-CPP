@@ -130,6 +130,8 @@ void Hero::handleColision(GiftAddingScore&)
 	m_score += 300;
 }
 
+
+
 //====================================================
 void Hero::SetScore(int score)
 {
@@ -213,5 +215,14 @@ void Hero::digHole(
 
 bool Hero::isObjectIsStandable(StaticObjects &stas) {
     return stas.isObjectIsStandable(*this);
+}
+void Hero::resetObj()
+{
+	this->SetPosition(m_firstPosition);
+	this->setIsOff(false);
+}
+void Hero::resetTime()
+{
+	m_lastdigtime = sf::seconds(0);
 }
 //====================================================

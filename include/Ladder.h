@@ -26,4 +26,6 @@ public:
     virtual bool isObjectIsStandable(Enemy&)override;
     virtual bool isObjectIsStandable(Hero&)override;
     virtual bool isObjectDigable(const sf::Time &) override;
+	virtual void resetObj()override {};
+
 };
