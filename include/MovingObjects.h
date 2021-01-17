@@ -26,12 +26,11 @@ protected:
     sf::Vector2f m_LastPosition;
     bool m_isfalling =false;
     bool m_isUpAvail = false;
-    bool m_isDownAvail = false;
+
 public:
     bool isIsUpAvail() const;
     void setIsUpAvail(bool mIsUpAvail);
-    bool isIsDownAvail() const;
-    void setIsDownAvail(bool mIsDownAvail);
+
 
 
 public:

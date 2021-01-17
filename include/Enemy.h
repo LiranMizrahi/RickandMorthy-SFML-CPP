@@ -33,13 +33,16 @@ public:
 	 virtual void handleColision(GiftAddingEnemy&) override {};
 	 virtual void handleColision(GiftAddingTime&) override {};
      virtual bool isObjectIsStandable(StaticObjects &stas)override;
-	 virtual void resetObj()override;
-
+     virtual void restoreGameObj(const sf::Time &, float cellheight) override;
+     virtual void resetObj()override;
+    const sf::Time &getDiggedfloortime() const;
+    void setDiggedfloortime(const sf::Time &diggedfloortime);
+    void setIsingidedfloor(bool isingidedfloor);
 private:
-	sf::Vector2f m_locationbeforefalling;
-public:
-    void setLocationbeforefalling(const sf::Vector2f &mLocationbeforefalling);
 
-public:
-    const sf::Vector2f &getLocationbeforefalling() const;
+     bool m_isingidedfloor =false;
+    sf::Time m_diggedfloortime = sf::Time::Zero;
+
+
+
 };

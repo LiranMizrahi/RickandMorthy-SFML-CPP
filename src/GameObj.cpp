@@ -49,7 +49,7 @@ void GameObj::setIsOff(bool isoff) {
 
 }
 
-void GameObj::restoreGameObj(const sf::Time &time) {
+void GameObj::restoreGameObj(const sf::Time &, float cellheight) {
 
 
 }

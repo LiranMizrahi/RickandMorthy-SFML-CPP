@@ -95,13 +95,6 @@ void MovingObjects::setIsUpAvail(bool mIsUpAvail) {
     m_isUpAvail = mIsUpAvail;
 }
 
-bool MovingObjects::isIsDownAvail() const {
-    return m_isDownAvail;
-}
-
-void MovingObjects::setIsDownAvail(bool mIsDownAvail) {
-    m_isDownAvail = mIsDownAvail;
-}
 
 
 //=============================================================

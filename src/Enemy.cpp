@@ -1,7 +1,6 @@
 #include "Enemy.h"
 #include "Macros.h"
-Enemy::Enemy(const sf::Vector2f &loc, int EnemySelection,
-             sf::Vector2f boardsize)
+Enemy::Enemy(const sf::Vector2f &loc, int EnemySelection,sf::Vector2f boardsize)
 {
 	if (EnemySelection == HEROASJERRY)
 	{
@@ -16,8 +15,6 @@ Enemy::Enemy(const sf::Vector2f &loc, int EnemySelection,
 
     m_sprite.setPosition(loc);
     m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
-
-	}
 
 	m_firstPosition = loc;
 
@@ -62,14 +59,27 @@ void Enemy::resetObj()
 	this->SetPosition(m_firstPosition);
 }
 
-const sf::Vector2f &Enemy::getLocationbeforefalling() const {
-    return m_locationbeforefalling;
+const sf::Time &Enemy::getDiggedfloortime() const {
+    return m_diggedfloortime;
 }
 
-void
-Enemy::setLocationbeforefalling(const sf::Vector2f &mLocationbeforefalling) {
-    m_locationbeforefalling = mLocationbeforefalling;
+void Enemy::setDiggedfloortime(const sf::Time &diggedfloortime) {
+    Enemy::m_diggedfloortime = diggedfloortime;
 }
+
+void Enemy::restoreGameObj(const sf::Time &time, float cellheight) {
+    if(m_isingidedfloor)
+    if(time.asMilliseconds()-m_diggedfloortime.asMilliseconds() >RESTOREFLOORTIME)
+        this->move(0,-cellheight);
+
+    m_isingidedfloor =false;
+}
+
+void Enemy::setIsingidedfloor(bool isingidedfloor) {
+    m_isingidedfloor = isingidedfloor;
+}
+
+
 
 
 
