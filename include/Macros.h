@@ -22,12 +22,12 @@ const int BOARDHEIGHT = 899;
 const int WIDTHSIZECALI = 25;
 const int HEIGHTSIZECALI = 15;
 
-//define all speeds of moving objects
+//Define  the speeds for the moving objects
 const float FALLINGSPEED = 250.f;
 const  float HEROSPEED = 350.f ;
 const  float ENEMYSPEED = 300.f;
 
-const float RESTOREFLOORTIME = 3000;
+const float RESTOREFLOORTIME = 5000;
 const int GIFTSHOWTIME = 3000;
 
 const int ADDTIMEGIFTTIME = 15;
@@ -35,9 +35,12 @@ const int HERODIGDELTATIME = 200;
 const int NUMBEROFLEVELS = 5;
 const int NUMBEROFLEVELBACKGROUD =4;
 
-//this consts is for the player select in the menu
+//This consts is for the player select in the menu
 const int HEROASJERRY = 1;
 const int HEROASRICK = 2;
 
+const int COINVALUE = 50;
+
+const int HEROSTARTLIFE = 3;
 
 

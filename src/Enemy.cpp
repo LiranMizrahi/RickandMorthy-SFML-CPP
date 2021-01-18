@@ -82,6 +82,10 @@ void Enemy::setIsingidedfloor(bool isingidedfloor) {
     m_isingidedfloor = isingidedfloor;
 }
 
+bool Enemy::isIsingidedfloor() const {
+    return m_isingidedfloor;
+}
+
 
 
 

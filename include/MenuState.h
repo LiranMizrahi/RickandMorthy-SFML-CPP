@@ -16,14 +16,12 @@ const int CHARSIZE = 200;
 const int CHARSIZE1 = 50;
 const int SCALEFACTOR = 2;
 
-
-class SingletonSound;
 class MenuState:State
 {
 public:
 	MenuState();
 	int StartGame(sf::RenderWindow & );
-    virtual void openstate(sf::RenderWindow &m_window, bool isplayerwin);
+    virtual void openstate(sf::RenderWindow &m_window, bool);
 
 
 private:

@@ -65,15 +65,8 @@ int MenuState::StartGame(sf::RenderWindow& window)
             {
                 auto location = window.mapPixelToCoords(
                     { event.mouseMove.x, event.mouseMove.y });
-                if (start.getGlobalBounds().contains(location))
-                {
-                    start.setColor(sf::Color::White);
-                }
-                else
-                {
-                    start.setColor(sf::Color::Black);
-
-                }
+                start.setColor(start.getGlobalBounds().contains(location)
+                               ? sf::Color::White : sf::Color::Black);
             }
           
 		}

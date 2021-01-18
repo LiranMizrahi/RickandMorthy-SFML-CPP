@@ -4,10 +4,9 @@
 #include "Controller.h"
 #include "Enemy.h"
 #include "Board.h"
-int Hero::m_life = 3;
-int Hero::m_score = 0;
+
 Hero::Hero(const sf::Vector2f &loc, int HeroSelection,
-           sf::Vector2f boardsize) //: m_life(3), m_score(123)
+           sf::Vector2f boardsize) : m_life(3), m_score(0)
 {
 
 	if (HeroSelection == HEROASJERRY)
@@ -17,9 +16,8 @@ Hero::Hero(const sf::Vector2f &loc, int HeroSelection,
 	else if(HeroSelection == HEROASRICK)
 	{
 		m_sprite.setTexture(SingletonPicture::instance().getHeroRickTexture());
-
-		
 	}
+
     m_sprite.setPosition(loc);
     m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
     m_sprite.setScale(sf::Vector2f(boardsize.x/(m_sprite.getTexture()->getSize().x+15) ,(boardsize.y/(m_sprite.getTexture()->getSize().y+15))));
@@ -45,7 +43,7 @@ int Hero::getScore()
 }
 //====================================================
 
-void Hero::SetLife(int life)
+void Hero::setLife(int life)
 {
 	m_life = life;
 }
@@ -102,32 +100,36 @@ void Hero::handleColision(Ladder& obj)
 void Hero::handleColision(Coin&obj)
 {
     m_isUpAvail =false;
-
-	m_score+=50*Controller::getLevel();
+	m_score+= obj.getValue();
 	playCollectGiftSound();
-	//obj.handleColision(*this);
+
 }
+//====================================================
 
 void Hero::handleColision(Enemy& obj )
-{
-	m_isOff = true;
-	m_life--;
+{   if(!obj.isIsingidedfloor())
+{       m_isOff = true;
+        m_life--;
+    }
 }
+//====================================================
 
 void Hero::handleColision(GiftAddingLife&)
 {
 	m_life++;
 }
+//====================================================
 
-void Hero::handleColision(GiftAddingScore&)
+void Hero::handleColision(GiftAddingScore& gift)
 {
+
 	m_score += 300;
 }
 
 
 
 //====================================================
-void Hero::SetScore(int score)
+void Hero::setScore(int score)
 {
 	m_score = score;
 }
@@ -157,44 +159,51 @@ void Hero::handleColision(Hero &) {
 //======================================================
 void Hero::digHole(Board& board,const sf::Time &time)
 {
-
+    int row,col;
+    //This statement block the the option to dig more
+    // then a one hole in <HERODIGDELTATIME> millisecond
     if(time.asMilliseconds()-m_lastdigtime.asMilliseconds()<HERODIGDELTATIME)
         return;
-    int row,col = 0;
 
+     //Check if the player want to dig otherwise the function end
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
-    {
         col = 1;
-    }
 
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-    {
        col =-1;
-
-    }
-
     else return;
 
     float pointposition= board.getCellHight();
-    for ( row = 0; pointposition <= this->getSprite().getPosition().y; ++row) {
+    for ( row = 1; pointposition <= this->getSprite().getPosition().y; ++row) {
 
         pointposition += board.getCellHight();
 
     }
-
         pointposition = board.getCellWidth();
 
         for (; pointposition <= this->getSprite().getPosition().x; ++col) {
             pointposition += board.getCellWidth();
         }
-    row++;
+        //check if start from 1 is ok
+    //row++;
 
-
-        if (row >= 0 && col >= 0 && row < board.getHeight() && col < board.getWidth())
+        if (row > 0 && col >= 0 && row < board.getHeight() && col < board.getWidth())
         {       auto staticobj = board.getStaticObjectsFromVector(row, col);
+            if(board.getStaticObjectsFromVector(row-1, col) != nullptr)return;
             if (staticobj)
             {
-                if (staticobj->isObjectDigable(time)) {
+                if (staticobj->isObjectDigable(time))
+                {
+                    auto loc = staticobj->getSprite().getPosition();
+                    loc.y -= board.getCellHight();
+                    auto rec = sf::RectangleShape(sf::Vector2f(board.getCellWidth()*0.70,board.getCellHight()*0.70));
+                    rec.setPosition(loc);
+                    rec.setOrigin(board.getCellWidth()/2,board.getCellHight()/2);
+                    for (int i = 0; i < board.getMovingObjecVectorSize(); ++i) {
+                       if(rec.getGlobalBounds().intersects( board.getSMovingObjectsFromVector(i)->getSprite().getGlobalBounds()))
+                        return;
+                    }
+
                     m_lastdigtime = time;
                     staticobj->setIsOff(true);
                 }

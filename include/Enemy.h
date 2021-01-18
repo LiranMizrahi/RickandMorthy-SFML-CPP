@@ -41,6 +41,10 @@ public:
 private:
 
      bool m_isingidedfloor =false;
+public:
+    bool isIsingidedfloor() const;
+
+private:
     sf::Time m_diggedfloortime = sf::Time::Zero;
 
 

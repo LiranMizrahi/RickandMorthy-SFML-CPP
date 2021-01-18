@@ -10,7 +10,7 @@ class Coin : public StaticObjects {
 
 public:
 	Coin();
-	Coin(const sf::Vector2f& loc, const sf::Vector2f&);
+	Coin(const sf::Vector2f &loc, const sf::Vector2f &size, int level);
      ~Coin() override = default;
     virtual void handleColision(Rope&) override {};
 	virtual void handleColision(Hero&) override;
@@ -35,6 +35,11 @@ public:
     static void incCoins();
 	static void resetCoins();
 private:
-	static size_t m_allCoins;
+    int m_value;
+public:
+    int getValue() const;
+
+private:
+    static size_t m_allCoins;
 	static size_t m_currentCoins;
 };

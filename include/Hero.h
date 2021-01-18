@@ -13,12 +13,11 @@ class Hero : public MovingObjects {
    public:
 	   Hero() = default;
 	   ~Hero()override = default;
-	   Hero(const sf::Vector2f &loc, int HeroSelection,
-            sf::Vector2f boardsize);
-	   static int getLife();
-	   static int getScore();
-	   void SetScore(int);
-	   static void SetLife(int);
+	   Hero(const sf::Vector2f &loc, int HeroSelection,sf::Vector2f boardsize);
+	   int getLife();
+	   int getScore();
+	   void setScore(int);
+	   void setLife(int);
 	    void UpdateLocation(float)override;
 	    void digHole(Board & board,const sf::Time &time);
 
@@ -29,16 +28,18 @@ class Hero : public MovingObjects {
 	    void handleColision(Ladder&)override;
 	    void handleColision(Coin&) override;
 	    void handleColision(Enemy&) override;
-		virtual void handleColision(GiftAddingLife&) override;
-		virtual void handleColision(GiftAddingScore&) override;
-		virtual void handleColision(GiftAddingEnemy&) override {};
-		virtual void handleColision(GiftAddingTime&) override {};
-       virtual bool isObjectIsStandable(StaticObjects&)override;
-	   virtual void resetObj()override;
-	   void resetTime();
+        void handleColision(GiftAddingLife&) override;
+        void handleColision(GiftAddingScore&) override;
+        void handleColision(GiftAddingEnemy&) override {};
+        void handleColision(GiftAddingTime&) override {};
+
+
+        bool isObjectIsStandable(StaticObjects&)override;
+        void resetObj()override;
+        void resetTime();
 
 private:
-		static int m_life, m_score;
+		int m_life, m_score;
 		sf::Sound m_collectGiftSound;
         sf::Sound m_collectCoinSound;
         sf::Sound m_collectDeadSound;

@@ -24,11 +24,12 @@ Board::Board():m_width(0), m_height(0), m_cellHight(0), m_cellWidth(0), m_hero()
 {
 }
 
-Board::Board(std::vector <std::vector<char>> file , int PlayerSelection)
+Board::Board(std::vector<std::vector<char>> file, int PlayerSelection,
+             int level)
 {
     m_height = file.size();
     m_width = file[1].size();
-    readFile(file, PlayerSelection);
+    readFile(file, PlayerSelection, level);
 }
 //====================================================
 void Board::draw(sf::RenderWindow& window)const
@@ -48,7 +49,8 @@ void Board::draw(sf::RenderWindow& window)const
 }
 
 //====================================================
-void Board::createObject(char input, const sf::Vector2f & location,int PlayerSelection, int i)
+void Board::createObject(char input, const sf::Vector2f &location,
+                         int PlayerSelection, int i, int level)
 {
     sf::Vector2f boardsize((float)m_height, (float)m_width);
     
@@ -70,7 +72,7 @@ void Board::createObject(char input, const sf::Vector2f & location,int PlayerSel
         break;
 
     case COIN:
-        m_staticObjects[i].push_back(std::move(std::make_unique<Coin>(location, boardsize)));
+        m_staticObjects[i].push_back(std::move(std::make_unique<Coin>(location, boardsize,level)));
 
         break;
 
@@ -138,7 +140,8 @@ bool Board::checkIfObjectFalling(float deltatime) {
 }
 
 //============================================
-void Board::readFile(const  std::vector <std::vector<char>> &file, int PlayerSelection)
+void Board::readFile(const std::vector<std::vector<char>> &file, int PlayerSelection,
+                int level)
 {
     sf::Vector2f location;
     m_staticObjects.clear();
@@ -172,7 +175,7 @@ void Board::readFile(const  std::vector <std::vector<char>> &file, int PlayerSel
             else if (file[i][j] == HERO)
                 heroloc = location;
             else
-                createObject(file[i][j], location, PlayerSelection, i);
+                createObject(file[i][j], location, PlayerSelection, i, level);
 
             location.x += (2 * tx);
         }
@@ -187,6 +190,8 @@ void Board::readFile(const  std::vector <std::vector<char>> &file, int PlayerSel
 
 
 }
+
+
 
 //==========================================
 
@@ -389,6 +394,20 @@ size_t Board::getHeight() {
 size_t Board::getWidth() {
     return m_width;
 }
+//==================================================
 
+int Board::getMovingObjecVectorSize() {
+    return m_movingObjects.size();
+}
+//==================================================
+
+void Board::setHeroLife(int life) {
+    m_hero->setLife(life);
+
+}
+//==================================================
+void Board::setHeroScore(int score ) {
+        m_hero->setScore(score);
+}
 
 //==================================================

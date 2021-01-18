@@ -20,7 +20,7 @@ public:
 
 	Controller();
 	void run();
-	static unsigned int getLevel();
+	unsigned int getLevel();
 
 private:
 
@@ -43,7 +43,7 @@ private:
 	GameStatusBar m_gameStatusBar;
 
 
-	static  int m_level;
+	int m_level;
 	
 	//private function
 	std::vector<std::vector<char>> openlevelfile(int);

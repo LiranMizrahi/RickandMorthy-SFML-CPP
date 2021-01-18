@@ -9,8 +9,6 @@ SmartEnemy::SmartEnemy(const sf::Vector2f &loc, int EnemySelection,
 
 void SmartEnemy::UpdateLocation(float time)
 {
-    
-   
 
     switch (5)
     {

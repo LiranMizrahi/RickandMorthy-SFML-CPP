@@ -1,5 +1,6 @@
 #include "Coin.h"
 #include "SingletonPicture.h"
+#include "Macros.h"
 //=============================================================
 
 size_t Coin:: m_allCoins = 0;
@@ -8,21 +9,18 @@ size_t Coin:: m_currentCoins = 0;
 //=============================================================
 
 
-Coin::Coin()
+Coin::Coin():m_value(0)
 {
 }
 //=============================================================
- Coin::Coin(const sf::Vector2f& loc, const sf::Vector2f& size) :
+Coin::Coin(const sf::Vector2f &loc, const sf::Vector2f &size, int level) :
 	StaticObjects(SingletonPicture::instance().getCoinTexture(), loc, size)
 {
+    m_value = level * COINVALUE;
 	 m_allCoins++;
 	 m_currentCoins++;
 }
- //Coin::~Coin()
- //{
-	// m_allCoins = 0;
-	// m_currentCoins = 0;
- //}
+
 //=============================================================
 
 void Coin::handleColision(Hero&obj)
@@ -86,6 +84,10 @@ bool Coin::isObjectDigable(const sf::Time&) {
 void Coin::CoinInitialization()
 {
 	m_currentCoins = m_allCoins;
+}
+
+int Coin::getValue() const {
+    return m_value;
 }
 //=============================================================
 

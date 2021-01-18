@@ -29,14 +29,13 @@ bool Floor::isObjectIsStandable(Enemy &enemy) {
 
     if((m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7) ||!m_isOff) {
             if((m_isOff)) {
+                m_isfull =true;
                 enemy.setIsingidedfloor(true);
                 enemy.setDiggedfloortime(this->m_digtimestamp);
             }
         return true;
     }
-    //if(!m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7)
-   // enemy.getSprite().setPosition(enemy.getLocationbeforefalling());
-   // if(this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 15)
+
     if(!m_isOff)return true;
     return false;
 }
@@ -45,7 +44,9 @@ void Floor::resetObj()
     m_isOff = false;
 }
 bool Floor::isObjectIsStandable(Hero &) {
+
     if(m_isOff)return false;
+    if(m_isOff && m_isfull)return true;
     return true;
 }
 

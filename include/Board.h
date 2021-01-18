@@ -13,7 +13,8 @@ class Board {
 
 public:
 	Board();
-	Board(std::vector <std::vector<char>>, int);
+	Board(std::vector<std::vector<char>> file, int PlayerSelection,
+          int level);
 	void draw(sf::RenderWindow&)const;
 	void moveCharacters(float);
 	int checkCollisions(float);
@@ -29,6 +30,9 @@ public:
     void restroreGameObjects(const sf::Time &time);
     int getHerolife();
     int getHeroScore();
+    void setHeroScore(int);
+    int getMovingObjecVectorSize();
+    void setHeroLife(int);
     private:
 	//private members
     Hero* m_hero;
@@ -45,12 +49,15 @@ public:
 private:
 
     //private function
-    void createObject(char, const sf::Vector2f &, int, int );
+    void createObject(char input, const sf::Vector2f &location,
+                      int PlayerSelection, int i, int level);
 	void createEnemysVector(const sf::Vector2f&, int);
 	void addGiftToStaticVector(const sf::Vector2f&, sf::Vector2f, int);
 	void handleCollisions(GameObj &obj);
     bool isObjectIsFalling(float, MovingObjects&);
-	void readFile(const std::vector <std::vector<char>> &, int);
+	void
+    readFile(const std::vector<std::vector<char>> &file, int PlayerSelection,
+             int level);
 
 
 };

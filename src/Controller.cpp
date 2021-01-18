@@ -1,14 +1,16 @@
 #include "Controller.h"
 #include <string>
 #include <iostream>
+#include <tcl.h>
+#include <tclDecls.h>
 #include "SingletonFont.h"
 #include "Coin.h"
 #include "GiftAddingTime.h"
 #include "GiftAddingEnemy.h"
 
- int Controller::m_level = 1;
 
-Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER")
+
+Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER"),m_level(1)
 {
     m_gameOverSound.setBuffer(SingletonSound::instance().getMGameOver());
     m_levelUpSoundl.setBuffer(SingletonSound::instance().getMLevelUp());
@@ -60,7 +62,7 @@ void Controller::run()
 
         m_board.checkIfHeroDig(m_time.getElapsedTime());
 
-        if ( 0 >= Hero::getLife())
+        if ( 0 >= m_board.getHerolife())
         {
             gameOverHandler(false);
         }
@@ -84,10 +86,7 @@ void Controller::run()
         }
 
         CheckingTimes();
-        
-       
 
-       
 	}
 }
 
@@ -166,8 +165,11 @@ void Controller::upgradeLevel() {
 
      m_boardChar = openlevelfile(m_level);
      m_levelUpSoundl.play();
-     m_board = Board(m_boardChar,m_herroSelect);
-
+     int herolife = m_board.getHerolife();
+     int heroscore = m_board.getHeroScore();
+     m_board = Board(m_boardChar, m_herroSelect, m_level);
+    m_board.setHeroScore(heroscore);
+    m_board.setHeroLife(herolife);
     
 
 }
@@ -207,7 +209,7 @@ void Controller::CheckingTimes()
     if (m_isOnTime)
         if (m_playingTime.asSeconds() - m_time.getElapsedTime().asSeconds() <= 0)
         {
-            Hero::SetLife(Hero::getLife() - 1);
+            m_board.setHeroLife((m_board.getHerolife()-1));
             ResetLevel();
         }
 }
@@ -215,12 +217,14 @@ void Controller::CheckingTimes()
 void Controller::newGame()
 {
     Coin::resetCoins();
-    Hero::SetLife(3);
+
     m_level = 1;
     m_boardChar = openlevelfile(m_level);
     m_herroSelect = m_menu.StartGame(m_window);
-    m_board = Board(m_boardChar, m_herroSelect);
+    m_board = Board(m_boardChar, m_herroSelect, m_level);
+    m_board.setHeroLife(HEROSTARTLIFE);
     m_time.restart();
+
     
 }
 

@@ -33,9 +33,9 @@ public:
     virtual void setIsOff(bool isoff)override;
 	virtual void resetObj()override;
 
-
-    sf::Time m_digtimestamp;
-
+private:
+    sf::Time m_digtimestamp = sf::Time::Zero;
+    bool m_isfull = false;
     const sf::Time &getDigtimestamp() const;
 
 };
