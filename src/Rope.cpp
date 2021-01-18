@@ -25,12 +25,12 @@ void Rope::handleColision(GameObj &obj) {
     obj.handleColision(*this);
 }
 
-bool Rope::isObjectIsStandable(Hero & ) {
-   return true ;//(movingobject.getSprite().getPosition().y-this->getSprite().getPosition().y > 15);
+bool Rope::isObjectIsStandable(Hero & hero) {
+   return  hero.getSprite().getPosition().y-this->getSprite().getPosition().y > 0;
 
 }
-bool Rope::isObjectIsStandable(Enemy & ) {
-    return true ;//(movingobject.getSprite().getPosition().y-this->getSprite().getPosition().y > 15);
+bool Rope::isObjectIsStandable(Enemy & enemy) {
+    return enemy.getSprite().getPosition().y-this->getSprite().getPosition().y > 0;
 
 }
 

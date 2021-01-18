@@ -33,7 +33,8 @@ public:
     void setHeroScore(int);
     int getMovingObjecVectorSize();
     void setHeroLife(int);
-    private:
+
+private:
 	//private members
     Hero* m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;

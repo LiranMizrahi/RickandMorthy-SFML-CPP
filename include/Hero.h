@@ -30,8 +30,8 @@ class Hero : public MovingObjects {
 	    void handleColision(Enemy&) override;
         void handleColision(GiftAddingLife&) override;
         void handleColision(GiftAddingScore&) override;
-        void handleColision(GiftAddingEnemy&) override {};
-        void handleColision(GiftAddingTime&) override {};
+        void handleColision(GiftAddingEnemy&) override;
+        void handleColision(GiftAddingTime&) override;
 
 
         bool isObjectIsStandable(StaticObjects&)override;
