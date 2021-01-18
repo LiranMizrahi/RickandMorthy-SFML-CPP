@@ -15,7 +15,7 @@ public:
 	Board();
 	Board(std::vector <std::vector<char>>, int);
 	void draw(sf::RenderWindow&)const;
-	void moveCharacters(float);
+	void moveCharacters(float, const  std::vector <std::vector<char>>& );
 	int checkCollisions(float);
     bool checkIfObjectFalling(float);
     void andEnemyRandomly(int playerselect);
