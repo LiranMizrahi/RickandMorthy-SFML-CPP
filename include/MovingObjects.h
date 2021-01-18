@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObj.h"
 #include "StaticObjects.h"
-
+class Board;
 class MovingObjects : public GameObj
 {
 public:
@@ -14,7 +14,7 @@ public:
 	void DrawLeftside();
 	void DrawRightside();
     void setLastPosition(sf::Vector2f);
-    virtual void UpdateLocation(float) = 0;
+    virtual void UpdateLocation(float , sf::Vector2f, const  std::vector <std::vector<char>>&, Board&) = 0;
     void setStartPosion();
     virtual bool isObjectIsStandable(StaticObjects&) = 0;
     bool isIsUpAvail() const;

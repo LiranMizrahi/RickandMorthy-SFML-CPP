@@ -8,7 +8,7 @@ HorizontalEnemy::HorizontalEnemy(const sf::Vector2f &loc,
 
 }
 
-void HorizontalEnemy::UpdateLocation(float time)
+void HorizontalEnemy::UpdateLocation(float time, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&)
 {
 	
 	switch (m_directionMovement)

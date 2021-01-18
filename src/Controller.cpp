@@ -1,8 +1,6 @@
 #include "Controller.h"
 #include <string>
 #include <iostream>
-#include <tcl.h>
-#include <tclDecls.h>
 #include "SingletonFont.h"
 #include "Coin.h"
 #include "GiftAddingTime.h"

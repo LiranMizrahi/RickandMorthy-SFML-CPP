@@ -7,7 +7,6 @@
 #include"Hero.h"
 
 const int ENEMYTYPES =3;
-
 enum e_Enemy {
     SMART =0,RANDOM,Horizontal
 };
@@ -19,7 +18,7 @@ public:
             sf::Vector2f boardsize);
      ~Enemy() override = default;
 
-      void UpdateLocation(float time) override{};
+     void UpdateLocation(float, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&) {};
 
 	 void handleColision(GameObj& obj) override;
 	 void handleColision(Rope& Obj) override;

@@ -94,8 +94,8 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
 {
 
     sf::Vector2f boaradsize(m_cellWidth,m_cellWidth);
-    int ChooseEnemy = std::rand() % ENEMYTYPES;
-   //int ChooseEnemy = 1;
+   // int ChooseEnemy = std::rand() % ENEMYTYPES;
+   int ChooseEnemy = 0;
 
 
     switch (ChooseEnemy)
@@ -125,7 +125,7 @@ void Board::moveCharacters(float deltaTime, const  std::vector <std::vector<char
 
             {
                 //m_hero->GetPosition();
-                movObj->UpdateLocation(deltaTime);
+                movObj->UpdateLocation(deltaTime, m_hero->GetPosition(), file, *this);
             }
         }
     }

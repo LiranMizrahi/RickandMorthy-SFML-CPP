@@ -36,11 +36,12 @@ public:
     float getCellHight() const;
     float getCellWidth() const;
 
-private:
-	//==============private members=================
+    private:
+	//private members
     Hero* m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
 	std::vector <std::unique_ptr <MovingObjects>>m_movingObjects;
+
 	size_t m_width, m_height;
     float m_cellHight,m_cellWidth;
 
@@ -55,4 +56,6 @@ private:
 	void
     readFile(const std::vector<std::vector<char>> &file, int PlayerSelection,
              int level);
+
+
 };
