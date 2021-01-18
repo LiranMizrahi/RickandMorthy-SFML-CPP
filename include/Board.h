@@ -33,23 +33,19 @@ public:
     void setHeroScore(int);
     int getMovingObjecVectorSize();
     void setHeroLife(int);
-
-private:
-	//private members
-    Hero* m_hero;
-	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
-	std::vector <std::unique_ptr <MovingObjects>>m_movingObjects;
-
-	size_t m_width, m_height;
-    float m_cellHight,m_cellWidth;
-public:
     float getCellHight() const;
-
     float getCellWidth() const;
 
 private:
+	//==============private members=================
+    Hero* m_hero;
+	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
+	std::vector <std::unique_ptr <MovingObjects>>m_movingObjects;
+	size_t m_width, m_height;
+    float m_cellHight,m_cellWidth;
 
-    //private function
+
+    //===================private function=================
     void createObject(char input, const sf::Vector2f &location,
                       int PlayerSelection, int i, int level);
 	void createEnemysVector(const sf::Vector2f&, int);
@@ -59,6 +55,4 @@ private:
 	void
     readFile(const std::vector<std::vector<char>> &file, int PlayerSelection,
              int level);
-
-
 };

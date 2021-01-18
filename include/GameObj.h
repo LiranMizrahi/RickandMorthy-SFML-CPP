@@ -38,8 +38,6 @@ public:
 	virtual void handleColision(GiftAddingTime& Obj) = 0;
     virtual void restoreGameObj(const sf::Time &, float cellheight);
 	virtual void resetObj() = 0;
-
-
 	bool getIsOff()const;
 	virtual void setIsOff(bool isoff);
 

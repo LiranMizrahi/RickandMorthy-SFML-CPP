@@ -26,10 +26,6 @@ void MovingObjects::move(float xline,float yline)
 }
 //=============================================================
 
-sf::Vector2f MovingObjects::GetPosition() const
-{
-	return m_sprite.getPosition();
-}
 //=============================================================
 
 void MovingObjects::SetPosition(const sf::Vector2f& pos)

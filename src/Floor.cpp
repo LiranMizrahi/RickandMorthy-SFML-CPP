@@ -5,7 +5,7 @@ Floor::Floor()
 }
 Floor::Floor(const sf::Vector2f& loc, const sf::Vector2f& size): StaticObjects(SingletonPicture::instance().getFloorTexture(), loc, size)
 {
-
+    m_isfull = false;
 }
 
 void Floor::handleColision(Hero&obj)
@@ -44,9 +44,10 @@ void Floor::resetObj()
     m_isOff = false;
 }
 bool Floor::isObjectIsStandable(Hero &) {
-
-    if(m_isOff)return false;
-    if(m_isOff && m_isfull)return true;
+    if(m_isOff & m_isfull)
+        return true;
+    else if(m_isOff)return false;
+    else
     return true;
 }
 
@@ -57,12 +58,16 @@ bool Floor::isObjectDigable(const sf::Time &time) {
 
 void Floor::setIsOff(bool isoff) {
     m_isOff = isoff;
+    m_isfull = false;
 
 }
 
 void Floor::restoreGameObj(const sf::Time &time, float cellheight) {
-    if(time.asMilliseconds()-m_digtimestamp.asMilliseconds() >RESTOREFLOORTIME)
+    if (time.asMilliseconds() - m_digtimestamp.asMilliseconds() >
+        RESTOREFLOORTIME) {
         m_isOff = false;
+        m_isfull = false;
+    }
 }
 
 const sf::Time &Floor::getDigtimestamp() const {

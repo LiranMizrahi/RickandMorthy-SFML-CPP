@@ -15,13 +15,13 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER"),m_l
     m_gameOverSound.setBuffer(SingletonSound::instance().getMGameOver());
     m_levelUpSoundl.setBuffer(SingletonSound::instance().getMLevelUp());
     m_startGameSound.setBuffer(SingletonSound::instance().getMStartGame());
+
     m_window.setFramerateLimit(60);
 	board.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
-	board.setPosition(0,0);
-    printStartGameScreen();
 
     m_boardChar = openlevelfile(m_level);
-   // m_time.restart();
+    m_startGameState.openstate(m_window,m_herroSelect);
+
     newGame();
 
 }
@@ -29,9 +29,10 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER"),m_l
 
 void Controller::run()
 {
-    
+
     m_time.restart();
-    m_startGameSound.play();
+
+   // m_startGameSound.play();
 	while (m_window.isOpen())
 	{
         float deltaTime = clock.restart().asSeconds();
@@ -133,11 +134,8 @@ std::vector<std::vector<char>> Controller::openlevelfile(int level)
 
         return temp;
 }
-//=============================================================
 
-unsigned int Controller::getLevel() {
-    return m_level;
-}
+
 //=============================================================
 
 bool Controller::checkIfLevelDone() {
@@ -152,24 +150,16 @@ void Controller::ResetCoins()
 
 void Controller::upgradeLevel() {
 
-    
-        sf::Sprite uplevel;
-       uplevel.setTexture(SingletonPicture::instance().getMLevelUp());
-       uplevel.setPosition(0,0);
-       m_window.clear();
-       m_window.draw(uplevel);
-       m_window.display();
-       sf::sleep(sf::seconds(2));
 
-
+    m_levelUpState.openstate(m_window,m_herroSelect);
      m_boardChar = openlevelfile(m_level);
-     m_levelUpSoundl.play();
+
      int herolife = m_board.getHerolife();
      int heroscore = m_board.getHeroScore();
      m_board = Board(m_boardChar, m_herroSelect, m_level);
     m_board.setHeroScore(heroscore);
     m_board.setHeroLife(herolife);
-    
+
 
 }
 //=============================================================

@@ -35,7 +35,7 @@ public:
 
 private:
     sf::Time m_digtimestamp = sf::Time::Zero;
-    bool m_isfull = false;
+    bool m_isfull;
     const sf::Time &getDigtimestamp() const;
 
 };

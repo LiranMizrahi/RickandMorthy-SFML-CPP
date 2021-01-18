@@ -27,5 +27,6 @@
                                      "State.cpp"
                                      "GiftAddingTime.cpp"
                                      "GameStatusBar.cpp"
+        "LevelUpState.cpp"
 )
 

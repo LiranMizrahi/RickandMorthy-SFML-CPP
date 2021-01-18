@@ -14,7 +14,6 @@ MenuState::MenuState():State(SingletonPicture::instance().getMenuTexture(),Singl
 
 int MenuState::StartGame(sf::RenderWindow& window)
 {
-
     ricksound.setBuffer(SingletonSound::instance().getMRick());
     jerrysound.setBuffer(SingletonSound::instance().getMJerry());
 

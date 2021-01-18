@@ -17,6 +17,7 @@ Enemy::Enemy(const sf::Vector2f &loc, int EnemySelection,sf::Vector2f boardsize)
     m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
 
 	m_firstPosition = loc;
+    m_diggedfloortime =sf::Time::Zero;
 }
 
 	

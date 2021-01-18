@@ -46,6 +46,7 @@ int Hero::getScore()
 
 void Hero::setLife(int life)
 {
+    if(m_life > life)playCollectDeadSound();
 	m_life = life;
 }
 
@@ -174,18 +175,17 @@ void Hero::digHole(Board& board,const sf::Time &time)
     else return;
 
     float pointposition= board.getCellHight();
-    for ( row = 1; pointposition <= this->getSprite().getPosition().y; ++row) {
-
+    for ( row = 1; pointposition <= this->getSprite().getPosition().y; ++row)
         pointposition += board.getCellHight();
 
-    }
+
         pointposition = board.getCellWidth();
 
-        for (; pointposition <= this->getSprite().getPosition().x; ++col) {
+        for (; pointposition <= this->getSprite().getPosition().x; ++col)
             pointposition += board.getCellWidth();
-        }
-        //check if start from 1 is ok
-    //row++;
+
+         //check if start from 1 is ok
+         //row++;
 
         if (row > 0 && col >= 0 && row < board.getHeight() && col < board.getWidth())
         {
@@ -212,25 +212,27 @@ void Hero::digHole(Board& board,const sf::Time &time)
             }
         }
     }
-
+//====================================================
 bool Hero::isObjectIsStandable(StaticObjects &stas) {
     return stas.isObjectIsStandable(*this);
 }
+//====================================================
 void Hero::resetObj()
 {
 	this->SetPosition(m_firstPosition);
 	this->setIsOff(false);
 }
+//====================================================
 void Hero::resetTime()
 {
 	m_lastdigtime = sf::seconds(0);
 }
-
+//====================================================
 void Hero::handleColision(GiftAddingTime &) {
     playCollectGiftSound();
 
 }
-
+//====================================================
 void Hero::handleColision(GiftAddingEnemy &) {
     playCollectGiftSound();
 

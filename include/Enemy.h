@@ -38,14 +38,13 @@ public:
     const sf::Time &getDiggedfloortime() const;
     void setDiggedfloortime(const sf::Time &diggedfloortime);
     void setIsingidedfloor(bool isingidedfloor);
+    bool isIsingidedfloor() const;
+
+//=========private members ======================
 private:
 
      bool m_isingidedfloor =false;
-public:
-    bool isIsingidedfloor() const;
-
-private:
-    sf::Time m_diggedfloortime = sf::Time::Zero;
+    sf::Time m_diggedfloortime;
 
 
 

@@ -1,14 +1,10 @@
 
 #include "State.h"
-
-class StartGameState:State {
-
+class LevelUpState:  State {
 public:
-    StartGameState();
+    LevelUpState();
     void openstate(sf::RenderWindow &m_window, bool isplayerwin)override;
 
 
-
 };
-
 
