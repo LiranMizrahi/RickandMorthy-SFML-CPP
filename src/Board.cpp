@@ -118,12 +118,13 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
 
 }
 //============================================
-void Board::moveCharacters(float deltaTime) {
+void Board::moveCharacters(float deltaTime, const  std::vector <std::vector<char>>& file) {
 
     for (auto &movObj : m_movingObjects) {
         if (!movObj->getIsfalling()) {
 
             {
+                //m_hero->GetPosition();
                 movObj->UpdateLocation(deltaTime);
             }
         }
