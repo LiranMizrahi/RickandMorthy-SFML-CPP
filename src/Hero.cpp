@@ -49,7 +49,7 @@ void Hero::setLife(int life)
 }
 
 //====================================================
-void Hero::UpdateLocation(float time)
+void Hero::UpdateLocation(float time, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{

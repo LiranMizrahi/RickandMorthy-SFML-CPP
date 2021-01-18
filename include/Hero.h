@@ -7,7 +7,6 @@
 #include"GameObj.h"
 #include"Coin.h"
 #include<iostream>
-class Board;
 class Hero : public MovingObjects {
 
    public:
@@ -18,7 +17,7 @@ class Hero : public MovingObjects {
 	   int getScore();
 	   void setScore(int);
 	   void setLife(int);
-	    void UpdateLocation(float)override;
+	    void UpdateLocation(float , sf::Vector2f, const  std::vector <std::vector<char>>&, Board&)override;
 	    void digHole(Board & board,const sf::Time &time);
 
 	    void handleColision(GameObj&)override;

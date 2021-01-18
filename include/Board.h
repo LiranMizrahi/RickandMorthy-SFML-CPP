@@ -33,6 +33,7 @@ public:
     void setHeroScore(int);
     int getMovingObjecVectorSize();
     void setHeroLife(int);
+
     private:
 	//private members
     Hero* m_hero;
