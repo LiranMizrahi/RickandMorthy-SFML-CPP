@@ -4,6 +4,7 @@
 #include "Controller.h"
 #include "Enemy.h"
 #include "Board.h"
+#include "Ladder.h"
 
 Hero::Hero(const sf::Vector2f &loc, int HeroSelection,
            sf::Vector2f boardsize) : m_life(3), m_score(0)
@@ -101,7 +102,7 @@ void Hero::handleColision(Coin&obj)
 {
     m_isUpAvail =false;
 	m_score+= obj.getValue();
-	playCollectGiftSound();
+	playCollectCoinSound();
 
 }
 //====================================================
@@ -116,17 +117,16 @@ void Hero::handleColision(Enemy& obj )
 
 void Hero::handleColision(GiftAddingLife&)
 {
+    playCollectGiftSound();
 	m_life++;
 }
 //====================================================
 
 void Hero::handleColision(GiftAddingScore& gift)
 {
-
+    playCollectGiftSound();
 	m_score += 300;
 }
-
-
 
 //====================================================
 void Hero::setScore(int score)
@@ -188,7 +188,8 @@ void Hero::digHole(Board& board,const sf::Time &time)
     //row++;
 
         if (row > 0 && col >= 0 && row < board.getHeight() && col < board.getWidth())
-        {       auto staticobj = board.getStaticObjectsFromVector(row, col);
+        {
+            auto staticobj = board.getStaticObjectsFromVector(row, col);
             if(board.getStaticObjectsFromVector(row-1, col) != nullptr)return;
             if (staticobj)
             {
@@ -223,5 +224,15 @@ void Hero::resetObj()
 void Hero::resetTime()
 {
 	m_lastdigtime = sf::seconds(0);
+}
+
+void Hero::handleColision(GiftAddingTime &) {
+    playCollectGiftSound();
+
+}
+
+void Hero::handleColision(GiftAddingEnemy &) {
+    playCollectGiftSound();
+
 }
 //====================================================

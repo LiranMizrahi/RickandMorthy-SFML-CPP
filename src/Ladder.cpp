@@ -26,7 +26,7 @@ void Ladder::handleColision(GameObj &obj) {
 
 }
 
-bool Ladder::isObjectIsStandable(Hero &) {
+bool Ladder::isObjectIsStandable(Hero & hero) {
     return true;
 }
 
