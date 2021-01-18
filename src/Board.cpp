@@ -148,10 +148,6 @@ void Board::readFile(const std::vector<std::vector<char>> &file, int PlayerSelec
     m_staticObjects.clear();
     m_movingObjects.clear();
 
-
-    // m_cellWidth = (BOARDHEIGHT / float(m_height));
-  //   m_cellHight = (BOARDWIDTH / float(m_width));
-
     m_cellWidth = (BOARDWIDTH / float(m_width));
     m_cellHight = (BOARDHEIGHT / float(m_height));
 
