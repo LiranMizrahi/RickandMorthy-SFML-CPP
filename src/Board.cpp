@@ -48,6 +48,7 @@ void Board::draw(sf::RenderWindow& window)const
 
 }
 
+
 //====================================================
 void Board::createObject(char input, const sf::Vector2f &location,
                          int PlayerSelection, int i, int level)
@@ -94,8 +95,8 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
 {
 
     sf::Vector2f boaradsize(m_cellWidth,m_cellWidth);
-   // int ChooseEnemy = std::rand() % ENEMYTYPES;
-   int ChooseEnemy = 0;
+   int ChooseEnemy = std::rand() % (ENEMYTYPES-1)+1;
+   //int ChooseEnemy = 0;
 
 
     switch (ChooseEnemy)
@@ -122,10 +123,9 @@ void Board::moveCharacters(float deltaTime, const  std::vector <std::vector<char
 
     for (auto &movObj : m_movingObjects) {
         if (!movObj->getIsfalling()) {
-
             {
                 //m_hero->GetPosition();
-                movObj->UpdateLocation(deltaTime, m_hero->GetPosition(), file, *this);
+                movObj->UpdateLocation(deltaTime, m_hero->getSprite().getPosition(), file, *this);
             }
         }
     }
@@ -227,8 +227,7 @@ bool Board::isObjectIsFalling(float deltaTime,MovingObjects& movingobject )
                     if(!movingobject.isObjectIsStandable(*d))
                             continue;
                     else
-                        if (checkdown.getGlobalBounds().intersects(
-                                d->getSprite().getGlobalBounds())) {
+                        if (checkdown.getGlobalBounds().intersects(d->getSprite().getGlobalBounds())) {
                             movingobject.setIsfalling(false);
 
                             return false;

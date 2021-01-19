@@ -37,6 +37,7 @@ class Hero : public MovingObjects {
         void resetObj()override;
         void resetTime();
 
+//=========private members ======================
 private:
 		int m_life, m_score;
 		sf::Sound m_collectGiftSound;
@@ -44,7 +45,7 @@ private:
         sf::Sound m_collectDeadSound;
         sf::Time m_lastdigtime;
 
-
+//=========private function ======================
         void playCollectGiftSound();
         void playCollectCoinSound();
         void playCollectDeadSound();

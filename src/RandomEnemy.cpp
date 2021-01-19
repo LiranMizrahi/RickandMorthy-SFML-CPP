@@ -13,7 +13,8 @@ RandomEnemy::RandomEnemy(const sf::Vector2f &loc,
 
 void RandomEnemy::UpdateLocation(float timeGame, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&)
 {
-	std::srand(std::time(nullptr));
+    if(isIsingidedfloor())return;
+    std::srand(std::time(nullptr));
 
 	int RandomMov = std::rand() % 4;
 	std::cout << RandomMov << "";

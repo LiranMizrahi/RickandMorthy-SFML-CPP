@@ -11,12 +11,13 @@ Enemy::Enemy(const sf::Vector2f &loc, int EnemySelection,sf::Vector2f boardsize)
         m_sprite.setTexture(SingletonPicture::instance().getEnemyMonsterTexture());
     }
 
-    m_sprite.setScale(sf::Vector2f(boardsize.x/(m_sprite.getTexture()->getSize().x+15) ,(boardsize.y/(m_sprite.getTexture()->getSize().y+15))));
+    m_sprite.setScale(sf::Vector2f(boardsize.x/(m_sprite.getTexture()->getSize().x+25) ,(boardsize.y/(m_sprite.getTexture()->getSize().y+25))));
 
     m_sprite.setPosition(loc);
     m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
 
 	m_firstPosition = loc;
+    m_diggedfloortime =sf::Time::Zero;
 }
 
 	

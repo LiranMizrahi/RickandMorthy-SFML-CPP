@@ -24,7 +24,7 @@ const int HEIGHTSIZECALI = 15;
 
 //Define  the speeds for the moving objects
 const float FALLINGSPEED = 250.f;
-const  float HEROSPEED = 350.f ;
+const  float HEROSPEED = 300.f ;
 const  float ENEMYSPEED = 300.f;
 
 const float RESTOREFLOORTIME = 5000;
@@ -32,7 +32,7 @@ const int GIFTSHOWTIME = 3000;
 
 const int ADDTIMEGIFTTIME = 15;
 const int HERODIGDELTATIME = 200;
-const int NUMBEROFLEVELS = 5;
+const int NUMBEROFLEVELS = 4;
 const int NUMBEROFLEVELBACKGROUD =4;
 
 //This consts is for the player select in the menu

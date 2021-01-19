@@ -13,6 +13,7 @@ MovingObjects::MovingObjects(const sf::Texture& tex, const sf::Vector2f& loc, co
 
 void MovingObjects::move(float xline,float yline)
 {
+
     sf::Vector2f loc = this->m_LastPosition;
     m_LastPosition = m_sprite.getPosition();
 	m_sprite.move(xline,yline);
@@ -26,10 +27,6 @@ void MovingObjects::move(float xline,float yline)
 }
 //=============================================================
 
-sf::Vector2f MovingObjects::GetPosition() const
-{
-	return m_sprite.getPosition();
-}
 //=============================================================
 
 void MovingObjects::SetPosition(const sf::Vector2f& pos)

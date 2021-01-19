@@ -33,6 +33,8 @@ public:
     void setHeroScore(int);
     int getMovingObjecVectorSize();
     void setHeroLife(int);
+    float getCellHight() const;
+    float getCellWidth() const;
 
     private:
 	//private members
@@ -42,14 +44,9 @@ public:
 
 	size_t m_width, m_height;
     float m_cellHight,m_cellWidth;
-public:
-    float getCellHight() const;
 
-    float getCellWidth() const;
 
-private:
-
-    //private function
+    //===================private function=================
     void createObject(char input, const sf::Vector2f &location,
                       int PlayerSelection, int i, int level);
 	void createEnemysVector(const sf::Vector2f&, int);

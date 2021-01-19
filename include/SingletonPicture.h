@@ -7,27 +7,26 @@ class SingletonPicture
 
 public:
 
-    ~SingletonPicture() =default;
-    static SingletonPicture& instance();
+        ~SingletonPicture() =default;
+        static SingletonPicture& instance();
 
-    const sf::Texture & getHerojerryTexture()const;
-    const sf::Texture& getHeroRickTexture()const;
-    const sf::Texture& getEnemyMeeseeksTexture()const;
-    const sf::Texture & getEnemyMonsterTexture()const;
-    const sf::Texture& getCoinTexture()const;
-    const sf::Texture& getBoardTexture(int )const;
-    const sf::Texture& getFloorTexture()const;
-    const sf::Texture& getLedderTexture()const;
-    const sf::Texture& getRopeTexture()const;
-    const sf::Texture& getMenuTexture()const;
-    const sf::Texture& getJerryTexture()const;
-    const sf::Texture& getRickTexture()const;
-    const sf::Texture& getGiftTexture()const;
-
-    const sf::Texture& getMLevelUp() const;
-    const sf::Texture& getMStartGame()const ;
-    const sf::Texture& getMHeroIsdead()const ;
-    const sf::Texture& getMGameOver() const;
+        const sf::Texture & getHerojerryTexture()const;
+        const sf::Texture& getHeroRickTexture()const;
+        const sf::Texture& getEnemyMeeseeksTexture()const;
+        const sf::Texture & getEnemyMonsterTexture()const;
+        const sf::Texture& getCoinTexture()const;
+        const sf::Texture& getBoardTexture(int )const;
+        const sf::Texture& getFloorTexture()const;
+        const sf::Texture& getLedderTexture()const;
+        const sf::Texture& getRopeTexture()const;
+        const sf::Texture& getMenuTexture()const;
+        const sf::Texture& getJerryTexture()const;
+        const sf::Texture& getRickTexture()const;
+        const sf::Texture& getGiftTexture()const;
+        const sf::Texture& getMLevelUp() const;
+        const sf::Texture& getMStartGame()const ;
+        const sf::Texture& getMHeroIsdead()const ;
+        const sf::Texture& getMGameOver() const;
 
 
 
@@ -35,8 +34,7 @@ public:
    private:
     SingletonPicture();
     SingletonPicture(const SingletonPicture &) = default;
-    SingletonPicture&  operator=(const SingletonPicture&) = default;
-    //static SingletonPicture m_instance;
+    //SingletonPicture&  operator=(const SingletonPicture&) = default;
     sf::Texture m_heroMenu1;
     sf::Texture m_heroMenu2;
     sf::Texture m_heroJerry;

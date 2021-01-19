@@ -11,16 +11,19 @@
 #include "SingletonSound.h"
 #include"Coin.h"
 #include "GameOverState.h"
-
 #include "GameStatusBar.h"
-class Controller {
+#include "StartGameState.h"
+
+#include "LevelUpState.h"
+
+ class Controller {
 					
 
 public:
 
 	Controller();
 	void run();
-	unsigned int getLevel();
+
 
 private:
 
@@ -28,23 +31,25 @@ private:
 	bool m_isOnTime;
 	float m_timeTheLevel;
 	int m_herroSelect;
+    int m_level;
+
+    std::vector<std::vector<char>> m_boardChar;
 	Board m_board;
-	MenuState m_menu;
 	sf::RenderWindow m_window;
-	sf::Sprite board;	
+	sf::Sprite board;
+    sf::Time m_playingTime ;
+    sf::Clock m_time;
 	sf::Clock clock;
-	std::vector<std::vector<char>> m_boardChar;
 	sf::Sound m_startGameSound;
 	sf::Sound m_gameOverSound;
     sf::Sound m_levelUpSoundl;
+
+    MenuState m_menu;
     GameOverState m_gameOverState;
-	sf::Time m_playingTime ;
-	sf::Clock m_time;
+    StartGameState m_startGameState;
 	GameStatusBar m_gameStatusBar;
+	LevelUpState m_levelUpState;
 
-
-	int m_level;
-	
 	//private function
 	std::vector<std::vector<char>> openlevelfile(int);
     bool checkIfLevelDone();
@@ -53,7 +58,6 @@ private:
 	void printStartGameScreen();
 	void gameOverHandler(bool isplayerwin);
 	void reedemGifts();
-
 	void CheckingTimes();
 	void newGame();
 	void ResetLevel();

@@ -1,11 +1,13 @@
 #include "Floor.h"
 #include "SingletonPicture.h"
+#include <cmath>
+
 Floor::Floor()
 {
 }
 Floor::Floor(const sf::Vector2f& loc, const sf::Vector2f& size): StaticObjects(SingletonPicture::instance().getFloorTexture(), loc, size)
 {
-
+    m_isfull = false;
 }
 
 void Floor::handleColision(Hero&obj)
@@ -27,7 +29,9 @@ void Floor::handleColision(GameObj &obj) {
 bool Floor::isObjectIsStandable(Enemy &enemy) {
 
 
-    if((m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7) ||!m_isOff) {
+    if(((m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7)&&
+            ( std::abs(this->getSprite().getPosition().x-enemy.getSprite().getPosition().x) < (this->getSprite().getGlobalBounds().width/2)))
+    ||!m_isOff) {
             if((m_isOff)) {
                 m_isfull =true;
                 enemy.setIsingidedfloor(true);
@@ -37,16 +41,19 @@ bool Floor::isObjectIsStandable(Enemy &enemy) {
     }
 
     if(!m_isOff)return true;
+    m_isfull =false;
     return false;
 }
 void Floor::resetObj()
 {
     m_isOff = false;
+    m_isfull = false;
 }
 bool Floor::isObjectIsStandable(Hero &) {
+    if(m_isOff && m_isfull)
+        return true;
+    else if(m_isOff)return false;
 
-    if(m_isOff)return false;
-    if(m_isOff && m_isfull)return true;
     return true;
 }
 
@@ -57,12 +64,16 @@ bool Floor::isObjectDigable(const sf::Time &time) {
 
 void Floor::setIsOff(bool isoff) {
     m_isOff = isoff;
+    m_isfull = false;
 
 }
 
 void Floor::restoreGameObj(const sf::Time &time, float cellheight) {
-    if(time.asMilliseconds()-m_digtimestamp.asMilliseconds() >RESTOREFLOORTIME)
+    if (time.asMilliseconds() - m_digtimestamp.asMilliseconds() >
+        RESTOREFLOORTIME) {
         m_isOff = false;
+        m_isfull = false;
+    }
 }
 
 const sf::Time &Floor::getDigtimestamp() const {
