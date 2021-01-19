@@ -10,7 +10,7 @@ HorizontalEnemy::HorizontalEnemy(const sf::Vector2f &loc,
 
 void HorizontalEnemy::UpdateLocation(float time, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&)
 {
-	
+	if(isIsingidedfloor())return;
 	switch (m_directionMovement)
 	{
 	case LEFT:
@@ -42,6 +42,7 @@ void HorizontalEnemy::move(float xline, float yline)
 {
 	sf::Vector2f loc = this->m_LastPosition;
 	m_LastPosition = m_sprite.getPosition();
+	if(m_isOff)return;
 	m_sprite.move(xline, yline);
 	if (m_sprite.getPosition().x + (m_sprite.getGlobalBounds().width / 2) > BOARDWIDTH ||
 		m_sprite.getPosition().y + (m_sprite.getGlobalBounds().height / 2) > BOARDHEIGHT

@@ -41,11 +41,13 @@ void GameOverState::openstate(sf::RenderWindow &m_window, bool isplayerwin)
 
     if (isplayerwin)
         gameexitstatus.setString("YOU WON");
-    else
-        gameexitstatus.setString("YOU LOST");
+    else {
 
-    sf::sleep(sf::seconds(2));
+        gameexitstatus.setString("YOU LOST");
+    }
     m_stateSound.play();
+    sf::sleep(sf::seconds(2));
+
     auto event = sf::Event();
 
     while (m_window.isOpen())

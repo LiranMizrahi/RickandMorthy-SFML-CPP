@@ -4,6 +4,8 @@
 #include "SingletonFont.h"
 #include "GameStatusBar.h"
 #include "Macros.h"
+#include <iomanip>
+
 GameStatusBar::GameStatusBar() {
 
     m_scoreText.setFont(SingletonFont::instance().getMBoardstatus());
@@ -22,6 +24,7 @@ void GameStatusBar::printGameStatus(sf::RenderWindow & window, int levelnum ,con
                                     const sf::Clock& time, bool m_isOnTime ,
                                     int score, int life) {
 
+    char buf[4];
 
 
     std::string scorestr = "000000";

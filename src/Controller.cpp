@@ -13,7 +13,6 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER"),m_l
     m_gameOverSound.setBuffer(SingletonSound::instance().getMGameOver());
     m_levelUpSoundl.setBuffer(SingletonSound::instance().getMLevelUp());
     m_startGameSound.setBuffer(SingletonSound::instance().getMStartGame());
-
     m_window.setFramerateLimit(60);
 	board.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
 
@@ -27,26 +26,26 @@ Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER"),m_l
 
 void Controller::run()
 {
-
+    float deltaTime;
     m_time.restart();
 
    // m_startGameSound.play();
 	while (m_window.isOpen())
 	{
-        float deltaTime = clock.restart().asSeconds();
+        sf::Event event;
+        while(m_window.pollEvent(event))
+            if (sf::Keyboard::isKeyPressed(sf:: Keyboard::Escape)|| event.type == sf::Event::Closed)
+            {
+                m_window.close();
+                break;
+            }
+
+        deltaTime = clock.restart().asSeconds();
 		m_window.clear();
 		m_window.draw(board);
 		m_board.draw(m_window);
         m_gameStatusBar.printGameStatus(m_window,m_level, m_playingTime, m_time, m_isOnTime,m_board.getHeroScore(),m_board.getHerolife());
         m_window.display();
-
-		sf::Event event;
-		while(m_window.pollEvent(event))
-			if (sf::Keyboard::isKeyPressed(sf:: Keyboard::Escape)|| event.type == sf::Event::Closed)
-			{
-				m_window.close();
-				break;
-			}
 
         m_board.checkIfObjectFalling(deltaTime);
         if (m_board.checkCollisions(deltaTime))
@@ -57,8 +56,6 @@ void Controller::run()
         m_board.restroreGameObjects(m_time.getElapsedTime());
 
         reedemGifts();
-
-        m_board.checkIfHeroDig(m_time.getElapsedTime());
 
         if ( 0 >= m_board.getHerolife())
         {
@@ -214,6 +211,7 @@ void Controller::newGame()
 
     
 }
+//=============================================================
 
 void Controller::ResetLevel()
 {

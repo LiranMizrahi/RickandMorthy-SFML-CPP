@@ -18,7 +18,7 @@ public:
             sf::Vector2f boardsize);
      ~Enemy() override = default;
 
-     void UpdateLocation(float, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&) {};
+     //void UpdateLocation(float, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&) {};
 
 	 void handleColision(GameObj& obj) override;
 	 void handleColision(Rope& Obj) override;
@@ -27,15 +27,15 @@ public:
 	 void handleColision(Ladder& obj) override ;
 	 void handleColision(Coin&) override {};
 	 void handleColision(Enemy& Obj) override {};
-	 virtual void handleColision(GiftAddingLife&) override {};
-	 virtual void handleColision(GiftAddingScore&) override {};
-	 virtual void handleColision(GiftAddingEnemy&) override {};
-	 virtual void handleColision(GiftAddingTime&) override {};
+	 void handleColision(GiftAddingLife&) override {};
+	 void handleColision(GiftAddingScore&) override {};
+	 void handleColision(GiftAddingEnemy&) override {};
+	 void handleColision(GiftAddingTime&) override {};
      virtual bool isObjectIsStandable(StaticObjects &stas)override;
-     virtual void restoreGameObj(const sf::Time &, float cellheight) override;
-     virtual void resetObj()override;
-    const sf::Time &getDiggedfloortime() const;
-    void setDiggedfloortime(const sf::Time &diggedfloortime);
+     void restoreGameObj(const sf::Time &, float cellheight) override;
+      void resetObj()override;
+     const sf::Time &getDiggedfloortime() const;
+     void setDiggedfloortime(const sf::Time &diggedfloortime);
     void setIsingidedfloor(bool isingidedfloor);
     bool isIsingidedfloor() const;
 

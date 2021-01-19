@@ -1,5 +1,7 @@
 #include "Floor.h"
 #include "SingletonPicture.h"
+#include <cmath>
+
 Floor::Floor()
 {
 }
@@ -27,7 +29,9 @@ void Floor::handleColision(GameObj &obj) {
 bool Floor::isObjectIsStandable(Enemy &enemy) {
 
 
-    if((m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7) ||!m_isOff) {
+    if(((m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7)&&
+            ( std::abs(this->getSprite().getPosition().x-enemy.getSprite().getPosition().x) < (this->getSprite().getGlobalBounds().width/2)))
+    ||!m_isOff) {
             if((m_isOff)) {
                 m_isfull =true;
                 enemy.setIsingidedfloor(true);
@@ -37,17 +41,19 @@ bool Floor::isObjectIsStandable(Enemy &enemy) {
     }
 
     if(!m_isOff)return true;
+    m_isfull =false;
     return false;
 }
 void Floor::resetObj()
 {
     m_isOff = false;
+    m_isfull = false;
 }
 bool Floor::isObjectIsStandable(Hero &) {
-    if(m_isOff & m_isfull)
+    if(m_isOff && m_isfull)
         return true;
     else if(m_isOff)return false;
-    else
+
     return true;
 }
 

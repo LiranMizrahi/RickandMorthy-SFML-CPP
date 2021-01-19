@@ -16,7 +16,6 @@ private:
     sf::Text gameexitstatus;
     sf::Text exitgame;
     sf::Text newgame;
-
     bool choose = EXIT;
 };
 
