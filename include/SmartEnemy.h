@@ -6,7 +6,7 @@ struct Bfs
 
 	int m_row = 0;
 	int m_col = 0;
-	int m_direction = 0;
+	std::vector<int> m_direction = {0};
 };
 
 

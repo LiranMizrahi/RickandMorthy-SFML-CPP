@@ -15,16 +15,17 @@ SmartEnemy::SmartEnemy(const sf::Vector2f &loc, int EnemySelection,
 
 void SmartEnemy::UpdateLocation(float time, sf::Vector2f locHero, const  std::vector <std::vector<char>>& boardChar, Board& board)
 {
+
     sf::Vector2f pointEnemy, pointHero;
     float row, col;
-    std::vector<std::vector<bool>> visited;
+    std::vector<std::vector<int>> visited;
 
     float pointposition = board.getCellHight();
     for (row = 0; pointposition <= this->getSprite().getPosition().y; ++row) {
         pointposition += board.getCellHight();
     }
     pointposition = board.getCellWidth();
-    for (col = 0; pointposition <= this->getSprite().getPosition().x; col++) {
+    for (col = 1; pointposition <= this->getSprite().getPosition().x; col++) {
         pointposition += board.getCellWidth();
     }
     pointEnemy.x = col;
@@ -35,7 +36,7 @@ void SmartEnemy::UpdateLocation(float time, sf::Vector2f locHero, const  std::ve
         pointposition += board.getCellHight();
     }
     pointposition = board.getCellWidth();
-    for (col = 0; pointposition <= locHero.x; col++) {
+    for (col = 1; pointposition <= locHero.x; col++) {
         pointposition += board.getCellWidth();
     }
 
@@ -46,134 +47,113 @@ void SmartEnemy::UpdateLocation(float time, sf::Vector2f locHero, const  std::ve
     Bfs EnemyD;
     EnemyD.m_col = pointEnemy.x;
     EnemyD.m_row = pointEnemy.y;
-    EnemyD.m_direction = 0;
-
-  /*  for (int i = 0; i < boardChar.size(); ++i)
-    {
-        std::vector<bool>row;
-        for (int j = 0; j < boardChar[i].size(); ++j)
-        {
-            if (boardChar[i][j] == '#')
-            {
-                row.push_back(true);
-
-            }
-            else if((i < boardChar.size() &&(boardChar[i][j] == NULL && boardChar[i+ 1][j] == '#')))
-            {
-                row.push_back(false);
-            }
-            else if (i < boardChar.size() && boardChar[i][j] == NULL && boardChar[i + 1][j] == NULL)
-            {
-                row.push_back(true);
-            }
-            else
-            {
-                row.push_back(false);
-            }
-        }
-        visited.push_back(row);
-    }*/
+    EnemyD.m_direction.push_back(0);
 
 
 
+    for (size_t i = 0; i < board.getHeight(); i++) {
+        std::vector<int>row;
 
-
-    for (size_t i = 0; i < boardChar.size(); i++) {
-        std::vector<bool>row;
-        for (size_t j = 0; j < boardChar[i].size(); j++)
+        for (size_t j = 0; j < board.getWidth(); j++)
         {
             if ((boardChar[i][j] == '-' || boardChar[i][j] == 'H') ||
                 (i + 1 < boardChar.size() && (boardChar[i + 1][j] == '#' || boardChar[i + 1][j] == 'H')))
-               row.push_back(false);
+                row.push_back(0);
+            else if (boardChar[i][j] != '#' && i != boardChar.size() - 1 && i != 0)
+                row.push_back(2);
             else
-                row.push_back(true);
+                row.push_back(1);
         }
         visited.push_back(row);
     }
 
 
-  /*  for (int i = 0; i < boardChar.size(); ++i)
-    {
-        
-        for (int j = 0; j < boardChar[i].size(); ++j)
-        {
-            std::cout << visited[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }*/
-
-
-    //visited[pointHero.y][pointHero.x] = '@';
 
     std::queue< Bfs> q;
-    std::queue< Bfs> start;
+    //std::queue<int> start;
     Bfs p;
-    q.push(EnemyD);
     //start.push(EnemyD);
-    visited[EnemyD.m_row][EnemyD.m_col] = true;
-
-    while (!q.empty())
+    if((EnemyD.m_row >= 0 && EnemyD.m_row < visited.size()) && (EnemyD.m_col >= 0 && EnemyD.m_col < visited[1].size()))
+    visited[EnemyD.m_row][EnemyD.m_col] = 1;
+    q.push(EnemyD);
+    int move = 6;
+    /*while (!q.empty())
     {
-         p = q.front();
-        q.pop();
+        p = q.front();
+        q.pop();*/
         
         
 
-        if (p.m_row == pointHero.y && p.m_col == pointHero.x)
-        {
-            //p = q.back();
-            break;
-        }
-        //up
-        if (p.m_row - 1 >= 0 && visited[p.m_row - 1][p.m_col] == false)
-        {
-            Bfs Item;
-            Item.m_col;
-            Item.m_row = p.m_row - 1;
-            Item.m_direction = UP;
-            q.push(Item);
-            start.push(Item);
-            visited[p.m_row - 1][p.m_col] = true;
-        }
-        //down
-        if (p.m_row + 1 < board.getHeight() && visited[p.m_row + 1][p.m_col] == false)
-        {
-            Bfs Item;
-            Item.m_col;
-            Item.m_row= p.m_row + 1;
-            Item.m_direction = DOWN;
-            q.push(Item);
-            start.push(Item);
-            visited[p.m_row + 1][p.m_col] = true;
-        }
+        //if (p.m_row == pointHero.y && p.m_col == pointHero.x)
+        //{
+        //    move = p.m_direction.back();
+        //    break;
+        //}
 
-        //left
-        if (p.m_col - 1 >= 0  && visited[p.m_row][p.m_col - 1] == false)
-        {
-            Bfs Item;
-            Item.m_col = p.m_col - 1;
-            Item.m_row;
-            Item.m_direction = LEFT;
-            q.push(Item);
-            start.push(Item);
-            visited[p.m_row][p.m_col - 1] = true;
-        }
+        ////up
+        //if (p.m_row - 1 >= 0 && visited[p.m_row - 1][p.m_col] == 0)
+        //{
+        //    Bfs temp;
+        //    temp.m_col;
+        //    temp.m_row  = p.m_row - 1;
+        //    temp.m_direction.push_back(UP);
 
-        //right
-        if (p.m_col + 1 < board.getWidth() && visited[p.m_row][p.m_col + 1] == false)
-        {
-            Bfs Item;
-            Item.m_col = p.m_col + 1;
-            Item.m_row;
-            Item.m_direction = RIGHT;
-            q.push(Item);
-            start.push(Item);
-            visited[p.m_row][p.m_col + 1] = true;
-        }
-    }
+        //    p.m_direction.push_back(UP);
+        //    q.push(temp);
+        //    //start.push(UP);
+        //    visited[p.m_row - 1][p.m_col] = 1;
+        //}
+        ////down
+        //if (p.m_row + 1 < visited.size() && (visited[p.m_row + 1][p.m_col] == 0 || visited[p.m_row + 1][p.m_col] == 2))
+        //{
+        //    
+        //    Bfs temp;
+        //    temp.m_col;
+        //    temp.m_row = p.m_row + 1;
+        //    temp.m_direction.push_back(DOWN);
+
+
+        //  
+        //    p.m_direction.push_back(DOWN);
+        //    q.push(temp);
+        //    //start.push(DOWN);
+        //    visited[p.m_row + 1][p.m_col] = 1;
+        //}
+
+        ////left
+        //if (p.m_col - 1 >= 0  && visited[p.m_row][p.m_col - 1] == 0)
+        //{
+
+        //    Bfs temp;
+        //    temp.m_col = p.m_col - 1;
+        //    temp.m_row;
+        //    temp.m_direction.push_back(LEFT);
+
+        //    p.m_direction.push_back(LEFT);
+        //    q.push(temp);
+        //    //start.push(LEFT);
+        //    visited[p.m_row][p.m_col - 1] = 1;
+        //}
+
+        ////right
+        //if (p.m_col + 1 < visited[1].size() && visited[p.m_row][p.m_col + 1] == 0)
+        //{
+        //   
+        //    Bfs temp;
+        //    temp.m_col = p.m_col + 1;
+        //    temp.m_row;
+        //    temp.m_direction.push_back(RIGHT);
+
+        // 
+        //    p.m_direction.push_back ( RIGHT);
+        //    q.push(temp);
+        //    //start.push(RIGHT);
+        //    visited[p.m_row][p.m_col + 1] = 1;
+        //}
+    /*}*/
     
     
-    switch (start.front().m_direction)
+    switch (move)
     {
 
         case LEFT:
@@ -191,5 +171,8 @@ void SmartEnemy::UpdateLocation(float time, sf::Vector2f locHero, const  std::ve
         case DOWN:
             this->move(0, HEROSPEED * time);
             break;
+        default:
+            int i = 0;
+
     }
 }
