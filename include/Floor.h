@@ -28,7 +28,7 @@ public:
     virtual bool isObjectIsStandable(Enemy&)override;
 
     virtual bool isObjectDigable(const sf::Time &) override;
-    virtual void restoreGameObj(const sf::Time &, float cellheight) override;
+    virtual bool restoreGameObj(const sf::Time &, float cellheight) override;
 
     virtual void setIsOff(bool isoff)override;
 	virtual void resetObj()override;

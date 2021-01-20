@@ -3,8 +3,8 @@
 #include <queue>
 #include<Rope.h>
 #include<Ladder.h>
- 
 
+#include <cmath>
 
 SmartEnemy::SmartEnemy(const sf::Vector2f &loc, int EnemySelection,
                        const sf::Vector2f boardsize) : Enemy(loc,
@@ -27,9 +27,6 @@ void SmartEnemy::UpdateLocation(float time, sf::Vector2f locHero, const  std::ve
     {
         visited[i].resize(board.getWidth());
     }
-
-
-
 
     pointEnemy.x = std::round((this->getSprite().getPosition().x - board.getCellWidth() / 2u) / board.getCellWidth());
     pointEnemy.y = std::round((this->getSprite().getPosition().y - board.getCellHight() / 2u) / board.getCellHight());

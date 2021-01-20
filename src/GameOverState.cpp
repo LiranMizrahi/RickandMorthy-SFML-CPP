@@ -45,8 +45,8 @@ void GameOverState::openstate(sf::RenderWindow &m_window, bool isplayerwin)
 
         gameexitstatus.setString("YOU LOST");
     }
-    m_stateSound.play();
     sf::sleep(sf::seconds(2));
+    m_stateSound.play();
 
     auto event = sf::Event();
 

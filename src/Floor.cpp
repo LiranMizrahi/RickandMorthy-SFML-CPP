@@ -29,7 +29,7 @@ void Floor::handleColision(GameObj &obj) {
 bool Floor::isObjectIsStandable(Enemy &enemy) {
 
 
-    if(((m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 7)&&
+    if(((m_isOff &&this->getSprite().getPosition().y-enemy.getSprite().getPosition().y < 3)&&
             ( std::abs(this->getSprite().getPosition().x-enemy.getSprite().getPosition().x) < (this->getSprite().getGlobalBounds().width/2)))
     ||!m_isOff) {
             if((m_isOff)) {
@@ -41,18 +41,20 @@ bool Floor::isObjectIsStandable(Enemy &enemy) {
     }
 
     if(!m_isOff)return true;
-    m_isfull =false;
+
     return false;
 }
 void Floor::resetObj()
 {
+    m_digtimestamp = sf::Time::Zero;
     m_isOff = false;
     m_isfull = false;
 }
 bool Floor::isObjectIsStandable(Hero &) {
     if(m_isOff && m_isfull)
-        return true;
-    else if(m_isOff)return false;
+          return true;
+    else if(m_isOff)
+        return false;
 
     return true;
 }
@@ -68,12 +70,18 @@ void Floor::setIsOff(bool isoff) {
 
 }
 
-void Floor::restoreGameObj(const sf::Time &time, float cellheight) {
-    if (time.asMilliseconds() - m_digtimestamp.asMilliseconds() >
-        RESTOREFLOORTIME) {
-        m_isOff = false;
-        m_isfull = false;
-    }
+bool Floor::restoreGameObj(const sf::Time &time, float cellheight)
+{
+    if(m_isOff)
+
+        if (time.asMilliseconds() - m_digtimestamp.asMilliseconds() > RESTOREFLOORTIME)
+         {
+            m_isOff = false;
+            m_isfull = false;
+            return true;
+          }
+
+    return false;
 }
 
 const sf::Time &Floor::getDigtimestamp() const {

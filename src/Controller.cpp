@@ -8,15 +8,15 @@
 
 
 
-Controller::Controller(): m_window(sf::VideoMode(1600, 1080), "RICK RUNNER"),m_level(1)
+Controller::Controller(): m_window(sf::VideoMode(WINDOWSIZEWIDTH, WINDOWSIZEHEIGHT), "RICK RUNNER"),m_level(1)
 {
     m_gameOverSound.setBuffer(SingletonSound::instance().getMGameOver());
     m_levelUpSoundl.setBuffer(SingletonSound::instance().getMLevelUp());
     m_startGameSound.setBuffer(SingletonSound::instance().getMStartGame());
-    m_window.setFramerateLimit(60);
+    m_window.setFramerateLimit(FRAMERATESPEED);
 	board.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
 
-    m_boardChar = openlevelfile(m_level);
+    //m_boardChar = openlevelfile(m_level);
     m_startGameState.openstate(m_window,m_herroSelect);
 
     newGame();
@@ -28,11 +28,10 @@ void Controller::run()
 {
     float deltaTime;
     m_time.restart();
+    sf::Event event;
 
-   // m_startGameSound.play();
 	while (m_window.isOpen())
 	{
-        sf::Event event;
         while(m_window.pollEvent(event))
             if (sf::Keyboard::isKeyPressed(sf:: Keyboard::Escape)|| event.type == sf::Event::Closed)
             {
@@ -40,47 +39,24 @@ void Controller::run()
                 break;
             }
 
+        drawWindow();
+
         deltaTime = clock.restart().asSeconds();
-		m_window.clear();
-		m_window.draw(board);
-		m_board.draw(m_window);
-        m_gameStatusBar.printGameStatus(m_window,m_level, m_playingTime, m_time, m_isOnTime,m_board.getHeroScore(),m_board.getHerolife());
-        m_window.display();
 
         m_board.checkIfObjectFalling(deltaTime);
-        if (m_board.checkCollisions(deltaTime))
-            ResetLevel();
-        
+        m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime, m_boardChar);
         m_board.checkIfHeroDig(m_time.getElapsedTime());
+
         m_board.restroreGameObjects(m_time.getElapsedTime());
-
+        //if player collect a gift that this or board class need to handle
         reedemGifts();
-
-        if ( 0 >= m_board.getHerolife())
-        {
-            gameOverHandler(false);
-        }
-
-        //check if there is no move available coins to get
-        if(checkIfLevelDone()) {
-
-            //check if there is move level to upgrade
-            if (m_level == NUMBEROFLEVELS)
-            {
-                gameOverHandler(true);
-                newGame();
-            }
-            else {
-                m_level++;
-                //if there is no more coins move to the next level
-                upgradeLevel();
-                board.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
-
-            }
-        }
-
-        CheckingTimes();
+        //check if hero is dead and if he have more life
+        checkIfHroalive();
+        //If the player collect all coins the level is finish
+        checkIfPlayerFinishLevel();
+        //if the level is "on time level" this function check if the level finish
+        checkIfTimeIsOver();
 
 	}
 }
@@ -100,7 +76,6 @@ std::vector<std::vector<char>> Controller::openlevelfile(int level)
 		if(!file.is_open())
 			std::cout << "Error while open level file";
 
-
         file >> width >> height >> m_timeTheLevel; // take size map
         file.get();
 
@@ -108,7 +83,6 @@ std::vector<std::vector<char>> Controller::openlevelfile(int level)
         {
             m_playingTime = sf::seconds(m_timeTheLevel);
             m_isOnTime = true;
-            m_time.restart();
         }
         else
             m_isOnTime = false;
@@ -143,15 +117,14 @@ void Controller::ResetCoins()
 }
 //=============================================================
 
-void Controller::upgradeLevel() {
-
-
-    m_levelUpState.openstate(m_window,m_herroSelect);
+void Controller::upgradeLevel()
+{
+     m_levelUpState.openstate(m_window,m_herroSelect);
      m_boardChar = openlevelfile(m_level);
 
-     int herolife = m_board.getHerolife();
-     int heroscore = m_board.getHeroScore();
-     m_board = Board(m_boardChar, m_herroSelect, m_level);
+    int herolife = m_board.getHerolife();
+    int heroscore = m_board.getHeroScore();
+    m_board = Board(m_boardChar, m_herroSelect, m_level);
     m_board.setHeroScore(heroscore);
     m_board.setHeroLife(herolife);
 
@@ -159,25 +132,25 @@ void Controller::upgradeLevel() {
 }
 //=============================================================
 
-void Controller::printStartGameScreen() {
-
- auto soundmusic = sf::Sound(SingletonSound::instance().getOpenGame());
-    soundmusic.play();
-    sf::Sprite openpic(SingletonPicture::instance().getMStartGame());
-
-    while (m_window.isOpen())
-    {
-        if (auto event = sf::Event{}; m_window.waitEvent(event)) {}
-
-            m_window.clear();
-            m_window.draw(openpic);
-            m_window.display();
-
-            sf::sleep(sf::seconds(4));
-            return;
-
-    }
-}
+//void Controller::printStartGameScreen() {
+//
+//    auto soundmusic = sf::Sound(SingletonSound::instance().getOpenGame());
+//    soundmusic.play();
+//    sf::Sprite openpic(SingletonPicture::instance().getMStartGame());
+//
+//    while (m_window.isOpen())
+//    {
+//        if (auto event = sf::Event{}; m_window.waitEvent(event)) {}
+//
+//            m_window.clear();
+//            m_window.draw(openpic);
+//            m_window.display();
+//
+//            sf::sleep(sf::seconds(4));
+//            return;
+//
+//    }
+//}
 //=============================================================
 
 void Controller::gameOverHandler(bool isplyerwin)
@@ -188,7 +161,7 @@ void Controller::gameOverHandler(bool isplyerwin)
 
 }
 //=============================================================
-void Controller::CheckingTimes()
+void Controller::checkIfTimeIsOver()
 {
     if (m_isOnTime)
         if (m_playingTime.asSeconds() - m_time.getElapsedTime().asSeconds() <= 0)
@@ -201,7 +174,6 @@ void Controller::CheckingTimes()
 void Controller::newGame()
 {
     Coin::resetCoins();
-
     m_level = 1;
     m_boardChar = openlevelfile(m_level);
     m_herroSelect = m_menu.StartGame(m_window);
@@ -233,5 +205,51 @@ void Controller::reedemGifts() {
         m_playingTime += sf::seconds(ADDTIMEGIFTTIME);
         GiftAddingTime::redeenGift();
     }
+
+}
+//=============================================================
+void Controller::checkIfHroalive() {
+
+    if(m_board.checkIfHroalive())
+        ResetLevel();
+
+    if ( 0 >= m_board.getHerolife())
+    {
+        gameOverHandler(false);
+    }
+}
+//=============================================================
+
+void Controller::checkIfPlayerFinishLevel() {
+
+    //check if there is no move available coins to get
+    if(checkIfLevelDone()) {
+
+        //check if there is move level to upgrade
+
+        if (m_level == NUMBEROFLEVELS)
+        {
+            gameOverHandler(true);
+            newGame();
+        }
+        else
+        {
+            m_level++;
+            //if there is no more coins move to the next level
+            upgradeLevel();
+            board.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
+
+        }
+    }
+}
+//=============================================================
+void Controller::drawWindow() {
+
+    m_window.clear();
+    m_window.draw(board);
+    m_board.draw(m_window);
+    m_gameStatusBar.printGameStatus(m_window,m_level, m_playingTime, m_time, m_isOnTime,m_board.getHeroScore(),m_board.getHerolife());
+    m_window.display();
+
 
 }

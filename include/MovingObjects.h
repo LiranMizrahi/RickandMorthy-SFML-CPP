@@ -29,6 +29,8 @@ protected:
     sf::Vector2f m_LastPosition;
     bool m_isfalling =false;
     bool m_isUpAvail = false;
+    sf::Sprite m_backSprite;
+    sf::Sprite m_sideSprite;
 
 
 

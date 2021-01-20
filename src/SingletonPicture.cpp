@@ -67,9 +67,13 @@ SingletonPicture::SingletonPicture()
         level.loadFromFile(filename+= std::to_string(i)+filetype);
         m_levelbackgrounds.push_back(level);
     }
+    if(m_rickBack.loadFromFile("rick_back.png"))
+        std::cout << "cant open picture";
 
 
+}
 
+const sf::Texture &SingletonPicture::getMRickback() const {
 }
 
 const sf::Texture & SingletonPicture::getHerojerryTexture()const

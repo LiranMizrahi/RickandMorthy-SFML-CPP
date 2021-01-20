@@ -13,7 +13,13 @@ private:
     sf::Text m_levelText;
     sf::Text m_lifeText;
     sf::Text m_timeTheLevel;
+    int m_level,m_life;
+    sf::Time m_time ,m_lifechange, m_levelchange , m_timechange;
 
 
+    void printboard(sf::RenderWindow &window);
+
+    void
+    printChangeColor(int life, const sf::Clock &clock, const sf::Time &time);
 };
 

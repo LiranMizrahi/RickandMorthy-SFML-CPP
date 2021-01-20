@@ -10,12 +10,9 @@ Enemy::Enemy(const sf::Vector2f &loc, int EnemySelection,sf::Vector2f boardsize)
 	{
         m_sprite.setTexture(SingletonPicture::instance().getEnemyMonsterTexture());
     }
-
     m_sprite.setScale(sf::Vector2f(boardsize.x/(m_sprite.getTexture()->getSize().x+25) ,(boardsize.y/(m_sprite.getTexture()->getSize().y+25))));
-
     m_sprite.setPosition(loc);
     m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
-
 	m_firstPosition = loc;
     m_diggedfloortime =sf::Time::Zero;
 }
@@ -71,12 +68,13 @@ void Enemy::setDiggedfloortime(const sf::Time &diggedfloortime) {
     Enemy::m_diggedfloortime = diggedfloortime;
 }
 
-void Enemy::restoreGameObj(const sf::Time &time, float cellheight) {
+bool Enemy::restoreGameObj(const sf::Time &time, float cellheight) {
     if(m_isingidedfloor)
     if(time.asMilliseconds()-m_diggedfloortime.asMilliseconds() >RESTOREFLOORTIME)
         this->move(0,-cellheight);
 
     m_isingidedfloor =false;
+    return false;
 }
 
 void Enemy::setIsingidedfloor(bool isingidedfloor) {

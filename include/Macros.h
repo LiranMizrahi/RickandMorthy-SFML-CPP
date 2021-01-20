@@ -17,6 +17,8 @@ const int	RIGHT = 2;
 const int	UP = 3;
 const int	DOWN = 4;
 
+const int WINDOWSIZEWIDTH = 1600;
+const int WINDOWSIZEHEIGHT = 1080;
 const int BOARDWIDTH = 1600;
 const int BOARDHEIGHT = 899;
 const int WIDTHSIZECALI = 25;
@@ -24,11 +26,11 @@ const int HEIGHTSIZECALI = 15;
 
 //Define  the speeds for the moving objects
 const float FALLINGSPEED = 250.f;
-const  float HEROSPEED = 300.f ;
-const  float ENEMYSPEED = 300.f;
+const  float HEROSPEED = 250.f ;
+const  float ENEMYSPEED = 250.f;
 
 const float RESTOREFLOORTIME = 5000;
-const int GIFTSHOWTIME = 3000;
+const int GIFTSHOWTIME = 10000;
 
 const int ADDTIMEGIFTTIME = 15;
 const int HERODIGDELTATIME = 200;
@@ -42,5 +44,7 @@ const int HEROASRICK = 2;
 const int COINVALUE = 50;
 
 const int HEROSTARTLIFE = 3;
+const int FACTORSCAL  = 25;
+const int FRAMERATESPEED = 60;
 
 

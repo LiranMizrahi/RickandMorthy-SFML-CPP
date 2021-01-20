@@ -47,6 +47,7 @@ int MenuState::StartGame(sf::RenderWindow& window)
 					rickpic.setOutlineColor(sf::Color::White);
 				ricksound.play();
 
+
 				}
 				else if(jerrypic.getGlobalBounds().contains(location))
 				{
@@ -54,6 +55,7 @@ int MenuState::StartGame(sf::RenderWindow& window)
                     updateSelectPic(HEROASJERRY);
 					jerrypic.setOutlineColor(sf::Color::White);
 				        jerrysound.play();
+
 				}
 				else if(start.getGlobalBounds().contains(location))
 				{
@@ -65,7 +67,20 @@ int MenuState::StartGame(sf::RenderWindow& window)
                 auto location = window.mapPixelToCoords(
                     { event.mouseMove.x, event.mouseMove.y });
                 start.setColor(start.getGlobalBounds().contains(location)
-                               ? sf::Color::White : sf::Color::Black);
+                               ? sf::Color::Black : sf::Color::White);
+                if(rickpic.getGlobalBounds().contains(location))
+                {
+                    rickpic.setFillColor(sf::Color(255, 255, 255, 255));
+                    jerrypic.setFillColor(sf::Color(255, 255, 255, 130));
+                }
+
+                if(jerrypic.getGlobalBounds().contains(location))
+                {
+                    jerrypic.setFillColor(sf::Color(255, 255, 255, 255));
+                    rickpic.setFillColor(sf::Color(255, 255, 255, 130));
+                }
+
+
             }
           
 		}
@@ -96,9 +111,9 @@ void MenuState::initializeScreenText() {
 
 
     start.setFont(SingletonFont::instance().getMMenu()); // font is a sf::Font
-    start.setString("Start");
+    start.setString("Press to start");
     start.setCharacterSize(CHARSIZE); // in pixels, not points!
-    start.setFillColor(sf::Color::Black);
+    start.setFillColor(sf::Color::White);
     start.setStyle(sf::Text::Bold);
     start.setPosition(STARTTEXTX, STARTTEXTY);
 
@@ -116,21 +131,22 @@ void MenuState::initializeScreenText() {
 void MenuState::updateSelectPic(int hero) {
 
     if(hero == HEROASJERRY) {
-        jerrypic.setFillColor(sf::Color(255, 255, 255, 130));
+
+        rickpic.setFillColor(sf::Color(255, 255, 255, 130));
         jerrypic.setOutlineThickness(SCALEFACTOR);
-        rickpic.setFillColor(sf::Color(255, 255, 255, 255));
+        jerrypic.setFillColor(sf::Color(255, 255, 255, 255));
         rickpic.setOutlineThickness(0);
     }
     else {
-        rickpic.setFillColor(sf::Color(255, 255, 255, 130));
+        jerrypic.setFillColor(sf::Color(255, 255, 255, 130));
         rickpic.setOutlineThickness(SCALEFACTOR);
-        jerrypic.setFillColor(sf::Color(255, 255, 255, 255));
+        rickpic.setFillColor(sf::Color(255, 255, 255, 255));
         jerrypic.setOutlineThickness(0);
 
     }
 
 }
-
+//==========================================================
 void MenuState::openstate(sf::RenderWindow &m_window, bool isplayerwin) {
     this->StartGame(m_window);
 

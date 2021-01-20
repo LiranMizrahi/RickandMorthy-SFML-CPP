@@ -17,14 +17,13 @@ public:
           int level);
 	void draw(sf::RenderWindow&)const;
 	void moveCharacters(float, const  std::vector <std::vector<char>>& );
-	int checkCollisions(float);
+	void checkCollisions(float);
     bool checkIfObjectFalling(float);
     void andEnemyRandomly(int playerselect);
     size_t getWidth();
     size_t getHeight();
     StaticObjects* getStaticObjectsFromVector(int,int);
     MovingObjects* getSMovingObjectsFromVector(int);
-
 	void checkIfHeroDig(const sf::Time&);
 	void ResetMap();
     void restroreGameObjects(const sf::Time &time);
@@ -35,8 +34,10 @@ public:
     void setHeroLife(int);
     float getCellHight() const;
     float getCellWidth() const;
+    bool checkIfHroalive();
+    sf::Vector2f mapPixelToIndexes(const sf::Vector2f &vector2);
 
-    private:
+private:
 	//private members
     Hero* m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
@@ -51,11 +52,9 @@ public:
                       int PlayerSelection, int i, int level);
 	void createEnemysVector(const sf::Vector2f&, int);
 	void addGiftToStaticVector(const sf::Vector2f&, sf::Vector2f, int);
-	void handleCollisions(GameObj &obj);
+	void handleCollisions(MovingObjects &movab);
     bool isObjectIsFalling(float, MovingObjects&);
-	void
-    readFile(const std::vector<std::vector<char>> &file, int PlayerSelection,
-             int level);
+	void readFile(const std::vector<std::vector<char>> &file, int PlayerSelection,int level);
 
 
 };

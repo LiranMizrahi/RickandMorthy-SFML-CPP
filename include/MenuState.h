@@ -5,15 +5,15 @@
 #include "Macros.h"
 
 const int JERRYPOSITIONX = 800 ;
-const int JERRYPOSITIONY = 500;
+const int JERRYPOSITIONY = 350;
 const int RICKPOSITIONX =550;
-const int RICKPOSITIONY =500;
-const int STARTTEXTX = 650;
-const int STARTTEXTY = 100;
-const int SELECTX = 650;
-const int SELECTY = 400;
-const int CHARSIZE = 200;
-const int CHARSIZE1 = 50;
+const int RICKPOSITIONY =350;
+const int STARTTEXTX = 490;
+const int STARTTEXTY = 900;
+const int SELECTX = 240;
+const int SELECTY = 100;
+const int CHARSIZE = 100;
+const int CHARSIZE1 = 140;
 const int SCALEFACTOR = 2;
 
 class MenuState:State
