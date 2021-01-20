@@ -27,8 +27,8 @@ public:
 private:
 	std::vector <std::vector<int>> creatingRunningVector(std::vector <std::vector<char>> );
 	int bfsAlgorithm(sf::Vector2f, sf::Vector2f, std::vector<std::vector<int>>);
+	void movEnemySmart(int, float );
 	void randomMovment(float);
-	char m_node;
 	int m_step = 0;
 	int m_lastStep = 0;
 	bool m_direction = false;
