@@ -32,7 +32,7 @@ public:
 	 void handleColision(GiftAddingEnemy&) override {};
 	 void handleColision(GiftAddingTime&) override {};
      virtual bool isObjectIsStandable(StaticObjects &stas)override;
-     void restoreGameObj(const sf::Time &, float cellheight) override;
+     bool restoreGameObj(const sf::Time &, float cellheight) override;
       void resetObj()override;
      const sf::Time &getDiggedfloortime() const;
      void setDiggedfloortime(const sf::Time &diggedfloortime);

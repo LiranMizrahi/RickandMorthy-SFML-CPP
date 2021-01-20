@@ -5,23 +5,23 @@
 #include "Enemy.h"
 #include "Board.h"
 #include "Ladder.h"
+#include <cmath>
+
 
 Hero::Hero(const sf::Vector2f &loc, int HeroSelection,
            sf::Vector2f boardsize) : m_life(3), m_score(0)
 {
 
 	if (HeroSelection == HEROASJERRY)
-	{
 		m_sprite.setTexture(SingletonPicture::instance().getHerojerryTexture());
-	}
+
 	else if(HeroSelection == HEROASRICK)
-	{
 		m_sprite.setTexture(SingletonPicture::instance().getHeroRickTexture());
-	}
+
 
     m_sprite.setPosition(loc);
     m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
-    m_sprite.setScale(sf::Vector2f(boardsize.x/(m_sprite.getTexture()->getSize().x+25) ,(boardsize.y/(m_sprite.getTexture()->getSize().y+25))));
+    m_sprite.setScale(sf::Vector2f(boardsize.x/(m_sprite.getTexture()->getSize().x+FACTORSCAL) ,(boardsize.y/(m_sprite.getTexture()->getSize().y+FACTORSCAL))));
 
 
     m_collectCoinSound.setBuffer(SingletonSound::instance().getMCollectCoin());
@@ -29,6 +29,7 @@ Hero::Hero(const sf::Vector2f &loc, int HeroSelection,
     m_collectDeadSound.setBuffer(SingletonSound::instance().getMDead());
 	m_firstPosition = loc;
     m_LastPosition = loc;
+    m_lastdigtime = sf::Time::Zero;
 }
 //====================================================
 
@@ -60,8 +61,7 @@ void Hero::UpdateLocation(float time, sf::Vector2f, const  std::vector <std::vec
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-	    //    if (m_isDownAvail)
-		            this->move(0,HEROSPEED * time);
+        this->move(0,HEROSPEED * time);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
@@ -90,12 +90,14 @@ void Hero::handleColision(Floor& obj)
 {
     m_sprite.setPosition(m_LastPosition);
     m_isUpAvail =false;
-   // this->m_sprite.setRotation(0.f);
 }
 //====================================================
 void Hero::handleColision(Ladder& obj)
 {
-    m_isUpAvail =true;
+    if (std::abs(m_sprite.getPosition().x -obj.getSprite().getPosition().x )
+            < this->m_sprite.getTexture()->getSize().x/2u)
+
+        m_isUpAvail =true;
 
 }
 //====================================================
@@ -161,7 +163,7 @@ void Hero::handleColision(Hero &) {
 //======================================================
 void Hero::digHole(Board& board,const sf::Time &time)
 {
-    int row,col;
+    int coll;
     //This statement block the the option to dig more
     // then a one hole in <HERODIGDELTATIME> millisecond
     if(time.asMilliseconds()-m_lastdigtime.asMilliseconds()<HERODIGDELTATIME)
@@ -169,36 +171,28 @@ void Hero::digHole(Board& board,const sf::Time &time)
 
      //Check if the player want to dig otherwise the function end
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X))
-        col = 1;
+        coll = 1;
 
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-       col =-1;
+       coll =-1;
     else return;
 
-    float pointposition= board.getCellHight();
-    for ( row = 1; pointposition <= this->getSprite().getPosition().y; ++row)
-        pointposition += board.getCellHight();
+        auto index = board.mapPixelToIndexes(getSprite().getPosition());
 
+         index.x+=coll;
 
-        pointposition = board.getCellWidth();
-
-        for (; pointposition <= this->getSprite().getPosition().x; ++col)
-            pointposition += board.getCellWidth();
-
-         //check if start from 1 is ok
-         //row++;
-
-        if (row > 0 && col >= 0 && row < board.getHeight() && col < board.getWidth())
+        if (index.y >0 && index.x >= 0 && index.y < board.getHeight() && index.x < board.getWidth())
         {
-            if(board.getStaticObjectsFromVector(row-1, col) != nullptr)return;
-            auto staticobj = board.getStaticObjectsFromVector(row, col);
+            if(board.getStaticObjectsFromVector(index.y-1, index.x) != nullptr)return;
+            auto staticobj = board.getStaticObjectsFromVector(index.y, index.x);
             if (staticobj)
             {
                 if (staticobj->isObjectDigable(time))
                 {
                     auto loc = staticobj->getSprite().getPosition();
                     loc.y -= board.getCellHight();
-                    auto rec = sf::RectangleShape(sf::Vector2f(board.getCellWidth()*0.70,board.getCellHight()*0.70));
+                    auto rec = sf::RectangleShape(sf::Vector2f(m_sprite.getGlobalBounds().width,m_sprite.getGlobalBounds().height));
+                    rec.setScale(m_sprite.getScale());
                     rec.setPosition(loc);
                     rec.setOrigin(board.getCellWidth()/2,board.getCellHight()/2);
 
@@ -237,6 +231,5 @@ void Hero::handleColision(GiftAddingTime &) {
 //====================================================
 void Hero::handleColision(GiftAddingEnemy &) {
     playCollectGiftSound();
-
 }
 //====================================================

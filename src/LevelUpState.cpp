@@ -12,8 +12,6 @@ LevelUpState::LevelUpState(): State(SingletonPicture::instance().getMLevelUp(),S
 
 void LevelUpState::openstate(sf::RenderWindow &m_window, bool isplayerwin) {
 
-
-
     m_window.clear();
     m_window.draw(m_stateBackround);
     m_window.display();

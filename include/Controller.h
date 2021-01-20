@@ -17,17 +17,15 @@
 #include "LevelUpState.h"
 
  class Controller {
-					
 
 public:
 
 	Controller();
 	void run();
 
-
 private:
 
-	//private member
+	//=========Private members========
 	bool m_isOnTime;
 	float m_timeTheLevel;
 	int m_herroSelect;
@@ -50,7 +48,7 @@ private:
 	GameStatusBar m_gameStatusBar;
 	LevelUpState m_levelUpState;
 
-	//private function
+	//======= Private function ================
 	std::vector<std::vector<char>> openlevelfile(int);
     bool checkIfLevelDone();
 	void ResetCoins();
@@ -58,8 +56,10 @@ private:
 	void printStartGameScreen();
 	void gameOverHandler(bool isplayerwin);
 	void reedemGifts();
-	void CheckingTimes();
+	void checkIfTimeIsOver();
 	void newGame();
 	void ResetLevel();
-
-};				
+	void checkIfHroalive();
+	void checkIfPlayerFinishLevel();
+	void drawWindow();
+ };

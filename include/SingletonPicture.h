@@ -28,10 +28,10 @@ public:
         const sf::Texture& getMHeroIsdead()const ;
         const sf::Texture& getMGameOver() const;
 
+    const sf::Texture &getMRickback() const;
 
 
-  
-   private:
+private:
     SingletonPicture();
     SingletonPicture(const SingletonPicture &) = default;
     //SingletonPicture&  operator=(const SingletonPicture&) = default;
@@ -49,14 +49,12 @@ public:
     sf::Texture m_menu;
     std::vector <sf::Texture> m_levelbackgrounds;
     sf::Texture m_gift;
-//=======
     sf::Texture m_levelUp;
     sf::Texture m_startGame;
     sf::Texture m_heroIsdead;
     sf::Texture m_gameOver;
 
-//>>>>>>> a5a59284c1b35d92dc1af51a7eaf77db88b01fb8
-
+        sf::Texture m_rickBack;
 };
 
 

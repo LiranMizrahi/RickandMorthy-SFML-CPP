@@ -17,6 +17,7 @@ void RandomEnemy::UpdateLocation(float timeGame, sf::Vector2f, const  std::vecto
     std::srand(std::time(nullptr));
 
 	int RandomMov = std::rand() % 4;
+
 	switch (RandomMov)
 	{
 		

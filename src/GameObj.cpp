@@ -10,7 +10,7 @@ GameObj::GameObj(const sf::Texture& tex, const sf::Vector2f & location, const sf
 
 	//     all texture calibrate to board in size 15*25
 	m_sprite.setScale(sf::Vector2f((WIDTHSIZECALI/board_size.y) ,(HEIGHTSIZECALI/board_size.x)));
-	m_sprite.setOrigin(sf::Vector2f(m_sprite.getGlobalBounds().width/2,m_sprite.getGlobalBounds().height/2));
+	m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
 }
 
 GameObj::GameObj()
@@ -49,7 +49,7 @@ void GameObj::setIsOff(bool isoff) {
 
 }
 
-void GameObj::restoreGameObj(const sf::Time &, float cellheight) {
+bool GameObj::restoreGameObj(const sf::Time &, float cellheight) {
 
 
 }

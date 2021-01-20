@@ -36,7 +36,7 @@ public:
 	virtual void handleColision(GiftAddingScore& Obj) = 0;
 	virtual void handleColision(GiftAddingEnemy& Obj) = 0;
 	virtual void handleColision(GiftAddingTime& Obj) = 0;
-    virtual void restoreGameObj(const sf::Time &, float cellheight);
+    virtual bool restoreGameObj(const sf::Time &, float cellheight);
 	virtual void resetObj() = 0;
 	bool getIsOff()const;
 	virtual void setIsOff(bool isoff);
