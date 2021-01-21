@@ -3,7 +3,8 @@
 #include <queue>
 #include<Rope.h>
 #include<Ladder.h>
- 
+
+#include <cmath>
 
 
 SmartEnemy::SmartEnemy(const sf::Vector2f &loc, int EnemySelection,

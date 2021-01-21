@@ -60,10 +60,6 @@ void Enemy::resetObj()
 	this->SetPosition(m_firstPosition);
 }
 
-const sf::Time &Enemy::getDiggedfloortime() const {
-    return m_diggedfloortime;
-}
-
 void Enemy::setDiggedfloortime(const sf::Time &diggedfloortime) {
     Enemy::m_diggedfloortime = diggedfloortime;
 }

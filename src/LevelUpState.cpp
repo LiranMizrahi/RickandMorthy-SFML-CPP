@@ -2,7 +2,6 @@
 #include "LevelUpState.h"
 #include "SingletonSound.h"
 #include "SingletonPicture.h"
-#include "SingletonFont.h"
 
 LevelUpState::LevelUpState(): State(SingletonPicture::instance().getMLevelUp(),SingletonSound::instance().getMLevelUp()){
 

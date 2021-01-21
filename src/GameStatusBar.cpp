@@ -13,7 +13,7 @@ const int CHARRACTERSIZE = 50;
 const float SPACESSIZR = 30;
 //====================================================
 
-GameStatusBar::GameStatusBar(   ) :m_level(1),m_life(HEROSTARTLIFE) {
+GameStatusBar::GameStatusBar() :m_score(0),m_life(HEROSTARTLIFE) {
 
     m_scoreText.setFont(SingletonFont::instance().getMBoardstatus());
     m_levelText.setFont(SingletonFont::instance().getMBoardstatus());
@@ -31,7 +31,7 @@ void GameStatusBar::printGameStatus(sf::RenderWindow & window, int levelnum ,con
                                     const sf::Clock& time, bool m_isOnTime ,int score, int life) {
 
 
-    printChangeColor(life,time,timeLevel);
+    printChangeColor(life, time, timeLevel, score);
 
    float lefttime= timeLevel.asSeconds() - time.getElapsedTime().asSeconds() ;
 
@@ -80,7 +80,13 @@ void GameStatusBar::printboard(sf::RenderWindow &window) {
 }
 //====================================================
 void GameStatusBar::printChangeColor(int life, const sf::Clock &clock,
-                                     const sf::Time &time) {
+                                     const sf::Time &time, int score) {
+    if (score > m_score)
+    {
+        m_scoreText.setColor(sf::Color::Green);
+        m_scorechange = clock.getElapsedTime();
+    }
+
     if(life < m_life)
     {
         m_lifeText.setColor(sf::Color::Red);
@@ -100,6 +106,10 @@ void GameStatusBar::printChangeColor(int life, const sf::Clock &clock,
     }
     m_life = life;
     m_time = time;
+    m_score = score;
+
+    if(clock.getElapsedTime().asSeconds() > m_scorechange.asSeconds() + MARKTEXTTIME)
+        m_scoreText.setColor(sf::Color::White);
 
     if(clock.getElapsedTime().asSeconds() > m_timechange.asSeconds() + MARKTEXTTIME)
             m_timeTheLevel.setColor(sf::Color::White);

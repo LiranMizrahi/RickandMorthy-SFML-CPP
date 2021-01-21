@@ -15,7 +15,7 @@ class Hero : public MovingObjects {
 	   Hero(const sf::Vector2f &loc, int HeroSelection,sf::Vector2f boardsize);
 	   int getLife();
 	   int getScore();
-	   void setScore(int);
+	   void addScore(int);
 	   void setLife(int);
 	    void UpdateLocation(float , sf::Vector2f, const  std::vector <std::vector<char>>&, Board&)override;
 	    void digHole(Board & board,const sf::Time &time);

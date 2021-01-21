@@ -26,11 +26,11 @@ void Rope::handleColision(GameObj &obj) {
 }
 
 bool Rope::isObjectIsStandable(Hero & hero) {
-   return  hero.getSprite().getPosition().y-this->getSprite().getPosition().y > -2;
+   return  hero.getSprite().getPosition().y-this->getSprite().getPosition().y > 0;
 
 }
 bool Rope::isObjectIsStandable(Enemy & enemy) {
-    return enemy.getSprite().getPosition().y - this->getSprite().getPosition().y > -2;
+    return enemy.getSprite().getPosition().y - this->getSprite().getPosition().y > 0;
 
 }
 

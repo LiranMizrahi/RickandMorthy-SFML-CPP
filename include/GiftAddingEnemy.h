@@ -7,7 +7,7 @@ class GiftAddingEnemy : public Gift
 {
 public:
 	GiftAddingEnemy(const sf::Vector2f& loc, const sf::Vector2f&);
-	~GiftAddingEnemy()override;
+	virtual ~GiftAddingEnemy() = default;
 
 	static int getNumberOfGiftAddingRnemy();
 	static void redeemGift();

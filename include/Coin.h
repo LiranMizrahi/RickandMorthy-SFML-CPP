@@ -11,7 +11,7 @@ class Coin : public StaticObjects {
 public:
 	Coin();
 	Coin(const sf::Vector2f &loc, const sf::Vector2f &size, int level);
-     ~Coin() override = default;
+     virtual ~Coin() = default;
     virtual void handleColision(Rope&) override {};
 	virtual void handleColision(Hero&) override;
 	virtual void handleColision(Floor&) override {};

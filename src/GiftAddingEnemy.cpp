@@ -20,10 +20,6 @@ void GiftAddingEnemy::handleColision(Hero& obj)
     m_isreedem = true;
 }
 
-GiftAddingEnemy::~GiftAddingEnemy() {
-    //m_numberofgiftaddingenemy--;
-
-}
 
 int GiftAddingEnemy::getNumberOfGiftAddingRnemy() {
     return m_numberofgiftaddingenemy;

@@ -16,12 +16,12 @@ const int CHARSIZE = 100;
 const int CHARSIZE1 = 140;
 const int SCALEFACTOR = 2;
 
-class MenuState:State
+class MenuState
 {
 public:
 	MenuState();
 	int StartGame(sf::RenderWindow & );
-    virtual void openstate(sf::RenderWindow &m_window, bool);
+
 
 
 private:
@@ -31,7 +31,7 @@ private:
     sf::RectangleShape rickpic,jerrypic;
     sf::Sound ricksound;
     sf::Sound jerrysound;
-
+    sf::Sprite m_backGround;
     void initializeScreenPic();
     void initializeScreenText();
     void updateSelectPic(int hero);

@@ -8,7 +8,7 @@ set (CMAKE_CXX_STANDARD_REQUIRED ON)
 set (CMAKE_CXX_EXTENSIONS OFF)
 if (MSVC)
     add_compile_options (/permissive-)
-endif  ()
+endif ()
 
 add_executable (SFMLExamples "")
 
@@ -39,7 +39,7 @@ target_link_libraries (SFMLExamples sfml-audio sfml-graphics sfml-main)
 
 configure_file (C:/SFML/SFML-2.5.1/bin/openal32.dll ${CMAKE_BINARY_DIR} COPYONLY)
 
-    #=========================================
+    #==========================================
 endif()
 
 
