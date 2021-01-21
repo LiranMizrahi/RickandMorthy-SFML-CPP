@@ -2,9 +2,7 @@
 #include "SingletonPicture.h"
 #include <cmath>
 
-Floor::Floor()
-{
-}
+
 Floor::Floor(const sf::Vector2f& loc, const sf::Vector2f& size): StaticObjects(SingletonPicture::instance().getFloorTexture(), loc, size)
 {
     m_isfull = false;

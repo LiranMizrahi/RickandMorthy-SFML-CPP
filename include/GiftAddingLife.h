@@ -20,6 +20,7 @@ public:
 	virtual void handleColision(GiftAddingLife&) override {};
 	virtual void handleColision(GiftAddingScore&) override {};
 	virtual void handleColision(GiftAddingEnemy&) override {};
+	void handleColision(GiftAddingTime&) override {};
 private:
 
 };

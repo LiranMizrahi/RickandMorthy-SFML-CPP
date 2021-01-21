@@ -43,7 +43,7 @@ size_t Board::getWidth() {
 }
 //==================================================
 
-int Board::getMovingObjecVectorSize() {
+size_t Board::getMovingObjecVectorSize() {
     return m_movingObjects.size();
 }
 //==================================================
@@ -134,7 +134,7 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
    // int ChooseEnemy = std::rand() % (ENEMYTYPES-1)+1;
     int ChooseEnemy = 0;
 
-    switch (0)
+    switch (1)
     {
         case RANDOM:
             m_movingObjects.push_back(std::move(std::make_unique<RandomEnemy>(location, PlayerSelection,boaradsize)));
@@ -201,6 +201,7 @@ void Board::moveCharacters(float deltaTime, const  std::vector <std::vector<char
 void Board::readFile(const std::vector<std::vector<char>> &file, int PlayerSelection,
                 int level)
 {
+
     sf::Vector2f location;
     m_cellWidth = (BOARDWIDTH / float(m_width));
     m_cellHight = (BOARDHEIGHT / float(m_height));

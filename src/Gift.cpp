@@ -27,18 +27,18 @@ bool Gift::isObjectDigable(const sf::Time &) {
 
 //=============================================================
 
-void Gift::handleColision(Hero &obj) {
-    if(!m_isOff)
-        obj.handleColision(*this);
-    m_isOff = true;
-    m_isreedem = true;
-
-}
-//=============================================================
-
-void Gift::handleColision(GameObj &obj) {
-    obj.handleColision(*this);
-}
+//void Gift::handleColision(Hero &obj) {
+//    if(!m_isOff)
+//        obj.handleColision(*this);
+//    m_isOff = true;
+//    m_isreedem = true;
+//
+//}
+////=============================================================
+//
+//void Gift::handleColision(GameObj &obj) {
+//    obj.handleColision(*this);
+//}
 //=============================================================
 
 

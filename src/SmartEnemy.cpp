@@ -18,8 +18,6 @@ void SmartEnemy::UpdateLocation(float time, sf::Vector2f locHero, const  std::ve
 {
     if (isIsingidedfloor())return;
     sf::Vector2f pointEnemy, pointHero;
-    boardChar.size();
-    boardChar[0].size();
     //index enemy in a board
     pointEnemy.x = std::round((this->getSprite().getPosition().x - board.getCellWidth() / 2u) / board.getCellWidth());
     pointEnemy.y = std::round((this->getSprite().getPosition().y - board.getCellHight() / 2u) / board.getCellHight());
@@ -90,19 +88,19 @@ std::vector <std::vector<int>> SmartEnemy::creatingRunningVector(std::vector <st
                 && (boardChar[i][j] == COIN || boardChar[i][j] == GIFT || boardChar[i][j] == ' '))
             {
                 if (ReturnsCellInVector(boardChar, i, j))
-                visited[i][j] = 0;
+                visited[i][j] = (size_t) 0;
             }
                 
             else if (boardChar[i][j] != '#' && i != boardChar.size() - 1 && i != 0)
             {
                 if (ReturnsCellInVector(boardChar, i, j))
-                visited[i][j] = 2;
+                visited[i][j] = (size_t) 2;
 
             }
             else
             {
                 if (ReturnsCellInVector(boardChar, i, j))
-                visited[i][j] = 1;
+                visited[i][j] = (size_t) 1;
 
             }
         }
@@ -139,38 +137,38 @@ int SmartEnemy::bfsAlgorithm(sf::Vector2f pointEnemy, sf::Vector2f pointHero, st
             }
 
             //up
-            if (p.m_row - 1 >= 0 && visited[p.m_row - 1][p.m_col] == 0)
+            if (p.m_row - 1 >= 0 && visited[p.m_row - (size_t) 1][p.m_col] == 0)
             {
                 p.m_direction.push_back(UP);
                 q.push(Bfs(p.m_row - 1, p.m_col, std::vector <int>(p.m_direction)));
                 if (!p.m_direction.empty())
                     p.m_direction.pop_back();
-                visited[p.m_row - 1][p.m_col] = 1;
+                visited[p.m_row - (size_t) 1][p.m_col] = 1;
             }
             //down
-            if (p.m_row + 1 < visited.size() && (visited[p.m_row + 1][p.m_col] == 0 || visited[p.m_row + 1][p.m_col] == 2))
+            if (p.m_row + (size_t) 1 < visited.size() && (visited[p.m_row + (size_t) 1][p.m_col] == 0 || visited[p.m_row + (size_t) 1][p.m_col] == 2))
             {
 
                 p.m_direction.push_back(DOWN);
                 q.push(Bfs(p.m_row + 1, p.m_col, std::vector <int>(p.m_direction)));
                 if (!p.m_direction.empty())
                     p.m_direction.pop_back();
-                visited[p.m_row + 1][p.m_col] = 1;
+                visited[p.m_row + (size_t) 1][p.m_col] = 1;
             }
 
             //left
-            if (p.m_col - 1 >= 0 && (visited[p.m_row][p.m_col - 1] == 0 || visited[p.m_row][p.m_col - 1] == 2))
+            if (p.m_col - 1 >= 0 && (visited[p.m_row][p.m_col - (size_t) 1] == 0 || visited[p.m_row][p.m_col - (size_t)1] == 2))
             {
 
                 p.m_direction.push_back(LEFT);
                 q.push(Bfs(p.m_row, p.m_col - 1, std::vector <int>(p.m_direction)));
                 if (!p.m_direction.empty())
                     p.m_direction.pop_back();
-                visited[p.m_row][p.m_col - 1] = 1;
+                visited[p.m_row][p.m_col - (size_t) 1] = 1;
             }
 
             //right
-            if (p.m_col + 1 < visited[1].size() && (visited[p.m_row][p.m_col + 1] == 0 || visited[p.m_row][p.m_col + 1] == 2))
+            if (p.m_col + (size_t)1 < visited[1].size() && (visited[p.m_row][p.m_col + (size_t) 1] == 0 || visited[p.m_row][p.m_col + (size_t) 1] == 2))
             {
 
 
@@ -178,7 +176,7 @@ int SmartEnemy::bfsAlgorithm(sf::Vector2f pointEnemy, sf::Vector2f pointHero, st
                 q.push(Bfs(p.m_row, p.m_col + 1, std::vector <int>(p.m_direction)));
                 if (!p.m_direction.empty())
                     p.m_direction.pop_back();
-                visited[p.m_row][p.m_col + 1] = 1;
+                visited[p.m_row][p.m_col + (size_t)1] = 1;
             }
 
         }
@@ -248,7 +246,7 @@ void SmartEnemy::randomMovment(float time)
     }
 }
 
-bool SmartEnemy::ReturnsCellInVector(std::vector<std::vector<char>> boardChar, int i, int j)
+bool SmartEnemy::ReturnsCellInVector(std::vector<std::vector<char>> boardChar, size_t i, size_t j)
 {
     if ((!boardChar.empty()&&  i < boardChar.size()) && (!boardChar[0].empty() && j < boardChar[0].size()))
     {
