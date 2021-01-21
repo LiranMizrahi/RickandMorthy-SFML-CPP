@@ -24,7 +24,6 @@ public:
         const sf::Texture& getGiftTexture()const;
         const sf::Texture& getMLevelUp() const;
         const sf::Texture& getMStartGame()const ;
-        const sf::Texture& getMHeroIsdead()const ;
         const sf::Texture& getMGameOver() const;
 
         //===================public static=================
@@ -42,7 +41,6 @@ private:
     sf::Texture m_enemyMeeseeks;
     sf::Texture m_enemyMonster;
     sf::Texture m_coin;
-    sf::Texture m_board;
     sf::Texture m_ledder;
     sf::Texture m_rope;
     sf::Texture m_floor;
@@ -51,7 +49,6 @@ private:
     sf::Texture m_gift;
     sf::Texture m_levelUp;
     sf::Texture m_startGame;
-    sf::Texture m_heroIsdead;
     sf::Texture m_gameOver;
 };
 

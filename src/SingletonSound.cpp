@@ -6,32 +6,32 @@ SingletonSound::SingletonSound()
 {
     bool isok =true;
 	 if (!m_jerry.loadFromFile("jerrysound.wav"))
-		std::cerr << "Can't open sound file mf";
+		std::cerr << "Can't open sound file jerrysound";
 
 	if (!m_rick.loadFromFile("ricksound.wav"))
-		std::cerr << "Can't open sound file mf";
+		std::cerr << "Can't open sound file ricksound";
 	
 	if (!m_startGame.loadFromFile("start.wav"))
-		std::cerr << "Can't open sound file mf";
+		std::cerr << "Can't open sound file start";
 	
 	if (!m_gameOver.loadFromFile("gameover.wav"))
-		std::cerr << "Can't open sound file mf";
+		std::cerr << "Can't open sound file gameover";
 
 	if (!m_dead.loadFromFile("dead.wav"))
-		std::cerr << "Can't open sound file mf";
+		std::cerr << "Can't open sound file dead";
 
 	if (!m_levelUp.loadFromFile("levelup.wav"))
-		std::cerr << "Can't open sound file mf";
+		std::cerr << "Can't open sound file levelup";
 
 	if (!m_collectCoin.loadFromFile("collectcoin.wav"))
-		std::cerr << "Can't open sound file mf";
+		std::cerr << "Can't open sound file collectcoin";
 
 
 	if (!m_collectGift.loadFromFile("collectgift.wav"))
-		std::cerr << "Can't open sound file mf";
+		std::cerr << "Can't open sound file collectgift";
 
     if (!m_openGame.loadFromFile("opengamenew.wav"))
-        std::cerr << "Can't open sound file mf";
+        std::cerr << "Can't open sound file opengamenew";
 }
 
 

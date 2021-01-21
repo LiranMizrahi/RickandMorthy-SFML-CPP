@@ -1,13 +1,17 @@
 
 #include "SingletonFont.h"
-
+#include <iostream>
 
 //=========================constructor ======================================
 SingletonFont::SingletonFont() {
 
-    m_gameover.loadFromFile("gameoverfont.ttf");
-    m_menu.loadFromFile("menufont.TTF");
-    m_boardstatus.loadFromFile("gamestatusfont.otf");
+   if(! m_gameover.loadFromFile("gameoverfont.ttf"))
+        std::cout << " Cant open gameoverfont font";
+
+    if(!m_menu.loadFromFile("menufont.TTF"))
+    std::cout << " Cant open menufont font";
+    if(!m_boardstatus.loadFromFile("gamestatusfont.otf"))
+        std::cout << " Cant open gameoverfont font";
 }
 //=============================================================
 SingletonFont &SingletonFont::instance() {

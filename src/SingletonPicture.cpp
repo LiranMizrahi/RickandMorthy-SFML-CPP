@@ -10,51 +10,48 @@
 SingletonPicture::SingletonPicture()
 {
 	if (!m_heroRick.loadFromFile("rick_left.png"))
-	std::cout << "cant open picture";
+	std::cout << "cant open rick_left";
 
 	if(!m_heroJerry.loadFromFile("jerry_left.png"))
-	std::cout << "cant open picture";
+	std::cout << "cant open jerry_left";
 
 	if (!m_enemyMeeseeks.loadFromFile("meeseeks_left.png"))
-	std::cout << "cant open picture";
+	std::cout << "cant open meeseeks_left";
 
 	if (!m_enemyMonster.loadFromFile("monster_left.png"))
-	std::cout << "cant open picture";
+	std::cout << "cant open monster_left";
 
 	if (!m_coin.loadFromFile("portalgun.png"))
-	std::cout << "cant open picture";
+	std::cout << "cant open portalgun";
 
 	if (!m_ledder.loadFromFile("ladder.png"))
-	std::cout << "cant open picture";
+	std::cout << "cant open ladder";
 
 	if (!m_rope.loadFromFile("rope.png"))
-	std::cout << "cant open picture";
+	std::cout << "cant open rope";
 
 	if (!m_floor.loadFromFile("brike.png"))
-	std::cout << "cant open picture";
+	std::cout << "cant open brike";
 
 	if (!m_menu.loadFromFile("menu.png"))
-	std::cout << "cant open picture";
+	std::cout << "cant open menu";
 
 	if(!m_heroMenu1.loadFromFile("jerry_player.png"))
-	std::cout << "cant open picture";
+	std::cout << "cant open jerry_player";
 
 	if (!m_heroMenu2.loadFromFile("rick_player.png"))
-	std::cout << "cant open picture";
+	std::cout << "cant open rick_player";
 
 	if (!m_gift.loadFromFile("gift.png"))
-		std::cout << "cant open picture";
+		std::cout << "cant open gift";
 
     if (!m_levelUp.loadFromFile("leveluppic.jpg"))
-        std::cout << "cant open picture";
+        std::cout << "cant open leveluppic";
     if (!m_startGame.loadFromFile("openGamepic.jpg"))
-        std::cout << "cant open picture";
-
-    if (!m_heroIsdead.loadFromFile("rick_player.png"))
-        std::cout << "cant open picture";
+        std::cout << "cant open openGamepic";
 
     if (!m_gameOver.loadFromFile("gameoverpic.jpg"))
-        std::cout << "cant open picture";
+        std::cout << "cant open gameoverpic";
 
     std::string  filename = "level";
     std::string filetype = "jpg";
@@ -166,11 +163,6 @@ const sf::Texture& SingletonPicture::getMStartGame()const
 }
 //=============================================================
 
-const sf::Texture& SingletonPicture::getMHeroIsdead() const
-{
-    return m_heroIsdead;
-}
-//=============================================================
 
 const sf::Texture& SingletonPicture::getMGameOver() const {
     return m_gameOver;

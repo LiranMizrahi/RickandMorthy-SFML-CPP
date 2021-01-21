@@ -20,7 +20,6 @@ bool GameObj::collisonWith(const GameObj& obj)const
 	if (obj.m_sprite.getGlobalBounds().intersects(this->m_sprite.getGlobalBounds()))
 	{
 	    return true;
-
 	}
 	return false;
 
