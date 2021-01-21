@@ -110,7 +110,7 @@ void Hero::handleColision(Coin&obj)
 //====================================================
 
 void Hero::handleColision(Enemy& obj )
-{   //if(!obj.isIsingidedfloor())
+{  
 {       m_isOff = true;
         m_life--;
         playCollectDeadSound();
