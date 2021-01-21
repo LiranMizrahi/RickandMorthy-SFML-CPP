@@ -16,7 +16,7 @@ SmartEnemy::SmartEnemy(const sf::Vector2f &loc, int EnemySelection,
 //====================================================
 void SmartEnemy::UpdateLocation(float time, sf::Vector2f locHero, const  std::vector <std::vector<char>>& boardChar, Board& board)
 {
-
+    if (isIsingidedfloor())return;
     sf::Vector2f pointEnemy, pointHero;
     boardChar.size();
     boardChar[0].size();
@@ -38,7 +38,8 @@ void SmartEnemy::UpdateLocation(float time, sf::Vector2f locHero, const  std::ve
 //====================================================
 void SmartEnemy::handleColision(Rope& Obj)
 {  
-  
+    if(m_lastStep == UP && (m_step == RIGHT || m_step == LEFT) )
+    m_sprite.setPosition((m_sprite.getPosition().x), m_sprite.getPosition().y + m_sprite.getGlobalBounds().height / 4);
 }
 //====================================================
 void SmartEnemy::handleColision(Ladder& Obj)
@@ -50,7 +51,6 @@ void SmartEnemy::handleColision(Ladder& Obj)
     {
         m_sprite.setPosition((Obj.getSprite().getPosition().x + Obj.getSprite().getGlobalBounds().width / 4), m_sprite.getPosition().y);
     }
-
     else if (((m_step == LEFT || m_step == RIGHT) && (m_lastStep == UP || m_lastStep == DOWN)))
     {
         if (UP == m_lastStep)
@@ -75,22 +75,36 @@ std::vector <std::vector<int>> SmartEnemy::creatingRunningVector(std::vector <st
         visited[i].resize(boardChar[0].size());
     }
 
+    if ((!boardChar.empty() && !boardChar[0].empty()))
     for (size_t i = 0; i < boardChar.size(); i++) {
 
         for (size_t j = 0; j < boardChar[0].size(); j++)
         {
             if (boardChar[i][j] == HERO || boardChar[i][j] == ENEMY)
             {
+                if (ReturnsCellInVector(boardChar, i, j))
                 visited[i][j] = 0;
             }
             else if ((boardChar[i][j] == ROPE || boardChar[i][j] == LADDER) ||
                 (i + 1 < boardChar.size() && (boardChar[i + 1][j] == FLOOR || boardChar[i + 1][j] == LADDER))
                 && (boardChar[i][j] == COIN || boardChar[i][j] == GIFT || boardChar[i][j] == ' '))
+            {
+                if (ReturnsCellInVector(boardChar, i, j))
                 visited[i][j] = 0;
+            }
+                
             else if (boardChar[i][j] != '#' && i != boardChar.size() - 1 && i != 0)
+            {
+                if (ReturnsCellInVector(boardChar, i, j))
                 visited[i][j] = 2;
+
+            }
             else
+            {
+                if (ReturnsCellInVector(boardChar, i, j))
                 visited[i][j] = 1;
+
+            }
         }
     }
     return visited;
@@ -101,70 +115,80 @@ int SmartEnemy::bfsAlgorithm(sf::Vector2f pointEnemy, sf::Vector2f pointHero, st
     Bfs EnemyD(size_t(pointEnemy.y), size_t(pointEnemy.x), std::vector<int>());
     std::queue< Bfs> q;
 
-    if ((EnemyD.m_row >= 0 && EnemyD.m_row < visited.size()) && (EnemyD.m_col >= 0 && EnemyD.m_col < visited[0].size()))
-        visited[EnemyD.m_row][EnemyD.m_col] = 1;
-
-
-    q.push(EnemyD);
-    while (!q.empty())
+    if ((!visited.empty() && !visited[0].empty()))
     {
-        Bfs p = q.front();
-        q.pop();
+        if ((EnemyD.m_row >= 0 && EnemyD.m_row < visited.size()) && (EnemyD.m_col >= 0 && EnemyD.m_col < visited[0].size()))
+            visited[EnemyD.m_row][EnemyD.m_col] = 1;
 
-        if (p.m_row == pointHero.y && p.m_col == pointHero.x)
+        q.push(EnemyD);
+        while (!q.empty())
         {
-            if (!p.m_direction.empty())
-                return p.m_direction[0];
-            else
-               return -1;
+            if (q.empty())
+            {
+                return -1;
+            }
+            Bfs p = q.front();
+            q.pop();
+
+            if (p.m_row == pointHero.y && p.m_col == pointHero.x)
+            {
+                if (!p.m_direction.empty())
+                    return p.m_direction[0];
+                else
+                    return -1;
+            }
+
+            //up
+            if (p.m_row - 1 >= 0 && visited[p.m_row - 1][p.m_col] == 0)
+            {
+                p.m_direction.push_back(UP);
+                q.push(Bfs(p.m_row - 1, p.m_col, std::vector <int>(p.m_direction)));
+                if (!p.m_direction.empty())
+                    p.m_direction.pop_back();
+                visited[p.m_row - 1][p.m_col] = 1;
+            }
+            //down
+            if (p.m_row + 1 < visited.size() && (visited[p.m_row + 1][p.m_col] == 0 || visited[p.m_row + 1][p.m_col] == 2))
+            {
+
+                p.m_direction.push_back(DOWN);
+                q.push(Bfs(p.m_row + 1, p.m_col, std::vector <int>(p.m_direction)));
+                if (!p.m_direction.empty())
+                    p.m_direction.pop_back();
+                visited[p.m_row + 1][p.m_col] = 1;
+            }
+
+            //left
+            if (p.m_col - 1 >= 0 && (visited[p.m_row][p.m_col - 1] == 0 || visited[p.m_row][p.m_col - 1] == 2))
+            {
+
+                p.m_direction.push_back(LEFT);
+                q.push(Bfs(p.m_row, p.m_col - 1, std::vector <int>(p.m_direction)));
+                if (!p.m_direction.empty())
+                    p.m_direction.pop_back();
+                visited[p.m_row][p.m_col - 1] = 1;
+            }
+
+            //right
+            if (p.m_col + 1 < visited[1].size() && (visited[p.m_row][p.m_col + 1] == 0 || visited[p.m_row][p.m_col + 1] == 2))
+            {
+
+
+                p.m_direction.push_back(RIGHT);
+                q.push(Bfs(p.m_row, p.m_col + 1, std::vector <int>(p.m_direction)));
+                if (!p.m_direction.empty())
+                    p.m_direction.pop_back();
+                visited[p.m_row][p.m_col + 1] = 1;
+            }
+
         }
-
-        //up
-        if (p.m_row - 1 >= 0 && visited[ p.m_row - 1][p.m_col] == 0)
-        {
-            p.m_direction.push_back(UP);
-            q.push(Bfs(p.m_row - 1, p.m_col, std::vector <int>(p.m_direction)));
-            p.m_direction.pop_back();
-            visited[p.m_row - 1][p.m_col] = 1;
-        }
-        //down
-        if (p.m_row + 1 < visited.size() && (visited[p.m_row + 1][p.m_col] == 0 || visited[p.m_row + 1][p.m_col] == 2))
-        {
-
-            p.m_direction.push_back(DOWN);
-            q.push(Bfs(p.m_row + 1, p.m_col, std::vector <int>(p.m_direction)));
-            p.m_direction.pop_back();
-            visited[p.m_row + 1][p.m_col] = 1;
-        }
-
-        //left
-        if (p.m_col - 1 >= 0 && (visited[p.m_row][p.m_col - 1] == 0 || visited[p.m_row][p.m_col - 1] == 2))
-        {
-
-            p.m_direction.push_back(LEFT);
-            q.push(Bfs(p.m_row, p.m_col - 1, std::vector <int>(p.m_direction)));
-            p.m_direction.pop_back();
-            visited[p.m_row][p.m_col - 1] = 1;
-        }
-
-        //right
-        if (p.m_col + 1 < visited[1].size() && (visited[p.m_row][p.m_col + 1] == 0 || visited[p.m_row][p.m_col + 1] == 2))
-        {
-
-
-            p.m_direction.push_back(RIGHT);
-            q.push(Bfs(p.m_row, p.m_col + 1, std::vector <int>(p.m_direction)));
-            p.m_direction.pop_back();
-            visited[p.m_row][p.m_col + 1] = 1;
-        }
-       
     }
     return -1;
 }
 //====================================================
 void SmartEnemy::movEnemySmart(int step, float time)
 {
-    if (isIsingidedfloor())return;
+    
     switch (step)
     {
 
@@ -222,5 +246,15 @@ void SmartEnemy::randomMovment(float time)
         this->move(0, HEROSPEED * time);
         break;
     }
+}
+
+bool SmartEnemy::ReturnsCellInVector(std::vector<std::vector<char>> boardChar, int i, int j)
+{
+    if ((!boardChar.empty()&&  i < boardChar.size()) && (!boardChar[0].empty() && j < boardChar[0].size()))
+    {
+        return true;
+    }
+    return false;
+
 }
  
