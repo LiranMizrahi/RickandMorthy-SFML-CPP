@@ -41,6 +41,10 @@ sf::Sprite GameObj::getSprite() const{
 bool GameObj::getIsOff()const {
     return m_isOff;
 }
+bool GameObj::restoreGameObj(const sf::Time&, float cellheight)
+{
+	return false;
+}
 //=============================================================
 void GameObj::setIsOff(bool isoff) {
     m_isOff = isoff;

@@ -53,7 +53,6 @@ private:
     bool checkIfLevelDone();
 	void ResetCoins();
 	void upgradeLevel();
-	void gameOverHandler(bool isplayerwin);
 	void reedemGifts();
 	void checkIfTimeIsOver();
 	void newGame();

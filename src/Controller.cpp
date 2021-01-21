@@ -17,7 +17,7 @@ Controller::Controller(): m_window(sf::VideoMode(WINDOWSIZEWIDTH, WINDOWSIZEHEIG
     m_background.setScale(m_background.getTexture()->getSize().x/(float)BOARDWIDTH,m_background.getTexture()->getSize().y/(float)BOARDHEIGHT);
     m_startGameState.openstate(m_window,m_herroSelect);
 
-    std::srand(NULL);
+    std::srand(std::time(NULL));
     newGame();
 
 }
@@ -133,17 +133,7 @@ void Controller::upgradeLevel()
 
 }
 
-//=============================================================
 
-void Controller::gameOverHandler(bool isplyerwin)
-{
-//    m_gameOverState.openstate(m_window,isplyerwin);
-//    m_level = 1;
-//    m_board.setHeroLife(3);
-//    //openlevelfile();
-
-
-}
 //=============================================================
 void Controller::checkIfTimeIsOver()
 {
@@ -160,7 +150,7 @@ This function reset the game and start the game from level 1
 void Controller::newGame()
 {
     Coin::resetCoins();
-    m_level = 4;
+    m_level = 1;
     openlevelfile();
     m_boardChar = readFromFile();
     m_herroSelect = m_menu.StartGame(m_window);

@@ -47,25 +47,7 @@ void MovingObjects::DrawRightside()
 		m_sprite.scale(-1.f, 1.f);
 }
 
-//void MovingObjects::setLastPosition(sf::Vector2f posion)
-//{
-//    m_LastPosition = posion;
-//
-//}
-//
-//void MovingObjects::setStartPosion()
-//{
-//    this->SetPosition(m_firstPosition);
-//}
-
-//void MovingObjects::resetObj()
-//{
-//    this->SetPosition(m_firstPosition);
-//}
-
-//const sf::Vector2f &MovingObjects::getLastPosition() const {
-//    return m_LastPosition;
-//}
+//=============================================================
 
 bool MovingObjects::getIsfalling() const {
     return m_isfalling;
@@ -75,6 +57,7 @@ bool MovingObjects::getIsfalling() const {
 void MovingObjects::setIsfalling(bool isfalling) {
     m_isfalling = isfalling;
 }
+//=============================================================
 
 void MovingObjects::setIsUpAvail(bool mIsUpAvail) {
     m_isUpAvail = mIsUpAvail;
@@ -82,4 +65,3 @@ void MovingObjects::setIsUpAvail(bool mIsUpAvail) {
 
 
 
-//=============================================================

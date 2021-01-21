@@ -35,7 +35,7 @@ void SmartEnemy::UpdateLocation(float time, sf::Vector2f locHero, const  std::ve
 }
 //====================================================
 void SmartEnemy::handleColision(Rope& Obj)
-{  
+{   // If the hero wants to go right or left and his previous side was up
     if(m_lastStep == UP && (m_step == RIGHT || m_step == LEFT) )
     m_sprite.setPosition((m_sprite.getPosition().x), m_sprite.getPosition().y + m_sprite.getGlobalBounds().height / 4);
 }
@@ -44,13 +44,15 @@ void SmartEnemy::handleColision(Ladder& Obj)
 {
     m_isUpAvail = true;
 
-
+    //Conditions when we are on a ladder
+    //Whether you go up or down
     if(m_step == UP || m_step == DOWN)
     {
         m_sprite.setPosition((Obj.getSprite().getPosition().x + Obj.getSprite().getGlobalBounds().width / 4), m_sprite.getPosition().y);
     }
+    //If you go right or left and also your previous side was up or down
     else if (((m_step == LEFT || m_step == RIGHT) && (m_lastStep == UP || m_lastStep == DOWN)))
-    {
+    {   //if UP last step
         if (UP == m_lastStep)
             m_sprite.setPosition((m_sprite.getPosition().x), (m_sprite.getPosition().y - m_sprite.getGlobalBounds().height));
         else if (DOWN == m_lastStep && LEFT == m_step)
@@ -68,11 +70,14 @@ std::vector <std::vector<int>> SmartEnemy::creatingRunningVector(std::vector <st
 {
     std::vector<std::vector<int>> visited;
     visited.resize(boardChar.size());
+    //Creates the array
     for (size_t i = 0; i < visited.size(); ++i)
     {
         visited[i].resize(boardChar[0].size());
     }
 
+
+    //Creates an order for the BFS
     if ((!boardChar.empty() && !boardChar[0].empty()))
     for (size_t i = 0; i < boardChar.size(); i++) {
 
@@ -119,6 +124,7 @@ int SmartEnemy::bfsAlgorithm(sf::Vector2f pointEnemy, sf::Vector2f pointHero, st
             visited[EnemyD.m_row][EnemyD.m_col] = 1;
 
         q.push(EnemyD);
+        // bfs algoritem 
         while (!q.empty())
         {
             if (q.empty())
@@ -128,6 +134,7 @@ int SmartEnemy::bfsAlgorithm(sf::Vector2f pointEnemy, sf::Vector2f pointHero, st
             Bfs p = q.front();
             q.pop();
 
+            //If I came to the hero you will return the direction
             if (p.m_row == pointHero.y && p.m_col == pointHero.x)
             {
                 if (!p.m_direction.empty())
@@ -136,7 +143,8 @@ int SmartEnemy::bfsAlgorithm(sf::Vector2f pointEnemy, sf::Vector2f pointHero, st
                     return -1;
             }
 
-            //up
+            //UP
+            //Checking if you need to go upstairs
             if (p.m_row - 1 >= 0 && visited[p.m_row - (size_t) 1][p.m_col] == 0)
             {
                 p.m_direction.push_back(UP);
@@ -145,7 +153,8 @@ int SmartEnemy::bfsAlgorithm(sf::Vector2f pointEnemy, sf::Vector2f pointHero, st
                     p.m_direction.pop_back();
                 visited[p.m_row - (size_t) 1][p.m_col] = 1;
             }
-            //down
+            //DOWN
+            //Checking if you need to go downstairs
             if (p.m_row + (size_t) 1 < visited.size() && (visited[p.m_row + (size_t) 1][p.m_col] == 0 || visited[p.m_row + (size_t) 1][p.m_col] == 2))
             {
 
@@ -156,7 +165,8 @@ int SmartEnemy::bfsAlgorithm(sf::Vector2f pointEnemy, sf::Vector2f pointHero, st
                 visited[p.m_row + (size_t) 1][p.m_col] = 1;
             }
 
-            //left
+            //LEFT
+            //Checking if you need to go left
             if (p.m_col - 1 >= 0 && (visited[p.m_row][p.m_col - (size_t) 1] == 0 || visited[p.m_row][p.m_col - (size_t)1] == 2))
             {
 
@@ -167,7 +177,8 @@ int SmartEnemy::bfsAlgorithm(sf::Vector2f pointEnemy, sf::Vector2f pointHero, st
                 visited[p.m_row][p.m_col - (size_t) 1] = 1;
             }
 
-            //right
+            //RIGHT
+            //Checking if you need to go right
             if (p.m_col + (size_t)1 < visited[1].size() && (visited[p.m_row][p.m_col + (size_t) 1] == 0 || visited[p.m_row][p.m_col + (size_t) 1] == 2))
             {
 
@@ -245,7 +256,7 @@ void SmartEnemy::randomMovment(float time)
         break;
     }
 }
-
+//====================================================
 bool SmartEnemy::ReturnsCellInVector(const std::vector<std::vector<char>> &boardChar, size_t i, size_t j)
 {
     if ((!boardChar.empty()&&  i < boardChar.size()) && (!boardChar[0].empty() && j < boardChar[0].size()))

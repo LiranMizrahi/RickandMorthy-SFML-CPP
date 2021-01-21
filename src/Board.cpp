@@ -124,8 +124,8 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
 {
 
     sf::Vector2f boaradsize(m_cellWidth,m_cellWidth);
-    int ChooseEnemy = std::rand() % (ENEMYTYPES-1);
-    
+
+    int ChooseEnemy = std::rand() % (ENEMYTYPES);
 
     switch (ChooseEnemy)
     {

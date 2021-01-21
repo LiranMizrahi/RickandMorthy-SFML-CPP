@@ -44,8 +44,8 @@ private:
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
 	std::vector <std::unique_ptr <MovingObjects>>m_movingObjects;
 
-	size_t m_width, m_height;
-    float m_cellHight,m_cellWidth;
+    size_t m_width{}, m_height{};
+    float m_cellHight{}, m_cellWidth{};
 
 
     //===================private function=================

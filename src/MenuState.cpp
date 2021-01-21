@@ -35,11 +35,12 @@ int MenuState::StartGame(sf::RenderWindow& window)
                 window.clear();
                 break;
             }
+            //take mouse relased
           else if (event.type == sf::Event::MouseButtonReleased)
 		  {
 				auto location = window.mapPixelToCoords(
 					{ event.mouseButton.x, event.mouseButton.y});
-
+                //if click on the rick pic 
 				if (rickpic.getGlobalBounds().contains(location))
 				{
                     updateSelectPic(HEROASRICK);
@@ -48,7 +49,7 @@ int MenuState::StartGame(sf::RenderWindow& window)
 				ricksound.play();
 
 
-				}
+				}//if click on the jerry pic
 				else if(jerrypic.getGlobalBounds().contains(location))
 				{
 					heroChoose = HEROASJERRY;
@@ -56,24 +57,25 @@ int MenuState::StartGame(sf::RenderWindow& window)
 					jerrypic.setOutlineColor(sf::Color::White);
 				        jerrysound.play();
 
-				}
+				}// if click start
 				else if(start.getGlobalBounds().contains(location))
 				{
 					return heroChoose;
 				}	
-		  }
+		  }// if loc mouse in the board 
           else if(sf::Event::MouseMoved)
             {
                 auto location = window.mapPixelToCoords(
                     { event.mouseMove.x, event.mouseMove.y });
                 start.setColor(start.getGlobalBounds().contains(location)
                                ? sf::Color::White : sf::Color::Black);
+                // If the mouse is on rick pic 
                 if(rickpic.getGlobalBounds().contains(location))
                 {
                     rickpic.setFillColor(sf::Color(255, 255, 255, 255));
                     jerrypic.setFillColor(sf::Color(255, 255, 255, 130));
                 }
-
+                // If the mouse is on jerry pic 
                 if(jerrypic.getGlobalBounds().contains(location))
                 {
                     jerrypic.setFillColor(sf::Color(255, 255, 255, 255));
@@ -92,13 +94,14 @@ int MenuState::StartGame(sf::RenderWindow& window)
 //==================================================================
 void MenuState::initializeScreenPic() {
 
-
+    // take jerry pic and set posion
     jerrypic = sf::RectangleShape();
     jerrypic.setTexture(&SingletonPicture::instance().getJerryTexture());
     jerrypic.setPosition(JERRYPOSITIONX, JERRYPOSITIONY);
     jerrypic.setSize(sf::Vector2f(SingletonPicture::instance().getJerryTexture().getSize()));
     jerrypic.scale(SCALEFACTOR,SCALEFACTOR);
 
+    // take rick pic and set posion
     rickpic = sf::RectangleShape();
     rickpic.setTexture(&SingletonPicture::instance().getRickTexture());
     rickpic.setPosition(RICKPOSITIONX, RICKPOSITIONY);
@@ -111,7 +114,7 @@ void MenuState::initializeScreenPic() {
 
 void MenuState::initializeScreenText() {
 
-
+    //take font 
     start.setFont(SingletonFont::instance().getMMenu()); // font is a sf::Font
     start.setString("Press to start");
     start.setCharacterSize(CHARSIZE); // in pixels, not points!
@@ -133,6 +136,7 @@ void MenuState::initializeScreenText() {
 }
 //==========================================================
 void MenuState::updateSelectPic(int hero) {
+
 
     if(hero == HEROASJERRY) {
 
