@@ -29,23 +29,23 @@ GameStatusBar::GameStatusBar() :m_score(0),m_life(HEROSTARTLIFE) {
 void GameStatusBar::printGameStatus(sf::RenderWindow & window, int levelnum ,const  sf::Time & timeLevel,
                                     const sf::Clock& time, bool m_isOnTime ,int score, int life) {
 
-
+    // print status 
     printChangeColor(life, time, timeLevel, score);
-
+    // Computer time plays for printing
    float lefttime= timeLevel.asSeconds() - time.getElapsedTime().asSeconds() ;
 
     std::string scorestr = "000000";
 
     if(score>=MAXCORETOSHOW)
         scorestr+="0";
-
+    
     scorestr.replace(scorestr.size()-std::to_string(score).size(),
                      std::to_string(score).size(),std::to_string(score));
     m_scoreText.setString("Score:"+scorestr);
     m_levelText.setString("Level:000" + std::to_string(levelnum));
     m_lifeText.setString("Life:000"+std::to_string(life));
 
-
+    // if game is on time
     if (m_isOnTime)
     {
         if(lefttime < LASTCALLTIME)
@@ -55,7 +55,7 @@ void GameStatusBar::printGameStatus(sf::RenderWindow & window, int levelnum ,con
 
         m_timeTheLevel.setString("Time:" + std::to_string(lefttime));
     }
-    else
+    else// if not
     {
         m_timeTheLevel.setString("Time: 9999");
     }
@@ -80,24 +80,26 @@ void GameStatusBar::printboard(sf::RenderWindow &window) {
 //====================================================
 void GameStatusBar::printChangeColor(int life, const sf::Clock &clock,
                                      const sf::Time &time, int score) {
+    // If the score is greater than the current score 
     if (score > m_score)
     {
         m_scoreText.setColor(sf::Color::Green);
         m_scorechange = clock.getElapsedTime();
     }
-
+    // If life is smaller than the present life
     if(life < m_life)
     {
         m_lifeText.setColor(sf::Color::Red);
         m_lifechange = clock.getElapsedTime();
 
     }
+    // If the life is greater than the current life
     if(life > m_life)
     {
         m_lifeText.setColor(sf::Color::Green);
         m_lifechange = clock.getElapsedTime();
     }
-
+    // If the time is greater than the current time
     if(time > m_time)
     {
         m_timeTheLevel.setColor(sf::Color::Green);

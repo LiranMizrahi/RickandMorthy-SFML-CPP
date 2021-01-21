@@ -16,11 +16,11 @@ const int TITLECHARSIZE = 80;
 //=========================constructor ======================================
 GameOverState::GameOverState():State(SingletonPicture::instance().getMGameOver(),SingletonSound::instance().getMGameOver())
 {
-
+    //set font 
     gameexitstatus.setFont(SingletonFont::instance().getMGameover());
     exitgame.setFont(SingletonFont::instance().getMGameover());
     newgame.setFont(SingletonFont::instance().getMGameover());
-
+    //set size
     newgame.setCharacterSize(MENUTEXTSIZE);
     exitgame.setCharacterSize(MENUTEXTSIZE);
 
@@ -59,16 +59,16 @@ void GameOverState::openstate(sf::RenderWindow &m_window, bool isplayerwin)
         m_window.draw(gameexitstatus);
         m_window.display();
         if (m_window.waitEvent(event))
-        {
+        {   // Takes a note from the keyboard
             if (event.type == sf::Event::KeyReleased)
-            {
+            {   // id take UP in keyboard
                 if(event.key.code ==sf::Keyboard::Up)
                 {
                     choose = NEWGAME;
                     newgame.setStyle(exitgame.Underlined);
                     exitgame.setStyle(0);
                 }
-
+                //if take down keyboard
                 else if (event.key.code ==sf::Keyboard::Down)
                 {
                     choose = EXIT;
@@ -76,6 +76,7 @@ void GameOverState::openstate(sf::RenderWindow &m_window, bool isplayerwin)
                     newgame.setStyle(0);
 
                 }
+                //if take enter keyboard
                 else if (event.key.code ==sf::Keyboard::Enter)
                 {
                     if (choose == EXIT)
