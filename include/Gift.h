@@ -15,7 +15,7 @@ class Gift : public StaticObjects {
 public:
 	Gift() =default;
 	Gift(const sf::Vector2f& loc, const sf::Vector2f&);
-	~Gift() override = default;
+	virtual ~Gift()= default;
 	virtual void handleColision(Rope&) override=0;
 	virtual void handleColision(Hero&) override=0;
 	virtual void handleColision(Floor&) override=0;

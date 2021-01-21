@@ -16,7 +16,7 @@ public:
 
 	  Enemy(const sf::Vector2f &loc, int EnemySelection,
             sf::Vector2f boardsize);
-     ~Enemy() override = default;
+    virtual ~Enemy()  = default;
 
      //void UpdateLocation(float, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&) {};
 

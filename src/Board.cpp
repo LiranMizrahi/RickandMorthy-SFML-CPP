@@ -53,8 +53,8 @@ void Board::setHeroLife(int life) {
 
 }
 //==================================================
-void Board::setHeroScore(int score ) {
-    m_hero->setScore(score);
+void Board::addHeroScore(int score ) {
+    m_hero->addScore(score);
 }
 //==================================================
 
@@ -138,7 +138,7 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
    // int ChooseEnemy = std::rand() % (ENEMYTYPES-1)+1;
     int ChooseEnemy = 0;
 
-    switch (ChooseEnemy)
+    switch (0)
     {
         case RANDOM:
             m_movingObjects.push_back(std::move(std::make_unique<RandomEnemy>(location, PlayerSelection,boaradsize)));
@@ -159,9 +159,9 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
 
 void Board::addGiftToStaticVector(const sf::Vector2f& location, sf::Vector2f boardsize, int i )
 {
-    int ChoosEnemy = std::rand() % TYPESOFGIFS;
+    int choosegift = std::rand() % TYPESOFGIFS;
 
-    switch (ChoosEnemy)
+    switch (choosegift)
     {
         case AddLife:
             m_staticObjects[i].push_back(std::move(std::make_unique <GiftAddingLife>(location, boardsize)));
@@ -178,7 +178,6 @@ void Board::addGiftToStaticVector(const sf::Vector2f& location, sf::Vector2f boa
     }
 }
 //==================================================
-//============================================
 
 bool Board::checkIfObjectFalling(float deltatime) {
 
@@ -408,6 +407,7 @@ void Board::ResetMap()
         movObj->resetObj();
     m_hero->resetTime();
 }
+//==================================================
 
 sf::Vector2f Board::mapPixelToIndexes(const sf::Vector2f &vector2) {
 

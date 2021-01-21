@@ -9,7 +9,7 @@ class Floor : public StaticObjects {
 public:
 	Floor() ;
 	Floor(const sf::Vector2f& loc, const sf::Vector2f&);
-    virtual ~Floor() {};
+    virtual ~Floor()  = default;
 
 	virtual void handleColision(Rope& )override  {};
 	virtual void handleColision(Hero& )override ;

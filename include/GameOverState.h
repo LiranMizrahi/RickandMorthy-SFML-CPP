@@ -8,6 +8,7 @@ const bool NEWGAME = false;
 class GameOverState: public State {
 public:
     GameOverState();
+    virtual ~GameOverState() = default;
     void openstate(sf::RenderWindow &m_window, bool isplayerwin)override;
 
 

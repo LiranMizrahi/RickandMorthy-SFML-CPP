@@ -7,7 +7,7 @@ class GiftAddingTime : public Gift
 
 public:
     GiftAddingTime(const sf::Vector2f& loc, const sf::Vector2f&);
-    ~GiftAddingTime()override ;
+   virtual ~GiftAddingTime() ;
 
 
     virtual void handleColision(GameObj& obj) override ;

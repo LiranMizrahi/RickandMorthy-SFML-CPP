@@ -1,12 +1,11 @@
 #include "MenuState.h"
-#include <iostream>
 #include <SFML/Audio.hpp>
 #include "SingletonSound.h"
 #include "SingletonFont.h"
 #include "Macros.h"
 
 
-MenuState::MenuState():State(SingletonPicture::instance().getMenuTexture(),SingletonSound::instance().getMRick())
+MenuState::MenuState()
 {
     initializeScreenPic();
     initializeScreenText();
@@ -16,12 +15,13 @@ int MenuState::StartGame(sf::RenderWindow& window)
 {
     ricksound.setBuffer(SingletonSound::instance().getMRick());
     jerrysound.setBuffer(SingletonSound::instance().getMJerry());
+    m_backGround.setTexture(SingletonPicture::instance().getMenuTexture());
 
 	while (window.isOpen())
 	{
 
 		window.clear();
-		window.draw(m_stateBackround);
+		window.draw(m_backGround);
 	     window.draw(jerrypic);
 		window.draw(rickpic);
 		window.draw(start);
@@ -67,7 +67,7 @@ int MenuState::StartGame(sf::RenderWindow& window)
                 auto location = window.mapPixelToCoords(
                     { event.mouseMove.x, event.mouseMove.y });
                 start.setColor(start.getGlobalBounds().contains(location)
-                               ? sf::Color::Black : sf::Color::White);
+                               ? sf::Color::White : sf::Color::Black);
                 if(rickpic.getGlobalBounds().contains(location))
                 {
                     rickpic.setFillColor(sf::Color(255, 255, 255, 255));
@@ -80,9 +80,11 @@ int MenuState::StartGame(sf::RenderWindow& window)
                     rickpic.setFillColor(sf::Color(255, 255, 255, 130));
                 }
 
+                else if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Enter)
+                    return heroChoose;
 
             }
-          
+
 		}
 	}
 	return heroChoose;
@@ -115,6 +117,8 @@ void MenuState::initializeScreenText() {
     start.setCharacterSize(CHARSIZE); // in pixels, not points!
     start.setFillColor(sf::Color::White);
     start.setStyle(sf::Text::Bold);
+    start.setOutlineThickness(3);
+    start.setOutlineColor(sf::Color::White);
     start.setPosition(STARTTEXTX, STARTTEXTY);
 
 
@@ -144,10 +148,6 @@ void MenuState::updateSelectPic(int hero) {
         jerrypic.setOutlineThickness(0);
 
     }
-
 }
 //==========================================================
-void MenuState::openstate(sf::RenderWindow &m_window, bool isplayerwin) {
-    this->StartGame(m_window);
 
-}

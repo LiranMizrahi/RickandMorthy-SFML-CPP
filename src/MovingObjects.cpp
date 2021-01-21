@@ -1,8 +1,6 @@
 #include "MovingObjects.h"
 #include "Macros.h"
-MovingObjects::MovingObjects()
-{
-}
+
 //=============================================================
 
 MovingObjects::MovingObjects(const sf::Texture& tex, const sf::Vector2f& loc, const sf::Vector2f& size) :GameObj(tex, loc,size)
@@ -14,7 +12,7 @@ MovingObjects::MovingObjects(const sf::Texture& tex, const sf::Vector2f& loc, co
 void MovingObjects::move(float xline,float yline)
 {
 
-    //sf::Vector2f loc = this->m_LastPosition;
+    sf::Vector2f loc = this->m_LastPosition;
     m_LastPosition = m_sprite.getPosition();
 	m_sprite.move(xline,yline);
 	if (m_sprite.getPosition().x+(m_sprite.getGlobalBounds().width/2) > BOARDWIDTH ||
@@ -52,25 +50,25 @@ void MovingObjects::DrawRightside()
 		m_sprite.scale(-1.f, 1.f);
 }
 
-void MovingObjects::setLastPosition(sf::Vector2f posion)
-{
-    m_LastPosition = posion;
-
-}
-
-void MovingObjects::setStartPosion()
-{
-    this->SetPosition(m_firstPosition);
-}
+//void MovingObjects::setLastPosition(sf::Vector2f posion)
+//{
+//    m_LastPosition = posion;
+//
+//}
+//
+//void MovingObjects::setStartPosion()
+//{
+//    this->SetPosition(m_firstPosition);
+//}
 
 //void MovingObjects::resetObj()
 //{
 //    this->SetPosition(m_firstPosition);
 //}
 
-const sf::Vector2f &MovingObjects::getLastPosition() const {
-    return m_LastPosition;
-}
+//const sf::Vector2f &MovingObjects::getLastPosition() const {
+//    return m_LastPosition;
+//}
 
 bool MovingObjects::getIsfalling() const {
     return m_isfalling;
@@ -79,10 +77,6 @@ bool MovingObjects::getIsfalling() const {
 
 void MovingObjects::setIsfalling(bool isfalling) {
     m_isfalling = isfalling;
-}
-
-bool MovingObjects::isIsUpAvail() const {
-    return m_isUpAvail;
 }
 
 void MovingObjects::setIsUpAvail(bool mIsUpAvail) {

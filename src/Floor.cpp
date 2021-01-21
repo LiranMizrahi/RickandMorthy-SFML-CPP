@@ -83,7 +83,3 @@ bool Floor::restoreGameObj(const sf::Time &time, float cellheight)
 
     return false;
 }
-
-const sf::Time &Floor::getDigtimestamp() const {
-    return m_digtimestamp;
-}

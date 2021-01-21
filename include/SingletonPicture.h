@@ -53,8 +53,6 @@ private:
     sf::Texture m_startGame;
     sf::Texture m_heroIsdead;
     sf::Texture m_gameOver;
-
-        sf::Texture m_rickBack;
 };
 
 

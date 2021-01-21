@@ -34,13 +34,14 @@ private:
     std::vector<std::vector<char>> m_boardChar;
 	Board m_board;
 	sf::RenderWindow m_window;
-	sf::Sprite board;
+	sf::Sprite m_background;
     sf::Time m_playingTime ;
     sf::Clock m_time;
 	sf::Clock clock;
 	sf::Sound m_startGameSound;
 	sf::Sound m_gameOverSound;
     sf::Sound m_levelUpSoundl;
+    std:: fstream m_file;
 
     MenuState m_menu;
     GameOverState m_gameOverState;
@@ -49,17 +50,17 @@ private:
 	LevelUpState m_levelUpState;
 
 	//======= Private function ================
-	std::vector<std::vector<char>> openlevelfile(int);
+	std::vector<std::vector<char>> readFromFile();
     bool checkIfLevelDone();
 	void ResetCoins();
 	void upgradeLevel();
-	void printStartGameScreen();
 	void gameOverHandler(bool isplayerwin);
 	void reedemGifts();
 	void checkIfTimeIsOver();
 	void newGame();
 	void ResetLevel();
-	void checkIfHroalive();
+	void checkIfHeroalive();
 	void checkIfPlayerFinishLevel();
 	void drawWindow();
+	bool openlevelfile();
  };

@@ -7,15 +7,13 @@
 #include "GiftAddingEnemy.h"
 
 
-
-Controller::Controller(): m_window(sf::VideoMode(WINDOWSIZEWIDTH, WINDOWSIZEHEIGHT), "RICK RUNNER"),m_level(1)
+Controller::Controller(): m_window(sf::VideoMode(WINDOWSIZEWIDTH, WINDOWSIZEHEIGHT), "RICK RUNNER"),m_level(0)
 {
     m_gameOverSound.setBuffer(SingletonSound::instance().getMGameOver());
     m_levelUpSoundl.setBuffer(SingletonSound::instance().getMLevelUp());
     m_startGameSound.setBuffer(SingletonSound::instance().getMStartGame());
     m_window.setFramerateLimit(FRAMERATESPEED);
-	board.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
-
+	m_background.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
     //m_boardChar = openlevelfile(m_level);
     m_startGameState.openstate(m_window,m_herroSelect);
 
@@ -49,10 +47,10 @@ void Controller::run()
         m_board.checkIfHeroDig(m_time.getElapsedTime());
 
         m_board.restroreGameObjects(m_time.getElapsedTime());
-        //if player collect a gift that this or board class need to handle
+        //if player collect a gift that this or m_background class need to handle
         reedemGifts();
         //check if hero is dead and if he have more life
-        checkIfHroalive();
+        checkIfHeroalive();
         //If the player collect all coins the level is finish
         checkIfPlayerFinishLevel();
         //if the level is "on time level" this function check if the level finish
@@ -63,21 +61,15 @@ void Controller::run()
 
 //=============================================================
 
-std::vector<std::vector<char>> Controller::openlevelfile(int level)
+std::vector<std::vector<char>> Controller::readFromFile()
 {
     std::vector<std::vector<char>> temp;
     int width, height;
     m_time.restart();
-	std::string filename = "level";
-		filename += std::to_string(level);
-		filename += ".txt";
-		std::ifstream file;
-		file.open(filename);
-		if(!file.is_open())
-			std::cout << "Error while open level file";
 
-        file >> width >> height >> m_timeTheLevel; // take size map
-        file.get();
+
+        m_file >> width >> height >> m_timeTheLevel; // take size map
+        m_file.get();
 
         if (-1 < m_timeTheLevel)
         {
@@ -93,13 +85,12 @@ std::vector<std::vector<char>> Controller::openlevelfile(int level)
 
             for (int j = 0; j < width; ++j)
             { 
-                row.push_back(file.get());
+                row.push_back(m_file.get());
             }
-            file.get();
+            m_file.get();
             temp.push_back(row);
         }
-        file.close();
-
+        m_file.close();
 
         return temp;
 }
@@ -119,45 +110,33 @@ void Controller::ResetCoins()
 
 void Controller::upgradeLevel()
 {
-     m_levelUpState.openstate(m_window,m_herroSelect);
-     m_boardChar = openlevelfile(m_level);
+    //If opening the next level file failed the game over
+    if(!openlevelfile()) {
+        m_gameOverState.openstate(m_window,true);
+        m_herroSelect = m_menu.StartGame(m_window);
+    }
 
+    else
+         m_levelUpState.openstate(m_window,m_herroSelect);
+    //save all hero data and restore after the board build the new level
+    m_boardChar = readFromFile();
     int herolife = m_board.getHerolife();
     int heroscore = m_board.getHeroScore();
     m_board = Board(m_boardChar, m_herroSelect, m_level);
-    m_board.setHeroScore(heroscore);
+    m_board.addHeroScore(heroscore);
     m_board.setHeroLife(herolife);
 
-
 }
-//=============================================================
 
-//void Controller::printStartGameScreen() {
-//
-//    auto soundmusic = sf::Sound(SingletonSound::instance().getOpenGame());
-//    soundmusic.play();
-//    sf::Sprite openpic(SingletonPicture::instance().getMStartGame());
-//
-//    while (m_window.isOpen())
-//    {
-//        if (auto event = sf::Event{}; m_window.waitEvent(event)) {}
-//
-//            m_window.clear();
-//            m_window.draw(openpic);
-//            m_window.display();
-//
-//            sf::sleep(sf::seconds(4));
-//            return;
-//
-//    }
-//}
 //=============================================================
 
 void Controller::gameOverHandler(bool isplyerwin)
 {
-    m_gameOverState.openstate(m_window,isplyerwin);
-    m_level = 0;
-    newGame();
+//    m_gameOverState.openstate(m_window,isplyerwin);
+//    m_level = 1;
+//    m_board.setHeroLife(3);
+//    //openlevelfile();
+
 
 }
 //=============================================================
@@ -175,7 +154,8 @@ void Controller::newGame()
 {
     Coin::resetCoins();
     m_level = 1;
-    m_boardChar = openlevelfile(m_level);
+    openlevelfile();
+    m_boardChar = readFromFile();
     m_herroSelect = m_menu.StartGame(m_window);
     m_board = Board(m_boardChar, m_herroSelect, m_level);
     m_board.setHeroLife(HEROSTARTLIFE);
@@ -208,14 +188,16 @@ void Controller::reedemGifts() {
 
 }
 //=============================================================
-void Controller::checkIfHroalive() {
+void Controller::checkIfHeroalive() {
 
     if(m_board.checkIfHroalive())
         ResetLevel();
 
     if ( 0 >= m_board.getHerolife())
     {
-        gameOverHandler(false);
+        //gameOverHandler(false);
+        m_gameOverState.openstate(m_window,false);
+        newGame();
     }
 }
 //=============================================================
@@ -223,33 +205,35 @@ void Controller::checkIfHroalive() {
 void Controller::checkIfPlayerFinishLevel() {
 
     //check if there is no move available coins to get
-    if(checkIfLevelDone()) {
-
-        //check if there is move level to upgrade
-
-        if (m_level == NUMBEROFLEVELS)
-        {
-            gameOverHandler(true);
-            newGame();
-        }
-        else
-        {
+    if(checkIfLevelDone())
+    {
+            m_board.addHeroScore(LEVELUPADDSCORE);
             m_level++;
-            //if there is no more coins move to the next level
             upgradeLevel();
-            board.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
-
-        }
+            m_background.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
     }
 }
 //=============================================================
 void Controller::drawWindow() {
 
     m_window.clear();
-    m_window.draw(board);
+    m_window.draw(m_background);
     m_board.draw(m_window);
     m_gameStatusBar.printGameStatus(m_window,m_level, m_playingTime, m_time, m_isOnTime,m_board.getHeroScore(),m_board.getHerolife());
     m_window.display();
 
 
+}
+//=============================================================
+bool Controller::openlevelfile() {
+    std::string filename = "level";
+    filename += std::to_string(m_level);
+    filename += ".txt";
+
+    m_file.open(filename);
+    if(!m_file.is_open())
+    {
+        return false;
+    }
+    return true;
 }

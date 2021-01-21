@@ -7,7 +7,7 @@ class GiftAddingLife : public Gift
 {
 public:
 	GiftAddingLife(const sf::Vector2f& loc, const sf::Vector2f&);;
-	~GiftAddingLife()override = default;
+	virtual ~GiftAddingLife() = default;
 
 
 	virtual void handleColision(GameObj& obj) override;

@@ -29,7 +29,7 @@ public:
     void restroreGameObjects(const sf::Time &time);
     int getHerolife();
     int getHeroScore();
-    void setHeroScore(int);
+    void addHeroScore(int);
     int getMovingObjecVectorSize();
     void setHeroLife(int);
     float getCellHight() const;

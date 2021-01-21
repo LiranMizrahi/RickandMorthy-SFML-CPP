@@ -111,7 +111,7 @@ void Hero::handleColision(Coin&obj)
 //====================================================
 
 void Hero::handleColision(Enemy& obj )
-{   if(!obj.isIsingidedfloor())
+{   //if(!obj.isIsingidedfloor())
 {       m_isOff = true;
         m_life--;
         playCollectDeadSound();
@@ -133,9 +133,9 @@ void Hero::handleColision(GiftAddingScore& gift)
 }
 
 //====================================================
-void Hero::setScore(int score)
+void Hero::addScore(int score)
 {
-	m_score = score;
+	m_score += score;
 }
 //====================================================
 void Hero::playCollectGiftSound() {
@@ -163,7 +163,7 @@ void Hero::handleColision(Hero &) {
 //======================================================
 void Hero::digHole(Board& board,const sf::Time &time)
 {
-    int coll;
+    float coll;
     //This statement block the the option to dig more
     // then a one hole in <HERODIGDELTATIME> millisecond
     if(time.asMilliseconds()-m_lastdigtime.asMilliseconds()<HERODIGDELTATIME)
@@ -183,20 +183,25 @@ void Hero::digHole(Board& board,const sf::Time &time)
 
         if (index.y >0 && index.x >= 0 && index.y < board.getHeight() && index.x < board.getWidth())
         {
-            if(board.getStaticObjectsFromVector(index.y-1, index.x) != nullptr)return;
-            auto staticobj = board.getStaticObjectsFromVector(index.y, index.x);
+            if(board.getStaticObjectsFromVector((int)index.y-1, (int)index.x) != nullptr &&
+            !board.getStaticObjectsFromVector((int)index.y-1, (int)index.x)->getIsOff()
+            )return;
+            auto staticobj = board.getStaticObjectsFromVector((int)index.y,(int) index.x);
             if (staticobj)
             {
                 if (staticobj->isObjectDigable(time))
                 {
                     auto loc = staticobj->getSprite().getPosition();
                     loc.y -= board.getCellHight();
-                    auto rec = sf::RectangleShape(sf::Vector2f(m_sprite.getGlobalBounds().width,m_sprite.getGlobalBounds().height));
-                    rec.setScale(m_sprite.getScale());
+                    auto rec = sf::RectangleShape(sf::Vector2f(board.getCellWidth()/2,board.getCellHight()));
+                        std::cout <<index.x  <<" "<<index.y << std::endl;
+                   // auto rec = sf::RectangleShape(sf::Vector2f(m_sprite.getGlobalBounds().width,m_sprite.getGlobalBounds().height));
+                    //rec.setScale(m_sprite.getScale());
                     rec.setPosition(loc);
-                    rec.setOrigin(board.getCellWidth()/2,board.getCellHight()/2);
+                    rec.setOrigin(board.getCellWidth()/4,board.getCellHight()/2);
 
-                    for (int i = 0; i < board.getMovingObjecVectorSize(); ++i) {
+                    for (int i = 0; i < board.getMovingObjecVectorSize(); ++i)
+                    {
                        if(rec.getGlobalBounds().intersects( board.getSMovingObjectsFromVector(i)->getSprite().getGlobalBounds()))
                         return;
                     }

@@ -8,7 +8,7 @@ class GiftAddingScore : public Gift
 {
 public:
 	GiftAddingScore(const sf::Vector2f& loc, const sf::Vector2f&);
-	~GiftAddingScore()override = default;
+	virtual ~GiftAddingScore() = default;
 
 
 	virtual void handleColision(GameObj& obj) override ;

@@ -34,13 +34,12 @@ void HorizontalEnemy::handleColision(Floor& obj)
 	{
 		m_directionMovement = LEFT;
 	}
-
+    this->m_sprite.setPosition(m_LastPosition);
 	
 }
 
 void HorizontalEnemy::move(float xline, float yline)
 {
-	sf::Vector2f loc = this->m_LastPosition;
 	m_LastPosition = m_sprite.getPosition();
 	if(m_isOff)return;
 	m_sprite.move(xline, yline);
