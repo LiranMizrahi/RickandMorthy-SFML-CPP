@@ -9,11 +9,12 @@ class GameOverState: public State {
 public:
     GameOverState();
     virtual ~GameOverState() = default;
+    //===================public function=================
     void openstate(sf::RenderWindow &m_window, bool isplayerwin)override;
 
 
 private:
-
+    //=========private members ======================
     sf::Text gameexitstatus;
     sf::Text exitgame;
     sf::Text newgame;

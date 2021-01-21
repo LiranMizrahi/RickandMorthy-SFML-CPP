@@ -11,6 +11,7 @@ public:
 	Floor(const sf::Vector2f& loc, const sf::Vector2f&);
     virtual ~Floor()  = default;
 
+	//===================public function=================
 	 void handleColision(Rope& )override  {};
 	 void handleColision(Hero& )override ;
 	 void handleColision(Floor& ) override {};
@@ -33,8 +34,7 @@ public:
 	 void resetObj()override;
 
 private:
+	//=========private members ======================
     sf::Time m_digtimestamp = sf::Time::Zero;
     bool m_isfull;
-    //const sf::Time &getDigtimestamp() const;
-
 };

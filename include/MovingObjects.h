@@ -7,13 +7,13 @@ class MovingObjects : public GameObj
 public:
 
 	MovingObjects() = default;
-	virtual ~MovingObjects() = default;
 	MovingObjects(const sf::Texture& tex, const sf::Vector2f& loc, const sf::Vector2f&);
+    virtual ~MovingObjects() = default;
 
-    void setIsUpAvail(bool mIsUpAvail);
+    //===================public function=================
+    void setIsUpAvail(bool);
     bool getIsfalling() const;
     void setIsfalling(bool);
-
     virtual void move(float,float);
 	void SetPosition(const sf::Vector2f&);
 	void DrawLeftside();
@@ -24,6 +24,7 @@ public:
 
 
 protected:
+    //=========protected members======================
     sf::Vector2f m_firstPosition;
     sf::Vector2f m_LastPosition;
     bool m_isfalling =false;

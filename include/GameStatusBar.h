@@ -9,6 +9,7 @@ public:
                     int score, int life);
 
 private:
+    //=========private members======================
     sf::Text m_scoreText;
     sf::Text m_levelText;
     sf::Text m_lifeText;
@@ -16,11 +17,10 @@ private:
     int m_life ,m_score;
     sf::Time m_time ,m_lifechange, m_scorechange , m_timechange;
 
+    //=========private function======================
 
     void printboard(sf::RenderWindow &window);
-
-    void
-    printChangeColor(int life, const sf::Clock &clock,
+    void printChangeColor(int life, const sf::Clock &clock,
                      const sf::Time &time, int score);
 };
 

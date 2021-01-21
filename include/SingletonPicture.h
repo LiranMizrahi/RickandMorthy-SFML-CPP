@@ -8,8 +8,7 @@ class SingletonPicture
 public:
 
         ~SingletonPicture() =default;
-        static SingletonPicture& instance();
-
+        //===================public function=================
         const sf::Texture & getHerojerryTexture()const;
         const sf::Texture& getHeroRickTexture()const;
         const sf::Texture& getEnemyMeeseeksTexture()const;
@@ -28,13 +27,14 @@ public:
         const sf::Texture& getMHeroIsdead()const ;
         const sf::Texture& getMGameOver() const;
 
-   // const sf::Texture &getMRickback() const;
-
+        //===================public static=================
+        static SingletonPicture& instance();
 
 private:
+    //=========private constructor======================
     SingletonPicture();
     SingletonPicture(const SingletonPicture &) = default;
-    //SingletonPicture&  operator=(const SingletonPicture&) = default;
+    //=========private members======================
     sf::Texture m_heroMenu1;
     sf::Texture m_heroMenu2;
     sf::Texture m_heroJerry;

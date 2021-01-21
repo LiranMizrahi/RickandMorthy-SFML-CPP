@@ -20,11 +20,12 @@ public:
 	GameObj() = default;
 	GameObj(const sf::Texture&, const sf::Vector2f&, const sf::Vector2f &board_size);
 	virtual ~GameObj() = default;;
-
+	//===================public function=================
 	bool collisonWith(const GameObj&)const;
 	sf::Sprite getSprite()const;
-
     void draw(sf::RenderWindow&)const;
+	bool getIsOff()const;
+	//virtual func
     virtual void handleColision(GameObj& obj) = 0;
 	virtual void handleColision(Floor& obj) = 0;
 	virtual void handleColision(Ladder& obj) = 0;
@@ -38,11 +39,11 @@ public:
 	virtual void handleColision(GiftAddingTime& Obj) = 0;
     virtual bool restoreGameObj(const sf::Time &, float cellheight){return false;}
 	virtual void resetObj() = 0;
-	bool getIsOff()const;
 	virtual void setIsOff(bool isoff);
 
 
 protected:
+	//=========protected members ======================
 	sf::Sprite m_sprite;
     bool m_isOff = false;
 

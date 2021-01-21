@@ -6,9 +6,7 @@ class SingletonSound
 public:
 
     ~SingletonSound() =default;
-
-    static SingletonSound& instance();
-
+    //===================public function=================
     const sf::SoundBuffer &getMJerry() const;
     const sf::SoundBuffer &getMRick() const;
     const sf::SoundBuffer &getMStartGame() const;
@@ -18,11 +16,13 @@ public:
     const sf::SoundBuffer &getMCollectGift() ;
     const sf::SoundBuffer &getMCollectCoin() const;
     const sf::SoundBuffer &getOpenGame() const;
-
-
+    //===================public static=================
+    static SingletonSound& instance();
 
 private:
+    //=========private constructor======================
     SingletonSound();
+    //=========private members======================
 	sf::SoundBuffer m_jerry;
 	sf::SoundBuffer m_rick;
 	sf::SoundBuffer m_startGame;
@@ -32,6 +32,5 @@ private:
 	sf::SoundBuffer m_collectGift;
 	sf::SoundBuffer m_collectCoin;
     sf::SoundBuffer m_openGame;
-
 
 };

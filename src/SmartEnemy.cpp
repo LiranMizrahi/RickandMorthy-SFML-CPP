@@ -246,7 +246,7 @@ void SmartEnemy::randomMovment(float time)
     }
 }
 
-bool SmartEnemy::ReturnsCellInVector(std::vector<std::vector<char>> boardChar, size_t i, size_t j)
+bool SmartEnemy::ReturnsCellInVector(const std::vector<std::vector<char>> &boardChar, size_t i, size_t j)
 {
     if ((!boardChar.empty()&&  i < boardChar.size()) && (!boardChar[0].empty() && j < boardChar[0].size()))
     {

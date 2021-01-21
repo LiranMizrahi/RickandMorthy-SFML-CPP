@@ -17,9 +17,8 @@ public:
 	  Enemy(const sf::Vector2f &loc, int EnemySelection,
             sf::Vector2f boardsize);
     virtual ~Enemy()  = default;
-
-     //void UpdateLocation(float, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&) {};
-
+	//===================public function=================
+	// handleColision for all objects
 	 void handleColision(GameObj& obj) override;
 	 void handleColision(Rope& Obj) override;
 	 void handleColision(Hero& Obj) override ;
@@ -31,13 +30,14 @@ public:
 	 void handleColision(GiftAddingScore&) override {};
 	 void handleColision(GiftAddingEnemy&) override {};
 	 void handleColision(GiftAddingTime&) override {};
+	 // if object not fell into the pit
      virtual bool isObjectIsStandable(StaticObjects &stas)override;
+	 //
      bool restoreGameObj(const sf::Time &, float cellheight) override;
-      void resetObj()override;
-     const sf::Time &getDiggedfloortime() const;
+     void resetObj()override;
      void setDiggedfloortime(const sf::Time &diggedfloortime);
-    void setIsingidedfloor(bool isingidedfloor);
-    bool isIsingidedfloor() const;
+     void setIsingidedfloor(bool isingidedfloor);
+     bool isIsingidedfloor() const;
 
 //=========private members ======================
 private:

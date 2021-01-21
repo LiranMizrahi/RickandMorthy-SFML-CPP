@@ -45,7 +45,7 @@ const int HEROASJERRY = 1;
 const int HEROASRICK = 2;
 
 
-
+const int TYPESOFGIFS = 4;
 const int HEROSTARTLIFE = 3;
 const float FACTORSCAL  = 25;
 const int FRAMERATESPEED = 60;

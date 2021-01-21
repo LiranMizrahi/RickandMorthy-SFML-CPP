@@ -10,9 +10,10 @@ public:
 	 GiftAddingEnemy(const sf::Vector2f& loc, const sf::Vector2f&);
 	 virtual ~GiftAddingEnemy() = default;
 
+	 //=========static function======================
 	 static int getNumberOfGiftAddingRnemy();
 	 static void redeemGift();
-    
+	 //=========public function======================
 	 void handleColision(GameObj& obj) override ;
 	 void handleColision(Rope& Obj) override {};
 	 void handleColision(Hero& Obj) override ;
@@ -26,6 +27,6 @@ public:
 	 void handleColision(GiftAddingTime&) override {};
 
 private:
-
+	//=========static members======================
         static int m_numberofgiftaddingenemy;
 };

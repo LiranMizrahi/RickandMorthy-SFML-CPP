@@ -12,6 +12,7 @@ class SingletonSound;
 class Board {
 
 public:
+    //===================public function=================
 	Board() = default;
 	Board(std::vector<std::vector<char>> file, int PlayerSelection,
           int level);

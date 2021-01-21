@@ -19,13 +19,12 @@
  class Controller {
 
 public:
-
 	Controller();
+	//===================public function=================
 	void run();
 
 private:
-
-	//=========Private members========
+	//===================Private members=================
 	bool m_isOnTime;
 	float m_timeTheLevel;
 	int m_herroSelect;
@@ -49,7 +48,7 @@ private:
 	GameStatusBar m_gameStatusBar;
 	LevelUpState m_levelUpState;
 
-	//======= Private function ================
+	//===================Private function=================
 	std::vector<std::vector<char>> readFromFile();
     bool checkIfLevelDone();
 	void ResetCoins();

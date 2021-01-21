@@ -4,9 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include "Hero.h"
 class SingletonPicture;
-const int TYPESOFGIFS =4;
 
-enum GiftTypes  {
+
+enum GiftTypes{
     AddLife =0,AddScore,AddEnemy,AddTime
 };
 
@@ -16,7 +16,7 @@ public:
 	Gift() =default;
 	Gift(const sf::Vector2f& loc, const sf::Vector2f&);
 	virtual ~Gift()= default;
-
+    //=========public function======================
 	 bool isObjectIsStandable(Hero&)override;
      bool isObjectIsStandable(Enemy&)override;
 
@@ -26,6 +26,7 @@ public:
 
 
 protected:
+    //=========private protected======================
     bool m_isreedem = false;
     sf::Time m_showTime;
 

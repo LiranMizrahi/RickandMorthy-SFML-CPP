@@ -5,17 +5,15 @@ class HorizontalEnemy: public Enemy
 {
 public:
 	HorizontalEnemy() = default;
-	HorizontalEnemy(const sf::Vector2f &loc,
-                    int EnemySelection,
-                    const sf::Vector2f &boardsize);
-	virtual void UpdateLocation(float , sf::Vector2f, const  std::vector <std::vector<char>>&, Board&)override;
+	HorizontalEnemy(const sf::Vector2f &loc, int EnemySelection, const sf::Vector2f &boardsize);
 	~HorizontalEnemy() override = default;
-
-	virtual void handleColision(Floor& obj)override ;
-	virtual void move(float, float)override;
+	//=========public function ======================
+	void UpdateLocation(float, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&)override;
+	void handleColision(Floor& obj)override ;
+	void move(float, float)override;
 
 private:
-	int m_directionMovement = 1;
+	int m_directionMovement = LEFT;
 
 };
 

@@ -4,7 +4,7 @@
 #include "State.h"
 #include "Macros.h"
 
-const int JERRYPOSITIONX = 800 ;
+const int JERRYPOSITIONX = 800;
 const int JERRYPOSITIONY = 350;
 const int RICKPOSITIONX =550;
 const int RICKPOSITIONY =350;
@@ -20,11 +20,13 @@ class MenuState
 {
 public:
 	MenuState();
+    //===================public function=================
 	int StartGame(sf::RenderWindow & );
 
 
 
 private:
+    //=========private members======================
     int heroChoose = HEROASJERRY;
     sf::Text start;
     sf::Text select;
@@ -32,6 +34,7 @@ private:
     sf::Sound ricksound;
     sf::Sound jerrysound;
     sf::Sprite m_backGround;
+    //=========private function======================
     void initializeScreenPic();
     void initializeScreenText();
     void updateSelectPic(int hero);
