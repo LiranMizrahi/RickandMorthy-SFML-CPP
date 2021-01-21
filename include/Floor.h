@@ -7,7 +7,7 @@ class SingletonPicture;
 class Floor : public StaticObjects {
 
 public:
-	Floor() ;
+	Floor()  = default;
 	Floor(const sf::Vector2f& loc, const sf::Vector2f&);
     virtual ~Floor()  = default;
 

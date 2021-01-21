@@ -182,7 +182,6 @@ void Hero::digHole(Board& board,const sf::Time &time)
 
         if (index.y >0 && index.x >= 0 && index.y < board.getHeight() && index.x < board.getWidth())
         {
-            std::cout <<index.x  <<" "<<index.y << std::endl;
             if(board.getStaticObjectsFromVector((int)index.y-1, (int)index.x) != nullptr &&
             !board.getStaticObjectsFromVector((int)index.y-1, (int)index.x)->getIsOff())return;
             auto staticobj = board.getStaticObjectsFromVector((int)index.y,(int) index.x);

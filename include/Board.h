@@ -30,7 +30,7 @@ public:
     int getHerolife();
     int getHeroScore();
     void addHeroScore(int);
-    int getMovingObjecVectorSize();
+    size_t getMovingObjecVectorSize();
     void setHeroLife(int);
     float getCellHight() const;
     float getCellWidth() const;
