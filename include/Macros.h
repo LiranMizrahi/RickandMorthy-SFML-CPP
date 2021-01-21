@@ -28,9 +28,9 @@ const int HEIGHTSIZECALI = 15;
 
 //Define  the speeds for the moving objects
 const float FALLINGSPEED = 250.f;
-const  float HEROSPEED = 250.f ;
-const  float ENEMYSPEED = 250.f;
-const int HERODIGDELTATIME = 200;
+const  float HEROSPEED = 230.f ;
+const  float ENEMYSPEED = 180.f;
+const int HERODIGDELTATIME = 350;
 
 //All const off gifts
 const float RESTOREFLOORTIME = 5000;

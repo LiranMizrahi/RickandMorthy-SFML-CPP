@@ -6,8 +6,8 @@
 
 const int NEWGAMEXPOS = 620;
 const int NEWGAMEYPOS = 600;
-const int GAMEEXITSTATUSXPOS = 580;
-const int GAMEEXITSTATUSYPOS = 250;
+const int GAMEEXITSTATUSX = 580;
+const int GAMEEXITSTATUSY = 350;
 
 const int EXITXPOS = 730;
 const int EXITYPOS = 700;
@@ -26,7 +26,7 @@ GameOverState::GameOverState():State(SingletonPicture::instance().getMGameOver()
 
     exitgame.setStyle(exitgame.Underlined);
     gameexitstatus.setCharacterSize(TITLECHARSIZE);
-    gameexitstatus.setPosition(GAMEEXITSTATUSXPOS, GAMEEXITSTATUSYPOS);
+    gameexitstatus.setPosition(GAMEEXITSTATUSX, GAMEEXITSTATUSY);
     newgame.setPosition(NEWGAMEXPOS, NEWGAMEYPOS);
     exitgame.setPosition(EXITXPOS, EXITYPOS);
     newgame.setString("NEW GAME");

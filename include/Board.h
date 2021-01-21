@@ -35,7 +35,7 @@ public:
     float getCellHight() const;
     float getCellWidth() const;
     bool checkIfHroalive();
-    sf::Vector2f mapPixelToIndexes(const sf::Vector2f &vector2);
+    sf::Vector2f mapPixelToIndexes(const sf::Vector2f &vector2) const;
 
 private:
 	//private members

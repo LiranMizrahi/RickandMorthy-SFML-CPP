@@ -9,6 +9,7 @@ public:
 	MovingObjects() = default;
 	virtual ~MovingObjects() = default;
 	MovingObjects(const sf::Texture& tex, const sf::Vector2f& loc, const sf::Vector2f&);
+
     void setIsUpAvail(bool mIsUpAvail);
     bool getIsfalling() const;
     void setIsfalling(bool);

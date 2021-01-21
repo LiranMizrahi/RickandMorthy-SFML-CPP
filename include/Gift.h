@@ -16,24 +16,25 @@ public:
 	Gift() =default;
 	Gift(const sf::Vector2f& loc, const sf::Vector2f&);
 	virtual ~Gift()= default;
-	virtual void handleColision(Rope&) override=0;
-	virtual void handleColision(Hero&) override=0;
-	virtual void handleColision(Floor&) override=0;
-	virtual void handleColision(Ladder&) override=0;
-	virtual void handleColision(GameObj&) override=0;
-	virtual void handleColision(Coin&) override=0;
-	virtual void handleColision(Enemy&) override=0;
-	virtual void handleColision(GiftAddingLife&) override=0;
-	virtual void handleColision(GiftAddingScore&) override=0;
-	virtual void handleColision(GiftAddingEnemy&) override=0 ;
-	virtual void handleColision(GiftAddingTime&) override {};
 
-    virtual bool isObjectIsStandable(Hero&)override;
-    virtual bool isObjectIsStandable(Enemy&)override;
+	 void handleColision(Rope&) override=0;
+	 void handleColision(Hero&) override=0;
+	 void handleColision(Floor&) override=0;
+	 void handleColision(Ladder&) override=0;
+	 void handleColision(GameObj&) override=0;
+	 void handleColision(Coin&) override=0;
+	 void handleColision(Enemy&) override=0;
+	 void handleColision(GiftAddingLife&) override=0;
+	 void handleColision(GiftAddingScore&) override=0;
+	 void handleColision(GiftAddingEnemy&) override=0 ;
+	 void handleColision(GiftAddingTime&) override {};
 
-    virtual bool isObjectDigable(const sf::Time &) override;
-    virtual bool restoreGameObj(const sf::Time &, float cellheight) override;
-	virtual void resetObj()override {};
+	 bool isObjectIsStandable(Hero&)override;
+     bool isObjectIsStandable(Enemy&)override;
+
+     bool isObjectDigable(const sf::Time &) override;
+     bool restoreGameObj(const sf::Time &, float cellheight) override;
+	 void resetObj()override {};
 
 
 protected:
