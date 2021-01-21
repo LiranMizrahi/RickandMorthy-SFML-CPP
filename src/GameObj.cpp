@@ -51,5 +51,5 @@ void GameObj::setIsOff(bool isoff) {
 
 bool GameObj::restoreGameObj(const sf::Time &, float cellheight) {
 
-
+	return false;
 }

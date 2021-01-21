@@ -16,7 +16,7 @@ void RandomEnemy::UpdateLocation(float timeGame, sf::Vector2f, const  std::vecto
     if(isIsingidedfloor())return;
     std::srand(std::time(nullptr));
 
-	int RandomMov = std::rand() % 4;
+	auto RandomMov = std::rand() % 4;
 
 	switch (RandomMov)
 	{

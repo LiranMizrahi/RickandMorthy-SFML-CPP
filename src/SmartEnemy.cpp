@@ -56,15 +56,13 @@ void SmartEnemy::handleColision(Ladder& Obj)
             m_sprite.setPosition((m_sprite.getPosition().x), (m_sprite.getPosition().y - m_sprite.getGlobalBounds().height));
         else if (DOWN == m_lastStep && LEFT == m_step)
         {
-            m_sprite.setPosition((m_sprite.getPosition().x - m_sprite.getGlobalBounds().width), (m_sprite.getPosition().y + Obj.getSprite().getGlobalBounds().width / 4));
+            m_sprite.setPosition((m_sprite.getPosition().x - m_sprite.getGlobalBounds().width), (m_sprite.getPosition().y + Obj.getSprite().getGlobalBounds().height / 4));
         }
         else if (DOWN == m_lastStep && RIGHT == m_step)
         {
-            m_sprite.setPosition((m_sprite.getPosition().x), (m_sprite.getPosition().y + Obj.getSprite().getGlobalBounds().width / 3));
+            m_sprite.setPosition((m_sprite.getPosition().x + m_sprite.getGlobalBounds().width), (m_sprite.getPosition().y + Obj.getSprite().getGlobalBounds().height / 4));
         }
-
     }
-
 }
 //====================================================
 std::vector <std::vector<int>> SmartEnemy::creatingRunningVector(std::vector <std::vector<char>> boardChar)
