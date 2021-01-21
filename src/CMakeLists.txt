@@ -1,4 +1,4 @@
-﻿target_sources (SFMLExamples PRIVATE "main.cpp"
+﻿target_sources (Project_liran_mizrahi_liron_hatabi PRIVATE "main.cpp"
                                      "Controller.cpp"
                                      "GameObj.cpp"
                                      "SingletonPicture.cpp"

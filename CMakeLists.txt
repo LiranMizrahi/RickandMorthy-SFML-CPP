@@ -1,7 +1,7 @@
 
 cmake_minimum_required (VERSION 3.14)
 
-project (SFMLExamples)
+project (Project_liran_mizrahi_liron_hatabi)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -10,7 +10,7 @@ if (MSVC)
     add_compile_options (/permissive-)
 endif ()
 
-add_executable (SFMLExamples "" )
+add_executable (Project_liran_mizrahi_liron_hatabi "" )
 
 add_subdirectory (include)
 add_subdirectory (src)
@@ -23,7 +23,7 @@ if( APPLE )
     find_package(SFML 2.5.1 COMPONENTS system window graphics network audio REQUIRED)
     if (SFML_FOUND)
         include_directories(${SFML_INCLUDE_DIRS})
-        target_link_libraries(SFMLExamples sfml-window sfml-graphics sfml-audio sfml-network)
+        target_link_libraries(Project_liran_mizrahi_liron_hatabi sfml-window sfml-graphics sfml-audio sfml-network)
     endif()
     #================================ =========
 else()
@@ -35,7 +35,7 @@ find_package (SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
 set_target_properties (sfml-main sfml-system sfml-window sfml-graphics sfml-audio sfml-network PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
 
-target_link_libraries (SFMLExamples sfml-audio sfml-graphics sfml-main)
+target_link_libraries (Project_liran_mizrahi_liron_hatabi sfml-audio sfml-graphics sfml-main)
 
 configure_file (C:/SFML/SFML-2.5.1/bin/openal32.dll ${CMAKE_BINARY_DIR} COPYONLY)
 
