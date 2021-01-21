@@ -163,6 +163,7 @@ int SmartEnemy::bfsAlgorithm(sf::Vector2f pointEnemy, sf::Vector2f pointHero, st
 //====================================================
 void SmartEnemy::movEnemySmart(int step, float time)
 {
+    if (isIsingidedfloor())return;
     switch (step)
     {
 
