@@ -7,7 +7,6 @@
 #include "Ladder.h"
 #include <cmath>
 
-
 Hero::Hero(const sf::Vector2f &loc, int HeroSelection,
            sf::Vector2f boardsize) : m_life(3), m_score(0)
 {
@@ -185,8 +184,7 @@ void Hero::digHole(Board& board,const sf::Time &time)
         {
             std::cout <<index.x  <<" "<<index.y << std::endl;
             if(board.getStaticObjectsFromVector((int)index.y-1, (int)index.x) != nullptr &&
-            !board.getStaticObjectsFromVector((int)index.y-1, (int)index.x)->getIsOff()
-            )return;
+            !board.getStaticObjectsFromVector((int)index.y-1, (int)index.x)->getIsOff())return;
             auto staticobj = board.getStaticObjectsFromVector((int)index.y,(int) index.x);
             if (staticobj)
             {
