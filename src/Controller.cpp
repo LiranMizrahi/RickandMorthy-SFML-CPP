@@ -1,10 +1,10 @@
 #include "Controller.h"
 #include <string>
 #include <iostream>
-#include "SingletonFont.h"
-#include "Coin.h"
-#include "GiftAddingTime.h"
-#include "GiftAddingEnemy.h"
+#include "Singletons/SingletonFont.h"
+#include "StaticObjects/Coin.h"
+#include "StaticObjects/GiftAddingTime.h"
+#include "StaticObjects/GiftAddingEnemy.h"
 
 //=========================constructor ======================================
 Controller::Controller(): m_window(sf::VideoMode(WINDOWSIZEWIDTH, WINDOWSIZEHEIGHT), "RICK RUNNER"),m_level(1)

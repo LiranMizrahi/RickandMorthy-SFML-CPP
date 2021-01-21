@@ -1,23 +1,23 @@
 ﻿#include "Board.h"
 #include "Macros.h"
 #include <SFML/Graphics.hpp>
-#include "SingletonPicture.h"
-#include "Floor.h"
-#include "Ladder.h"
-#include "Rope.h"
+#include "Singletons/SingletonPicture.h"
+#include "StaticObjects/Floor.h"
+#include "StaticObjects/Ladder.h"
+#include "StaticObjects/Rope.h"
 #include <iostream>
-#include "Coin.h"
-#include "SingletonSound.h"
+#include "StaticObjects/Coin.h"
+#include "Singletons/SingletonSound.h"
 #include <string>
-#include "RandomEnemy.h"
-#include "SmartEnemy.h"
-#include "HorizontalEnemy.h"
-#include "Gift.h"
-#include"GiftAddingLife.h"
-#include"GiftAddingEnemy.h"
-#include"GiftAddingScore.h"
-#include "SingletonFont.h"
-#include "GiftAddingTime.h"
+#include "MovingObject/RandomEnemy.h"
+#include "MovingObject/SmartEnemy.h"
+#include "MovingObject/HorizontalEnemy.h"
+#include "StaticObjects/Gift.h"
+#include"StaticObjects/GiftAddingLife.h"
+#include"StaticObjects/GiftAddingEnemy.h"
+#include"StaticObjects/GiftAddingScore.h"
+#include "Singletons/SingletonFont.h"
+#include "StaticObjects/GiftAddingTime.h"
 //=========================constructor ======================================
 
 Board::Board(std::vector<std::vector<char>> file, int PlayerSelection,

@@ -1,7 +1,7 @@
 #include "MenuState.h"
 #include <SFML/Audio.hpp>
-#include "SingletonSound.h"
-#include "SingletonFont.h"
+#include "Singletons/SingletonSound.h"
+#include "Singletons/SingletonFont.h"
 #include "Macros.h"
 
 //=========================constructor ======================================

@@ -1,10 +1,10 @@
 #pragma once
 #include "vector"
 #include <fstream>
-#include "Hero.h"
-#include "Enemy.h"
-#include "StaticObjects.h"
-#include "MovingObjects.h"
+#include "MovingObject/Hero.h"
+#include "MovingObject/Enemy.h"
+#include "StaticObjects/StaticObjects.h"
+#include "MovingObject/MovingObjects.h"
 
 class SingletonPicture;
 class SingletonSound;

@@ -1,7 +1,7 @@
 //
 // Created by Liran Mizrahi on 17/01/2021.
 
-#include "SingletonFont.h"
+#include "Singletons/SingletonFont.h"
 #include "GameStatusBar.h"
 #include "Macros.h"
 #include <iomanip>

@@ -3,18 +3,18 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "GameObj.h"
-#include "SingletonPicture.h"
+#include "Singletons/SingletonPicture.h"
 #include "MenuState.h"
 #include "Board.h"
 #include "fstream"
 #include "MenuState.h"
-#include "SingletonSound.h"
-#include"Coin.h"
-#include "GameOverState.h"
+#include "Singletons/SingletonSound.h"
+#include"StaticObjects/Coin.h"
+#include "States/GameOverState.h"
 #include "GameStatusBar.h"
-#include "StartGameState.h"
+#include "States/StartGameState.h"
 
-#include "LevelUpState.h"
+#include "States/LevelUpState.h"
 
  class Controller {
 

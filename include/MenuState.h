@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <SingletonPicture.h>
-#include "State.h"
+#include <Singletons/SingletonPicture.h>
+#include "States/State.h"
 #include "Macros.h"
 
 const int JERRYPOSITIONX = 800;
