@@ -1,14 +1,16 @@
 #include"GiftAddingScore.h"
-
+//=========================constructor ======================================
 GiftAddingScore::GiftAddingScore(const sf::Vector2f& loc, const sf::Vector2f& size) : Gift(loc, size)
 {
 
 }
+//=============================================================
 
 void GiftAddingScore::handleColision(GameObj& obj)
 {
     obj.handleColision(*this);
 }
+//=============================================================
 
 void GiftAddingScore::handleColision(Hero& obj)
 {
@@ -17,5 +19,6 @@ void GiftAddingScore::handleColision(Hero& obj)
     m_isOff = true;
     m_isreedem = true;
 }
+//=============================================================
 
 

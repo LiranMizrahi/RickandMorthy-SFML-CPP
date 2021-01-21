@@ -97,15 +97,12 @@ void Board::createObject(char input, const sf::Vector2f &location,
         m_staticObjects[i].push_back(nullptr);
         createEnemysVector(location, PlayerSelection);
         break;
-
     case FLOOR:
       m_staticObjects[i].push_back(std::move(std::make_unique<Floor>(location, boardsize)));
       break;
-
     case ROPE:
         m_staticObjects[i].push_back(std::move(std::make_unique<Rope>(location, boardsize)));
         break;
-
     case COIN:
         m_staticObjects[i].push_back(std::move(std::make_unique<Coin>(location, boardsize,level)));
         break;

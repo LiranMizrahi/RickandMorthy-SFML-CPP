@@ -7,19 +7,16 @@
 #include "SingletonPicture.h"
 #include "SingletonFont.h"
 
-
+//=========================constructor ======================================
 StartGameState::StartGameState() :State(SingletonPicture::instance().getMStartGame(),SingletonSound::instance().getOpenGame()){
 
 }
 
 
+//=============================================================
 
 void StartGameState::openstate(sf::RenderWindow &m_window, bool isplayerwin) {
-
-
     m_stateSound.play();
-
-
     while (m_window.isOpen()) {
         if (auto event = sf::Event{}; m_window.waitEvent(event)) {}
 
@@ -32,3 +29,4 @@ void StartGameState::openstate(sf::RenderWindow &m_window, bool isplayerwin) {
     }
 
 }
+//=============================================================

@@ -11,8 +11,7 @@ const int LASTCALLTIME = 10;
 const int MAXCORETOSHOW = 1000000;
 const int CHARRACTERSIZE = 50;
 const float SPACESSIZR = 30;
-//====================================================
-
+//=========================constructor ======================================
 GameStatusBar::GameStatusBar() :m_score(0),m_life(HEROSTARTLIFE) {
 
     m_scoreText.setFont(SingletonFont::instance().getMBoardstatus());

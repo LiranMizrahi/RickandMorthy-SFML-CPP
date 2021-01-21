@@ -4,13 +4,13 @@
 #include "SingletonFont.h"
 #include "Macros.h"
 
-
+//=========================constructor ======================================
 MenuState::MenuState()
 {
     initializeScreenPic();
     initializeScreenText();
 }
-
+//=============================================================
 int MenuState::StartGame(sf::RenderWindow& window)
 {
     ricksound.setBuffer(SingletonSound::instance().getMRick());

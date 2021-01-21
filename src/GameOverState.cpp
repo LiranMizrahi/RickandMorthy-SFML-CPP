@@ -13,7 +13,7 @@ const int EXITXPOS = 730;
 const int EXITYPOS = 700;
 const int MENUTEXTSIZE = 55;
 const int TITLECHARSIZE = 80;
-
+//=========================constructor ======================================
 GameOverState::GameOverState():State(SingletonPicture::instance().getMGameOver(),SingletonSound::instance().getMGameOver())
 {
 
@@ -33,7 +33,7 @@ GameOverState::GameOverState():State(SingletonPicture::instance().getMGameOver()
     exitgame.setString("EXIT");
 
 }
-
+//=============================================================
 void GameOverState::openstate(sf::RenderWindow &m_window, bool isplayerwin)
 
 
@@ -95,8 +95,4 @@ void GameOverState::openstate(sf::RenderWindow &m_window, bool isplayerwin)
 
         }
     }
-
-
-
-
 }

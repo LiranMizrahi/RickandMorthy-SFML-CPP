@@ -1,16 +1,18 @@
 #include"GiftAddingEnemy.h"
 
+
+//=========================constructor ======================================
 int GiftAddingEnemy::m_numberofgiftaddingenemy = 0;
 GiftAddingEnemy::GiftAddingEnemy(const sf::Vector2f& loc, const sf::Vector2f& size) : Gift(loc, size)
 {
 
 }
-
+//=============================================================
 void GiftAddingEnemy::handleColision(GameObj& obj)
 {
     obj.handleColision(*this);
 }
-
+//=============================================================
 void GiftAddingEnemy::handleColision(Hero& obj)
 {
     m_numberofgiftaddingenemy++;
@@ -20,10 +22,12 @@ void GiftAddingEnemy::handleColision(Hero& obj)
     m_isreedem = true;
 }
 
+//=============================================================
 
 int GiftAddingEnemy::getNumberOfGiftAddingRnemy() {
     return m_numberofgiftaddingenemy;
 }
+//=============================================================
 
 void GiftAddingEnemy::redeemGift() {
     m_numberofgiftaddingenemy--;

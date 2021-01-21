@@ -2,14 +2,14 @@
 #include "Macros.h"
 #include <ctime>
 
+//=========================constructor ======================================
 
-RandomEnemy::RandomEnemy(const sf::Vector2f &loc,
-					     int EnemySelection,
-                         const sf::Vector2f &boardsize) : Enemy(
+RandomEnemy::RandomEnemy(const sf::Vector2f &loc,int EnemySelection,const sf::Vector2f &boardsize) : Enemy(
 						 loc, EnemySelection, boardsize)
 {
 
 }
+//=============================================================
 
 void RandomEnemy::UpdateLocation(float timeGame, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&)
 {
