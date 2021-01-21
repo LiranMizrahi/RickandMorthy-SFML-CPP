@@ -3,8 +3,8 @@
 //
 
 #include "State.h"
-
+//=========================constructor ======================================
 State::State(const sf::Texture & sprite, const sf::SoundBuffer & sound):m_stateBackround(sprite),m_stateSound(sound) {
 
-
 }
+//=============================================================

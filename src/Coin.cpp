@@ -1,17 +1,21 @@
 #include "Coin.h"
 #include "SingletonPicture.h"
 #include "Macros.h"
-//=============================================================
+//============ Set Up static variables =======================
 size_t Coin:: m_allCoins = 0;
 size_t Coin:: m_currentCoins = 0;
 
-//=============================================================
+//=========================constructor ======================================
 Coin::Coin(const sf::Vector2f &loc, const sf::Vector2f &size, int level) :
 	StaticObjects(SingletonPicture::instance().getCoinTexture(), loc, size)
 {
     m_value = level * COINVALUE;
 	 m_allCoins++;
 	 m_currentCoins++;
+}
+//==================== Getters and Setters ========================================
+int Coin::getValue() const {
+    return m_value;
 }
 //=============================================================
 
@@ -44,18 +48,9 @@ size_t Coin::getNowCoins()
 	}
 	return m_currentCoins;
 }
-//=============================================================
+//===================== Public function ====================
 
-void Coin::incCoins()
-{
-	m_currentCoins--;
-}
-void Coin::resetCoins()
-{
-	m_allCoins = 0;
-	m_currentCoins = 0;
-}
-//=============================================================
+
 bool Coin::isObjectIsStandable(Hero & obj) {
     return false;
 }
@@ -77,9 +72,15 @@ void Coin::CoinInitialization()
 {
 	m_currentCoins = m_allCoins;
 }
-
-int Coin::getValue() const {
-    return m_value;
+//============== static function ====================
+void Coin::resetCoins()
+{
+    m_allCoins = 0;
+    m_currentCoins = 0;
 }
 //=============================================================
 
+void Coin::incCoins()
+{
+    m_currentCoins--;
+}

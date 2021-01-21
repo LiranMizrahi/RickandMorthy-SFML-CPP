@@ -6,7 +6,7 @@
 
 #include <cmath>
 
-
+//=========================constructor ======================================
 SmartEnemy::SmartEnemy(const sf::Vector2f &loc, int EnemySelection,
                        const sf::Vector2f boardsize) :
     Enemy(loc, EnemySelection,boardsize), m_step (0), m_lastStep(0),  m_direction (false)

@@ -1,7 +1,7 @@
 #include "SingletonSound.h"
 #include <iostream>
 
-
+//=========================constructor ======================================
 SingletonSound::SingletonSound()
 {
     bool isok =true;

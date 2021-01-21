@@ -6,7 +6,7 @@
 #include "GiftAddingTime.h"
 #include "GiftAddingEnemy.h"
 
-
+//=========================constructor ======================================
 Controller::Controller(): m_window(sf::VideoMode(WINDOWSIZEWIDTH, WINDOWSIZEHEIGHT), "RICK RUNNER"),m_level(1)
 {
     m_gameOverSound.setBuffer(SingletonSound::instance().getMGameOver());

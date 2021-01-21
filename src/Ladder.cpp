@@ -2,7 +2,8 @@
 #include "SingletonPicture.h"
 #include  <cmath>
 
-//=============================================================
+//=========================constructor ======================================
+
 
 Ladder::Ladder(const sf::Vector2f& loc , const sf::Vector2f& size): StaticObjects(SingletonPicture::instance().getLedderTexture(), loc, size)
 {

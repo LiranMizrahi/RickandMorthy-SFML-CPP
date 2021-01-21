@@ -2,7 +2,7 @@
 #include "SingletonPicture.h"
 #include "Coin.h"
 #include "Macros.h"
-
+//=========================constructor ======================================
 Gift::Gift(const sf::Vector2f& loc, const sf::Vector2f& size):
 	StaticObjects(SingletonPicture::instance().getGiftTexture(), loc, size)
 {

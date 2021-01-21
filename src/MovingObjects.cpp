@@ -1,8 +1,7 @@
 #include "MovingObjects.h"
 #include "Macros.h"
 
-//=============================================================
-
+//=========================constructor ======================================
 MovingObjects::MovingObjects(const sf::Texture& tex, const sf::Vector2f& loc, const sf::Vector2f& size) :GameObj(tex, loc,size)
 {
 
@@ -23,8 +22,6 @@ void MovingObjects::move(float xline,float yline)
         m_sprite.setPosition(m_LastPosition);
     }
 }
-//=============================================================
-
 //=============================================================
 
 void MovingObjects::SetPosition(const sf::Vector2f& pos)

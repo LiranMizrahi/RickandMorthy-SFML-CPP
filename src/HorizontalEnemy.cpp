@@ -1,12 +1,14 @@
 #include"HorizontalEnemy.h"
 
-HorizontalEnemy::HorizontalEnemy(const sf::Vector2f &loc,
-                                 int EnemySelection,
-                                 const sf::Vector2f &boardsize) : Enemy(
-								 loc, EnemySelection, boardsize)
+
+//=========================constructor ======================================
+
+HorizontalEnemy::HorizontalEnemy(const sf::Vector2f &loc,int EnemySelection,const sf::Vector2f &boardsize) : Enemy(
+        loc, EnemySelection, boardsize)
 {
 
 }
+//=============================================================
 
 void HorizontalEnemy::UpdateLocation(float time, sf::Vector2f, const  std::vector <std::vector<char>>&, Board&)
 {
@@ -23,6 +25,7 @@ void HorizontalEnemy::UpdateLocation(float time, sf::Vector2f, const  std::vecto
 		break;
 	}
 }
+//=============================================================
 
 void HorizontalEnemy::handleColision(Floor& obj)
 {
@@ -37,6 +40,7 @@ void HorizontalEnemy::handleColision(Floor& obj)
     this->m_sprite.setPosition(m_LastPosition);
 	
 }
+//=============================================================
 
 void HorizontalEnemy::move(float xline, float yline)
 {

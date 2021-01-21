@@ -1,7 +1,7 @@
 #include "GameObj.h"
 #include "Macros.h"
 
-
+//=========================constructor ======================================
 GameObj::GameObj(const sf::Texture& tex, const sf::Vector2f & location, const sf::Vector2f& board_size)
 {
 
@@ -13,8 +13,7 @@ GameObj::GameObj(const sf::Texture& tex, const sf::Vector2f & location, const sf
    // m_sprite.setOrigin(sf::Vector2f(m_sprite.getGlobalBounds().width/2,m_sprite.getGlobalBounds().height/2));
     m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
 }
-
-
+//=============================================================
 bool GameObj::collisonWith(const GameObj& obj)const
 {
 
@@ -26,27 +25,26 @@ bool GameObj::collisonWith(const GameObj& obj)const
 	return false;
 
 }
+//=============================================================
 
 void GameObj::draw(sf::RenderWindow& window)const
 {
    if(!m_isOff)
 	window.draw(this->m_sprite);
 }
-
+//=============================================================
 sf::Sprite GameObj::getSprite() const{
     return m_sprite;
 }
+//=============================================================
 
 bool GameObj::getIsOff()const {
     return m_isOff;
 }
-
+//=============================================================
 void GameObj::setIsOff(bool isoff) {
     m_isOff = isoff;
 
 }
+//=============================================================
 
-//bool GameObj::restoreGameObj(const sf::Time &, float cellheight) {
-//
-//
-//}

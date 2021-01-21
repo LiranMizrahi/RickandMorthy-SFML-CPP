@@ -6,7 +6,7 @@
 #include "Board.h"
 #include "Ladder.h"
 #include <cmath>
-
+//=========================constructor ======================================
 Hero::Hero(const sf::Vector2f &loc, int HeroSelection,
            sf::Vector2f boardsize) : m_life(3), m_score(0)
 {
@@ -30,7 +30,7 @@ Hero::Hero(const sf::Vector2f &loc, int HeroSelection,
     m_LastPosition = loc;
     m_lastdigtime = sf::Time::Zero;
 }
-//====================================================
+//==================== Getters and Setters ========================================
 
 int Hero::getLife()
 {
