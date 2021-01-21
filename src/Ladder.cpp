@@ -1,9 +1,7 @@
 #include "Ladder.h"
 #include "SingletonPicture.h"
 #include  <cmath>
-Ladder::Ladder()
-{
-}
+
 //=============================================================
 
 Ladder::Ladder(const sf::Vector2f& loc , const sf::Vector2f& size): StaticObjects(SingletonPicture::instance().getLedderTexture(), loc, size)

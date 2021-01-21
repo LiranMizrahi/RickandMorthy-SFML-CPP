@@ -8,7 +8,7 @@ class StaticObjects : public GameObj
 {
 public:
 
-	StaticObjects();
+	StaticObjects() = default;
 	StaticObjects(const sf::Texture &, const sf::Vector2f& loc, const sf::Vector2f&);
 	~StaticObjects() override= default;;
 

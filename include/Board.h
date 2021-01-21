@@ -12,7 +12,7 @@ class SingletonSound;
 class Board {
 
 public:
-	Board();
+	Board() = default;
 	Board(std::vector<std::vector<char>> file, int PlayerSelection,
           int level);
 	void draw(sf::RenderWindow&)const;
@@ -38,7 +38,7 @@ public:
     sf::Vector2f mapPixelToIndexes(const sf::Vector2f &vector2) const;
 
 private:
-	//private members
+    //===================private members=================
     Hero* m_hero;
 	std::vector <std::vector <std::unique_ptr <StaticObjects>>> m_staticObjects;
 	std::vector <std::unique_ptr <MovingObjects>>m_movingObjects;

@@ -17,7 +17,7 @@ Controller::Controller(): m_window(sf::VideoMode(WINDOWSIZEWIDTH, WINDOWSIZEHEIG
     m_background.setScale(m_background.getTexture()->getSize().x/(float)BOARDWIDTH,m_background.getTexture()->getSize().y/(float)BOARDHEIGHT);
     m_startGameState.openstate(m_window,m_herroSelect);
 
-    std::srand(std::time(nullptr));
+    std::srand(NULL);
     newGame();
 
 }

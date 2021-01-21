@@ -9,7 +9,7 @@ class SingletonPicture;
 class Coin : public StaticObjects {
 
 public:
-	Coin();
+	Coin() = default;
 	Coin(const sf::Vector2f &loc, const sf::Vector2f &size, int level);
      virtual ~Coin() = default;
 

@@ -4,6 +4,7 @@
 class HorizontalEnemy: public Enemy
 {
 public:
+	HorizontalEnemy() = default;
 	HorizontalEnemy(const sf::Vector2f &loc,
                     int EnemySelection,
                     const sf::Vector2f &boardsize);

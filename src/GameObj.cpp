@@ -14,10 +14,6 @@ GameObj::GameObj(const sf::Texture& tex, const sf::Vector2f & location, const sf
     m_sprite.setOrigin(sf::Vector2f(m_sprite.getTexture()->getSize() / 2u));
 }
 
-GameObj::GameObj()
-{
-}
-
 
 bool GameObj::collisonWith(const GameObj& obj)const
 {

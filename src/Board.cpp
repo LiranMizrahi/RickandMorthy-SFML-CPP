@@ -20,10 +20,6 @@
 #include "GiftAddingTime.h"
 //=========================constructor ======================================
 
-Board::Board():m_width(0), m_height(0), m_cellHight(0), m_cellWidth(0), m_hero()
-{
-}
-//=================================================================
 Board::Board(std::vector<std::vector<char>> file, int PlayerSelection,
              int level)
 {
@@ -131,10 +127,10 @@ void Board::createEnemysVector(const sf::Vector2f& location, int PlayerSelection
 {
 
     sf::Vector2f boaradsize(m_cellWidth,m_cellWidth);
-   // int ChooseEnemy = std::rand() % (ENEMYTYPES-1)+1;
-    int ChooseEnemy = 0;
+    int ChooseEnemy = std::rand() % (ENEMYTYPES-1);
+    
 
-    switch (1)
+    switch (ChooseEnemy)
     {
         case RANDOM:
             m_movingObjects.push_back(std::move(std::make_unique<RandomEnemy>(location, PlayerSelection,boaradsize)));

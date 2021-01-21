@@ -6,10 +6,6 @@ size_t Coin:: m_allCoins = 0;
 size_t Coin:: m_currentCoins = 0;
 
 //=============================================================
-Coin::Coin():m_value(0)
-{
-}
-//=============================================================
 Coin::Coin(const sf::Vector2f &loc, const sf::Vector2f &size, int level) :
 	StaticObjects(SingletonPicture::instance().getCoinTexture(), loc, size)
 {

@@ -7,7 +7,7 @@ class SingletonPicture;
 class Ladder : public StaticObjects {
 
 public:
-	Ladder();
+	Ladder() = default;
 	Ladder(const sf::Vector2f& loc, const sf::Vector2f&);
     ~Ladder() override= default;
 

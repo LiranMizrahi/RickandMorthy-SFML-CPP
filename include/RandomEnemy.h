@@ -5,6 +5,7 @@
 class RandomEnemy : public Enemy
 {
 public:
+	RandomEnemy() = default;
 	RandomEnemy(const sf::Vector2f &loc, int EnemySelection,
                 const sf::Vector2f &boardsize);
     ~RandomEnemy()override = default;

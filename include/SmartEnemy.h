@@ -16,6 +16,7 @@ public:
 class SmartEnemy: public Enemy
 {
 public:
+	SmartEnemy() = default;
 	SmartEnemy(const sf::Vector2f &loc, int EnemySelection,
                const sf::Vector2f boardsize);
 	

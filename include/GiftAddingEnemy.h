@@ -6,6 +6,7 @@
 class GiftAddingEnemy : public Gift
 {
 public:
+	GiftAddingEnemy() = default;
 	 GiftAddingEnemy(const sf::Vector2f& loc, const sf::Vector2f&);
 	 virtual ~GiftAddingEnemy() = default;
 

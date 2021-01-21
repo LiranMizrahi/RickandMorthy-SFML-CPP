@@ -7,6 +7,7 @@
 class GiftAddingScore : public Gift
 {
 public:
+	GiftAddingScore() = default;
 	GiftAddingScore(const sf::Vector2f& loc, const sf::Vector2f&);
 	virtual ~GiftAddingScore() = default;
 

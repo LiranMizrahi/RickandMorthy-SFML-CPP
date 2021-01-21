@@ -10,7 +10,7 @@ class SingletonPicture;
 class Rope : public StaticObjects {
 
 public:
-	Rope();
+	Rope() = default;
 	Rope(const sf::Vector2f& loc, const sf::Vector2f&);
 	~Rope () override = default;
 

@@ -17,7 +17,7 @@ class GameObj {
 
 
 public:
-	GameObj();
+	GameObj() = default;
 	GameObj(const sf::Texture&, const sf::Vector2f&, const sf::Vector2f &board_size);
 	virtual ~GameObj() = default;;
 

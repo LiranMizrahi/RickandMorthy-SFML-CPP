@@ -6,6 +6,7 @@ class GiftAddingTime : public Gift
 {
 
 public:
+    GiftAddingTime() = default;
     GiftAddingTime(const sf::Vector2f& loc, const sf::Vector2f&);
    virtual ~GiftAddingTime() ;
 

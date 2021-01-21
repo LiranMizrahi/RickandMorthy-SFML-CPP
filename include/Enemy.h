@@ -13,7 +13,7 @@ enum e_Enemy {
 class Enemy : public MovingObjects {
 public:
 
-
+      Enemy() = default;
 	  Enemy(const sf::Vector2f &loc, int EnemySelection,
             sf::Vector2f boardsize);
     virtual ~Enemy()  = default;

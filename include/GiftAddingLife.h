@@ -6,6 +6,7 @@
 class GiftAddingLife : public Gift
 {
 public:
+	GiftAddingLife() = default;
 	GiftAddingLife(const sf::Vector2f& loc, const sf::Vector2f&);;
 	virtual ~GiftAddingLife() = default;
 
