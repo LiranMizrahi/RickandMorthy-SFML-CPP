@@ -35,6 +35,7 @@ void Enemy::handleColision(Hero& obj)
 
 void Enemy::handleColision(Floor& obj)
 {
+
 	m_sprite.setPosition(m_LastPosition);
 	m_isUpAvail = false;
 }

@@ -183,6 +183,7 @@ void Hero::digHole(Board& board,const sf::Time &time)
 
         if (index.y >0 && index.x >= 0 && index.y < board.getHeight() && index.x < board.getWidth())
         {
+            std::cout <<index.x  <<" "<<index.y << std::endl;
             if(board.getStaticObjectsFromVector((int)index.y-1, (int)index.x) != nullptr &&
             !board.getStaticObjectsFromVector((int)index.y-1, (int)index.x)->getIsOff()
             )return;
@@ -193,8 +194,7 @@ void Hero::digHole(Board& board,const sf::Time &time)
                 {
                     auto loc = staticobj->getSprite().getPosition();
                     loc.y -= board.getCellHight();
-                    auto rec = sf::RectangleShape(sf::Vector2f(board.getCellWidth()/2,board.getCellHight()));
-                        std::cout <<index.x  <<" "<<index.y << std::endl;
+                    auto rec = sf::RectangleShape(sf::Vector2f(board.getCellWidth()/2,board.getCellHight()/2));
                    // auto rec = sf::RectangleShape(sf::Vector2f(m_sprite.getGlobalBounds().width,m_sprite.getGlobalBounds().height));
                     //rec.setScale(m_sprite.getScale());
                     rec.setPosition(loc);

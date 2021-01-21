@@ -12,34 +12,32 @@ public:
 	Coin();
 	Coin(const sf::Vector2f &loc, const sf::Vector2f &size, int level);
      virtual ~Coin() = default;
-    virtual void handleColision(Rope&) override {};
-	virtual void handleColision(Hero&) override;
-	virtual void handleColision(Floor&) override {};
-	virtual void handleColision(Ladder&) override {};
-	virtual void handleColision(GameObj&) override;
-	virtual void handleColision(Coin&) override {};
-	virtual void handleColision(Enemy&) override {};
-	virtual void handleColision(GiftAddingLife&) override {};
-	virtual void handleColision(GiftAddingScore&) override {};
-	virtual void handleColision(GiftAddingEnemy&) override {};
-	virtual void resetObj()override;
 
-    virtual bool isObjectIsStandable(Hero&)override;
+     int getValue() const;
+     void handleColision(Rope&) override {};
+	 void handleColision(Hero&) override;
+	 void handleColision(Floor&) override {};
+	 void handleColision(Ladder&) override {};
+	 void handleColision(GameObj&) override;
+	 void handleColision(Coin&) override {};
+	 void handleColision(Enemy&) override {};
+	 void handleColision(GiftAddingLife&) override {};
+	 void handleColision(GiftAddingScore&) override {};
+	 void handleColision(GiftAddingEnemy&) override {};
+	 void resetObj()override;
 
-    virtual bool isObjectIsStandable(Enemy&)override;
-	virtual void handleColision(GiftAddingTime&) override {};
+     bool isObjectIsStandable(Hero&)override;
+
+     bool isObjectIsStandable(Enemy&)override;
+	 void handleColision(GiftAddingTime&) override {};
 	static size_t getNowCoins();
-    virtual bool isObjectDigable(const sf::Time&) override;
-	static void CoinInitialization();
+     bool isObjectDigable(const sf::Time&) override;
+     static void CoinInitialization();
 
-    static void incCoins();
+	static void incCoins();
 	static void resetCoins();
 private:
     int m_value;
-public:
-    int getValue() const;
-
-private:
     static size_t m_allCoins;
 	static size_t m_currentCoins;
 };

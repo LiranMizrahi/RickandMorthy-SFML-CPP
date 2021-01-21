@@ -223,4 +223,5 @@ void SmartEnemy::randomMovment(float time)
         break;
     }
 }
- 
+//====================================================
+

@@ -50,7 +50,6 @@ int Board::getMovingObjecVectorSize() {
 
 void Board::setHeroLife(int life) {
     m_hero->setLife(life);
-
 }
 //==================================================
 void Board::addHeroScore(int score ) {
@@ -62,22 +61,18 @@ float Board::getCellHight() const {
     return m_cellHight;
 }
 //==================================================
-
 float Board::getCellWidth() const {
     return m_cellWidth;
 }
-
 //==================================================
 bool Board::checkIfHroalive() {
     return m_hero->getIsOff();
 }
-
 //==================================================
 int Board::getHeroScore() {
     return m_hero->getScore();
 }
 //==================================================
-
 int Board::getHerolife() {
     return m_hero->getLife();
 }
@@ -103,6 +98,7 @@ void Board::createObject(char input, const sf::Vector2f &location,
     {
        
     case ENEMY:
+        m_staticObjects[i].push_back(nullptr);
         createEnemysVector(location, PlayerSelection);
         break;
 
@@ -206,9 +202,6 @@ void Board::readFile(const std::vector<std::vector<char>> &file, int PlayerSelec
                 int level)
 {
     sf::Vector2f location;
-    //m_staticObjects.clear();
-    //m_movingObjects.clear();
-
     m_cellWidth = (BOARDWIDTH / float(m_width));
     m_cellHight = (BOARDHEIGHT / float(m_height));
 
@@ -224,14 +217,16 @@ void Board::readFile(const std::vector<std::vector<char>> &file, int PlayerSelec
     // take char with the file and put vector
     for (int i = 0; i < m_height; ++i)
     {
-
         for (int j = 0; j < m_width; ++j)
         {
 
             if (file[i][j] == SPACE)
                 m_staticObjects[i].push_back(nullptr);
             else if (file[i][j] == HERO)
+            {
+                m_staticObjects[i].push_back(nullptr);
                 heroloc = location;
+            }
             else
                 createObject(file[i][j], location, PlayerSelection, i, level);
 
@@ -248,8 +243,6 @@ void Board::readFile(const std::vector<std::vector<char>> &file, int PlayerSelec
 
 
 }
-
-
 
 //==========================================
 
@@ -313,11 +306,6 @@ void Board::draw(sf::RenderWindow& window)const
     }
 
 }
-
-
-
-
-
 
 //==================================================
 void Board::handleCollisions(MovingObjects &movab)
@@ -409,7 +397,7 @@ void Board::ResetMap()
 }
 //==================================================
 
-sf::Vector2f Board::mapPixelToIndexes(const sf::Vector2f &vector2) {
+sf::Vector2f Board::mapPixelToIndexes(const sf::Vector2f &vector2) const {
 
     {
 
@@ -422,9 +410,10 @@ sf::Vector2f Board::mapPixelToIndexes(const sf::Vector2f &vector2) {
 
         pointposition = m_cellWidth;
 
-        for (col =0; pointposition <= vector2.x; ++col)
+        for (col = 0; pointposition <= vector2.x; ++col)
             pointposition += m_cellWidth;
 
-        return sf::Vector2f(col,row);
+            return sf::Vector2f(col,row);
     }
 }
+//==================================================

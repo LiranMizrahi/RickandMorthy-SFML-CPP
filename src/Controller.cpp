@@ -7,20 +7,23 @@
 #include "GiftAddingEnemy.h"
 
 
-Controller::Controller(): m_window(sf::VideoMode(WINDOWSIZEWIDTH, WINDOWSIZEHEIGHT), "RICK RUNNER"),m_level(0)
+Controller::Controller(): m_window(sf::VideoMode(WINDOWSIZEWIDTH, WINDOWSIZEHEIGHT), "RICK RUNNER"),m_level(1)
 {
     m_gameOverSound.setBuffer(SingletonSound::instance().getMGameOver());
     m_levelUpSoundl.setBuffer(SingletonSound::instance().getMLevelUp());
     m_startGameSound.setBuffer(SingletonSound::instance().getMStartGame());
     m_window.setFramerateLimit(FRAMERATESPEED);
 	m_background.setTexture(SingletonPicture::instance().getBoardTexture(m_level));
-    //m_boardChar = openlevelfile(m_level);
+    m_background.setScale(m_background.getTexture()->getSize().x/(float)BOARDWIDTH,m_background.getTexture()->getSize().y/(float)BOARDHEIGHT);
     m_startGameState.openstate(m_window,m_herroSelect);
 
     newGame();
 
 }
-//=============================================================
+/*=============================================================
+The main function of the game
+ throw the Board object move all the moving object handle all game logic
+=============================================================*/
 
 void Controller::run()
 {
@@ -37,15 +40,16 @@ void Controller::run()
                 break;
             }
 
-        drawWindow();
+
 
         deltaTime = clock.restart().asSeconds();
 
+        drawWindow();
         m_board.checkIfObjectFalling(deltaTime);
         m_board.checkCollisions(deltaTime);
         m_board.moveCharacters(deltaTime, m_boardChar);
         m_board.checkIfHeroDig(m_time.getElapsedTime());
-
+        //Check if a game object need an handle after time
         m_board.restroreGameObjects(m_time.getElapsedTime());
         //if player collect a gift that this or m_background class need to handle
         reedemGifts();
@@ -65,8 +69,7 @@ std::vector<std::vector<char>> Controller::readFromFile()
 {
     std::vector<std::vector<char>> temp;
     int width, height;
-    m_time.restart();
-
+    //m_time.restart();
 
         m_file >> width >> height >> m_timeTheLevel; // take size map
         m_file.get();
@@ -95,7 +98,6 @@ std::vector<std::vector<char>> Controller::readFromFile()
         return temp;
 }
 
-
 //=============================================================
 
 bool Controller::checkIfLevelDone() {
@@ -110,14 +112,14 @@ void Controller::ResetCoins()
 
 void Controller::upgradeLevel()
 {
-    //If opening the next level file failed the game over
+    //If opening the next level file failed the game over otherwise move to the next level
     if(!openlevelfile()) {
         m_gameOverState.openstate(m_window,true);
         m_herroSelect = m_menu.StartGame(m_window);
     }
-
     else
-         m_levelUpState.openstate(m_window,m_herroSelect);
+        m_levelUpState.openstate(m_window,m_herroSelect);
+
     //save all hero data and restore after the board build the new level
     m_boardChar = readFromFile();
     int herolife = m_board.getHerolife();
@@ -149,7 +151,9 @@ void Controller::checkIfTimeIsOver()
             ResetLevel();
         }
 }
-//=============================================================
+/*=============================================================
+This function reset the game and start the game from level 1
+ =============================================================*/
 void Controller::newGame()
 {
     Coin::resetCoins();
@@ -161,10 +165,9 @@ void Controller::newGame()
     m_board.setHeroLife(HEROSTARTLIFE);
     m_time.restart();
 
-    
 }
 //=============================================================
-
+//Reset the level all the moving abjects return to their first position
 void Controller::ResetLevel()
 {
     m_time.restart();
@@ -172,7 +175,6 @@ void Controller::ResetLevel()
     m_board.ResetMap();
 }
 //=============================================================
-
 void Controller::reedemGifts() {
 
     for (int i = 0; i < GiftAddingEnemy::getNumberOfGiftAddingRnemy(); ++i) {
@@ -190,9 +192,10 @@ void Controller::reedemGifts() {
 //=============================================================
 void Controller::checkIfHeroalive() {
 
+    //if the hero is dead reset the level
     if(m_board.checkIfHroalive())
         ResetLevel();
-
+    //if there is no more life for the hero the gameover
     if ( 0 >= m_board.getHerolife())
     {
         //gameOverHandler(false);
@@ -200,11 +203,12 @@ void Controller::checkIfHeroalive() {
         newGame();
     }
 }
-//=============================================================
+/*=============================================================
+Check if there is no move available coins to get
+If the player collect all the coin the level is finish
+=============================================================*/
+ void Controller::checkIfPlayerFinishLevel() {
 
-void Controller::checkIfPlayerFinishLevel() {
-
-    //check if there is no move available coins to get
     if(checkIfLevelDone())
     {
             m_board.addHeroScore(LEVELUPADDSCORE);
@@ -237,3 +241,4 @@ bool Controller::openlevelfile() {
     }
     return true;
 }
+//=============================================================
