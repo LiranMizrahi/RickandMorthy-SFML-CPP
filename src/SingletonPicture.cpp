@@ -70,8 +70,7 @@ SingletonPicture::SingletonPicture()
 
 }
 
-const sf::Texture &SingletonPicture::getMRickback() const {
-}
+
 
 const sf::Texture & SingletonPicture::getHerojerryTexture()const
 {

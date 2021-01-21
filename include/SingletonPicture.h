@@ -28,7 +28,7 @@ public:
         const sf::Texture& getMHeroIsdead()const ;
         const sf::Texture& getMGameOver() const;
 
-    const sf::Texture &getMRickback() const;
+   // const sf::Texture &getMRickback() const;
 
 
 private:
