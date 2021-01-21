@@ -31,7 +31,6 @@ void Coin::handleColision(Hero&obj)
 //=============================================================
 
 void Coin::handleColision(GameObj &obj) {
-   // if(&obj == this)return;
     obj.handleColision(*this);
 }
 void Coin::resetObj()

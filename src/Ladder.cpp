@@ -29,7 +29,6 @@ bool Ladder::isObjectIsStandable(Hero & hero) {
 
     return (std::abs(m_sprite.getPosition().x -hero.getSprite().getPosition().x )
     < this->m_sprite.getTexture()->getSize().x/2u) ;
-    // &&std::abs( m_sprite.getPosition().y- obj.getSprite().getPosition().y )< 5)
 
 }
 //=============================================================
